@@ -537,59 +537,38 @@
         /* Responsive */
         @media (max-width: 768px) {
             .jukebox-container {
-                padding-top: 20px;
-                gap: 10px;
+                padding-top: 30px;
+                gap: 15px;
             }
 
             .jukebox-layout {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
             }
 
             .song-list-panel {
-                width: 95%;
-                max-width: 100%;
-                max-height: 30vh;
-                order: 0 !important;
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                position: relative !important;
-                z-index: 10 !important;
-            }
-
-            .song-list-panel:last-of-type {
-                display: none !important;
-            }
-
-            .song-list-header {
-                font-size: 0.9rem;
-                padding-bottom: 6px;
-                margin-bottom: 8px;
+                width: 100%;
+                max-width: 280px;
+                max-height: 25vh;
+                order: 2;
             }
 
             .song-item {
-                padding: 5px 6px;
-                margin-bottom: 2px;
+                padding: 6px 8px;
             }
 
             .song-code {
-                font-size: 0.9rem;
-                min-width: 28px;
+                font-size: 1rem;
+                min-width: 30px;
             }
 
             .song-name {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
 
             .letter-title {
-                font-size: 0.8rem;
-                padding: 3px 5px;
-                margin-bottom: 4px;
-            }
-
-            .letter-section {
-                margin-bottom: 6px;
+                font-size: 0.9rem;
+                padding: 4px 6px;
             }
 
             .jukebox-wrapper {
@@ -597,17 +576,17 @@
             }
 
             .selection-screen {
-                padding: 8px 25px;
+                padding: 10px 30px;
                 min-width: 150px;
             }
 
             .selection-text {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .jukebox-wrapper,
             .jukebox-image {
-                max-height: 35vh;
+                max-height: 60vh;
             }
 
             .now-playing {
@@ -631,65 +610,7 @@
 
         @media (max-width: 480px) {
             .song-list-panel {
-                max-height: 25vh;
-                padding: 8px;
-                width: 98%;
-            }
-
-            .song-list-header {
-                font-size: 0.85rem;
-                margin-bottom: 8px;
-            }
-
-            .letter-title {
-                font-size: 0.75rem;
-                padding: 2px 4px;
-                margin-bottom: 4px;
-            }
-
-            .song-item {
-                padding: 4px 5px;
-                margin-bottom: 2px;
-            }
-
-            .song-code {
-                font-size: 0.85rem;
-                min-width: 26px;
-            }
-
-            .song-name {
-                font-size: 0.65rem;
-            }
-
-            .letter-section {
-                margin-bottom: 6px;
-            }
-
-            .selection-text {
-                font-size: 1.6rem;
-            }
-
-            .now-playing-label-scroll {
-                font-size: 0.55rem;
-            }
-
-            .song-title-scroll {
-                font-size: 0.7rem;
-            }
-
-            .stop-button {
-                padding: 4px 10px;
-                font-size: 0.7rem;
-            }
-
-            .stop-icon {
-                width: 7px;
-                height: 7px;
-            }
-
-            .jukebox-wrapper,
-            .jukebox-image {
-                max-height: 30vh;
+                display: none;
             }
         }
     </style>
@@ -910,21 +831,12 @@
         // === GÉNÉRATION DES LISTES DE CHANSONS ===
         function generateSongLists() {
             const letters = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K'];
-            const isMobile = window.innerWidth <= 768;
 
-            if (isMobile) {
-                // Sur mobile : un seul panneau avec toutes les chansons
-                generatePanelSongs(leftPanel, letters);
-                // Masquer le panneau droit sur mobile
-                rightPanel.style.display = 'none';
-                leftPanel.style.display = 'block';
-            } else {
-                // Sur desktop : deux panneaux séparés
-                leftPanel.style.display = 'block';
-                rightPanel.style.display = 'block';
-                generatePanelSongs(leftPanel, letters.slice(0, 5));
-                generatePanelSongs(rightPanel, letters.slice(5));
-            }
+            // Générer pour le panneau gauche (lettres A-E)
+            generatePanelSongs(leftPanel, letters.slice(0, 5));
+
+            // Générer pour le panneau droit (lettres G-K)
+            generatePanelSongs(rightPanel, letters.slice(5));
         }
 
         function generatePanelSongs(panel, letters) {
