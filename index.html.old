@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Archives et Histoire du Groupe Rock Métal - L'histoire de Saint Erblon.">
+    <title>Saint Erblon | Entre Cordes et Cendres</title>
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ERBLON<span>PROD</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">ACCUEIL</a>
+                <a href="#collections">BACKSTAGE</a>
+                <a href="#members">LINE-UPS</a>
+                <a href="#discography">DISCOGRAPHIE</a>
+                <a href="#chronology">CHRONOLOGIE</a>
+                <a href="#community">COMMUNAUTÉ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+
+        <!-- 1. Entre Cordes et Cendres (Home) -->
+		
+<section id="home">
+    <div class="hero-content">
+        
+        <!-- CONTENEUR ANIMATION NOMS -->
+        <div id="name-evolution-container">
+            <!-- Les noms seront injectés ici par JavaScript -->
+        </div>
+
+        <p>De l'ombre du garage à la lumière de la scène. Une histoire brute. Une énergie pure.</p>
+        <div style="margin-top: 2.5rem;">
+            <a href="#collections" class="btn">DÉCOUVRIR BACKSTAGE</a>
+            <button class="btn btn-outline" onclick="playTeaser()">
+                <i class="fas fa-play"></i> LE TEASER
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- SVG FILTRE CACHÉ (Pour l'effet de distorsion) -->
+<svg style="display: none;">
+    <defs>
+        <filter id="displacementFilter">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </defs>
+</svg>
+
+        <!-- 2. BACKSTAGE (Collections) - MODIFIÉ AVEC LES 8 LIENS -->
+        <section id="collections">
+            <div class="section-header">
+                <h2>BACKSTAGE</h2>
+                <p>Du garage à la scène, une histoire de décibels : photos, vidéos, audio et documents.</p>
+            </div>
+            
+            <!-- Filtres : 4 Boutons (Pages Globales) -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="environnement.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">ENVIRONNEMENT</a>
+                <a href="histoire.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">HISTOIRE</a>
+                <a href="concerts.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">CONCERTS</a>
+                <a href="soirees.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">GALERIES PHOTOS</a>
+            </div>
+
+            <!-- Grille : 4 Cartes (Pages Spécifiques) -->
+            <div class="collections-grid">
+                
+                <!-- Carte 1 : Répétition -->
+                <a href="repetition.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="images/repetitions.jpg" alt="Répétition" class="card-img">
+                    <div class="card-content">
+                        <h3>Les Premières Répétitions</h3>
+                        <span class="card-meta">1998 • Saint Erblon • Audio</span>
+                        <p>Enregistrements bruts dans le garage familial. L'acoustique brute de Saint Erblon a tout façonné.</p>
+                    </div>
+                </a>
+
+                <!-- Carte 2 : Concert Live -->
+                <a href="concert-live.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="images/affiche.jpg" alt="Concert Live" class="card-img">
+                    <div class="card-content">
+                        <h3>First Tour</h3>
+                        <span class="card-meta">1999 • Ouest France • Photos</span>
+                        <p>Affiches originales et polaroids de la première tournée des bars regionaux.</p>
+                    </div>
+                </a>
+
+                <!-- Carte 3 : Studio -->
+                <a href="studio.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="images/music.jpg" alt="Studio" class="card-img">
+                    <div class="card-content">
+                        <h3>Sessions écoutes </h3>
+                        <span class="card-meta">Bibliothèque de musique </span>
+                        <p>Riffs, morceaux, quelques notes aux Cd, venez écouter ...</p>
+                    </div>
+                </a>
+
+                <!-- Carte 4 : Interview -->
+                <a href="interview.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="images/anectdotes.jpeg" alt="Interview" class="card-img">
+                    <div class="card-content">
+                        <h3>ANECDOTES</h3>
+                        <span class="card-meta">2020 • Saint Erblon • Vidéo</span>
+                        <p>Les membres reviennent sur leurs débuts 20 ans plus tard.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- 3. LINE-UPS (Membres) -->
+        <section id="members">
+            <div class="section-header">
+                <h2>LINE-UPS</h2>
+                <p>Les artisans du son de Saint Erblon.</p>
+            </div>
+            <div class="members-grid">
+                <div class="member-card">
+                    <img src="images/regis1.jpg" alt="batteur" class="member-avatar">
+                    <h3>Regis.</h3>
+                    <span class="member-role">Batterie</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Batteur de puissance.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/Tanguy.jpg" alt="Chanteur" class="member-avatar">
+                    <h3>Tanguy. </h3>
+                    <span class="member-role">Chant</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. l'artisite.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/loran.jpg" alt="Guitariste" class="member-avatar">
+                    <h3>Loran. </h3>
+                    <span class="member-role">Guitariste</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Guitariste fou, slameur.</p>
+                </div>
+                 <div class="member-card">
+                    <img src="images/Tony.jpg" alt="Clavier puis Chant" class="member-avatar">
+                    <h3>Tony. </h3>
+                    <span class="member-role">Chanteur</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Spécialiste du Yaourt.</p>
+                </div>
+				<div class="member-card">
+                    <img src="images/gilles.jpg" alt="Guitariste" class="member-avatar">
+                    <h3>Gilles.</h3>
+                    <span class="member-role">Basse puis Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;"> La technique à l'état pure.</p>
+                </div>
+				<div class="member-card">
+                    <img src="images/jerome.jpg" alt="Guitariste" class="member-avatar">
+                    <h3>Jérome. </h3>
+                    <span class="member-role">Guitariste</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La guitare mélodique et joyeuse.</p>
+                </div>		
+				<div class="member-card">
+                    <img src="images/flo.jpg" alt="Guitariste" class="member-avatar">
+                    <h3>Florent. </h3>
+                    <span class="member-role">Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Guitaiste métalleux à la recherche du "son" parfait.</p>
+                </div>	
+				<div class="member-card">
+                    <img src="images/jean.jpg" alt="Bassiste" class="member-avatar">
+                    <h3>JeanJean. </h3>
+                    <span class="member-role">Basse</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La bassmorphose.</p>
+                </div>
+				<div class="member-card">
+                    <img src="images/jef.jpg" alt="Chanteur" class="member-avatar">
+                    <h3>Jeff. </h3>
+                    <span class="member-role">Chanteur</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La voix expressive.</p>
+                </div>						
+           </div>
+        </section>
+
+        <!-- 4. DISCOGRAPHIE -->
+        <section id="discography">
+            <div class="section-header">
+                <h2>DISCOGRAPHIE</h2>
+                <p>Écoutez l'évolution du groupe.</p>
+            </div>
+            <div class="album-list">
+                <div class="album-item">
+                    <img src="images/album_jar.jpg" alt="Cover Album 1" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • Face avant</span>
+                        <p>Enregistré au Studio "Panoramix", "chez nono" à Saint Sauveur de Flée.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i> 01. little Shit</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 02. Endfeels</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 03. Quiet</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 04. Self Made Women</div>
+							<div class="track"><i class="fas fa-play play-icon"></i> 05. Shekter For Anger</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album-item">
+                    <img src="images/back_cd.jpg" alt="Cover Album 2" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • Face arrière</span>
+                        <p>Une conception Graphique : tanguy Ferrand, Photo : Lora ferrand.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i> Guitare: Gilles, Guitare: florent, Basse: Jeanjean, Batterie: Regis, Chant: Tony   </div>
+							<div class="track"><i class="fas fa-play play-icon"></i> Paroles et musique: Jar  </div>
+							<div class="track"><i class="fas fa-play play-icon"></i> contact: Mickael Lairy </div>
+							<div class="track"><i class="fas fa-play play-icon"></i> conception graphique : Tanguy Ferrand</div>
+							<div class="track"><i class="fas fa-play play-icon"></i> Photo : Loran Ferrand </div>
+                        </div>
+                    </div>
+                </div>
+            
+			<div class="album-item">
+                    <img src="images/interieur.jpg" alt="Cover Album 2" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • intérieur du boitier de Cd</span>
+                        <p>Répétitions effectuées aux courans 53200 Longuefuye.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i>Remerciements : Nono, Tanguy, Mickaêl, Nos parents </div>
+                            <div class="track"><i class="fas fa-play play-icon"></i>Jérome, Christophe, Cédric, Saint Erblon, Novembre</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i>Daniel du palais, Cavirok de Cahteau-Gontier, les copains du monde</div>
+							<div class="track"><i class="fas fa-play play-icon"></i>Le Fjt, Aline&Jean Marie, aux Tomyknockers, L'abbé Frock</div>
+							<div class="track"><i class="fas fa-play play-icon"></i>Et tous les autres qui se reconnîtront, à notre public </div>
+                        </div>
+                    </div>
+                </div>			
+			</div>
+        </section>
+
+        <!-- 5. CHRONOLOGIE -->
+        <section id="chronology">
+            <div class="section-header">
+                <h2>CHRONOLOGIE</h2>
+                <p>Les dates clés de l'histoire du groupe.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1988</div>
+                    <h3>La Rencontre : DESASTRAX</h3>
+                    <p>Tanguy, Loran, Regis et Tony se retrouvent tous les étés à Saint Erblon pendant les vacances. Ils découvrent une passion commune pour le rock alternatif et decident de se tester à la musique sans instruments...</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1992</div>
+                    <h3>Premières Répétitions et Concerts:      EXPLICIT à NOMUG </h3>
+                    <p>Installation dans le sous-sol des parents à Saint Erblon. Gilles prend la basse. jérome à la guitare. Les répétitions s'accentuent les samedi après-midi. les voisins sont ravis.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1998</div>
+                    <h3> Concerts et CD : HELLIUM à JAR </h3>
+                    <p>Différentes Fête de la musique. Jérome quitte le Groupe. JeanJean et Flo les rejoignent sous une influence néometal, magique.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2002</div>
+                    <h3>La technique fait son oeuvre : CODEINE </h3>
+                    <p>Concerts dans la région. Répétitions à Craon. Tony quitte le camp, Jeff le remplace au chant</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2005</div>
+                    <h3> Association et repètes à Renazé, concerts  : WOW</h3>
+                    <p> Gilles s'en va sur Niort, Jeff est remplacé par Alex. Le groupe reste sur une longue période avec le même nom. Finalemeant, en 2012 , WOW se met en pause, laissant une légende intacte.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. COMMUNAUTÉ & CONTACT -->
+        <section id="community">
+            <div class="section-header">
+                <h2>COMMUNAUTÉ</h2>
+                <p>Partagez vos souvenirs et restez informés.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Contactez l'équipe des archives</h3>
+                    <p style="margin-bottom: 25px; color: #aaa; font-size: 0.9rem;">Pour proposer des archives, des photos, presse, anecdotes.</p>
+  
+  <!-- Formulaire modifié pour envoyer à nomug2020 -->
+ <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Nouveau message depuis le site Saint Erblon Archives">
+    
+    <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="test_nom" class="form-control" required>
+    </div>    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="test_email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="test_message" rows="5" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn">Envoyer</button>
+</form>
+        </div>
+
+                <div class="contact-info">
+                    <h3>Restons connectés</h3>
+                    <p style="margin-bottom: 25px;">Inscrivez-vous à la newsletter pour recevoir les actualités sur les nouvelles mises en ligne d'archives.</p>
+                    
+<form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" style="margin-bottom: 40px;">
+		<input type="hidden" name="_captcha" value="false">
+		<input type="hidden" name="_subject" value="Nouvelle inscription Newsletter - Saint Erblon Archives">
+    
+		<div class="form-group">
+		<input type="email" name="newsletter_email" placeholder="Votre email" class="form-control" required>
+		</div>
+		<button type="submit" class="btn btn-outline">S'inscrire</button>
+</form>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/nomug.mug" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@sevendustwow"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-bandcamp"></i></a>
+                    </div>
+                    
+                    <div style="margin-top: 50px; padding: 25px; background: rgba(0,0,0,0.2); border-left: 2px solid var(--color-primary);">
+                        <h4 style="color:white; margin-bottom: 10px;">Le QG des Archives</h4>
+                        <p style="color: #aaa; line-height: 1.8;">
+                            Le Bourg<br>
+                            53390 Saint Erblon<br>
+                            France
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site "Une jeunesse sous distorsion."</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--color-primary); color: white; padding: 15px 25px; border-radius: 4px; transform: translateY(150%); transition: transform 0.3s ease; z-index: 2000;">
+        Message envoyé !
+    </div>
+
+    <!-- JavaScript Interactions -->
+	<script>
+    // Configuration des noms chronologiques
+    const nameSequence = [
+        { text: "Desastrax", effect: "shatter" },
+        { text: "Soul Famous Carpet", effect: "burn" },
+        { text: "Rock'n Chair", effect: "shatter" },
+        { text: "Explicit", effect: "burn" },
+        { text: "No Mug", effect: "shatter" },
+        { text: "Helium", effect: "burn" },
+        { text: "Jar", effect: "shatter" },
+        { text: "Codeine", effect: "burn" },
+		{ text: "Wow", effect: "shatter" },
+        { text: "Crumble head", effect: "burn" },
+        { text: "Du garage à la scène", effect: "reborn" }
+
+    ];
+
+    let currentIndex = 0;
+    const container = document.getElementById('name-evolution-container');
+
+    function createSparks() {
+        // Crée des particules (étincelles) au centre de l'écran
+        for (let i = 0; i < 20; i++) {
+            const spark = document.createElement('div');
+            spark.classList.add('particle');
+            
+            spark.style.left = '50%';
+            spark.style.top = '50%';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 50 + Math.random() * 100;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+
+            document.body.appendChild(spark);
+            
+            const animation = spark.animate([
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+            ], {
+                duration: 800 + Math.random() * 400,
+                easing: 'cubic-bezier(0, .9, .57, 1)'
+            });
+
+            animation.onfinish = () => spark.remove();
+        }
+    }
+
+    function playNextName() {
+        if (currentIndex >= nameSequence.length) return;
+
+        const data = nameSequence[currentIndex];
+        const el = document.createElement('div');
+        el.textContent = data.text;
+        el.classList.add('evolution-text');
+
+        // 1. Apparition initiale
+        el.style.opacity = '1';
+        
+        // Ajustement de la taille de police pour les très longs noms
+        if (data.text.length > 12) {
+            el.style.fontSize = "3.5rem";
+        }
+
+        container.appendChild(el);
+
+        // 2. Lancer l'effet après un court délai (Accéléré pour 9 noms)
+        const displayTime = 1200; // Le texte reste 1.2 sec
+        const animTime = 800;     // L'anim dure 0.8 sec
+
+        setTimeout(() => {
+            if (data.effect === 'shatter') {
+                el.classList.add('anim-shatter');
+                createSparks();
+            } else if (data.effect === 'burn') {
+                el.classList.add('anim-burn');
+            } else if (data.effect === 'reborn') {
+                el.classList.add('anim-reborn');
+            }
+
+            // 3. Passer au suivant après l'animation
+            setTimeout(() => {
+                if (data.effect !== 'reborn') {
+                    el.remove();
+                    currentIndex++;
+                    playNextName();
+                }
+            }, animTime); 
+
+        }, displayTime);
+    }
+
+    // Lancer l'animation au chargement
+    window.addEventListener('load', () => {
+        setTimeout(playNextName, 500);
+    });
+</script>
+	
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function playTeaser() {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement...';
+            
+            setTimeout(() => {
+                showNotification("Lancement de la vidéo du teaser (Simulation)");
+                btn.innerHTML = originalText;
+            }, 1000);
+        }
+
+        function showNotification(message = "Message envoyé avec succès !") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.transform = "translateY(0)";
+            
+            setTimeout(() => {
+                toast.style.transform = "translateY(150%)";
+            }, 3000);
+        }
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
