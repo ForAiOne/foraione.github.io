@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jukebox Vintage - Sélectionnez votre musique">
+    <title>Jukebox Vintage | Saint Erblon Archives</title>
+
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* === JUKEBOX VINTAGE - AMBIANCE ANNÉES 50 === */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-yellow: #ffff00;
+            --neon-green: #00ff00;
+            --neon-orange: #ff6600;
+            --vintage-bg: #1a0a2e;
+            --vintage-dark: #0d0d1a;
+            --btn-normal: #4a4a6a;
+            --btn-pressed: #ff3366;
+            --btn-glow: rgba(255, 51, 102, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background:
+                radial-gradient(ellipse at center, var(--vintage-bg) 0%, var(--vintage-dark) 70%, #000 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 255, 0.02) 2px,
+                    rgba(0, 255, 255, 0.02) 4px
+                );
+            min-height: 100vh;
+            font-family: 'Roboto Condensed', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Effet de grille rétro */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Container principal */
+        .jukebox-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 40px;
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Layout avec les listes latérales */
+        .jukebox-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 100%;
+        }
+
+        /* Panneaux de chansons */
+        .song-list-panel {
+            background: linear-gradient(180deg, rgba(10, 10, 20, 0.95) 0%, rgba(20, 10, 30, 0.95) 100%);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 65vh;
+            overflow-y: auto;
+            width: 180px;
+            box-shadow:
+                0 0 20px rgba(255, 0, 255, 0.2),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .song-list-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .song-list-panel::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+        .song-list-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 0, 255, 0.4);
+            border-radius: 3px;
+        }
+
+        .song-list-panel::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 0, 255, 0.6);
+        }
+
+        .song-list-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-pink);
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-pink);
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            background: rgba(255, 0, 255, 0.05);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .song-item:hover {
+            background: rgba(255, 0, 255, 0.15);
+            transform: translateX(3px);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+        }
+
+        .song-code {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            min-width: 35px;
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        .song-name {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .letter-section {
+            margin-bottom: 15px;
+        }
+
+        .letter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .letter-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            color: var(--neon-pink);
+            margin-bottom: 8px;
+            padding: 5px 8px;
+            background: rgba(255, 0, 255, 0.1);
+            border-radius: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* Conteneur du jukebox avec image */
+        .jukebox-wrapper {
+            position: relative;
+            max-width: 100%;
+            max-height: 65vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Image du jukebox */
+        .jukebox-image {
+            max-width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow:
+                0 0 50px rgba(255, 0, 255, 0.3),
+                0 0 100px rgba(0, 255, 255, 0.2),
+                0 20px 60px rgba(0, 0, 0, 0.8);
+            transition: filter 0.3s ease;
+        }
+
+        /* Zone des boutons - superposée à l'image */
+        .buttons-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        /* Boutons interactifs - invisibles mais cliquables */
+        .jukebox-btn {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: transparent;
+            color: transparent;
+            cursor: pointer;
+            pointer-events: auto;
+            opacity: 0;
+            z-index: 50;
+        }
+
+        /* Écran de sélection du jukebox */
+        .selection-screen {
+            background: linear-gradient(180deg, #000 0%, #1a0a2e 50%, #000 100%);
+            border: 3px solid var(--neon-pink);
+            border-radius: 12px;
+            padding: 12px 40px;
+            min-width: 180px;
+            text-align: center;
+            box-shadow:
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-blue),
+                inset 0 0 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet de grille sur l'écran */
+        .selection-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 6px 6px;
+            pointer-events: none;
+        }
+
+        /* Effet de scanline */
+        .selection-screen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                transparent 50%,
+                rgba(0, 0, 0, 0.3) 50%
+            );
+            background-size: 100% 3px;
+            pointer-events: none;
+            animation: scanlines 0.1s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(3px); }
+        }
+
+        .screen-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .selection-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--neon-pink);
+            text-shadow:
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 30px var(--neon-pink);
+            letter-spacing: 8px;
+            min-height: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .selection-letter {
+            animation: letterGlow 0.5s ease-out;
+        }
+
+        .selection-number {
+            color: var(--neon-blue);
+            text-shadow:
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+            animation: numberGlow 0.5s ease-out;
+        }
+
+        @keyframes letterGlow {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes numberGlow {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .screen-label {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(0, 255, 255, 0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* Section Now Playing dans le panneau principal */
+        .now-playing-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 0, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .now-playing-section.visible {
+            opacity: 1;
+        }
+
+        .now-playing-label-scroll {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.7rem;
+            color: var(--neon-pink);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+            animation: blinkLabel 1s ease-in-out infinite;
+        }
+
+        @keyframes blinkLabel {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .song-title-scroll {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .song-title-scroll span {
+            display: inline-block;
+            animation: scrollTitle 8s linear infinite;
+        }
+
+        @keyframes scrollTitle {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Bouton Stop */
+        .stop-button {
+            margin-top: 10px;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stop-button.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .stop-button:hover {
+            background: linear-gradient(135deg, #a50000 0%, #700000 100%);
+            border-color: rgba(255, 0, 0, 0.5);
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .stop-button:active {
+            transform: scale(0.98);
+        }
+
+        .stop-icon {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 1px;
+        }
+
+        /* Affichage "Now Playing" */
+        /* Supprimé - intégré dans le panneau principal */
+
+        /* Animation du jukebox */
+        .jukebox-active {
+            animation: jukeboxGlow 0.5s ease-in-out;
+        }
+
+        @keyframes jukeboxGlow {
+            0% { filter: brightness(1) drop-shadow(0 0 0 transparent); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 30px var(--neon-pink)); }
+            100% { filter: brightness(1) drop-shadow(0 0 0 transparent); }
+        }
+
+        /* Effet de lumière sur l'image */
+        .jukebox-glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .jukebox-glow-effect.active {
+            opacity: 1;
+            animation: glowPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* Instructions */
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 10, 46, 0.9);
+            border: 1px solid rgba(255, 0, 255, 0.5);
+            border-radius: 10px;
+            padding: 15px 30px;
+            color: rgba(0, 255, 255, 0.8);
+            font-size: 0.9rem;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .instructions span {
+            color: var(--neon-pink);
+            font-weight: 700;
+        }
+
+        /* Navigation de retour */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(26, 10, 46, 0.9) 0%, rgba(13, 13, 26, 0.95) 100%);
+            border: 1px solid rgba(255, 0, 255, 0.5);
+            border-radius: 8px;
+            color: rgba(0, 255, 255, 0.9);
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .jukebox-container {
+                padding-top: 30px;
+                gap: 15px;
+            }
+
+            .jukebox-layout {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .song-list-panel {
+                width: 100%;
+                max-width: 280px;
+                max-height: 25vh;
+                order: 2;
+            }
+
+            .song-item {
+                padding: 6px 8px;
+            }
+
+            .song-code {
+                font-size: 1rem;
+                min-width: 30px;
+            }
+
+            .song-name {
+                font-size: 0.75rem;
+            }
+
+            .letter-title {
+                font-size: 0.9rem;
+                padding: 4px 6px;
+            }
+
+            .jukebox-wrapper {
+                order: 1;
+            }
+
+            .selection-screen {
+                padding: 10px 30px;
+                min-width: 150px;
+            }
+
+            .selection-text {
+                font-size: 2rem;
+            }
+
+            .jukebox-wrapper,
+            .jukebox-image {
+                max-height: 60vh;
+            }
+
+            .now-playing {
+                top: auto;
+                bottom: 80px;
+                right: 50%;
+                transform: translateX(50%);
+                padding: 15px 20px;
+            }
+
+            .now-playing.visible {
+                transform: translateX(50%) translateY(0);
+            }
+
+            .instructions {
+                bottom: 10px;
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .song-list-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation de retour -->
+    <nav class="back-nav">
+        <a href="index.html#collections" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>RETOUR BACKSTAGE</span>
+        </a>
+    </nav>
+
+    <!-- Container principal -->
+    <div class="jukebox-container">
+        <!-- Écran de sélection -->
+        <div class="selection-screen">
+            <div class="screen-content">
+                <div class="selection-text" id="selectionText">
+                    <span class="selection-letter" id="selectionLetter"></span>
+                    <span class="selection-number" id="selectionNumber"></span>
+                </div>
+                <div class="screen-label" id="screenLabel">Sélectionnez une lettre</div>
+                <div class="now-playing-section" id="nowPlayingSection">
+                    <span class="now-playing-label-scroll">NOW PLAYING :</span>
+                    <div class="song-title-scroll">
+                        <span id="songTitleScroll">Titre de la chanson</span>
+                    </div>
+                </div>
+                <button class="stop-button" id="stopButton" onclick="stopMusic()">
+                    <div class="stop-icon"></div>
+                    STOP
+                </button>
+            </div>
+        </div>
+
+        <!-- Conteneur du jukebox -->
+        <div class="jukebox-layout">
+            <!-- Panneau gauche - Liste des chansons -->
+            <div class="song-list-panel" id="leftPanel">
+                <div class="song-list-header">A-K</div>
+                <!-- Les chansons seront générées par JavaScript -->
+            </div>
+
+            <!-- Image du jukebox avec boutons -->
+            <div class="jukebox-wrapper">
+                <img src="Jukebox.png" alt="Jukebox Vintage" class="jukebox-image" id="jukeboxImage">
+
+                <!-- Effet de lueur -->
+                <div class="jukebox-glow-effect" id="glowEffect"></div>
+
+                <!-- Overlay des boutons -->
+                <div class="buttons-overlay" id="buttonsOverlay">
+                    <!-- Les boutons seront générés par JavaScript -->
+                </div>
+            </div>
+
+            <!-- Panneau droit - Liste des chansons (même contenu pour réplication) -->
+            <div class="song-list-panel" id="rightPanel">
+                <div class="song-list-header">A-K</div>
+                <!-- Les chansons seront générées par JavaScript -->
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions" id="instructions">
+            Sélectionnez une <span>LETTRE</span> puis un <span>CHIFFRE</span> pour lancer la musique
+        </div>
+    </div>
+
+    <!-- Élément audio caché -->
+    <audio id="audioPlayer"></audio>
+
+    <script>
+        // === LISTE DES CHANSONS - FACILEMENT MODIFIABLE ===
+        const songsList = {
+            'A1': 'Little Shit',
+            'A2': 'Endfeels',
+            'A3': 'Quiet',
+            'A4': 'Self Made Women',
+            'A5': 'Shekter For Anger',
+            'A6': 'Overture Noire',
+            'A7': 'Les Coulisses',
+            'A8': 'Studio Alpha',
+            'A9': 'Prise de Son',
+            'B1': 'No Mug Anthem',
+            'B2': 'Intro Live',
+            'B3': 'Crowd Chant',
+            'B4': 'Codeine',
+            'B5': 'Dark Dreams',
+            'B6': 'Red Sky',
+            'B7': 'Wow Original',
+            'B8': 'Acoustic Version',
+            'B9': 'Crumble',
+            'C1': 'Headrush',
+            'C2': 'Fade Out',
+            'C3': 'Desastrax',
+            'C4': 'Soul Famous Carpet',
+            'C5': 'Rock\'n Chair',
+            'C6': 'Explicit',
+            'C7': 'Helium',
+            'C8': 'Jar Live',
+            'C9': 'Codeine Live',
+            'D1': 'Wow Studio',
+            'D2': 'Crumble Demo',
+            'D3': 'First Take',
+            'D4': 'Rehearsal 1',
+            'D5': 'Rehearsal 2',
+            'D6': 'B-Side 1',
+            'D7': 'B-Side 2',
+            'D8': 'Unreleased',
+            'D9': 'Bonus Track',
+            'E1': 'Garage Jam',
+            'E2': 'Sunday Session',
+            'E3': 'Midnight Riffs',
+            'E4': 'Early Days',
+            'E5': 'First Song',
+            'E6': 'The Beginning',
+            'E7': 'Practice Run',
+            'E8': 'Sound Check',
+            'E9': 'Warm Up',
+            'G1': 'Festival Opener',
+            'G2': 'Main Stage',
+            'G3': 'Encore',
+            'G4': 'Final Song',
+            'G5': 'Backstage',
+            'G6': 'Tour Bus',
+            'G7': 'Hotel Room',
+            'G8': 'After Party',
+            'G9': 'Road Trip',
+            'H1': 'Studio A',
+            'H2': 'Studio B',
+            'H3': 'Live Room',
+            'H4': 'Control Room',
+            'H5': 'Reverb Chamber',
+            'H6': 'Vocal Booth',
+            'H7': 'Drum Room',
+            'H8': 'Amp Room',
+            'H9': 'Mixing Desk',
+            'I1': 'Introduction',
+            'I2': 'Intermission',
+            'I3': 'Conclusion',
+            'I4': 'Epilogue',
+            'I5': 'Prologue',
+            'I6': 'Chapter 1',
+            'I7': 'Chapter 2',
+            'I8': 'Chapter 3',
+            'I9': 'Finale',
+            'K1': 'Anthology 1',
+            'K2': 'Anthology 2',
+            'K3': 'Anthology 3',
+            'K4': 'Rarities',
+            'K5': 'B-Sides',
+            'K6': 'Demos',
+            'K7': 'Live Cuts',
+            'K8': 'Remixes',
+            'K9': 'The Lost Tapes'
+        };
+
+        // === VARIABLES D'ÉTAT ===
+        let selectedLetter = null;
+        let selectedNumber = null;
+        let isPlaying = false;
+
+        /* === ÉLÉMENTS DOM === */
+        const buttonsOverlay = document.getElementById('buttonsOverlay');
+        const jukeboxImage = document.getElementById('jukeboxImage');
+        const glowEffect = document.getElementById('glowEffect');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const selectionLetter = document.getElementById('selectionLetter');
+        const selectionNumber = document.getElementById('selectionNumber');
+        const screenLabel = document.getElementById('screenLabel');
+        const nowPlayingSection = document.getElementById('nowPlayingSection');
+        const songTitleScroll = document.getElementById('songTitleScroll');
+        const leftPanel = document.getElementById('leftPanel');
+        const rightPanel = document.getElementById('rightPanel');
+        const stopButton = document.getElementById('stopButton');
+
+        // === POSITIONS DES BOUTONS ===
+        // Positions configurées par l'utilisateur
+        let buttonPositions = [
+            // Lettres
+            { label: 'A', x: 45.1, y: 53.4, type: 'letter' },
+            { label: 'B', x: 45.1, y: 56.4, type: 'letter' },
+            { label: 'C', x: 45.1, y: 59.1, type: 'letter' },
+            { label: 'D', x: 45.1, y: 61.3, type: 'letter' },
+            { label: 'E', x: 45.1, y: 63.9, type: 'letter' },
+            { label: 'G', x: 45.1, y: 66.7, type: 'letter' },
+            { label: 'H', x: 45.1, y: 69.2, type: 'letter' },
+            { label: 'I', x: 45.1, y: 71.9, type: 'letter' },
+            { label: 'K', x: 45.1, y: 74.6, type: 'letter' },
+            // Chiffres
+            { label: '1', x: 54.7, y: 53.1, type: 'number' },
+            { label: '2', x: 54.7, y: 55.9, type: 'number' },
+            { label: '3', x: 54.7, y: 58.7, type: 'number' },
+            { label: '4', x: 54.7, y: 61.4, type: 'number' },
+            { label: '5', x: 54.7, y: 64.2, type: 'number' },
+            { label: '6', x: 54.7, y: 66.6, type: 'number' },
+            { label: '7', x: 54.7, y: 69.1, type: 'number' },
+            { label: '8', x: 54.7, y: 71.4, type: 'number' },
+            { label: '9', x: 54.7, y: 74.3, type: 'number' }
+        ];
+
+        // === GÉNÉRATION DES BOUTONS ===
+        function generateButtons() {
+            // Créer les boutons immédiatement si l'image est déjà chargée
+            if (jukeboxImage.complete && jukeboxImage.naturalHeight > 0) {
+                createButtonsWithPositions();
+            } else {
+                // Sinon, attendre le chargement de l'image
+                jukeboxImage.onload = function() {
+                    createButtonsWithPositions();
+                };
+            }
+        }
+
+        // === GÉNÉRATION DES LISTES DE CHANSONS ===
+        function generateSongLists() {
+            const letters = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K'];
+
+            // Générer pour le panneau gauche (lettres A-E)
+            generatePanelSongs(leftPanel, letters.slice(0, 5));
+
+            // Générer pour le panneau droit (lettres G-K)
+            generatePanelSongs(rightPanel, letters.slice(5));
+        }
+
+        function generatePanelSongs(panel, letters) {
+            // Garder le header
+            const header = panel.querySelector('.song-list-header');
+            panel.innerHTML = '';
+            panel.appendChild(header);
+
+            letters.forEach(letter => {
+                const section = document.createElement('div');
+                section.className = 'letter-section';
+
+                const title = document.createElement('div');
+                title.className = 'letter-title';
+                title.textContent = `SERIE ${letter}`;
+                section.appendChild(title);
+
+                for (let num = 1; num <= 9; num++) {
+                    const code = letter + num;
+                    const songName = songsList[code] || 'Piste inconnue';
+
+                    const item = document.createElement('div');
+                    item.className = 'song-item';
+                    item.innerHTML = `
+                        <span class="song-code">${code}</span>
+                        <span class="song-name">${songName}</span>
+                    `;
+
+                    // Ajouter l'événement de clic
+                    item.addEventListener('click', () => {
+                        selectSong(code);
+                    });
+
+                    section.appendChild(item);
+                }
+
+                panel.appendChild(section);
+            });
+        }
+
+        function selectSong(code) {
+            const letter = code.charAt(0);
+            const number = code.charAt(1);
+
+            // Simuler le clic sur la lettre
+            handleButtonClick(null, letter, 'letter');
+
+            // Puis simuler le clic sur le chiffre après un court délai
+            setTimeout(() => {
+                handleButtonClick(null, number, 'number');
+            }, 200);
+        }
+
+        // Créer les boutons avec les positions
+        function createButtonsWithPositions() {
+            buttonPositions.forEach(pos => {
+                createButton(pos.label, pos.x, pos.y, pos.type);
+            });
+        }
+
+        // === CRÉATION D'UN BOUTON ===
+        function createButton(label, x, y, type) {
+            const btn = document.createElement('button');
+            btn.className = `jukebox-btn btn-${type}`;
+            btn.textContent = label;
+            btn.dataset.label = label;
+            btn.dataset.type = type;
+
+            // Positionner le bouton en pourcentage
+            btn.style.left = x + '%';
+            btn.style.top = y + '%';
+            btn.style.transform = 'translate(-50%, -50%)';
+
+            // Ajouter l'événement de clic
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Empêcher la propagation à l'image
+                handleButtonClick(btn, label, type);
+            });
+
+            buttonsOverlay.appendChild(btn);
+        }
+
+        // === GESTION DU CLIC SUR BOUTON ===
+        function handleButtonClick(btn, label, type) {
+            if (type === 'letter') {
+                // Sélection d'une lettre
+                if (selectedLetter === label) {
+                    // Désélectionner si on reclique
+                    resetSelection();
+                } else {
+                    // Nouvelle sélection de lettre
+                    resetSelection();
+                    selectedLetter = label;
+                    selectionLetter.textContent = label;
+                    selectionLetter.classList.remove('letter-glow');
+                    void selectionLetter.offsetWidth; // Force reflow
+                    selectionLetter.classList.add('letter-glow');
+                    screenLabel.textContent = 'Sélectionnez un chiffre';
+                }
+            } else if (type === 'number' && selectedLetter) {
+                // Sélection d'un chiffre après une lettre
+                selectedNumber = label;
+                selectionNumber.textContent = label;
+                selectionNumber.classList.remove('number-glow');
+                void selectionNumber.offsetWidth; // Force reflow
+                selectionNumber.classList.add('number-glow');
+
+                // Valider la combinaison
+                validateCombination();
+            }
+        }
+
+        // === VALIDATION DE LA COMBINAISON ===
+        function validateCombination() {
+            const combination = selectedLetter + selectedNumber;
+            const songName = songsList[combination] || 'Piste inconnue';
+
+            // Masquer le now playing section
+            nowPlayingSection.classList.remove('visible');
+
+            // Animer le jukebox
+            jukeboxImage.classList.add('jukebox-active');
+            glowEffect.classList.add('active');
+
+            // Jouer le son mécanique (simulation)
+            playMechanicalSound();
+
+            // Afficher les informations après le délai
+            setTimeout(() => {
+                showNowPlaying(songName);
+                // Passer le code complet de la chanson (ex: A1) et le nom
+                startPlaying(combination, songName);
+            }, 1500);
+
+            // Nettoyer l'animation après délai
+            setTimeout(() => {
+                jukeboxImage.classList.remove('jukebox-active');
+                glowEffect.classList.remove('active');
+            }, 2500);
+        }
+
+        // === AFFICHER NOW PLAYING ===
+        function showNowPlaying(title) {
+            songTitleScroll.textContent = title;
+            nowPlayingSection.classList.add('visible');
+        }
+
+        // === DÉMARRER LA LECTURE ===
+        function startPlaying(code, songName) {
+            isPlaying = true;
+
+            // Construire le chemin vers le fichier MP3
+            // Format: mp3/A1_Little_Shit.mp3
+            const safeFileName = songName.replace(/ /g, '_');
+            const audioPath = `mp3/${code}_${safeFileName}.mp3`;
+
+            console.log('Tentative de lecture :', audioPath);
+
+            // Configurer et jouer le fichier audio
+            audioPlayer.src = audioPath;
+            audioPlayer.load();
+
+            // Tenter de jouer la musique
+            const playPromise = audioPlayer.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('✅ Lecture démarrée :', songName);
+                    screenLabel.textContent = 'Lecture en cours...';
+                    // Afficher le bouton stop
+                    stopButton.classList.add('visible');
+                }).catch(error => {
+                    console.error('❌ Erreur lors de la lecture :', error);
+                    console.error('Détails :', error.message);
+
+                    // Afficher un message détaillé dans le label
+                    if (error.name === 'NotSupportedError') {
+                        screenLabel.textContent = 'Format non supporté';
+                    } else if (error.name === 'AbortError') {
+                        screenLabel.textContent = 'Lecture interrompue';
+                    } else {
+                        screenLabel.textContent = 'Erreur: ' + error.message;
+                    }
+
+                    // Afficher une alerte pour l'utilisateur
+                    setTimeout(() => {
+                        alert(`Impossible de lire "${songName}" (${code})\n\nFichier recherché : ${audioPath}\n\nVérifiez que :\n1. Le fichier existe dans le dossier mp3/\n2. Le fichier est nommé correctement (ex: ${code}_${safeFileName}.mp3)\n3. Le format est bien MP3`);
+                    }, 500);
+                });
+            }
+
+            // Audio événements
+            audioPlayer.onended = () => {
+                console.log('🎵 Chanson terminée :', songName);
+                resetSelection();
+                nowPlayingSection.classList.remove('visible');
+                isPlaying = false;
+                screenLabel.textContent = 'Sélectionnez une lettre';
+                // Masquer le bouton stop
+                stopButton.classList.remove('visible');
+            };
+
+            audioPlayer.onerror = () => {
+                const error = audioPlayer.error;
+                console.error('❌ Erreur de chargement du fichier audio :', audioPath);
+                console.error('Code d\'erreur :', error.code);
+
+                let errorMessage = 'Erreur de chargement';
+
+                switch(error.code) {
+                    case error.MEDIA_ERR_ABORTED:
+                        errorMessage = 'Chargement interrompu';
+                        break;
+                    case error.MEDIA_ERR_NETWORK:
+                        errorMessage = 'Erreur réseau';
+                        break;
+                    case error.MEDIA_ERR_DECODE:
+                        errorMessage = 'Fichier corrompu ou format invalide';
+                        break;
+                    case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                        errorMessage = 'Fichier non trouvé ou format non supporté';
+                        break;
+                }
+
+                console.error('Message d\'erreur :', errorMessage);
+                screenLabel.textContent = errorMessage;
+
+                // Afficher une alerte pour aider l'utilisateur
+                setTimeout(() => {
+                    alert(`Impossible de charger "${songName}" (${code})\n\nFichier recherché : ${audioPath}\n\nErreur : ${errorMessage}\n\nSolutions :\n1. Vérifiez que le fichier MP3 existe dans le dossier mp3/\n2. Vérifiez le nom du fichier : ${code}_${safeFileName}.mp3\n3. Remplacez les espaces par des underscores`);
+                }, 500);
+
+                isPlaying = false;
+            };
+        }
+
+        // === ARRÊTER LA MUSIQUE ===
+        function stopMusic() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                console.log('⏹️ Musique arrêtée');
+            }
+            resetSelection();
+            nowPlayingSection.classList.remove('visible');
+            isPlaying = false;
+            screenLabel.textContent = 'Sélectionnez une lettre';
+            // Masquer le bouton stop
+            stopButton.classList.remove('visible');
+        }
+
+        // === SON MÉCANIQUE (SIMULATION RÉALISTE JUKEBOX) ===
+        function playMechanicalSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            // S'assurer que le contexte audio est actif
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            // Séquence de sons du jukebox
+            const now = audioContext.currentTime;
+
+            // 1. Premier clic - Sélection de la lettre
+            playClick(audioContext, now);
+
+            // 2. Deuxième clic - Sélection du chiffre (200ms plus tard)
+            playClick(audioContext, now + 0.2);
+
+            // 3. Mécanisme de rotation du disque (400ms plus tard)
+            playDiscMechanism(audioContext, now + 0.4);
+
+            // 4. Bourdonnement du moteur (500ms plus tard)
+            playMotorHum(audioContext, now + 0.5);
+
+            // 5. Dernier clic de verrouillage (1s plus tard)
+            playClick(audioContext, now + 1.0);
+        }
+
+        // Son de clic mécanique
+        function playClick(ctx, time) {
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(800, time);
+            oscillator.frequency.exponentialRampToValueAtTime(200, time + 0.05);
+
+            gainNode.gain.setValueAtTime(0.3, time);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, time + 0.08);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+
+            oscillator.start(time);
+            oscillator.stop(time + 0.08);
+        }
+
+        // Son du mécanisme de rotation du disque
+        function playDiscMechanism(ctx, time) {
+            const duration = 0.4;
+
+            // Créer du bruit pour le mécanisme
+            const bufferSize = ctx.sampleRate * duration;
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const output = buffer.getChannelData(0);
+
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+
+            // Filtrer le bruit pour le rendre plus mécanique
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1200, time);
+            filter.frequency.linearRampToValueAtTime(800, time + duration);
+            filter.Q.value = 5;
+
+            // Enveloppe de volume
+            const gainNode = ctx.createGain();
+            gainNode.gain.setValueAtTime(0, time);
+            gainNode.gain.linearRampToValueAtTime(0.15, time + 0.05);
+            gainNode.gain.linearRampToValueAtTime(0.05, time + 0.3);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, time + duration);
+
+            noise.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(ctx.destination);
+
+            noise.start(time);
+            noise.stop(time + duration);
+        }
+
+        // Bourdonnement du moteur électrique
+        function playMotorHum(ctx, time) {
+            const duration = 0.5;
+
+            // Oscillateur principal pour le bourdonnement
+            const oscillator1 = ctx.createOscillator();
+            const oscillator2 = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+
+            oscillator1.type = 'sawtooth';
+            oscillator1.frequency.setValueAtTime(60, time);
+
+            oscillator2.type = 'square';
+            oscillator2.frequency.setValueAtTime(120, time);
+
+            // Léger vibrato
+            const lfo = ctx.createOscillator();
+            const lfoGain = ctx.createGain();
+            lfo.frequency.setValueAtTime(15, time);
+            lfoGain.gain.setValueAtTime(5, time);
+
+            lfo.connect(lfoGain);
+            lfoGain.connect(oscillator1.frequency);
+            lfoGain.connect(oscillator2.frequency);
+
+            // Enveloppe
+            gainNode.gain.setValueAtTime(0, time);
+            gainNode.gain.linearRampToValueAtTime(0.12, time + 0.1);
+            gainNode.gain.linearRampToValueAtTime(0.08, time + 0.3);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, time + duration);
+
+            oscillator1.connect(gainNode);
+            oscillator2.connect(gainNode);
+            gainNode.connect(ctx.destination);
+
+            oscillator1.start(time);
+            oscillator2.start(time);
+            lfo.start(time);
+
+            oscillator1.stop(time + duration);
+            oscillator2.stop(time + duration);
+            lfo.stop(time + duration);
+        }
+
+        // === RÉINITIALISER LA SÉLECTION ===
+        function resetSelection() {
+            selectedLetter = null;
+            selectedNumber = null;
+            selectionLetter.textContent = '';
+            selectionNumber.textContent = '';
+            screenLabel.textContent = 'Sélectionnez une lettre';
+            nowPlayingSection.classList.remove('visible');
+            stopButton.classList.remove('visible');
+        }
+
+        // === INITIALISATION ===
+        document.addEventListener('DOMContentLoaded', () => {
+            generateButtons();
+            generateSongLists();
+        });
+    </script>
+
+</body>
+</html>
