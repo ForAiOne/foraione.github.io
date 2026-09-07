@@ -6,6 +6,141 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Upload section styles */
+        #security-question {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            text-align: center;
+        }
+        #security-question h2 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+        #security-question p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+        #answer-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            background: var(--color-bg);
+            border: 1px solid #333;
+            color: white;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+        }
+        #submit-answer {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #submit-answer:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+        #upload-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            display: none;
+        }
+        #upload-section h2 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        #upload-instructions {
+            background: var(--color-bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+        #file-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            background: var(--color-bg);
+            border: 1px solid #333;
+            color: white;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+        }
+        #preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .preview-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: #333;
+        }
+        .preview-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        #send-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+        #send-btn:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+        #upload-status {
+            margin-top: 1.5rem;
+            text-align: center;
+            min-height: 2rem;
+        }
+        .status-success {
+            color: #4ade80;
+        }
+        .status-error {
+            color: #f87171;
+        }
+        .status-info {
+            color: #60a5fa;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -83,7 +218,178 @@
                 </div>
             </div>
         </section>
+
+        <!-- Security Question Section -->
+        <div id="security-question">
+            <h2>Accès réservé aux invités</h2>
+            <p>Pour accéder à l'espace de dépôt de photos, veuillez répondre à la question de sécurité suivante :</p>
+            <p id="question-text"></p>
+            <input type="text" id="answer-input" placeholder="Votre réponse" autocomplete="off">
+            <button id="submit-answer">Valider</button>
+            <div id="question-status" style="margin-top:1rem; min-height:1.5rem;"></div>
+        </div>
+
+        <!-- Upload Section -->
+        <div id="upload-section">
+            <h2>Dépôt de photos</h2>
+            <div id="upload-instructions">
+                <p>Sélectionnez vos photos (format JPG, PNG, max 5 Mo chacune). Elles seront ajoutées au portfolio après validation.</p>
+            </div>
+            <input type="file" id="file-input" accept="image/*" multiple>
+            <div id="preview-grid"></div>
+            <button id="send-btn">Envoyer les photos à Tony</button>
+            <div id="upload-status"></div>
+        </div>
     </main>
+
     <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <script>
+        // Security questions and answers (customize these with your private questions)
+        const securityQuestions = [
+            { q: "Quel était le nom du premier chien du groupe ?", a: "Rex" },
+            { q: "En quelle année avons-nous joué pour la première fois à Rennes ?", a: "2001" },
+            { q: "Quel est le titre de la chanson improvisée lors de la soirée du 15 août 2004 ?", a: "Jam dans le hangar" },
+            { q: "Quel ville a accueilli notre après-concert le plus mémorable en 2002 ?", a: "Rennes" },
+            { q: "Quel instrument jouait généralement le chanteur pendant les soirées privées ?", a: "Guitare acoustique" },
+            { q: "Quel était le thème de la soirée costumée de 2003 ?", a: "Années 80" },
+            { q: "Quel est le surnom du batteur pendant les tournées ?", a: "Le métronome" },
+            { q: "Quel bar était notre QG après les concerts à Nantes ?", a: "Le Duchesse Anne" },
+            { q: "Quel aliment était toujours présent lors des après-shows ?", a: "Pizza" },
+            { q: "Quel était le nom de code de notre tournée européenne de 2005 ?", a: "Euroblast" }
+        ];
+
+        let currentQuestion = null;
+
+        function loadQuestion() {
+            const idx = Math.floor(Math.random() * securityQuestions.length);
+            currentQuestion = securityQuestions[idx];
+            document.getElementById('question-text').textContent = currentQuestion.q;
+            document.getElementById('answer-input').value = '';
+            document.getElementById('question-status').textContent = '';
+            document.getElementById('question-status').className = '';
+        }
+
+        document.getElementById('submit-answer').addEventListener('click', function() {
+            const answer = document.getElementById('answer-input').value.trim();
+            if (answer.toLowerCase() === currentQuestion.a.toLowerCase()) {
+                document.getElementById('question-status').textContent = 'Réponse correcte ! Accès accordé.';
+                document.getElementById('question-status').className = 'status-success';
+                // Hide question section, show upload section after a short delay
+                setTimeout(() => {
+                    document.getElementById('security-question').style.display = 'none';
+                    document.getElementById('upload-section').style.display = 'block';
+                }, 800);
+            } else {
+                document.getElementById('question-status').textContent = 'Réponse incorrecte. Essayez encore.';
+                document.getElementById('question-status').className = 'status-error';
+                // Load a new question
+                setTimeout(loadQuestion, 1000);
+            }
+        });
+
+        // File upload handling
+        const fileInput = document.getElementById('file-input');
+        const previewGrid = document.getElementById('preview-grid');
+        const sendBtn = document.getElementById('send-btn');
+        const uploadStatus = document.getElementById('upload-status');
+
+        let selectedFiles = [];
+
+        fileInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            // Validate file types and size
+            let validFiles = [];
+            let hasError = false;
+            files.forEach(file => {
+                if (!file.type.match('image.*')) {
+                    hasError = true;
+                    uploadStatus.textContent = 'Erreur : Seul les fichiers images sont acceptés.';
+                    uploadStatus.className = 'status-error';
+                } else if (file.size > 5 * 1024 * 1024) { // 5 MB
+                    hasError = true;
+                    uploadStatus.textContent = 'Erreur : Le fichier "' + file.name + '" dépasse 5 Mo.';
+                    uploadStatus.className = 'status-error';
+                } else {
+                    validFiles.push(file);
+                }
+            });
+            if (!hasError && validFiles.length > 0) {
+                selectedFiles = validFiles;
+                displayPreview(selectedFiles);
+                uploadStatus.textContent = `${selectedFiles.length} fichier(s) sélectionné(s).`;
+                uploadStatus.className = 'status-info';
+            } else if (!hasError) {
+                selectedFiles = [];
+                previewGrid.innerHTML = '';
+                uploadStatus.textContent = '';
+                uploadStatus.className = '';
+            }
+        });
+
+        function displayPreview(files) {
+            previewGrid.innerHTML = '';
+            files.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                
+                const img = document.createElement('img');
+                img.file = file;
+                item.appendChild(img);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.onclick = function() {
+                    // Remove file from selectedFiles
+                    selectedFiles = selectedFiles.filter((f, i) => i !== index);
+                    displayPreview(selectedFiles);
+                    if (selectedFiles.length === 0) {
+                        fileInput.value = '';
+                        uploadStatus.textContent = '';
+                        uploadStatus.className = '';
+                    } else {
+                        uploadStatus.textContent = `${selectedFiles.length} fichier(s) sélectionné(s).`;
+                        uploadStatus.className = 'status-info';
+                    }
+                };
+                item.appendChild(removeBtn);
+                previewGrid.appendChild(item);
+                
+                // Preview image
+                const reader = new FileReader();
+                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        sendBtn.addEventListener('click', function() {
+            if (selectedFiles.length === 0) {
+                uploadStatus.textContent = 'Veuillez sélectionner au moins une photo.';
+                uploadStatus.className = 'status-error';
+                return;
+            }
+            // In a real implementation, you would upload the files to a server.
+            // For this static site, we provide instructions to send them manually.
+            uploadStatus.innerHTML = `
+                <p>Photos prêtes à être envoyées !</p>
+                <p>Veuillez envoyer ces ${selectedFiles.length} photo(s) à Tony via :</p>
+                <ul>
+                    <li>Telegram : @tony_foraione</li>
+                    <li>Email : tony@foraione.example.com</li>
+                </ul>
+                <p>Avec le sujet : "Upload photo soirée"</p>
+                <p>Je les ajouterai ensuite au portfolio.</p>
+            `;
+            uploadStatus.className = 'status-success';
+            // Optionally, clear the selection after sending instructions
+            // fileInput.value = '';
+            // selectedFiles = [];
+            // previewGrid.innerHTML = '';
+        });
+
+        // Initialize
+        loadQuestion();
+    </script>
 </body>
 </html>
