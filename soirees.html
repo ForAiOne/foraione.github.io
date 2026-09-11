@@ -91,6 +91,116 @@
         .status-info {
             color: #60a5fa;
         }
+        /* ---- Galerie : tirages encadres, ambiance metal ------------------- */
+        .galerie-section {
+            --acier-clair: #a8afb6;
+            --acier-sombre: #2b3034;
+            --passe-partout: #141719;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 4.5rem 1.5rem 3.5rem;
+            background:
+                radial-gradient(120% 70% at 50% 0%, rgba(185, 29, 29, 0.07) 0%, rgba(18, 18, 18, 0) 62%),
+                linear-gradient(180deg, #0f0f0f 0%, #141414 100%);
+            border-top: 1px solid #232323;
+        }
+        .galerie-entete { text-align: center; margin-bottom: 3.2rem; }
+        .galerie-entete .eyebrow {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.76rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 0.9rem;
+        }
+        .galerie-entete h2 {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-main);
+            margin: 0;
+        }
+        .galerie-entete h2::after {
+            content: "";
+            display: block;
+            width: 130px;
+            height: 3px;
+            margin: 1.2rem auto 0;
+            background: linear-gradient(90deg, var(--acier-sombre), var(--acier-clair), var(--acier-sombre));
+        }
+        .galerie-entete p {
+            margin: 1.1rem auto 0;
+            max-width: 640px;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .galerie-metal {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2.4rem 1.8rem;
+            align-items: start;
+        }
+        .oeuvre { margin: 0; }
+
+        /* l'encadrement : bordure acier + passe-partout, comme un tirage */
+        .cadre {
+            border: 5px solid transparent;
+            border-image: linear-gradient(140deg, #050505 0%, var(--acier-clair) 45%, var(--acier-sombre) 100%) 1;
+            padding: 14px;
+            background:
+                radial-gradient(120% 90% at 50% -10%, rgba(214, 222, 230, 0.10) 0%, rgba(20, 23, 25, 0) 62%),
+                var(--passe-partout);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .cadre img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            filter: saturate(0.92) contrast(1.06);
+            transition: transform 0.35s ease-in-out, filter 0.35s ease-in-out;
+        }
+        .oeuvre:hover .cadre img { transform: scale(1.05); filter: saturate(1.05) contrast(1.12); }
+        .oeuvre:hover .cadre { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.9); }
+
+        .legende { padding: 0.85rem 0 0; }
+        .legende h3 {
+            margin: 0;
+            font-family: var(--font-head);
+            font-weight: 500;
+            font-size: 1.02rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--color-text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.2s ease-in-out;
+        }
+        .oeuvre:hover .legende h3 { color: var(--color-primary); }
+        .legende p {
+            margin: 0.3rem 0 0;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: var(--color-text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (max-width: 560px) {
+            .galerie-metal { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.6rem 1rem; }
+            .cadre { border-width: 4px; padding: 9px; }
+            .legende h3 { font-size: 0.88rem; }
+            .legende p { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -115,90 +225,106 @@
             </div>
         </section>
 
-        <section>
-                    <div class="section-header"><h2>EN COULISSES & APRES-SHOW</h2></div>
-                    <div class="collections-grid">
-                        <!-- Pinterest-style Gallery -->
-                        <section id="gallery" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
-                            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--color-primary);">Galerie Photos</h2>
-                            <div class="pin-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-                                <!-- PHOTOS_AUTO_DEBUT -->
+        <section id="gallery" class="galerie-section">
+            <div class="galerie-entete">
+                <span class="eyebrow">En coulisses &amp; apr&egrave;s-show</span>
+                <h2>Galerie Photos</h2>
+                <p>Les soir&eacute;es du groupe, encadr&eacute;es comme des tirages. Survolez un clich&eacute; pour l'agrandir.</p>
+            </div>
+            <div class="galerie-metal">
+                <!-- PHOTOS_AUTO_DEBUT -->
                                 <!-- Photo publiee automatiquement -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="images/soirees/regis-rasta-8ct3ln.jpg" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="regis rasta 8cT3Ln" loading="lazy">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">regis rasta 8cT3Ln</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Ajout&eacute;e le 11/09/2026</p>
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="images/soirees/regis-rasta-8ct3ln.jpg" alt="regis rasta 8cT3Ln" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>regis rasta 8cT3Ln</h3>
+                                        <p>Ajout&eacute;e le 11/09/2026</p>
                                     </div>
                                 </div>
                                 <!-- Photo publiee automatiquement -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="images/soirees/desastrax.jpg" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="desastrax" loading="lazy">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">desastrax</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Ajout&eacute;e le 11/09/2026</p>
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="images/soirees/desastrax.jpg" alt="desastrax" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>desastrax</h3>
+                                        <p>Ajout&eacute;e le 11/09/2026</p>
                                     </div>
                                 </div>
                                 <!-- Photo publiee automatiquement -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="images/soirees/helium.jpg" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="helium" loading="lazy">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">helium</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Ajout&eacute;e le 10/09/2026</p>
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="images/soirees/helium.jpg" alt="helium" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>helium</h3>
+                                        <p>Ajout&eacute;e le 10/09/2026</p>
                                     </div>
                                 </div>
                                 <!-- PHOTOS_AUTO_FIN -->
-                                <!-- Card 1 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 1">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">After-Show Rennes</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Les fêtes après les concerts sont aussi légendaires que les concerts eux-mêmes.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="After-show" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>After-Show Rennes</h3>
+                                        <p>Les f&ecirc;tes apr&egrave;s les concerts sont aussi l&eacute;gendaires que les concerts eux-m&ecirc;mes.</p>
                                     </div>
                                 </div>
-                                <!-- Card 2 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1529543544277-750e4a238711?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 2">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">Anniversaires du Groupe</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Réunions informelles autour d'un barbecue et de vieilles anecdotes.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1529543544277-750e4a238711?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="Anniversaires" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>Anniversaires du Groupe</h3>
+                                        <p>R&eacute;unions informelles autour d'un barbecue et de vieilles anecdotes.</p>
                                     </div>
                                 </div>
-                                <!-- Card 3 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 3">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">Les Fans</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">La communauté qui s'est formée autour des concerts et des soirées privées.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="Les fans" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>Les Fans</h3>
+                                        <p>La communaut&eacute; qui s'est form&eacute;e autour des concerts et des soir&eacute;es priv&eacute;es.</p>
                                     </div>
                                 </div>
-                                <!-- Card 4 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1518683082459-5b8f7d0b5c3e?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 4">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">Soirée Privée 2005</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Une soirée intime dans le hangar familial, avec jam session improvisée jusqu'au petit matin.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1518683082459-5b8f7d0b5c3e?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="Soiree privee" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>Soir&eacute;e Priv&eacute;e 2005</h3>
+                                        <p>Une soir&eacute;e intime dans le hangar familial, avec jam session improvis&eacute;e jusqu'au petit matin.</p>
                                     </div>
                                 </div>
-                                <!-- Card 5 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1504244402322-546bc6e2b0d7?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 5">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">Festival d'Été 2003</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Participation au festival régional, suivi d'une after‑party sur les quais de la Loire.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1504244402322-546bc6e2b0d7?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="Festival d'ete" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>Festival d'&Eacute;t&eacute; 2003</h3>
+                                        <p>Participation au festival r&eacute;gional, suivi d'une after-party sur les quais de la Loire.</p>
                                     </div>
                                 </div>
-                                <!-- Card 6 -->
-                                <div class="pin-card" style="background: var(--color-bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.2s;">
-                                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop" style="width: 100%; height: 200px; object-fit: cover; display: block;" alt="Soiree 6">
-                                    <div class="pin-info" style="padding: 1rem;">
-                                        <h3 style="margin: 0 0 0.5rem; color: var(--color-primary); font-size: 1.1rem;">Réunion après tournée 2001</h3>
-                                        <p style="margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4;">Débriefing de la tournée autour d'un barbecue, anecdotes de route et projets futurs.</p>
+                                <!-- Tirage -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&amp;h=600&amp;fit=crop&amp;q=80" alt="Apres tournee" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>R&eacute;union apr&egrave;s tourn&eacute;e 2001</h3>
+                                        <p>D&eacute;briefing de la tourn&eacute;e autour d'un barbecue, anecdotes de route et projets futurs.</p>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                    </div>
+            </div>
         </section>
 
         <!-- Security Question Section -->
