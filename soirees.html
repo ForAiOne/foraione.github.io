@@ -145,6 +145,22 @@
             columns: 3;
             column-gap: 1.8rem;
         }
+        /* Etat vide : tant qu'aucune photo n'est publiee, le bloc PHOTOS_AUTO
+           ne contient rien et la section ressemblerait a un grand vide.
+           Cette regle disparait d'elle-meme des la premiere photo. */
+        .galerie-section:not(:has(.oeuvre))::after {
+            content: "Les photos des soirées arriveront ici, au fil des dépôts.";
+            display: block;
+            margin-top: 0.5rem;
+            padding: 54px 20px;
+            text-align: center;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            border: 1px dashed #2a2a2a;
+        }
         .oeuvre {
             /* inline-block + break-inside : un cadre ne doit jamais etre
                coupe en deux par un saut de colonne */
@@ -256,46 +272,6 @@
             </div>
             <div class="galerie-metal">
                 <!-- PHOTOS_AUTO_DEBUT -->
-                                <!-- Photo publiee automatiquement -->
-                                <div class="oeuvre">
-                                    <div class="cadre">
-                                        <img src="images/soirees/20260911-103531.jpg" alt="20260911 103531" loading="lazy">
-                                    </div>
-                                    <div class="legende">
-                                        <h3>20260911 103531</h3>
-                                        <p>Ajout&eacute;e le 11/09/2026</p>
-                                    </div>
-                                </div>
-                                <!-- Photo publiee automatiquement -->
-                                <div class="oeuvre">
-                                    <div class="cadre">
-                                        <img src="images/soirees/regis-rasta-8ct3ln.jpg" alt="regis rasta 8cT3Ln" loading="lazy">
-                                    </div>
-                                    <div class="legende">
-                                        <h3>regis rasta 8cT3Ln</h3>
-                                        <p>Ajout&eacute;e le 11/09/2026</p>
-                                    </div>
-                                </div>
-                                <!-- Photo publiee automatiquement -->
-                                <div class="oeuvre">
-                                    <div class="cadre">
-                                        <img src="images/soirees/desastrax.jpg" alt="desastrax" loading="lazy">
-                                    </div>
-                                    <div class="legende">
-                                        <h3>desastrax</h3>
-                                        <p>Ajout&eacute;e le 11/09/2026</p>
-                                    </div>
-                                </div>
-                                <!-- Photo publiee automatiquement -->
-                                <div class="oeuvre">
-                                    <div class="cadre">
-                                        <img src="images/soirees/helium.jpg" alt="helium" loading="lazy">
-                                    </div>
-                                    <div class="legende">
-                                        <h3>helium</h3>
-                                        <p>Ajout&eacute;e le 10/09/2026</p>
-                                    </div>
-                                </div>
                                 <!-- PHOTOS_AUTO_FIN -->
                                 <!-- Tirage -->
                                 <div class="oeuvre">
