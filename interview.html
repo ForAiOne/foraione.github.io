@@ -2,62 +2,438 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Interviews & Anecdotes | Saint Erblon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anecdotes et interviews de Saint Erblon : 1988-2012, douze noms, un disque, une jeunesse sous distorsion.">
+    <title>Anecdotes &amp; Interviews | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === INTERVIEW (Q/R) === */
+        .interview-intro {
+            max-width: 780px;
+            margin: 0 auto 3rem;
+            padding: 25px 30px;
+            background: var(--color-bg-light);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            color: #ccc;
+        }
+        .interview-list { max-width: 860px; margin: 0 auto; }
+        .interview-item {
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px 30px;
+            margin-bottom: 22px;
+            border-left: 3px solid var(--color-primary);
+            transition: 0.3s;
+        }
+        .interview-item:hover { transform: translateX(6px); }
+        .interview-q {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+        }
+        .interview-q i { margin-right: 8px; }
+        .interview-a { color: var(--color-text-main); }
+        .interview-auteur {
+            display: block;
+            margin-top: 14px;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+        }
+        .interview-auteur::before { content: "— "; color: var(--color-primary); }
+        .citation {
+            max-width: 860px;
+            margin: 3rem auto 0;
+            text-align: center;
+            padding: 30px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+        }
+        .citation p {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: var(--color-text-main);
+        }
+        .citation span { display: block; margin-top: 15px; color: var(--color-text-muted); font-size: 0.9rem; }
+        .video-block {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+            padding-bottom: 50%;
+            background: #000;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(185, 29, 29, 0.25);
+        }
+        .video-block iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .remerciements { columns: 2; column-gap: 30px; color: #ccc; }
+        .remerciements p { break-inside: avoid; margin-bottom: 6px; }
+        @media (max-width: 768px) {
+            .remerciements { columns: 1; }
+            .interview-item { padding: 22px 20px; }
+            .citation p { font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
             <nav class="nav-links">
-                <a href="index.html#collections">RETOUR BACKSTAGE</a>
+                <a href="index.html">RETOUR ACCUEIL</a>
+                <a href="environnement.html">ENVIRONNEMENT</a>
+                <a href="histoire.html">HISTOIRE</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html" style="color:var(--color-primary)">ANECDOTES</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1478720568477-152d9b164e63?w=1200'); min-height: 60vh;">
+
+        <!-- Hero -->
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/anectdotes.jpeg'); min-height: 60vh;">
             <div class="hero-content">
-                <h1>ANEDCOTES & INTERVIEWS</h1>
-                <p>Le regard de 2020 sur 20 ans de carrière.</p>
+                <h1>ANECDOTES &amp; INTERVIEWS</h1>
+                <p>Douze noms, un disque, un garage. 1988-2012 racontés par ceux qui y étaient.</p>
             </div>
         </section>
 
+        <!-- 1. L'INTERVIEW DES VINGT ANS -->
         <section>
             <div class="section-header">
-                <h2>LA MÉMOIRE DU GROUPE</h2>
-                <p>Extraits vidéo et interviews.</p>
+                <h2>L'INTERVIEW DES VINGT ANS</h2>
+                <p>Quatre fondateurs, une même question : c'était quoi, Saint Erblon ?</p>
             </div>
-            <div class="collections-grid">
-                <article class="card">
-                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=300&fit=crop" class="card-img" alt="Video">
-                    <div class="card-content">
-                        <h3>Documentaire "Retour aux Sources"</h3>
-                        <span class="card-meta">2020 • Vidéo • 45 min</span>
-                        <p>Les 4 membres se retrouvent au garage pour la première fois depuis 10 ans. Émotions garanties.</p>
-                        <button class="btn" style="margin-top:10px; font-size:0.8rem; padding: 10px 20px;"><i class="fas fa-play"></i> VOIR L'EXTRAIT</button>
-                    </div>
+
+            <div class="interview-intro">
+                <p>En 2020, à l'occasion de la mise en ligne des archives, l'équipe a ressorti les cartons : le boîtier du CD <em>Jar</em> (1998), les affiches, les photos de répétition. Tanguy, Loran, Régis et Tony — les quatre du départ, tous les étés au bourg depuis 1988 — ont accepté de remonter le fil. Voici leurs réponses, telles qu'elles éclairent la chronologie du groupe.</p>
+            </div>
+
+            <div class="interview-list">
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>1988. Quatre gamins à Saint Erblon, aucun instrument. Comment ça commence ?</h3>
+                    <p class="interview-a">On se retrouvait tous les étés au bourg, pendant les vacances. On écoutait du rock alternatif, on avait des idées plein la tête et rien pour les jouer. <strong>Desastrax</strong>, c'était ça : un nom avant d'avoir un son. On a commencé par se tester à la musique sans instruments — c'est ridicule, et c'est exactement pour ça que c'est vrai.</p>
+                    <span class="interview-auteur">Tony, fondateur</span>
                 </article>
-                <article class="card">
-                    <div class="card-content">
-                        <h3>Interview Rock Mag (2005)</h3>
-                        <span class="card-meta">Presse</span>
-                        <p>"Est-ce que Saint Erblon existe vraiment ?" L'article qui a lancé le mystère autour du groupe.</p>
-                    </div>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Et le premier vrai local, il arrive quand ?</h3>
+                    <p class="interview-a">1992, sous-sol de la maison des parents. Gilles débarque avec une basse, Jérome avec une guitare, et on installe tout là, sous les chambres. On répétait le samedi après-midi. Les voisins étaient <em>ravis</em>. L'isolation phonique était inexistante : c'est cette acoustique brute qui a façonné le son du groupe.</p>
+                    <span class="interview-auteur">Régis, fondateur</span>
                 </article>
-                <article class="card">
-                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop" class="card-img" alt="Micro">
-                    <div class="card-content">
-                        <h3>Podcast "Les Briseurs de Silence"</h3>
-                        <span class="card-meta">Audio • 2023</span>
-                        <p>Thomas raconte l'incident de la bière renversée sur la pédale de distorsion.</p>
-                    </div>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Douze noms en vingt-quatre ans. Pourquoi en changer autant ?</h3>
+                    <p class="interview-a">Parce qu'à chaque fois, le son changeait avant le nom. On a été <strong>Desastrax</strong>, puis <strong>Soul Famous Carpet</strong>, <strong>Rock'n Chair</strong>, <strong>Explicit</strong>, <strong>No Mug</strong>, <strong>Helium</strong>, <strong>Jar</strong>, <strong>Codeine</strong>, <strong>Wow</strong>, <strong>Crumble Head</strong>… Un nom tous les deux ans, comme une mue. Le seul qui soit resté, c'est celui du village.</p>
+                    <span class="interview-auteur">Loran, fondateur</span>
                 </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>1998, <em>Jar</em>. Comment on enregistre un premier disque quand on répète dans un sous-sol ?</h3>
+                    <p class="interview-a">Les répétitions se faisaient aux Courans, à Longuefuye. Le disque, lui, a été enregistré au studio <strong>Panoramix</strong>, chez Nono, à Saint-Sauveur-de-Flée. Cinq titres : <em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Woman</em>, <em>Shekter For Anger</em>. Paroles et musique : le groupe. On a mis deux ans à comprendre comment sonnait ce qui était sur la bande.</p>
+                    <span class="interview-auteur">Tanguy, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>La même année, Jérome s'en va. Ça change quoi ?</h3>
+                    <p class="interview-a">Tout. JeanJean et Flo arrivent, l'influence part franchement vers le néo-metal — quelque chose de plus lourd, plus sombre, plus magique aussi. Le son change, le nom suit : <strong>Helium</strong> laisse la place à <strong>Jar</strong>. Sur la pochette, c'est Tanguy qui dessine, Loran qui photographie.</p>
+                    <span class="interview-auteur">Loran, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>2002, Craon, et un changement de chanteur.</h3>
+                    <p class="interview-a">Je quitte le camp, et Jeff prend le micro. Le groupe devient <strong>Codeine</strong>, les répétitions déménagent à Craon, les concerts s'enchaînent dans la région. Ce n'est pas un départ, c'est un relais : la même énergie, une autre voix pour la porter.</p>
+                    <span class="interview-auteur">Tony, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Puis Renazé, l'association, et le nom <em>Wow</em>.</h3>
+                    <p class="interview-a">En 2005 on monte l'association et on pose les répètes à Renazé. Gilles part sur Niort, Alex remplace Jeff au chant. C'est la période la plus longue sous un seul nom : <strong>Wow</strong>. En 2012, le groupe se met en pause. Pas de séparation, pas d'adieu : une pause. Et une légende qui reste intacte.</p>
+                    <span class="interview-auteur">Régis, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Saint Erblon, c'est quoi au fond ?</h3>
+                    <p class="interview-a">Un bourg, un sous-sol, douze noms, un CD, des affiches et des gens qui y croient encore. Une jeunesse sous distorsion.</p>
+                    <span class="interview-auteur">Les archives</span>
+                </article>
+
+            </div>
+
+            <div class="citation">
+                <p>« De l'ombre du garage à la lumière de la scène. Une histoire brute. Une énergie pure. »</p>
+                <span>Saint Erblon Archives</span>
             </div>
         </section>
+
+        <!-- 2. LES ANECDOTES -->
+        <section>
+            <div class="section-header">
+                <h2>LES ANECDOTES</h2>
+                <p>Ce que les archives racontent entre les lignes.</p>
+            </div>
+            <div class="collections-grid">
+
+                <article class="card">
+                    <img src="images/1er_repete.png" class="card-img" alt="Première répétition">
+                    <div class="card-content">
+                        <h3>Le sous-sol des parents</h3>
+                        <span class="card-meta">1992 • Saint Erblon</span>
+                        <p>Basse de Gilles, guitare de Jérome, batterie de Régis, voix de Tony : tout tenait sous les chambres. Répétitions le samedi après-midi, rideaux pour amortir, et des voisins qui ont dû apprendre à aimer le rock.</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="images/album_jar.jpg" class="card-img" alt="Album Jar">
+                    <div class="card-content">
+                        <h3>Jar, chez Nono</h3>
+                        <span class="card-meta">1998 • Studio Panoramix</span>
+                        <p>Cinq titres enregistrés au studio Panoramix, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se faisaient aux Courans, à Longuefuye. Le boîtier porte les deux adresses comme des coordonnées de jeunesse.</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="images/interieur.jpg" class="card-img" alt="Intérieur du boîtier CD">
+                    <div class="card-content">
+                        <h3>Les remerciements du boîtier</h3>
+                        <span class="card-meta">1998 • Le disque</span>
+                        <p>Nono, Tanguy, Mickaël, les parents, Jérome, Christophe, Cédric, Saint Erblon, Novembre, Daniel du palais, Cavirok de Château-Gontier, le FJT, Aline &amp; Jean-Marie, les Tomyknockers, l'abbé Frock — « et tous les autres qui se reconnaîtront ».</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="images/back_cd.jpg" class="card-img" alt="Dos du CD Jar">
+                    <div class="card-content">
+                        <h3>Sur la pochette</h3>
+                        <span class="card-meta">Design • Photo</span>
+                        <p>Conception graphique : Tanguy Ferrand. Photos : Loran Ferrand. Paroles et musique : le groupe. Contact : Mickaël Lairy. Un disque fait entièrement à la main, par ceux qui jouaient dessus.</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="images/affiche.jpg" class="card-img" alt="Affiche de concert">
+                    <div class="card-content">
+                        <h3>Les relais au micro</h3>
+                        <span class="card-meta">2002 • 2005</span>
+                        <p>Tony quitte le camp en 2002, Jeff prend le chant sous le nom Codeine. En 2005, Gilles part à Niort et Alex remplace Jeff. Trois voix, un seul fil : personne n'est jamais vraiment parti du groupe.</p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="images/repetitions.jpg" class="card-img" alt="Répétitions">
+                    <div class="card-content">
+                        <h3>La pause de 2012</h3>
+                        <span class="card-meta">2012 • Wow</span>
+                        <p>Après sept ans sous le nom Wow — le plus long de tous — le groupe se met en pause. Les archives, elles, continuent : c'est ce site.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 3. LA GALERIE DES NOMS -->
+        <section>
+            <div class="section-header">
+                <h2>LA GALERIE DES NOMS</h2>
+                <p>Douze noms, deux décennies, une seule bande de copains.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1988</div>
+                    <h3>Desastrax</h3>
+                    <p>Le nom avant les instruments. Quatre gamins qui se retrouvent tous les étés à Saint Erblon.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1990</div>
+                    <h3>Soul Famous Carpet</h3>
+                    <p>Deuxième mue. Les premières idées de morceaux, encore sans vraie scène.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1991</div>
+                    <h3>Rock'n Chair</h3>
+                    <p>Le rock s'installe dans le nom — et dans le sous-sol.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1992</div>
+                    <h3>Explicit</h3>
+                    <p>Gilles prend la basse, Jérome la guitare. Les répétitions du samedi après-midi deviennent une institution.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1994</div>
+                    <h3>No Mug</h3>
+                    <p>La période des concerts et des premières fêtes de la musique.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1996</div>
+                    <h3>Helium</h3>
+                    <p>Le son se durcit, l'écriture se précise. Le groupe se rapproche du disque.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1998</div>
+                    <h3>Jar</h3>
+                    <p>Le CD. Enregistré chez Nono à Saint-Sauveur-de-Flée. JeanJean et Flo rejoignent, l'influence part vers le néo-metal.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2002</div>
+                    <h3>Codeine</h3>
+                    <p>Répétitions à Craon, concerts dans la région. Tony quitte le camp, Jeff le remplace au chant.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2005</div>
+                    <h3>Wow</h3>
+                    <p>Association montée, répètes à Renazé. Gilles part sur Niort, Alex remplace Jeff.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2008</div>
+                    <h3>Crumble Head</h3>
+                    <p>Dernière mue avant le silence. Le son reste, les souvenirs s'accumulent.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2012</div>
+                    <h3>La pause</h3>
+                    <p>Wow se met en pause après la plus longue période sous un même nom.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2020</div>
+                    <h3>Erblon Prod</h3>
+                    <p>Les archives en ligne : photos, vidéos, audio, et les anecdotes racontées ici.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. LES MUSICIENS -->
+        <section id="members">
+            <div class="section-header">
+                <h2>CEUX QUI ONT TENU LES INSTRUMENTS</h2>
+                <p>Tous les line-ups, du sous-sol à la pause de 2012.</p>
+            </div>
+            <div class="members-grid">
+                <div class="member-card">
+                    <img src="images/regis1.jpg" alt="Régis" class="member-avatar">
+                    <h3>Régis</h3>
+                    <span class="member-role">Batterie</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Batteur de puissance.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/Tanguy.jpg" alt="Tanguy" class="member-avatar">
+                    <h3>Tanguy</h3>
+                    <span class="member-role">Chant</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. L'artiste — et le graphiste des pochettes.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/loran.jpg" alt="Loran" class="member-avatar">
+                    <h3>Loran</h3>
+                    <span class="member-role">Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Guitariste fou, slameur, photographe du groupe.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/Tony.jpg" alt="Tony" class="member-avatar">
+                    <h3>Tony</h3>
+                    <span class="member-role">Clavier puis Chant</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Chanteur jusqu'en 2002, spécialiste du yaourt.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/gilles.jpg" alt="Gilles" class="member-avatar">
+                    <h3>Gilles</h3>
+                    <span class="member-role">Basse puis Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La technique à l'état pur, de 1992 à 2005.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/jerome.jpg" alt="Jérome" class="member-avatar">
+                    <h3>Jérome</h3>
+                    <span class="member-role">Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La guitare mélodique et joyeuse, jusqu'en 1998.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/flo.jpg" alt="Florent" class="member-avatar">
+                    <h3>Florent</h3>
+                    <span class="member-role">Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Guitariste métalleux à la recherche du « son » parfait.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/jean.jpg" alt="JeanJean" class="member-avatar">
+                    <h3>JeanJean</h3>
+                    <span class="member-role">Basse</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La bassmorphose, arrivée en 1998.</p>
+                </div>
+                <div class="member-card">
+                    <img src="images/jef.jpg" alt="Jeff" class="member-avatar">
+                    <h3>Jeff</h3>
+                    <span class="member-role">Chant</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La voix expressive, de 2002 à 2005.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. A L'ECRAN -->
+        <section>
+            <div class="section-header">
+                <h2>À L'ÉCRAN</h2>
+                <p>Le teaser des archives : images de scène, répétitions et souvenirs.</p>
+            </div>
+            <div class="video-block">
+                <iframe src="https://www.youtube.com/embed/HtYu6UUCcds?rel=0&amp;modestbranding=1"
+                        title="Teaser Saint Erblon"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="https://www.youtube.com/@sevendustwow" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-youtube"></i> LA CHAÎNE DES ARCHIVES
+                </a>
+            </div>
+        </section>
+
+        <!-- 6. APPEL A CONTRIBUTION -->
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>TU AS DES SOUVENIRS ?</h2>
+                <p>Une photo, une cassette, une affiche, un ticket de concert, un nom oublié ?</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    Les archives se construisent avec tout le monde. Si tu as quelque chose qui traîne dans un carton —
+                    une K7 de répétition, un polaroïd de concert, un article de presse, une anecdote —
+                    envoie-le : c'est comme ça que les vingt prochaines années seront racontées.
+                </p>
+                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UNE ARCHIVE</a>
+            </div>
+        </section>
+
     </main>
-    <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
 </body>
 </html>
