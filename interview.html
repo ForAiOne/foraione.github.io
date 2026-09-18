@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Anecdotes et interviews de Saint Erblon : 1988-2012, douze noms, un disque, une jeunesse sous distorsion.">
+    <meta name="description" content="Anecdotes et interviews : les Rotoplo Fires, le sous-sol de Saint-Erblon, la K7 de Desastrax, le CD Jar, la séparation de 1999 et le retour de Codéine.">
     <title>Anecdotes &amp; Interviews | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === INTERVIEW (Q/R) === */
         .interview-intro {
             max-width: 780px;
             margin: 0 auto 3rem;
@@ -57,12 +56,7 @@
             background: var(--color-bg-light);
             border-radius: var(--border-radius);
         }
-        .citation p {
-            font-family: var(--font-head);
-            font-size: 1.5rem;
-            line-height: 1.4;
-            color: var(--color-text-main);
-        }
+        .citation p { font-family: var(--font-head); font-size: 1.5rem; line-height: 1.4; color: var(--color-text-main); }
         .citation span { display: block; margin-top: 15px; color: var(--color-text-muted); font-size: 0.9rem; }
         .video-block {
             max-width: 860px;
@@ -76,10 +70,17 @@
             box-shadow: 0 0 40px rgba(185, 29, 29, 0.25);
         }
         .video-block iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .remerciements { columns: 2; column-gap: 30px; color: #ccc; }
-        .remerciements p { break-inside: avoid; margin-bottom: 6px; }
+        .encart-soussol {
+            max-width: 860px;
+            margin: 0 auto 40px;
+            padding: 26px 30px;
+            background: linear-gradient(90deg, rgba(185, 29, 29, 0.12), var(--color-bg-light) 55%);
+            border-left: 3px solid var(--color-primary-hover);
+            border-radius: var(--border-radius);
+        }
+        .encart-soussol h3 { color: var(--color-primary); margin-bottom: 12px; font-size: 1.2rem; }
+        .encart-soussol p { color: #ccc; }
         @media (max-width: 768px) {
-            .remerciements { columns: 1; }
             .interview-item { padding: 22px 20px; }
             .citation p { font-size: 1.2rem; }
         }
@@ -87,7 +88,6 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
@@ -104,84 +104,108 @@
 
     <main>
 
-        <!-- Hero -->
         <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/anectdotes.jpeg'); min-height: 60vh;">
             <div class="hero-content">
                 <h1>ANECDOTES &amp; INTERVIEWS</h1>
-                <p>Douze noms, un disque, un garage. 1988-2012 racontés par ceux qui y étaient.</p>
+                <p>Des Rotoplo Fires à Codéine : ce qu'il y a derrière les dates.</p>
             </div>
         </section>
 
-        <!-- 1. L'INTERVIEW DES VINGT ANS -->
+        <!-- 1. INTERVIEW -->
         <section>
             <div class="section-header">
                 <h2>L'INTERVIEW DES VINGT ANS</h2>
-                <p>Quatre fondateurs, une même question : c'était quoi, Saint Erblon ?</p>
+                <p>Des questions posées aux anciens, et les réponses que les archives éclairent.</p>
             </div>
 
             <div class="interview-intro">
-                <p>En 2020, à l'occasion de la mise en ligne des archives, l'équipe a ressorti les cartons : le boîtier du CD <em>Jar</em> (1998), les affiches, les photos de répétition. Tanguy, Loran, Régis et Tony — les quatre du départ, tous les étés au bourg depuis 1988 — ont accepté de remonter le fil. Voici leurs réponses, telles qu'elles éclairent la chronologie du groupe.</p>
+                <p>À l'occasion de la mise en ligne des archives, l'équipe a ressorti les cartons : le boîtier du CD <em>Jar</em> (1998), les affiches, les photos de 1993, et l'historique écrit à l'époque. Les quatre du départ — Régis, Tanguy, Tony et Loran — ont accepté de remonter le fil.</p>
             </div>
 
             <div class="interview-list">
 
                 <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>1988. Quatre gamins à Saint Erblon, aucun instrument. Comment ça commence ?</h3>
-                    <p class="interview-a">On se retrouvait tous les étés au bourg, pendant les vacances. On écoutait du rock alternatif, on avait des idées plein la tête et rien pour les jouer. <strong>Desastrax</strong>, c'était ça : un nom avant d'avoir un son. On a commencé par se tester à la musique sans instruments — c'est ridicule, et c'est exactement pour ça que c'est vrai.</p>
-                    <span class="interview-auteur">Tony, fondateur</span>
-                </article>
-
-                <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>Et le premier vrai local, il arrive quand ?</h3>
-                    <p class="interview-a">1992, sous-sol de la maison des parents. Gilles débarque avec une basse, Jérome avec une guitare, et on installe tout là, sous les chambres. On répétait le samedi après-midi. Les voisins étaient <em>ravis</em>. L'isolation phonique était inexistante : c'est cette acoustique brute qui a façonné le son du groupe.</p>
-                    <span class="interview-auteur">Régis, fondateur</span>
-                </article>
-
-                <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>Douze noms en vingt-quatre ans. Pourquoi en changer autant ?</h3>
-                    <p class="interview-a">Parce qu'à chaque fois, le son changeait avant le nom. On a été <strong>Desastrax</strong>, puis <strong>Soul Famous Carpet</strong>, <strong>Rock'n Chair</strong>, <strong>Explicit</strong>, <strong>No Mug</strong>, <strong>Helium</strong>, <strong>Jar</strong>, <strong>Codeine</strong>, <strong>Wow</strong>, <strong>Crumble Head</strong>… Un nom tous les deux ans, comme une mue. Le seul qui soit resté, c'est celui du village.</p>
+                    <h3 class="interview-q"><i class="fas fa-question"></i>À la base, quatre gamins et aucun instrument. Comment ça commence ?</h3>
+                    <p class="interview-a">À la base, un quatuor « les rotoplo fires », qui constitue le tiers de la base de Jar. Régis à la guitare électrique — à une corde —, Tanguy à la pseudo batterie au son d'une boîte de K7 en bois percutée avec énergie, Loran chanteur et tombeur héros à s'en rouler par terre, et Tony au synthé smooby. Bref, tout pour réussir...</p>
                     <span class="interview-auteur">Loran, fondateur</span>
                 </article>
 
                 <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>1998, <em>Jar</em>. Comment on enregistre un premier disque quand on répète dans un sous-sol ?</h3>
-                    <p class="interview-a">Les répétitions se faisaient aux Courans, à Longuefuye. Le disque, lui, a été enregistré au studio <strong>Panoramix</strong>, chez Nono, à Saint-Sauveur-de-Flée. Cinq titres : <em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Woman</em>, <em>Shekter For Anger</em>. Paroles et musique : le groupe. On a mis deux ans à comprendre comment sonnait ce qui était sur la bande.</p>
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Et il n'y a jamais eu d'instruments « normaux » au début ?</h3>
+                    <p class="interview-a">Pas au sens propre, non. On était implantés à Saint-Erblon, en Mayenne, pas loin de Rennes et Angers, avec la vague alternative française en bande-son — berrus, Parabellum, OTH... On ne tardera pas à changer de nom, en privilégiant naturellement la chanson à texte : ce sera Desastrax. Le temps d'enregistrer une K7 à quatre titres sur un magnéto d'époque, et le groupe se dissout en 1988.</p>
+                    <span class="interview-auteur">Tony, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Le sous-sol, c'était quoi exactement ?</h3>
+                    <p class="interview-a">Notre local. Le sous-sol de la maison familiale, à Saint-Erblon. Les amplis en bas, les parents devant la télévision à l'étage. Tout remontait par le plancher. C'est cette acoustique brute qu'on entend encore sur les enregistrements — et c'est là que le son du groupe s'est fait tout seul.</p>
+                    <span class="interview-auteur">Régis, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>1991, le groupe repart. Qu'est-ce qui change ?</h3>
+                    <p class="interview-a">On se retrouvait de temps à autre pour jouer, tant bien que mal — le début de la galère — jusqu'à l'arrivée de Gilles, qui s'investit immédiatement dans la basse. Régis passe à la batterie, Loran à la guitare, Tony au chant : le progrès s'en ressent. « Explicit » est né, en passant par Soul Famous Carpet.</p>
+                    <span class="interview-auteur">Tony, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Premier concert : Château-Gontier, 4 septembre 1993. Tu t'en souviens ?</h3>
+                    <p class="interview-a">L'explosion rock de l'Ouest, Angers notamment, nous poussait à créer vite. Les compos défilaient, Jérôme avait rejoint le quatuor, et les influences se multipliaient : Fugazi, Sonic Youth, les Thugs, les Skippies... et l'incontournable Nirvana. Le concert a été suivi d'une bonne prestation — ce qui, avec du recul, a fait d'Explicit autre chose : No Mug.</p>
+                    <span class="interview-auteur">Régis, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Puis Helium, en 1996. Le virage hardcore ?</h3>
+                    <p class="interview-a">Oui : le groupe prend le trait de la fusion hardcore américaine, avec la filiation Dischord — Fugazi, Quicksand — et tout le grunge qui déferlait. Les guitares se sont durcies, le tempo s'est tendu.</p>
+                    <span class="interview-auteur">Loran, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>1998 : <em>Jar</em>, le CD. Comment on enregistre un disque quand on répète dans un sous-sol ?</h3>
+                    <p class="interview-a">Jérôme quitte la formation et laisse la place à Jean-Marie et Florent — c'est là que le groupe atteint son apogée et enregistre un CD cinq titres en studio. Cinq titres : <em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Women</em>, <em>Shelter for Anger</em>. Enregistré chez Nono, au studio Panoramix, à Saint-Sauveur-de-Flée ; les répètes, elles, se faisaient aux Courans, à Longuefuye.</p>
                     <span class="interview-auteur">Tanguy, fondateur</span>
                 </article>
 
                 <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>La même année, Jérome s'en va. Ça change quoi ?</h3>
-                    <p class="interview-a">Tout. JeanJean et Flo arrivent, l'influence part franchement vers le néo-metal — quelque chose de plus lourd, plus sombre, plus magique aussi. Le son change, le nom suit : <strong>Helium</strong> laisse la place à <strong>Jar</strong>. Sur la pochette, c'est Tanguy qui dessine, Loran qui photographie.</p>
-                    <span class="interview-auteur">Loran, fondateur</span>
-                </article>
-
-                <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>2002, Craon, et un changement de chanteur.</h3>
-                    <p class="interview-a">Je quitte le camp, et Jeff prend le micro. Le groupe devient <strong>Codeine</strong>, les répétitions déménagent à Craon, les concerts s'enchaînent dans la région. Ce n'est pas un départ, c'est un relais : la même énergie, une autre voix pour la porter.</p>
-                    <span class="interview-auteur">Tony, fondateur</span>
-                </article>
-
-                <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>Puis Renazé, l'association, et le nom <em>Wow</em>.</h3>
-                    <p class="interview-a">En 2005 on monte l'association et on pose les répètes à Renazé. Gilles part sur Niort, Alex remplace Jeff au chant. C'est la période la plus longue sous un seul nom : <strong>Wow</strong>. En 2012, le groupe se met en pause. Pas de séparation, pas d'adieu : une pause. Et une légende qui reste intacte.</p>
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Fin 1999, tout s'arrête. Deux ans de silence.</h3>
+                    <p class="interview-a">Le groupe se sépare et cesse toute activité pendant deux ans. Certains, en manque de musique, intègrent alors accessoirement d'autres groupes — Jean-Marie rejoint Hippy Groovy and the Stylee Mens. Ce n'était pas une fin : juste une pause qu'on ne s'était pas avouée.</p>
                     <span class="interview-auteur">Régis, fondateur</span>
                 </article>
 
                 <article class="interview-item">
-                    <h3 class="interview-q"><i class="fas fa-question"></i>Saint Erblon, c'est quoi au fond ?</h3>
-                    <p class="interview-a">Un bourg, un sous-sol, douze noms, un CD, des affiches et des gens qui y croient encore. Une jeunesse sous distorsion.</p>
-                    <span class="interview-auteur">Les archives</span>
+                    <h3 class="interview-q"><i class="fas fa-question"></i>2002 : Codéine, sans toi. Comment on vit ça ?</h3>
+                    <p class="interview-a">On remet ça sans Tony, l'un des piliers du groupe, sur de nouvelles influences — Incubus, Sevendust — et avec un petit nouveau au chant : Jean-François, que tout le monde appelle Jef. On monte aussi une association, Tous Azic'Muts, avec Hippy Groovy : de la musique, mais aussi une structure pour la défendre.</p>
+                    <span class="interview-auteur">Loran, fondateur</span>
+                </article>
+
+                <article class="interview-item">
+                    <h3 class="interview-q"><i class="fas fa-question"></i>Et la dernière ligne droite, jusqu'en 2004 ?</h3>
+                    <p class="interview-a">Décembre 2003, c'est Gilles qui doit quitter le groupe, pour raisons professionnelles. Le reste continue, avec un style plus métal et Florent qui passe à sept cordes. On joue encore à Rennes, au Campus Kerlan, en janvier 2004, puis à Saint-Michel-de-la-Röe pour Aperoconcert, en septembre. Aujourd'hui, l'histoire continue avec des périodes plus ou moins creuses, au rythme de la situation professionnelle de chacun...</p>
+                    <span class="interview-auteur">Régis, fondateur</span>
                 </article>
 
             </div>
 
             <div class="citation">
-                <p>« De l'ombre du garage à la lumière de la scène. Une histoire brute. Une énergie pure. »</p>
-                <span>Saint Erblon Archives</span>
+                <p>« Bref, tout pour réussir... »</p>
+                <span>L'historique du groupe, à propos des Rotoplo Fires</span>
             </div>
         </section>
 
-        <!-- 2. LES ANECDOTES -->
+        <!-- 2. LE SOUS-SOL -->
+        <section>
+            <div class="section-header">
+                <h2>LE SOUS-SOL</h2>
+                <p>Le local, la légende, et le plancher qui n'a jamais rien isolé.</p>
+            </div>
+            <div class="encart-soussol">
+                <h3><i class="fas fa-house-chimney"></i> LES AMPLIS EN BAS, LES PARENTS À L'ÉTAGE</h3>
+                <p>Les répétitions se tenaient dans le sous-sol de la maison familiale, à Saint-Erblon : les amplis et la batterie en bas, les parents devant la télévision à l'étage. Le son montait à travers le plancher — isolation phonique inexistante, acoustique brute incomparable.</p>
+                <p style="margin-top:12px;">C'est ce lieu qui a façonné le son du groupe, et il reste attaché à toutes les périodes : de Desastrax à Jar, en passant par Explicit et No Mug.</p>
+            </div>
+        </section>
+
+        <!-- 3. ANECDOTES -->
         <section>
             <div class="section-header">
                 <h2>LES ANECDOTES</h2>
@@ -190,11 +214,11 @@
             <div class="collections-grid">
 
                 <article class="card">
-                    <img src="images/1er_repete.png" class="card-img" alt="Première répétition">
+                    <img src="images/1er_repete.png" class="card-img" alt="Répétition">
                     <div class="card-content">
-                        <h3>Le sous-sol des parents</h3>
-                        <span class="card-meta">1992 • Saint Erblon</span>
-                        <p>Basse de Gilles, guitare de Jérome, batterie de Régis, voix de Tony : tout tenait sous les chambres. Répétitions le samedi après-midi, rideaux pour amortir, et des voisins qui ont dû apprendre à aimer le rock.</p>
+                        <h3>La boîte de K7 en bois</h3>
+                        <span class="card-meta">Desastrax • 1988</span>
+                        <p>La première batterie du groupe : une boîte de K7 en bois, percutée avec énergie par Tanguy. La guitare de Régis, elle, n'avait qu'une corde. Tout pour réussir.</p>
                     </div>
                 </article>
 
@@ -203,7 +227,7 @@
                     <div class="card-content">
                         <h3>Jar, chez Nono</h3>
                         <span class="card-meta">1998 • Studio Panoramix</span>
-                        <p>Cinq titres enregistrés au studio Panoramix, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se faisaient aux Courans, à Longuefuye. Le boîtier porte les deux adresses comme des coordonnées de jeunesse.</p>
+                        <p>Le CD cinq titres enregistré au studio Panoramix, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se tenaient aux Courans, à Longuefuye. Le boîtier porte les deux adresses comme des coordonnées de jeunesse.</p>
                     </div>
                 </article>
 
@@ -228,175 +252,157 @@
                 <article class="card">
                     <img src="images/affiche.jpg" class="card-img" alt="Affiche de concert">
                     <div class="card-content">
-                        <h3>Les relais au micro</h3>
-                        <span class="card-meta">2002 • 2005</span>
-                        <p>Tony quitte le camp en 2002, Jeff prend le chant sous le nom Codeine. En 2005, Gilles part à Niort et Alex remplace Jeff. Trois voix, un seul fil : personne n'est jamais vraiment parti du groupe.</p>
+                        <h3>Tous Azic'Muts</h3>
+                        <span class="card-meta">2002 • L'association</span>
+                        <p>Début 2002, Codéine et Hippy Groovy créent l'association Tous Azic'Muts pour le développement des musiques actuelles. Premier concert le 8 juin 2002 à Bourg-l'Évêque, en compagnie des Allumés du Bocal.</p>
                     </div>
                 </article>
 
                 <article class="card">
                     <img src="images/repetitions.jpg" class="card-img" alt="Répétitions">
                     <div class="card-content">
-                        <h3>La pause de 2012</h3>
-                        <span class="card-meta">2012 • Wow</span>
-                        <p>Après sept ans sous le nom Wow — le plus long de tous — le groupe se met en pause. Les archives, elles, continuent : c'est ce site.</p>
+                        <h3>Deux ans de silence</h3>
+                        <span class="card-meta">1999 • 2002</span>
+                        <p>Fin 1999, le groupe se sépare et cesse toute activité pendant deux ans. Certains intègrent accessoirement d'autres formations — puis début 2002, tout le monde remet ça sous le nom de Codéine.</p>
                     </div>
                 </article>
 
             </div>
         </section>
 
-        <!-- 3. LA GALERIE DES NOMS -->
+        <!-- 4. LES NOMS -->
         <section>
             <div class="section-header">
-                <h2>LA GALERIE DES NOMS</h2>
-                <p>Douze noms, deux décennies, une seule bande de copains.</p>
+                <h2>LES NOMS DU GROUPE</h2>
+                <p>Dans l'ordre, avec les années que les archives permettent de dater.</p>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">1988</div>
-                    <h3>Desastrax</h3>
-                    <p>Le nom avant les instruments. Quatre gamins qui se retrouvent tous les étés à Saint Erblon.</p>
+                    <div class="timeline-date">Avant 1988</div>
+                    <h3>Les Rotoplo Fires</h3>
+                    <p>Le quatuor d'origine, sans instruments « normaux » : guitare à une corde, boîte de K7 en bois, synthé smooby.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">1990</div>
+                    <div class="timeline-date">1988</div>
+                    <h3>Desastrax</h3>
+                    <p>La chanson à texte, une K7 quatre titres sur un magnéto d'époque — puis la dissolution.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Fin 80s</div>
                     <h3>Soul Famous Carpet</h3>
-                    <p>Deuxième mue. Les premières idées de morceaux, encore sans vraie scène.</p>
+                    <p>Le nom de passage, avant qu'Explicit ne prenne la suite.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">1991</div>
-                    <h3>Rock'n Chair</h3>
-                    <p>Le rock s'installe dans le nom — et dans le sous-sol.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">1992</div>
                     <h3>Explicit</h3>
-                    <p>Gilles prend la basse, Jérome la guitare. Les répétitions du samedi après-midi deviennent une institution.</p>
+                    <p>Le retour : Gilles à la basse, Régis à la batterie, Loran à la guitare, Tony au chant.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">1994</div>
+                    <div class="timeline-date">1993</div>
                     <h3>No Mug</h3>
-                    <p>La période des concerts et des premières fêtes de la musique.</p>
+                    <p>Premier concert à Château-Gontier le 4 septembre 1993 ; Jérôme rejoint la formation.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">1996</div>
                     <h3>Helium</h3>
-                    <p>Le son se durcit, l'écriture se précise. Le groupe se rapproche du disque.</p>
+                    <p>La fusion hardcore américaine, héritée de Fugazi, Quicksand et du grunge.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">1998</div>
                     <h3>Jar</h3>
-                    <p>Le CD. Enregistré chez Nono à Saint-Sauveur-de-Flée. JeanJean et Flo rejoignent, l'influence part vers le néo-metal.</p>
+                    <p>Jean-Marie et Florent rejoignent, le groupe atteint son apogée et enregistre son CD 5 titres.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2002</div>
                     <h3>Codeine</h3>
-                    <p>Répétitions à Craon, concerts dans la région. Tony quitte le camp, Jeff le remplace au chant.</p>
+                    <p>Sans Tony, avec Jean-François (Jef) au chant, et l'association Tous Azic'Muts.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">2005</div>
-                    <h3>Wow</h3>
-                    <p>Association montée, répètes à Renazé. Gilles part sur Niort, Alex remplace Jeff.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2008</div>
-                    <h3>Crumble Head</h3>
-                    <p>Dernière mue avant le silence. Le son reste, les souvenirs s'accumulent.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2012</div>
-                    <h3>La pause</h3>
-                    <p>Wow se met en pause après la plus longue période sous un même nom.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2020</div>
-                    <h3>Erblon Prod</h3>
-                    <p>Les archives en ligne : photos, vidéos, audio, et les anecdotes racontées ici.</p>
+                    <div class="timeline-date">Après 2004</div>
+                    <h3>Wow, puis Crumble Head</h3>
+                    <p>Les noms portés après la dernière mise à jour des archives de 2004.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 4. LES MUSICIENS -->
+        <!-- 5. LES MUSICIENS -->
         <section id="members">
             <div class="section-header">
                 <h2>CEUX QUI ONT TENU LES INSTRUMENTS</h2>
-                <p>Tous les line-ups, du sous-sol à la pause de 2012.</p>
+                <p>Toutes les formations, du sous-sol aux dernières scènes.</p>
             </div>
             <div class="members-grid">
                 <div class="member-card">
                     <img src="images/regis1.jpg" alt="Régis" class="member-avatar">
                     <h3>Régis</h3>
-                    <span class="member-role">Batterie</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Batteur de puissance.</p>
+                    <span class="member-role">Guitare, puis Batterie</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Guitare à une corde chez Desastrax, à la batterie de 1991 à 2004.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/Tanguy.jpg" alt="Tanguy" class="member-avatar">
                     <h3>Tanguy</h3>
-                    <span class="member-role">Chant</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. L'artiste — et le graphiste des pochettes.</p>
+                    <span class="member-role">Chant, puis graphisme</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. La pseudo-batterie des débuts, puis les pochettes — dont celle de Jar.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/loran.jpg" alt="Loran" class="member-avatar">
                     <h3>Loran</h3>
-                    <span class="member-role">Guitare</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Guitariste fou, slameur, photographe du groupe.</p>
+                    <span class="member-role">Chant, puis Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Chanteur des Rotoplo Fires, guitariste ensuite, et photographe du groupe.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/Tony.jpg" alt="Tony" class="member-avatar">
                     <h3>Tony</h3>
-                    <span class="member-role">Clavier puis Chant</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Chanteur jusqu'en 2002, spécialiste du yaourt.</p>
+                    <span class="member-role">Synthé, puis Chant</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Fondateur. Au synthé smooby chez Desastrax, chanteur d'Explicit à Jar. Quitte le groupe en 2002.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/gilles.jpg" alt="Gilles" class="member-avatar">
                     <h3>Gilles</h3>
-                    <span class="member-role">Basse puis Guitare</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">La technique à l'état pur, de 1992 à 2005.</p>
+                    <span class="member-role">Basse, puis Guitare</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Arrivé en 1991 : la basse jusqu'en 1998, la guitare jusqu'en décembre 2003.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/jerome.jpg" alt="Jérome" class="member-avatar">
                     <h3>Jérome</h3>
                     <span class="member-role">Guitare</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">La guitare mélodique et joyeuse, jusqu'en 1998.</p>
+                    <p style="font-size: 0.95rem; color: #aaa;">La seconde guitare d'Explicit, No Mug et Helium, de 1993 à 1998.</p>
                 </div>
                 <div class="member-card">
                     <img src="images/flo.jpg" alt="Florent" class="member-avatar">
                     <h3>Florent</h3>
                     <span class="member-role">Guitare</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">Guitariste métalleux à la recherche du « son » parfait.</p>
+                    <p style="font-size: 0.95rem; color: #aaa;">Arrivé en 1998, passé à sept cordes à partir de 2003.</p>
                 </div>
                 <div class="member-card">
-                    <img src="images/jean.jpg" alt="JeanJean" class="member-avatar">
-                    <h3>JeanJean</h3>
-                    <span class="member-role">Basse</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">La bassmorphose, arrivée en 1998.</p>
+                    <img src="images/jean.jpg" alt="Jean-Marie" class="member-avatar">
+                    <h3>Jean-Marie</h3>
+                    <span class="member-role">Basse — « JeanJean »</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">La basse de Jar et de Codéine, à partir de 1998.</p>
                 </div>
                 <div class="member-card">
-                    <img src="images/jef.jpg" alt="Jeff" class="member-avatar">
-                    <h3>Jeff</h3>
-                    <span class="member-role">Chant</span>
-                    <p style="font-size: 0.95rem; color: #aaa;">La voix expressive, de 2002 à 2005.</p>
+                    <img src="images/jef.jpg" alt="Jean-François" class="member-avatar">
+                    <h3>Jean-François</h3>
+                    <span class="member-role">Chant — « Jef »</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Le « petit nouveau » de 2002, au chant de Codéine.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 5. A L'ECRAN -->
+        <!-- 6. VIDEO -->
         <section>
             <div class="section-header">
                 <h2>À L'ÉCRAN</h2>
-                <p>Le teaser des archives : images de scène, répétitions et souvenirs.</p>
+                <p>Le teaser des archives : scènes, répétitions et souvenirs.</p>
             </div>
             <div class="video-block">
                 <iframe src="https://www.youtube.com/embed/HtYu6UUCcds?rel=0&amp;modestbranding=1"
@@ -411,7 +417,7 @@
             </div>
         </section>
 
-        <!-- 6. APPEL A CONTRIBUTION -->
+        <!-- 7. CONTRIBUER -->
         <section id="contribuer">
             <div class="section-header">
                 <h2>TU AS DES SOUVENIRS ?</h2>
