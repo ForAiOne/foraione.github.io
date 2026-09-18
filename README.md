@@ -19,8 +19,9 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `concerts.html` | Concerts (1993-2004) |
 | `environnement.html` | Les lieux |
 | `repetition.html` | Répétitions et enregistrements |
-| `concert-live.html` | Archives live |
+| `labo.html` | Le Labo : morceaux, riffs et expérimentations (aujourd'hui) |
 | `studio.html` | Jukebox vintage : lecture des morceaux de `mp3/` |
+| `labo/morceaux.json` | Liste des morceaux affichés dans Le Labo |
 | `soirees.html` | Galerie photo des soirées (alimentée automatiquement) |
 | `images/` | Photos, pochettes, portraits des musiciens |
 | `mp3/` | Morceaux du jukebox |
@@ -42,6 +43,16 @@ Le libellé et le nom du fichier doivent rester cohérents, sinon la lecture éc
 Les photos sont publiées automatiquement : dépôt dans MEGA, validation, puis envoi
 au VPS qui réduit l'image, met à jour le bloc `PHOTOS_AUTO` de `soirees.html`,
 commite et pousse. Aucune manipulation manuelle de ce fichier n'est nécessaire.
+
+## Le Labo
+
+Page `labo.html` : morceaux, riffs et expérimentations en cours. Les morceaux sont
+déclarés dans `labo/morceaux.json` (titre, fichier, catégorie, date, durée, note) et
+les fichiers audio vivent dans `labo/`. La page lit ce JSON au chargement : tant que
+la liste est vide, elle affiche un message.
+
+Dépôt des morceaux : par mail à l'adresse du groupe (voir la section « Déposer un
+morceau » de la page). Les fichiers reçus sont convertis en MP3 avant publication.
 
 ## Sources
 

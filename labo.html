@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Le Labo : morceaux, riffs et expérimentations du groupe, aujourd'hui. Un espace de travail ouvert.">
+    <title>Le Labo | Saint Erblon</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .labo-intro {
+            max-width: 820px;
+            margin: 0 auto 3rem;
+            padding: 26px 30px;
+            background: var(--color-bg-light);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            color: #ccc;
+        }
+        .labo-intro p + p { margin-top: 12px; }
+        .filtres { text-align: center; margin-bottom: 2.5rem; }
+        .filtre {
+            background: transparent;
+            border: 1px solid #444;
+            color: var(--color-text-muted);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            padding: 10px 20px;
+            margin: 4px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .filtre:hover { border-color: var(--color-primary); color: var(--color-text-main); }
+        .filtre.actif { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+        /* === LECTEUR === */
+        .lecteur {
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 26px;
+            border-left: 3px solid var(--color-primary);
+        }
+        .lecteur-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+        .lecteur-note { color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+        .lecteur-boutons { display: flex; align-items: center; gap: 16px; }
+        .bouton-lecture {
+            background: var(--color-primary);
+            border: none;
+            color: #fff;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex: 0 0 auto;
+            transition: 0.25s;
+        }
+        .bouton-lecture:hover { background: var(--color-primary-hover); transform: scale(1.06); }
+        .barre {
+            flex: 1 1 auto;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        .barre-remplie {
+            height: 100%;
+            width: 0;
+            background: var(--color-primary);
+            border-radius: 3px;
+            transition: width 0.15s linear;
+        }
+        .temps {
+            font-family: var(--font-head);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            min-width: 90px;
+            text-align: right;
+        }
+        /* === LISTE === */
+        .morceaux { max-width: 900px; margin: 0 auto; }
+        .morceau {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: var(--color-bg-card);
+            border-left: 3px solid #333;
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            margin-bottom: 9px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .morceau:hover { transform: translateX(6px); border-left-color: var(--color-primary); }
+        .morceau.en-lecture { border-left-color: var(--color-primary); background: #2b2222; }
+        .morceau-icone {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #333;
+            color: var(--color-text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            font-size: 0.85rem;
+        }
+        .morceau.en-lecture .morceau-icone { background: var(--color-primary); }
+        .morceau-titre { color: var(--color-text-main); font-weight: 700; }
+        .morceau-meta { color: var(--color-text-muted); font-size: 0.85rem; }
+        .morceau-note { color: #999; font-size: 0.85rem; margin-top: 3px; }
+        .etiquette {
+            margin-left: auto;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.7rem;
+            color: var(--color-primary);
+            border: 1px solid rgba(185, 29, 29, 0.5);
+            border-radius: 20px;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+        .vide {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 25px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+        }
+        .vide i { font-size: 2.4rem; color: var(--color-primary); margin-bottom: 16px; display: block; }
+        .comment { max-width: 900px; margin: 0 auto; }
+        .etapes { display: flex; flex-wrap: wrap; gap: 18px; }
+        .etape {
+            flex: 1 1 220px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 20px;
+            border-top: 3px solid var(--color-primary);
+        }
+        .etape b {
+            display: block;
+            font-family: var(--font-head);
+            color: var(--color-primary);
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+        .etape span { color: #ccc; font-size: 0.95rem; }
+        @media (max-width: 768px) {
+            .morceau { flex-wrap: wrap; }
+            .etiquette { margin-left: 0; }
+            .temps { min-width: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <nav class="nav-links">
+                <a href="index.html">RETOUR ACCUEIL</a>
+                <a href="environnement.html">ENVIRONNEMENT</a>
+                <a href="histoire.html">HISTOIRE</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="labo.html" style="color:var(--color-primary)">LABO</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('images/music.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>LE LABO</h1>
+                <p>Morceaux, riffs et expérimentations — ce qui se fabrique aujourd'hui.</p>
+            </div>
+        </section>
+
+        <!-- INTRO -->
+        <section>
+            <div class="section-header">
+                <h2>L'ATELIER OUVERT</h2>
+                <p>Les archives racontent 1988-2004. Ici, on travaille au présent.</p>
+            </div>
+            <div class="labo-intro">
+                <p>Le Labo, c'est le bac à sable du groupe : un endroit pour poser ce qui n'est pas fini. Un riff enregistré au téléphone, une maquette montée le dimanche, une vieille chanson reprise trente ans plus tard, un remix, une idée de refrain, un bout de texte posé sur une nappe de guitare.</p>
+                <p>Rien n'est figé ici. Les morceaux arrivent, évoluent, disparaissent parfois. Tu peux tout écouter, tout laisser tourner en fond — et si tu as toi aussi quelque chose qui traîne, la porte est ouverte.</p>
+            </div>
+        </section>
+
+        <!-- LECTEUR + LISTE -->
+        <section>
+            <div class="section-header">
+                <h2>À ÉCOUTER</h2>
+                <p>Clique sur un morceau pour le lancer.</p>
+            </div>
+
+            <div class="lecteur" id="lecteur" style="display:none;">
+                <div class="lecteur-titre" id="lecteurTitre">—</div>
+                <div class="lecteur-note" id="lecteurNote"></div>
+                <div class="lecteur-boutons">
+                    <button class="bouton-lecture" id="boutonLecture" aria-label="Lecture"><i class="fas fa-play"></i></button>
+                    <div class="barre" id="barre"><div class="barre-remplie" id="barreRemplie"></div></div>
+                    <div class="temps" id="temps">0:00 / 0:00</div>
+                </div>
+            </div>
+
+            <div class="filtres" id="filtres" style="display:none;">
+                <button class="filtre actif" data-cat="tous">TOUT</button>
+                <button class="filtre" data-cat="morceaux">MORCEAUX</button>
+                <button class="filtre" data-cat="riffs">RIFFS &amp; IDÉES</button>
+                <button class="filtre" data-cat="remixes">REMIXES</button>
+            </div>
+
+            <div class="morceaux" id="morceaux"></div>
+
+            <div class="vide" id="vide">
+                <i class="fas fa-sliders"></i>
+                <p style="font-size:1.1rem; color:var(--color-text-main); margin-bottom:8px;">Le Labo est encore vide.</p>
+                <p>Les premiers morceaux vont arriver ici — dès qu'ils sont prêts à être écoutés.</p>
+            </div>
+
+            <audio id="audio"></audio>
+        </section>
+
+        <!-- COMMENT DEPOSER -->
+        <section>
+            <div class="section-header">
+                <h2>DÉPOSER UN MORCEAU</h2>
+                <p>Pas besoin de studio : une prise au téléphone suffit.</p>
+            </div>
+            <div class="comment">
+                <div class="labo-intro" style="text-align: center;">
+                    <p style="font-size: 1.05rem;">Envoie ton fichier par mail. MP3, WAV, M4A, une prise au téléphone, un export brut de répète : peu importe le format, il sera converti avant d'être mis en ligne.</p>
+                    <p style="font-family: var(--font-head); font-size: 1.6rem; color: var(--color-text-main); letter-spacing: 2px; margin: 22px 0 8px;">
+                        nomug2020@gmail.com
+                    </p>
+                    <p style="margin-bottom: 22px;">Joins ton morceau, et dis en une ligne ce que c'est — un riff, une maquette, un remix, une reprise. Cette phrase deviendra la note affichée sous le titre.</p>
+                    <a href="mailto:nomug2020@gmail.com?subject=Le%20Labo%20%E2%80%94%20nouveau%20morceau" class="btn"><i class="fas fa-envelope"></i> ENVOYER UN MORCEAU</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
+    <script>
+        // ====== Chargement de la liste (labo/morceaux.json) ======
+        const LISTE = 'labo/morceaux.json';
+        let morceaux = [];
+        let filtre = 'tous';
+        let indexCourant = -1;
+
+        const audio = document.getElementById('audio');
+        const lecteur = document.getElementById('lecteur');
+        const zoneVide = document.getElementById('vide');
+        const zoneListe = document.getElementById('morceaux');
+        const zoneFiltres = document.getElementById('filtres');
+        const titreEl = document.getElementById('lecteurTitre');
+        const noteEl = document.getElementById('lecteurNote');
+        const bouton = document.getElementById('boutonLecture');
+        const barre = document.getElementById('barre');
+        const remplie = document.getElementById('barreRemplie');
+        const tempsEl = document.getElementById('temps');
+
+        function duree(sec) {
+            if (!isFinite(sec)) return '0:00';
+            const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+            return m + ':' + String(s).padStart(2, '0');
+        }
+
+        function afficher() {
+            const visibles = morceaux.filter(m => filtre === 'tous' || m.categorie === filtre);
+            zoneListe.innerHTML = '';
+            if (!morceaux.length) {
+                zoneVide.style.display = 'block';
+                zoneFiltres.style.display = 'none';
+                lecteur.style.display = 'none';
+                return;
+            }
+            zoneVide.style.display = 'none';
+            zoneFiltres.style.display = 'block';
+            if (!visibles.length) {
+                zoneListe.innerHTML = '<div class="vide"><p>Aucun morceau dans cette rubrique pour l\'instant.</p></div>';
+                return;
+            }
+            visibles.forEach(m => {
+                const i = morceaux.indexOf(m);
+                const d = document.createElement('div');
+                d.className = 'morceau' + (i === indexCourant ? ' en-lecture' : '');
+                d.innerHTML =
+                    '<div class="morceau-icone"><i class="fas ' + (i === indexCourant && !audio.paused ? 'fa-volume-up' : 'fa-play') + '"></i></div>' +
+                    '<div><div class="morceau-titre">' + m.titre + '</div>' +
+                    '<div class="morceau-meta">' + (m.date || '') + (m.duree ? ' • ' + m.duree : '') + '</div>' +
+                    (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
+                    '<div class="etiquette">' + (m.categorie || 'morceau') + '</div>';
+                d.addEventListener('click', () => lancer(i));
+                zoneListe.appendChild(d);
+            });
+        }
+
+        function lancer(i) {
+            const m = morceaux[i];
+            if (!m) return;
+            if (i === indexCourant && !audio.paused) { audio.pause(); afficher(); return; }
+            indexCourant = i;
+            audio.src = m.fichier;
+            audio.play().catch(() => {});
+            lecteur.style.display = 'block';
+            titreEl.textContent = m.titre;
+            noteEl.textContent = m.note || '';
+            afficher();
+        }
+
+        bouton.addEventListener('click', () => {
+            if (indexCourant < 0) { if (morceaux.length) lancer(0); return; }
+            if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+        });
+        audio.addEventListener('play', () => { bouton.innerHTML = '<i class="fas fa-pause"></i>'; afficher(); });
+        audio.addEventListener('pause', () => { bouton.innerHTML = '<i class="fas fa-play"></i>'; afficher(); });
+        audio.addEventListener('timeupdate', () => {
+            const p = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+            remplie.style.width = p + '%';
+            tempsEl.textContent = duree(audio.currentTime) + ' / ' + duree(audio.duration);
+        });
+        barre.addEventListener('click', e => {
+            if (!audio.duration) return;
+            const r = barre.getBoundingClientRect();
+            audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+        });
+        document.querySelectorAll('.filtre').forEach(b => b.addEventListener('click', () => {
+            document.querySelectorAll('.filtre').forEach(x => x.classList.remove('actif'));
+            b.classList.add('actif');
+            filtre = b.dataset.cat;
+            afficher();
+        }));
+
+        fetch(LISTE, { cache: 'no-store' })
+            .then(r => r.ok ? r.json() : { morceaux: [] })
+            .then(d => { morceaux = (d && d.morceaux) || []; afficher(); })
+            .catch(() => { morceaux = []; afficher(); });
+    </script>
+
+</body>
+</html>

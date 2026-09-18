@@ -1,0 +1,4 @@
+{
+  "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
+  "morceaux": []
+}
