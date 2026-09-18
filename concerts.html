@@ -2,12 +2,106 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Les concerts du groupe : 27 dates retrouvées de 1993 à 2004, entre Mayenne, Anjou et Bretagne.">
     <title>Concerts | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .compteurs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+        .compteur {
+            flex: 1 1 150px;
+            text-align: center;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 14px;
+            border-top: 3px solid var(--color-primary);
+        }
+        .compteur b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .compteur span {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .epoque-bloc { max-width: 900px; margin: 0 auto 4rem; }
+        .epoque-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-bg-light);
+        }
+        .epoque-titre small {
+            display: block;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+        .concert {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            margin-bottom: 9px;
+            transition: 0.25s;
+        }
+        .concert:hover { transform: translateX(6px); border-left-color: var(--color-primary-hover); }
+        .concert-date {
+            font-family: var(--font-head);
+            color: var(--color-primary);
+            min-width: 145px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .concert-lieu { color: var(--color-text-main); }
+        .concert-note {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 3px;
+        }
+        .villes { text-align: center; max-width: 900px; margin: 0 auto; }
+        .tag {
+            display: inline-block;
+            background: rgba(185, 29, 29, 0.12);
+            border: 1px solid rgba(185, 29, 29, 0.45);
+            color: var(--color-text-main);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin: 4px 4px;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .concert { flex-direction: column; gap: 6px; }
+            .concert-date { min-width: 0; }
+            .compteur b { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
@@ -17,48 +111,231 @@
                 <a href="histoire.html">HISTOIRE</a>
                 <a href="concerts.html" style="color:var(--color-primary)">CONCERTS</a>
                 <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html">ANECDOTES</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1200'); min-height: 60vh;">
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/soirees/concert.jpg'); min-height: 60vh;">
             <div class="hero-content">
-                <h1>CONCERTS</h1>
-                <p>L'énergie de la scène capturée en image.</p>
+                <h1>LES CONCERTS</h1>
+                <p>1993-2004 : vingt-sept dates retrouvées dans les archives.</p>
             </div>
         </section>
 
+        <!-- COMPTEURS -->
         <section>
-            <div class="section-header"><h2>GALLERY LIVE</h2></div>
-            <div class="collections-grid">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1493225257124-a3eb161ffa5f?w=400&h=300&fit=crop" class="card-img" alt="Concert 1">
-                    <div class="card-content">
-                        <h3>Fête de la Musique 1999</h3>
-                        <span class="card-meta">Saint Erblon</span>
-                        <p>Le tout premier concert public. Une foule sous la pluie mais électrique.</p>
-                    </div>
+            <div class="section-header">
+                <h2>DOUZE ANS DE SCÈNE</h2>
+                <p>Des fêtes de la musique aux festivals, en Mayenne, en Anjou et jusqu'en Bretagne.</p>
+            </div>
+            <div class="compteurs">
+                <div class="compteur"><b>27</b><span>concerts recensés</span></div>
+                <div class="compteur"><b>12</b><span>années de scène</span></div>
+                <div class="compteur"><b>3</b><span>époques</span></div>
+                <div class="compteur"><b>17</b><span>communes</span></div>
+            </div>
+            <div style="max-width: 760px; margin: 0 auto 2rem; padding: 20px 25px; background: var(--color-bg-light); border-left: 3px solid var(--color-primary); border-radius: var(--border-radius); color: #ccc;">
+                <i class="fas fa-info-circle" style="color:var(--color-primary)"></i>
+                Cette liste est celle que le groupe avait mise en ligne en 2004. Elle ne contient que les dates dont les archives
+                gardent la trace — entre les fêtes de village, les bars, les festivals rock et les soirées d'association,
+                il y en a forcément d'autres qui manquent ici.
+            </div>
+        </section>
+
+        <!-- 1993-1996 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Explicit, No Mug, Helium
+                    <small>1993-1996 • les débuts, les festivals rock et les fêtes de la musique</small>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=300&fit=crop" class="card-img" alt="Concert 2">
-                    <div class="card-content">
-                        <h3>Tournée Ouest 2001</h3>
-                        <span class="card-meta">Rennes, Nantes, Brest</span>
-                        <p>La première tournée régionale. Des salles pleines et une ambiance de folie.</p>
-                    </div>
+
+                <div class="concert">
+                    <div class="concert-date">Sept. 1993</div>
+                    <div class="concert-lieu">Château-Gontier (53)<span class="concert-note">Au FJT — le premier concert du groupe, le 4 septembre 1993</span></div>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop" class="card-img" alt="Concert 3">
-                    <div class="card-content">
-                        <h3>Festival Art Rock</h3>
-                        <span class="card-meta">Saint-Brieuc</span>
-                        <p>L'apogée. Partager la scène avec les têtes d'affiche du metal français.</p>
-                    </div>
+                <div class="concert">
+                    <div class="concert-date">Mars 1994</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet (53)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Mars 1994</div>
+                    <div class="concert-lieu">Échemiré (49)<span class="concert-note">Festival rock</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">9 avril 1994</div>
+                    <div class="concert-lieu">Pouancé (49)<span class="concert-note">Festival rock</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 juin 1994</div>
+                    <div class="concert-lieu">Craon<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">23 juin 1994</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">12 mars 1995</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 juin 1995</div>
+                    <div class="concert-lieu">Craon<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Juin 1995</div>
+                    <div class="concert-lieu">Congrier</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">9 déc. 1995</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet<span class="concert-note">Festival rock du CJF</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">3 fév. 1996</div>
+                    <div class="concert-lieu">Ballot</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Fév. 1996</div>
+                    <div class="concert-lieu">Bazouges</div>
                 </div>
             </div>
         </section>
+
+        <!-- 1998-1999 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Jar
+                    <small>1998-1999 • la période du CD</small>
+                </div>
+
+                <div class="concert">
+                    <div class="concert-date">Juin 1998</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Juin 1998</div>
+                    <div class="concert-lieu">Châteaubriant (44)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Oct. 1998</div>
+                    <div class="concert-lieu">Château-Gontier (53)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Nov. 1998</div>
+                    <div class="concert-lieu">Saint-Erblon (53)<span class="concert-note">À la maison</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 juin 1999</div>
+                    <div class="concert-lieu">Le Mans (72)<span class="concert-note">Fête de la musique — la dernière date avant la séparation</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2002-2004 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Codéine
+                    <small>2002-2004 • le retour, sans Tony, avec Jean-François au chant</small>
+                </div>
+
+                <div class="concert">
+                    <div class="concert-date">8 juin 2002</div>
+                    <div class="concert-lieu">Bourg-l'Évêque (49)<span class="concert-note">Premier concert de l'association Tous Azic'Muts, avec Les Allumés du Bocal</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Juin 2002</div>
+                    <div class="concert-lieu">Château-Gontier<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Juin 2002</div>
+                    <div class="concert-lieu">Renazé</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">14 déc. 2002</div>
+                    <div class="concert-lieu">Saint-Erblon<span class="concert-note">La date filmée et enregistrée par le groupe</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">19 avril 2003</div>
+                    <div class="concert-lieu">Saint-Saturnin<span class="concert-note">La Salsa</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">17 mai 2003</div>
+                    <div class="concert-lieu">La Prévière<span class="concert-note">Bar La Boulaie</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">20 juin 2003</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">27 juin 2003</div>
+                    <div class="concert-lieu">Renazé</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">24 janvier 2004</div>
+                    <div class="concert-lieu">Rennes — Campus Kerlan, Bruz<span class="concert-note">Enregistré : quatre titres live dans les archives</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">18 sept. 2004</div>
+                    <div class="concert-lieu">Saint-Michel-de-la-Röe<span class="concert-note">Festival Aperoconcert — la dernière date recensée</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LES LIEUX -->
+        <section>
+            <div class="section-header">
+                <h2>LES VILLES TRAVERSÉES</h2>
+                <p>Dix-sept communes, trois départements, et beaucoup de routes de campagne.</p>
+            </div>
+            <div class="villes">
+                <span class="tag">Château-Gontier</span>
+                <span class="tag">Craon</span>
+                <span class="tag">Renazé</span>
+                <span class="tag">Saint-Erblon</span>
+                <span class="tag">Congrier</span>
+                <span class="tag">Bazouges</span>
+                <span class="tag">Ballot</span>
+                <span class="tag">Saint-Michel-de-la-Röe</span>
+                <span class="tag">Segré</span>
+                <span class="tag">Pouancé</span>
+                <span class="tag">Échemiré</span>
+                <span class="tag">Bourg-l'Évêque</span>
+                <span class="tag">La Prévière</span>
+                <span class="tag">Saint-Saturnin-du-Limet</span>
+                <span class="tag">Le Mans</span>
+                <span class="tag">Châteaubriant</span>
+                <span class="tag">Bruz / Rennes</span>
+            </div>
+        </section>
+
+        <!-- CONTRIBUER -->
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>IL MANQUE DES DATES</h2>
+                <p>Une affiche, un ticket, une photo de scène, un journal local ?</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    Cette liste s'arrête à ce que les archives ont conservé. Si tu te souviens d'un concert qui n'y figure pas —
+                    une fête de la musique, une soirée dans un bar, un festival — ou si tu as une affiche de l'époque,
+                    envoie-la : elle rejoindra la liste.
+                </p>
+                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UNE DATE</a>
+            </div>
+        </section>
+
     </main>
-    <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
 </body>
 </html>
