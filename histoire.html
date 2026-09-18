@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="L'histoire de Saint Erblon : 1988-2012, la rencontre, le sous-sol, le CD Jar, les line-ups et la pause.">
+    <meta name="description" content="L'histoire de Codéine et des groupes qui l'ont précédé : Rotoplo Fires, Desastrax, Explicit, No Mug, Helium, Jar — Saint-Erblon, Mayenne, 1988-2004.">
     <title>Histoire | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === PERIODES === */
         .periode {
             max-width: 900px;
             margin: 0 auto 28px;
@@ -35,30 +34,37 @@
             font-size: 0.9rem;
             margin-bottom: 16px;
         }
-        .periode h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: var(--color-text-main);
-        }
+        .periode h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--color-text-main); }
         .periode p { color: #ccc; margin-bottom: 10px; }
         .periode p:last-child { margin-bottom: 0; }
         .periode ul { margin: 12px 0 0 4px; }
         .periode li { color: #ccc; margin-bottom: 5px; }
         .periode li i { color: var(--color-primary); margin-right: 10px; width: 14px; }
+        .citation-inline {
+            display: block;
+            margin: 16px 0 0;
+            padding-left: 16px;
+            border-left: 2px solid var(--color-primary);
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
         .grimoire {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             background: var(--color-bg-light);
             border-radius: var(--border-radius);
             padding: 30px 34px;
         }
         .grimoire h3 { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 18px; }
+        .grimoire p { color: #ccc; margin-bottom: 6px; }
+        .grimoire li { color: #ccc; margin-bottom: 12px; }
         table.lineups { width: 100%; border-collapse: collapse; }
         table.lineups th, table.lineups td {
             text-align: left;
             padding: 12px 10px;
             border-bottom: 1px solid #333;
             font-size: 0.95rem;
+            vertical-align: top;
         }
         table.lineups th {
             font-family: var(--font-head);
@@ -68,9 +74,16 @@
             font-size: 0.85rem;
         }
         table.lineups td:first-child { font-family: var(--font-head); color: #fff; white-space: nowrap; }
-        table.lineups td { color: #ccc; }
-        .grimoire p { color: #ccc; margin-bottom: 6px; }
-        .grimoire a { color: var(--color-primary); }
+        .style-courant {
+            display: inline-block;
+            background: rgba(185, 29, 29, 0.15);
+            border: 1px solid rgba(185, 29, 29, 0.5);
+            color: var(--color-text-main);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 3px 4px 3px 0;
+            font-size: 0.85rem;
+        }
         @media (max-width: 768px) {
             .periode, .grimoire { padding: 24px 20px; }
             .periode-annee { font-size: 2rem; }
@@ -80,7 +93,6 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
@@ -97,167 +109,189 @@
 
     <main>
 
-        <!-- Hero -->
         <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/1repet.png'); min-height: 60vh;">
             <div class="hero-content">
                 <h1>L'HISTOIRE</h1>
-                <p>1988-2012 : de l'ombre du garage à la lumière de la scène.</p>
+                <p>1988-2004 : des Rotoplo Fires à Codéine, une jeunesse sous distorsion.</p>
             </div>
         </section>
 
-        <!-- 1. LA CHRONOLOGIE REELLE -->
+        <!-- 1. LES GRANDES ETAPES -->
         <section>
             <div class="section-header">
                 <h2>LES GRANDES ÉTAPES</h2>
-                <p>Quatre copains, douze noms, un disque et vingt-quatre années de bruit.</p>
+                <p>Six noms, une seule bande de copains, entre Saint-Erblon, Rennes et Angers.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">AVANT</div>
+                <div class="periode-nom">Les Rotoplo Fires</div>
+                <h3>Le quatuor qui constitue le tiers de la base de Jar</h3>
+                <p>Régis à la guitare électrique — à une corde —, Tanguy à la pseudo-batterie (une boîte de K7 en bois percutée avec énergie), Loran au chant, Tony au synthé. Tout pour réussir.</p>
+                <p>Le groupe est implanté à <strong>Saint-Erblon, en Mayenne</strong>, non loin de Rennes et d'Angers. Il reste principalement influencé par la vague alternative française — <em>berrus</em>, Parabellum, OTH…</p>
             </div>
 
             <div class="periode">
                 <div class="periode-annee">1988</div>
-                <div class="periode-nom">La rencontre — Desastrax</div>
-                <h3>Quatre gamins, une passion, aucun instrument</h3>
-                <p>Tanguy, Loran, Régis et Tony se retrouvent tous les étés à Saint Erblon, pendant les vacances. Ils découvrent une passion commune pour le rock alternatif et décident de « se tester à la musique » — sans instruments. C'est là que tout commence, avec un nom avant même d'avoir un son : <strong>Desastrax</strong>.</p>
+                <div class="periode-nom">Desastrax</div>
+                <h3>La K7 quatre titres, puis la fin</h3>
+                <p>Le quatuor ne tarde pas à changer de nom et privilégie naturellement la chanson à texte : ce sera <strong>Desastrax</strong>. Le temps d'enregistrer une K7 de quatre titres sur un magnéto d'époque — et le groupe se dissout en 1988.</p>
             </div>
 
             <div class="periode">
-                <div class="periode-annee">1992</div>
-                <div class="periode-nom">Le sous-sol — Explicit, puis No Mug</div>
-                <h3>Les premières répétitions, sous les chambres des parents</h3>
-                <p>Le groupe s'installe dans le sous-sol de la maison familiale, à Saint Erblon. Gilles prend la basse, Jérome la guitare. Les répétitions s'accentuent chaque samedi après-midi, sans la moindre isolation phonique — les voisins sont <em>ravis</em>. C'est cette acoustique brute qui façonnera définitivement le son du groupe.</p>
-                <ul>
-                    <li><i class="fas fa-bolt"></i>Les premiers concerts et les premières fêtes de la musique</li>
-                    <li><i class="fas fa-bolt"></i>Deux noms sur la période : <strong>Explicit</strong> et <strong>No Mug</strong></li>
-                    <li><i class="fas fa-bolt"></i>Les enregistrements de cette époque sont écoutables dans le <a href="studio.html" style="color:var(--color-primary)">jukebox des archives</a></li>
-                </ul>
+                <div class="periode-annee">1991</div>
+                <div class="periode-nom">Explicit — en passant par Soul Famous Carpet</div>
+                <h3>Le retour, et le début de la galère</h3>
+                <p>Tony, Régis et Loran se retrouvent de temps à autre pour jouer et s'investir tant bien que mal musicalement, jusqu'en 1991 et l'arrivée de <strong>Gilles</strong>, qui s'investit immédiatement dans la basse. Régis passe à la batterie, Loran à la guitare, Tony au chant : le progrès s'en ressent. <strong>Explicit</strong> est né, en passant par Soul Famous Carpet.</p>
+                <p>L'explosion rock de l'Ouest de la France — Angers notamment — les pousse à créer rapidement.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1993</div>
+                <div class="periode-nom">No Mug — le premier concert</div>
+                <h3>Château-Gontier, 4 septembre 1993</h3>
+                <p>Alors que les compos défilent, <strong>Jérôme</strong> rejoint le quatuor et les influences diverses se multiplient : Fugazi, Sonic Youth, les Thugs, les Skippies… et l'incontournable Nirvana.</p>
+                <p>Leur premier concert a lieu à <strong>Château-Gontier (53) le 4 septembre 1993</strong>, suivi d'une bonne prestation. Avec du recul, Explicit devient <strong>No Mug</strong>. Loran finit par rejoindre la capitale.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1996</div>
+                <div class="periode-nom">Helium</div>
+                <h3>La fusion hardcore américaine</h3>
+                <p>Le groupe prend alors le trait de la fusion hardcore américaine sous le nom d'<strong>Helium</strong>.</p>
             </div>
 
             <div class="periode">
                 <div class="periode-annee">1998</div>
-                <div class="periode-nom">Le disque — Helium, puis Jar</div>
-                <h3><em>Jar</em> : le premier CD du groupe</h3>
-                <p>Cinq titres enregistrés au studio <strong>Panoramix</strong>, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se tenaient aux Courans, à Longuefuye. Conception graphique de la pochette : Tanguy Ferrand. Photos : Loran Ferrand. Paroles et musique : le groupe.</p>
+                <div class="periode-nom">Jar — le disque</div>
+                <h3>L'apogée, puis deux ans de silence</h3>
+                <p>C'est au tour de Jérôme de quitter la formation, pour laisser la place à <strong>Jean-Marie</strong> et <strong>Florent</strong> : le groupe devient <strong>Jar</strong> en 1998 et atteint alors son apogée, jusqu'à enregistrer un CD 5 titres en studio.</p>
                 <ul>
-                    <li><i class="fas fa-compact-disc"></i><em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Woman</em>, <em>Shekter For Anger</em></li>
-                    <li><i class="fas fa-user-minus"></i>Jérome quitte le groupe</li>
-                    <li><i class="fas fa-user-plus"></i>JeanJean et Flo les rejoignent, sous une influence néo-metal</li>
+                    <li><i class="fas fa-compact-disc"></i><em>Little Shit</em> (3.25), <em>Endfeels</em> (2.35), <em>Quiet</em> (3.47), <em>Self Made Women</em> (5.23), <em>Shelter for Anger</em> (4.10)</li>
+                    <li><i class="fas fa-compact-disc"></i>Enregistré au studio Panoramix, chez Nono, à Saint-Sauveur-de-Flée ; répétitions aux Courans, à Longuefuye</li>
                 </ul>
-                <p style="margin-top:14px;"><a href="index.html#discography" class="btn btn-outline" style="font-size:0.8rem; padding:10px 20px;"><i class="fas fa-compact-disc"></i> VOIR LE DISQUE EN DÉTAIL</a></p>
+                <p><strong>Fin 1999, le groupe se sépare</strong> et cesse toutes activités pendant deux ans. Certains, en manque de musique, intègrent accessoirement d'autres groupes.</p>
+                <span class="citation-inline">« Aujourd'hui l'histoire continue, avec des périodes plus ou moins creuses de par la situation professionnelle de chacun… »</span>
             </div>
 
             <div class="periode">
                 <div class="periode-annee">2002</div>
-                <div class="periode-nom">La technique — Codeine</div>
-                <h3>Concerts dans la région, répétitions à Craon</h3>
-                <p>Le groupe devient <strong>Codeine</strong> et pose ses répétitions à Craon. Les concerts s'enchaînent dans la région. Tony quitte le camp : Jeff le remplace au chant.</p>
+                <div class="periode-nom">Codéine — sans Tony</div>
+                <h3>De nouvelles influences, et une association</h3>
+                <p>Début 2002, le groupe remet ça sous le nom de <strong>Codéine</strong>, <strong>sans Tony</strong>, l'un des piliers du groupe. Il se base sur de nouvelles influences musicales — Incubus, Sevendust — et intègre un nouveau chanteur : <strong>Jean-François</strong>.</p>
+                <p>Le groupe se lance alors dans la création d'une association musicale, <strong>Tous Azic'Muts</strong>, et devient, avec Hippy Groovy, l'un des deux premiers membres fondateurs.</p>
             </div>
 
             <div class="periode">
-                <div class="periode-annee">2005</div>
-                <div class="periode-nom">L'association — Wow</div>
-                <h3>Renazé, et le nom qui tient le plus longtemps</h3>
-                <p>Le groupe monte son association et installe les répétitions à Renazé. Gilles s'en va sur Niort ; Jeff est remplacé au chant par Alex. <strong>Wow</strong> reste le nom le plus longtemps porté par le groupe.</p>
+                <div class="periode-annee">2003</div>
+                <div class="periode-nom">Le dernier virage</div>
+                <h3>Départ de Gilles, guitares à 7 cordes</h3>
+                <p>Décembre 2003 : c'est maintenant Gilles qui doit quitter le groupe, pour des raisons professionnelles. Le reste du groupe continue dans sa lancée et s'inspire d'un style plus métal, avec Florent qui passe à sept cordes.</p>
             </div>
 
             <div class="periode">
-                <div class="periode-annee">2012</div>
-                <div class="periode-nom">La pause</div>
-                <h3>Fin de la première époque</h3>
-                <p>Wow se met en pause, laissant une légende intacte. Pas de séparation fracassante : juste le silence après vingt-quatre ans de bruit.</p>
-            </div>
-
-            <div class="periode" style="border-left-color: var(--color-primary-hover);">
-                <div class="periode-annee">2020</div>
-                <div class="periode-nom">Les archives — Erblon Prod</div>
-                <h3>« Une jeunesse sous distorsion »</h3>
-                <p>Mise en ligne des archives : les photos, les affiches, le boîtier du CD numérisé, les enregistrements de répétition classés par époque et le teaser vidéo. Ce que tu parcoures sur ce site, c'est vingt ans de garage remis au propre.</p>
+                <div class="periode-annee">2004</div>
+                <div class="periode-nom">Les dernières dates</div>
+                <h3>Rennes, puis Saint-Michel-de-la-Röe</h3>
+                <p>Le groupe tourne encore : <strong>Rennes (Campus Kerlan, Bruz) le 24 janvier 2004</strong>, puis <strong>Saint-Michel-de-la-Röe, au festival Aperoconcert, le 18 septembre 2004</strong>. L'histoire ne s'arrête pas là : elle continue, par périodes, au rythme des vies professionnelles de chacun.</p>
                 <p style="margin-top:14px;">
-                    <a href="interview.html" class="btn" style="font-size:0.8rem; padding:10px 20px;"><i class="fas fa-microphone"></i> LIRE LES ANECDOTES</a>
+                    <a href="concerts.html" class="btn" style="font-size:0.8rem; padding:10px 20px;"><i class="fas fa-guitar"></i> TOUS LES CONCERTS</a>
+                    <a href="interview.html" class="btn btn-outline" style="font-size:0.8rem; padding:10px 20px; margin-left:8px;"><i class="fas fa-microphone"></i> LES ANECDOTES</a>
                 </p>
             </div>
         </section>
 
-        <!-- 2. LES LINE-UPS PAR PERIODE -->
+        <!-- 2. LINE-UPS -->
         <section>
             <div class="section-header">
                 <h2>QUI JOUE QUAND</h2>
-                <p>Les line-ups, période par période — tel que les archives les ont conservés.</p>
+                <p>Les formations telles que les archives de l'époque les ont conservées.</p>
             </div>
 
             <div class="grimoire">
-                <h3><i class="fas fa-users"></i> TABLEAU DES LINE-UPS</h3>
+                <h3><i class="fas fa-users"></i> LES FORMATIONS, ÉPOQUE PAR ÉPOQUE</h3>
                 <table class="lineups">
                     <tr>
-                        <th>Période</th>
-                        <th>Nom</th>
+                        <th>Époque</th>
                         <th>Formation</th>
                     </tr>
                     <tr>
-                        <td>1988</td>
-                        <td>Desastrax</td>
-                        <td>Tanguy (chant), Loran (guitare), Régis (batterie), Tony (clavier puis chant) — les quatre fondateurs</td>
+                        <td>Desastrax<br><span style="color:#777; font-size:0.8rem;">1988</span></td>
+                        <td>Régis (boîte à rythmes), Loran (guitare à trois cordes), Tony (synthétiseur), Tanguy (chant)</td>
                     </tr>
                     <tr>
-                        <td>1992</td>
-                        <td>Explicit / No Mug</td>
-                        <td>Les fondateurs + Gilles (basse) + Jérome (guitare)</td>
+                        <td>No Mug<br>Helium<br><span style="color:#777; font-size:0.8rem;">1991-1998</span></td>
+                        <td>Tony (chant), Loran (guitare), Jérôme (guitare), Gilles (basse), Régis (batterie)</td>
                     </tr>
                     <tr>
-                        <td>1998</td>
-                        <td>Helium / Jar</td>
-                        <td>Arrivée de JeanJean (basse) et Flo (guitare) ; départ de Jérome ; virage néo-metal</td>
+                        <td>Jar<br><span style="color:#777; font-size:0.8rem;">1998-1999</span></td>
+                        <td>Tony (chant), Florent (guitare), Gilles (guitare), Jean-Marie (basse), Régis (batterie)</td>
                     </tr>
                     <tr>
-                        <td>2002</td>
-                        <td>Codeine</td>
-                        <td>Tony quitte le camp, Jeff prend le chant ; répétitions à Craon</td>
+                        <td>Codéine<br><span style="color:#777; font-size:0.8rem;">2002-2004</span></td>
+                        <td>Jean-François (chant), Florent (guitare — sept cordes à partir de 2003), Gilles (guitare, jusqu'en décembre 2003), Jean-Marie (basse), Régis (batterie)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-wave-square"></i> L'ÉVOLUTION DU STYLE</h3>
+                <p style="margin-bottom:16px;">Le style musical a énormément changé, du fait des changements de musiciens mais aussi des influences que le groupe a croisées.</p>
+                <p><span class="style-courant">Rock alternatif français</span> <span class="style-courant">Hardcore américain (Dischord : Fugazi, Quicksand)</span> <span class="style-courant">Grunge (Sonic Youth, Mudhoney, Pearl Jam, Soundgarden, Nirvana)</span> <span class="style-courant">Smashing Pumpkins, Tool, RATM</span> <span class="style-courant">Métal (Korn, Limp Bizkit, VOD, Deftones)</span></p>
+                <p style="margin-top:18px;">Le boum grunge déclencha une certaine mélodie des riffs à la sauce punky. Huit ans plus tard, le son de <em>Jar</em> reste assez lourd, avec une prédominance de guitares saturées, un tempo rapide sans l'être trop, et une voix qui peut être autant mélodique que pas du tout — à vous de juger.</p>
+            </div>
+        </section>
+
+        <!-- 3. L'ASSOCIATION -->
+        <section>
+            <div class="section-header">
+                <h2>TOUS AZIC'MUTS</h2>
+                <p>L'association montée par le groupe pour développer les musiques actuelles.</p>
+            </div>
+            <div class="grimoire">
+                <table class="lineups">
+                    <tr>
+                        <th>Date</th>
+                        <th>Étape</th>
                     </tr>
                     <tr>
-                        <td>2005</td>
-                        <td>Wow</td>
-                        <td>Gilles part à Niort, Alex remplace Jeff au chant ; association et répétitions à Renazé</td>
+                        <td>Début 2002</td>
+                        <td>Création de l'association. Les deux groupes fondateurs sont <strong>Codéine</strong> et <strong>Hippy Groovy</strong>.</td>
                     </tr>
                     <tr>
-                        <td>2012</td>
-                        <td>La pause</td>
-                        <td>Le groupe s'arrête après la plus longue période sous un même nom</td>
+                        <td>8 juin 2002</td>
+                        <td>Premier concert à <strong>Bourg-l'Évêque (49)</strong>, en compagnie du groupe « Les Allumés du Bocal ».</td>
+                    </tr>
+                    <tr>
+                        <td>Fin juin 2002</td>
+                        <td>Fête de la musique à <strong>Renazé (53)</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Mars 2003</td>
+                        <td>Hippy Groovy and the Stylee Mens enregistrent en studio une démo 5 titres.</td>
+                    </tr>
+                    <tr>
+                        <td>Mai 2003</td>
+                        <td>Achat d'une sono complète : retours, micros, pieds de micros, table de mixage…</td>
+                    </tr>
+                    <tr>
+                        <td>Janvier 2004</td>
+                        <td>Organisation d'une soirée à la Salsa pour la nouvelle année.</td>
                     </tr>
                 </table>
             </div>
         </section>
 
-        <!-- 3. LES NOMS -->
-        <section>
-            <div class="section-header">
-                <h2>DOUZE NOMS</h2>
-                <p>Ce que le groupe a porté, dans l'ordre, de 1988 à aujourd'hui.</p>
-            </div>
-            <div class="grimoire">
-                <div class="remerciements" style="columns:3;">
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Desastrax</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Soul Famous Carpet</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Rock'n Chair</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Explicit</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> No Mug</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Helium</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Jar</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Codeine</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Wow</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Crumble Head</p>
-                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Erblon Prod <span style="color:#777">(aujourd'hui)</span></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. ARCHIVES -->
+        <!-- 4. CONTRIBUER -->
         <section id="contribuer">
             <div class="section-header">
                 <h2>COMPLÉTER L'HISTOIRE</h2>
-                <p>Il manque des dates, des lieux, des visages — et tu les as peut-être.</p>
+                <p>Photos de scène, affiches, articles de presse, K7 : il reste sûrement des cartons à ouvrir.</p>
             </div>
             <div style="max-width: 700px; margin: 0 auto; text-align: center;">
                 <p style="color: #aaa; margin-bottom: 2rem;">
-                    Affiches de concert, photos de scène, articles de presse, K7 de répétition, tickets, setlists :
-                    tout ce qui traîne dans un carton peut rejoindre les archives. C'est comme ça que la suite s'écrira.
+                    Cette page raconte ce que les archives ont conservé. Si tu as des photos, des affiches, des coupures de presse
+                    ou simplement un souvenir daté, envoie-les : ils rejoindront l'histoire.
                 </p>
                 <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UNE ARCHIVE</a>
             </div>
