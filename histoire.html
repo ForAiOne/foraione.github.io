@@ -2,12 +2,85 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'histoire de Saint Erblon : 1988-2012, la rencontre, le sous-sol, le CD Jar, les line-ups et la pause.">
     <title>Histoire | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === PERIODES === */
+        .periode {
+            max-width: 900px;
+            margin: 0 auto 28px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+            border-left: 3px solid var(--color-primary);
+            transition: 0.3s;
+        }
+        .periode:hover { transform: translateX(6px); }
+        .periode-annee {
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .periode-nom {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .periode h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--color-text-main);
+        }
+        .periode p { color: #ccc; margin-bottom: 10px; }
+        .periode p:last-child { margin-bottom: 0; }
+        .periode ul { margin: 12px 0 0 4px; }
+        .periode li { color: #ccc; margin-bottom: 5px; }
+        .periode li i { color: var(--color-primary); margin-right: 10px; width: 14px; }
+        .grimoire {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+        }
+        .grimoire h3 { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 18px; }
+        table.lineups { width: 100%; border-collapse: collapse; }
+        table.lineups th, table.lineups td {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #333;
+            font-size: 0.95rem;
+        }
+        table.lineups th {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-size: 0.85rem;
+        }
+        table.lineups td:first-child { font-family: var(--font-head); color: #fff; white-space: nowrap; }
+        table.lineups td { color: #ccc; }
+        .grimoire p { color: #ccc; margin-bottom: 6px; }
+        .grimoire a { color: var(--color-primary); }
+        @media (max-width: 768px) {
+            .periode, .grimoire { padding: 24px 20px; }
+            .periode-annee { font-size: 2rem; }
+            table.lineups th, table.lineups td { padding: 10px 6px; font-size: 0.85rem; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
@@ -17,45 +90,186 @@
                 <a href="histoire.html" style="color:var(--color-primary)">HISTOIRE</a>
                 <a href="concerts.html">CONCERTS</a>
                 <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html">ANECDOTES</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514525253440-b393452e2780?w=1200'); min-height: 60vh;">
+
+        <!-- Hero -->
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/1repet.png'); min-height: 60vh;">
             <div class="hero-content">
                 <h1>L'HISTOIRE</h1>
-                <p>Chronologie d'une aventure humaine et musicale.</p>
+                <p>1988-2012 : de l'ombre du garage à la lumière de la scène.</p>
             </div>
         </section>
 
+        <!-- 1. LA CHRONOLOGIE REELLE -->
         <section>
-            <div class="section-header"><h2>LES GRANDES ÉTAPES</h2></div>
-            <div class="collections-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <h3>1997 : La Genèse</h3>
-                        <span class="card-meta">Début</span>
-                        <p>Marc et Lucas se rencontrent. La première jam session est catastrophique, mais l'alchimie est là.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>1999 : La Première Scène</h3>
-                        <span class="card-meta">Live</span>
-                        <p>Fête de la musique. Ils jouent devant 50 personnes sous la pluie. C'est le déclic.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>2001 : L'Album</h3>
-                        <span class="card-meta">Studio</span>
-                        <p>Sortie d'Acier Fondu. Les ventes explosent dans la région. Le groupe devient une légende locale.</p>
-                    </div>
+            <div class="section-header">
+                <h2>LES GRANDES ÉTAPES</h2>
+                <p>Quatre copains, douze noms, un disque et vingt-quatre années de bruit.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1988</div>
+                <div class="periode-nom">La rencontre — Desastrax</div>
+                <h3>Quatre gamins, une passion, aucun instrument</h3>
+                <p>Tanguy, Loran, Régis et Tony se retrouvent tous les étés à Saint Erblon, pendant les vacances. Ils découvrent une passion commune pour le rock alternatif et décident de « se tester à la musique » — sans instruments. C'est là que tout commence, avec un nom avant même d'avoir un son : <strong>Desastrax</strong>.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1992</div>
+                <div class="periode-nom">Le sous-sol — Explicit, puis No Mug</div>
+                <h3>Les premières répétitions, sous les chambres des parents</h3>
+                <p>Le groupe s'installe dans le sous-sol de la maison familiale, à Saint Erblon. Gilles prend la basse, Jérome la guitare. Les répétitions s'accentuent chaque samedi après-midi, sans la moindre isolation phonique — les voisins sont <em>ravis</em>. C'est cette acoustique brute qui façonnera définitivement le son du groupe.</p>
+                <ul>
+                    <li><i class="fas fa-bolt"></i>Les premiers concerts et les premières fêtes de la musique</li>
+                    <li><i class="fas fa-bolt"></i>Deux noms sur la période : <strong>Explicit</strong> et <strong>No Mug</strong></li>
+                    <li><i class="fas fa-bolt"></i>Les enregistrements de cette époque sont écoutables dans le <a href="studio.html" style="color:var(--color-primary)">jukebox des archives</a></li>
+                </ul>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1998</div>
+                <div class="periode-nom">Le disque — Helium, puis Jar</div>
+                <h3><em>Jar</em> : le premier CD du groupe</h3>
+                <p>Cinq titres enregistrés au studio <strong>Panoramix</strong>, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se tenaient aux Courans, à Longuefuye. Conception graphique de la pochette : Tanguy Ferrand. Photos : Loran Ferrand. Paroles et musique : le groupe.</p>
+                <ul>
+                    <li><i class="fas fa-compact-disc"></i><em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Woman</em>, <em>Shekter For Anger</em></li>
+                    <li><i class="fas fa-user-minus"></i>Jérome quitte le groupe</li>
+                    <li><i class="fas fa-user-plus"></i>JeanJean et Flo les rejoignent, sous une influence néo-metal</li>
+                </ul>
+                <p style="margin-top:14px;"><a href="index.html#discography" class="btn btn-outline" style="font-size:0.8rem; padding:10px 20px;"><i class="fas fa-compact-disc"></i> VOIR LE DISQUE EN DÉTAIL</a></p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2002</div>
+                <div class="periode-nom">La technique — Codeine</div>
+                <h3>Concerts dans la région, répétitions à Craon</h3>
+                <p>Le groupe devient <strong>Codeine</strong> et pose ses répétitions à Craon. Les concerts s'enchaînent dans la région. Tony quitte le camp : Jeff le remplace au chant.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2005</div>
+                <div class="periode-nom">L'association — Wow</div>
+                <h3>Renazé, et le nom qui tient le plus longtemps</h3>
+                <p>Le groupe monte son association et installe les répétitions à Renazé. Gilles s'en va sur Niort ; Jeff est remplacé au chant par Alex. <strong>Wow</strong> reste le nom le plus longtemps porté par le groupe.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2012</div>
+                <div class="periode-nom">La pause</div>
+                <h3>Fin de la première époque</h3>
+                <p>Wow se met en pause, laissant une légende intacte. Pas de séparation fracassante : juste le silence après vingt-quatre ans de bruit.</p>
+            </div>
+
+            <div class="periode" style="border-left-color: var(--color-primary-hover);">
+                <div class="periode-annee">2020</div>
+                <div class="periode-nom">Les archives — Erblon Prod</div>
+                <h3>« Une jeunesse sous distorsion »</h3>
+                <p>Mise en ligne des archives : les photos, les affiches, le boîtier du CD numérisé, les enregistrements de répétition classés par époque et le teaser vidéo. Ce que tu parcoures sur ce site, c'est vingt ans de garage remis au propre.</p>
+                <p style="margin-top:14px;">
+                    <a href="interview.html" class="btn" style="font-size:0.8rem; padding:10px 20px;"><i class="fas fa-microphone"></i> LIRE LES ANECDOTES</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. LES LINE-UPS PAR PERIODE -->
+        <section>
+            <div class="section-header">
+                <h2>QUI JOUE QUAND</h2>
+                <p>Les line-ups, période par période — tel que les archives les ont conservés.</p>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-users"></i> TABLEAU DES LINE-UPS</h3>
+                <table class="lineups">
+                    <tr>
+                        <th>Période</th>
+                        <th>Nom</th>
+                        <th>Formation</th>
+                    </tr>
+                    <tr>
+                        <td>1988</td>
+                        <td>Desastrax</td>
+                        <td>Tanguy (chant), Loran (guitare), Régis (batterie), Tony (clavier puis chant) — les quatre fondateurs</td>
+                    </tr>
+                    <tr>
+                        <td>1992</td>
+                        <td>Explicit / No Mug</td>
+                        <td>Les fondateurs + Gilles (basse) + Jérome (guitare)</td>
+                    </tr>
+                    <tr>
+                        <td>1998</td>
+                        <td>Helium / Jar</td>
+                        <td>Arrivée de JeanJean (basse) et Flo (guitare) ; départ de Jérome ; virage néo-metal</td>
+                    </tr>
+                    <tr>
+                        <td>2002</td>
+                        <td>Codeine</td>
+                        <td>Tony quitte le camp, Jeff prend le chant ; répétitions à Craon</td>
+                    </tr>
+                    <tr>
+                        <td>2005</td>
+                        <td>Wow</td>
+                        <td>Gilles part à Niort, Alex remplace Jeff au chant ; association et répétitions à Renazé</td>
+                    </tr>
+                    <tr>
+                        <td>2012</td>
+                        <td>La pause</td>
+                        <td>Le groupe s'arrête après la plus longue période sous un même nom</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. LES NOMS -->
+        <section>
+            <div class="section-header">
+                <h2>DOUZE NOMS</h2>
+                <p>Ce que le groupe a porté, dans l'ordre, de 1988 à aujourd'hui.</p>
+            </div>
+            <div class="grimoire">
+                <div class="remerciements" style="columns:3;">
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Desastrax</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Soul Famous Carpet</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Rock'n Chair</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Explicit</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> No Mug</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Helium</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Jar</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Codeine</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Wow</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Crumble Head</p>
+                    <p><i class="fas fa-angle-right" style="color:var(--color-primary)"></i> Erblon Prod <span style="color:#777">(aujourd'hui)</span></p>
                 </div>
             </div>
         </section>
+
+        <!-- 4. ARCHIVES -->
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>COMPLÉTER L'HISTOIRE</h2>
+                <p>Il manque des dates, des lieux, des visages — et tu les as peut-être.</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    Affiches de concert, photos de scène, articles de presse, K7 de répétition, tickets, setlists :
+                    tout ce qui traîne dans un carton peut rejoindre les archives. C'est comme ça que la suite s'écrira.
+                </p>
+                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UNE ARCHIVE</a>
+            </div>
+        </section>
+
     </main>
-    <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
 </body>
 </html>
