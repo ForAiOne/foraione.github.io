@@ -509,7 +509,7 @@
             <div class="video-wrapper">
                 <iframe 
                     id="teaserVideo"
-                    src="https://www.youtube.com/embed/HtYu6UUCcds?autoplay=1&rel=0&modestbranding=1"
+                    src="https://www.youtube.com/embed/HtYu6UUCcds?rel=0&amp;modestbranding=1"
                     title="Teaser Saint Erblon"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -624,14 +624,20 @@
             navLinks.classList.toggle('active');
         }
 
+        // URL du teaser : sans autoplay au chargement de la page (aucun son
+        // tant que l'on n'a pas clique), AVEC autoplay a l'ouverture du modal.
+        const TEASER_SRC = 'https://www.youtube.com/embed/HtYu6UUCcds?rel=0&modestbranding=1';
+        const TEASER_SRC_AUTOPLAY = 'https://www.youtube.com/embed/HtYu6UUCcds?autoplay=1&rel=0&modestbranding=1';
+
         function playTeaser() {
             const modal = document.getElementById('videoModal');
             const iframe = document.getElementById('teaserVideo');
             
             modal.classList.add('active');
             
-            // Recharger l'iframe avec autoplay pour relancer la vidéo
-            iframe.src = iframe.src;
+            // Recharger l'iframe avec autoplay pour lancer la vidéo AVEC le son
+            // (le son ne demarre qu'ici, sur un clic de l'internaute)
+            iframe.src = TEASER_SRC_AUTOPLAY;
         }
 
         function closeVideoModal() {
@@ -639,7 +645,7 @@
             const iframe = document.getElementById('teaserVideo');
             
             // Arrêter la vidéo YouTube en rechargeant l'iframe sans autoplay
-            iframe.src = 'https://www.youtube.com/embed/HtYu6UUCcds?rel=0&modestbranding=1';
+            iframe.src = TEASER_SRC;
             modal.classList.remove('active');
         }
 
