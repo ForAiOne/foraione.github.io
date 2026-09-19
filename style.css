@@ -220,6 +220,7 @@ section {
 .card-img {
     height: 220px;
     width: 100%;
+    object-fit: cover;
     opacity: 0.75;
     transition: 0.4s;
 }
