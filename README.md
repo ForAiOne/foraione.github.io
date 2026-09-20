@@ -20,6 +20,7 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `environnement.html` | Les lieux |
 | `repetition.html` | Répétitions et enregistrements |
 | `labo.html` | Le Labo : morceaux, riffs et expérimentations (aujourd'hui) |
+| `aujourdhui.html` | Ce que les membres font aujourd'hui : activités et liens externes |
 | `studio.html` | Jukebox vintage : lecture des morceaux de `mp3/` |
 | `labo/morceaux.json` | Liste des morceaux affichés dans Le Labo |
 | `labo/audio/` | Fichiers audio publiés du Labo (alimenté par le formulaire de dépôt) |
@@ -96,6 +97,24 @@ SITE_REPO=<chemin d'un dépôt> python3 /root/site_indexer.py   # index d'un aut
 
 Il doit être relancé après toute modification du **texte** d'une page, et le
 `recherche/index.json` modifié doit être commité : c'est lui qui est servi.
+
+## Aujourd'hui
+
+La page `aujourdhui.html` (entrée « AUJOURD'HUI » du menu) rassemble ce que les
+membres sont devenus : une fiche par personne, avec son activité actuelle et ses
+liens, plus les pages du groupe ailleurs sur le web (Facebook, YouTube).
+
+Règles tenues pour cette page :
+
+- **Chaque adresse est testée avant publication** (code HTTP et contenu réel) :
+  aucune n'est reprise d'une supposition. Un homonyme non vérifiable ne va pas
+  en ligne — mieux vaut une case vide qu'une erreur.
+- Les personnes n'y figurent que par leur **prénom** : les noms de famille
+  figurent dans les archives, pas ici.
+- Les liens externes s'ouvrent dans un **nouvel onglet** (`target="_blank"` +
+  `rel="noopener"`) et portent une flèche pour se distinguer des liens internes.
+- La page dit d'où viennent les informations et invite les anciens du groupe à
+  signaler un lien manquant.
 
 ## Sources
 
