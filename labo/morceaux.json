@@ -1,4 +1,13 @@
 {
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
-  "morceaux": []
+  "morceaux": [
+    {
+      "titre": "No future",
+      "fichier": "labo/audio/no-future.mp3",
+      "categorie": "morceaux",
+      "date": "2026-09-20",
+      "duree": "3:55",
+      "note": "morceau créé en 2022. ( Regis, Gilles, Tony )"
+    }
+  ]
 }
