@@ -22,6 +22,7 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `labo.html` | Le Labo : morceaux, riffs et expérimentations (aujourd'hui) |
 | `studio.html` | Jukebox vintage : lecture des morceaux de `mp3/` |
 | `labo/morceaux.json` | Liste des morceaux affichés dans Le Labo |
+| `labo/audio/` | Fichiers audio publiés du Labo (alimenté par le formulaire de dépôt) |
 | `soirees.html` | Galerie photo des soirées (alimentée automatiquement) |
 | `images/` | Photos, pochettes, portraits des musiciens |
 | `mp3/` | Morceaux du jukebox |
@@ -48,11 +49,28 @@ commite et pousse. Aucune manipulation manuelle de ce fichier n'est nécessaire.
 
 Page `labo.html` : morceaux, riffs et expérimentations en cours. Les morceaux sont
 déclarés dans `labo/morceaux.json` (titre, fichier, catégorie, date, durée, note) et
-les fichiers audio vivent dans `labo/`. La page lit ce JSON au chargement : tant que
+les fichiers audio vivent dans `labo/audio/`. La page lit ce JSON au chargement : tant que
 la liste est vide, elle affiche un message.
 
-Dépôt des morceaux : par mail à l'adresse du groupe (voir la section « Déposer un
-morceau » de la page). Les fichiers reçus sont convertis en MP3 avant publication.
+## Dépôt d'un morceau (formulaire du Labo)
+
+Les morceaux arrivent par le **formulaire de `labo.html`** (section « Déposer un
+morceau »), derrière la question de sécurité de la page : **MP3 uniquement,
+20 Mo maximum**. Le reste est refusé avant l'envoi et revérifié côté serveur.
+
+Le site étant statique, l'envoi passe par le service du VPS
+(`/root/depot_labo.py`, port 8003), joignable de l'extérieur par Tailscale
+Funnel en HTTPS (`https://ubuntu.tail1ccb87.ts.net/depot`). Ce service :
+
+1. vérifie le fichier (entête MP3, `ffprobe`, taille, plafond par adresse) ;
+2. le met en attente et **prévient Tony sur Telegram**, avec deux liens ;
+3. à la validation : `/root/depot_labo_publier.py` réencode en MP3 128 kbps si
+   nécessaire, range la copie dans `labo/audio/`, ajoute l'entrée en tête de
+   `labo/morceaux.json`, commite et pousse ;
+4. au rejet : supprime le fichier, rien n'est publié.
+
+Rien n'est mis en ligne sans cette validation. Un morceau de 20 Mo devient ~4 Mo
+sur le site, ce qui protège le plafond de 1 Go de GitHub Pages.
 
 ## Sources
 

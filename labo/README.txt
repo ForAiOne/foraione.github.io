@@ -1,42 +1,58 @@
 DOSSIER LABO — morceaux, riffs et expérimentations
 ==================================================
 
-Ce dossier contient les fichiers audio de la page labo.html et leur description.
+Ce dossier contient la liste des morceaux du Labo (morceaux.json) et les
+fichiers audio publiés (audio/).
 
-COMMENT AJOUTER UN MORCEAU
---------------------------
+AJOUTER UN MORCEAU (VOIE NORMALE : LE FORMULAIRE)
+-------------------------------------------------
 
-1. Placer le fichier audio ici, nomme simplement, en minuscules, sans espaces
-   ni accents (les espaces deviennent des underscores) :
+La page labo.html contient la section « Déposer un morceau » : le visiteur
+répond à la question de sécurité, choisit son fichier (MP3, 20 Mo maximum),
+donne un titre et une phrase de présentation, puis envoie.
 
-       labo/mon-riff-du-dimanche.mp3
+Le service du VPS (/root/depot_labo.py) reçoit le fichier, vérifie qu'il s'agit
+bien d'un MP3 (ffprobe) et prévient Tony sur Telegram. Rien n'est publié tant
+que Tony n'a pas cliqué sur « Publier » :
 
-   Format conseille : MP3 192 kbps. Un WAV de plusieurs dizaines de Mo est
-   converti avant publication (ffmpeg) pour ne pas alourdir le site.
+    publication : /root/depot_labo_publier.py -> labo/audio/<titre>.mp3
+                  (MP3 128 kbps maximum) + entrée en tête de morceaux.json
+                  + git push
+    rejet       : le fichier est supprimé, rien n'est publié
 
-2. Ajouter son entree dans morceaux.json, dans le tableau "morceaux" :
+VOIE MANUELLE (SECOURS)
+-----------------------
+
+1. Placer le fichier dans labo/audio/, nommé simplement, en minuscules, sans
+   espaces ni accents (les espaces deviennent des underscores) :
+
+       labo/audio/mon-riff-du-dimanche.mp3
+
+   Format conseillé : MP3 128 kbps (le service réencode au-delà).
+
+2. Ajouter son entrée dans morceaux.json, dans le tableau "morceaux" :
 
        {
          "titre": "Mon riff du dimanche",
-         "fichier": "labo/mon-riff-du-dimanche.mp3",
+         "fichier": "labo/audio/mon-riff-du-dimanche.mp3",
          "categorie": "riffs",
-         "date": "2026-09-18",
+         "date": "2026-09-20",
          "duree": "1:12",
-         "note": "Un riff enregistre au telephone, une nuit."
+         "note": "Un riff enregistré au téléphone, une nuit."
        }
 
-   Categories possibles : morceaux | riffs | remixes
+   Catégories possibles : morceaux | riffs | remixes
 
-3. Verifier que le JSON reste valide (virgules entre les entrees) :
+3. Vérifier que le JSON reste valide (virgules entre les entrées) :
 
        python3 -c "import json; json.load(open('labo/morceaux.json'))"
 
-4. Committer et pousser ; la page se met a jour toute seule (elle lit ce fichier).
+4. Committer et pousser ; la page se met à jour toute seule (elle lit ce fichier).
 
 SI LA PAGE RESTE VIDE
 ---------------------
 
 La page affiche un message tant que "morceaux" est vide : c'est normal.
 Elle charge morceaux.json par fetch — si le fichier contient une erreur de
-syntaxe, la liste reste vide sans message d'erreur visible. Verifier le JSON
-en premier (etape 3).
+syntaxe, la liste reste vide sans message d'erreur visible. Vérifier le JSON
+en premier (étape 3).
