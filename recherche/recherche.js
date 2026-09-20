@@ -21,8 +21,15 @@
     var chargement = null;     // promesse de chargement, pour ne charger qu'une fois
 
     // ------------------------------------------------------------------ outils
+    /* Normalisation : accents, casse, et LIGATURES. Le point des ligatures est
+       facile a oublier : NFD ne decompose pas « œ », donc « boite a oeufs » ne
+       trouvait pas « boîtes à œufs ». */
+    function sansLigatures(texte) {
+        return texte.replace(/\u0153/g, 'oe').replace(/\u00e6/g, 'ae');
+    }
+
     function sansAccents(texte) {
-        return texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        return sansLigatures(texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '')).toLowerCase();
     }
 
     function motsCles(texte) {
@@ -32,13 +39,16 @@
     }
 
     /* Normalise en gardant, pour chaque caractere produit, sa position dans le
-       texte d'origine : c'est ce qui permet de surligner juste. */
+       texte d'origine : c'est ce qui permet de surligner juste. Les ligatures
+       produisent deux caracteres pour un seul d'origine : les deux pointent
+       donc vers la meme position. */
     function normaliserAvecCarte(texte) {
         var bas = texte.toLowerCase();
         var norm = '';
         var carte = [];
         for (var i = 0; i < bas.length; i++) {
             var c = bas[i].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            c = sansLigatures(c);
             for (var k = 0; k < c.length; k++) {
                 norm += c[k];
                 carte.push(i);
@@ -132,15 +142,21 @@
         var fin = (carte.carte[finCar] || bloc.texte.length - 1) + 1;
 
         var morceau = bloc.texte.slice(debut, fin);
-        var morceauCarte = normaliserAvecCarte(morceau);
+        return (debut > 0 ? '… ' : '') + surligner(morceau, jetons) +
+               (fin < bloc.texte.length ? ' …' : '');
+    }
+
+    /* Entoure les mots trouves dans un texte (titre ou extrait). */
+    function surligner(texte, jetons) {
+        var carte = normaliserAvecCarte(texte);
         var intervalles = [];
         jetons.forEach(function (jeton) {
             var depuis = 0;
             var trouve;
-            while ((trouve = morceauCarte.norm.indexOf(jeton, depuis)) !== -1) {
-                var a = morceauCarte.carte[trouve];
-                var b = morceauCarte.carte[Math.min(trouve + jeton.length - 1,
-                                                      morceauCarte.carte.length - 1)] + 1;
+            while ((trouve = carte.norm.indexOf(jeton, depuis)) !== -1) {
+                var a = carte.carte[trouve];
+                var b = carte.carte[Math.min(trouve + jeton.length - 1,
+                                              carte.carte.length - 1)] + 1;
                 intervalles.push([a, b]);
                 depuis = trouve + jeton.length;
             }
@@ -151,12 +167,11 @@
         var curseur = 0;
         intervalles.forEach(function (intervalle) {
             if (intervalle[0] < curseur) return;
-            html += echapper(morceau.slice(curseur, intervalle[0]));
-            html += '<mark>' + echapper(morceau.slice(intervalle[0], intervalle[1])) + '</mark>';
+            html += echapper(texte.slice(curseur, intervalle[0]));
+            html += '<mark>' + echapper(texte.slice(intervalle[0], intervalle[1])) + '</mark>';
             curseur = intervalle[1];
         });
-        html += echapper(morceau.slice(curseur));
-        return (debut > 0 ? '… ' : '') + html + (fin < bloc.texte.length ? ' …' : '');
+        return html + echapper(texte.slice(curseur));
     }
 
     function echapper(texte) {
@@ -194,9 +209,11 @@
             panneau.innerHTML = resultats.map(function (resultat) {
                 var bloc = index.blocs[resultat.id];
                 var lien = bloc.page + '#r-' + bloc.id;
+                var jetons = motsCles(requete);
                 return '<a class="recherche-item" href="' + lien + '">' +
-                    '<span class="ri-page">' + echapper(nomPage(bloc.page)) +
-                    (bloc.titre ? ' · ' + echapper(bloc.titre) : '') + '</span>' +
+                    '<span class="ri-page">' + echapper(nomPage(bloc.page)) + '</span>' +
+                    (bloc.titre ? '<span class="ri-titre">' + surligner(bloc.titre, jetons) +
+                                  '</span>' : '') +
                     '<span class="ri-extrait">' + extrait(bloc, requete) + '</span></a>';
             }).join('');
             panneau.hidden = false;

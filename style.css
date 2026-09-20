@@ -738,3 +738,20 @@ footer {
     #recherche-champ { width: 100%; }
     .recherche-resultats { width: 100%; right: auto; left: 0; }
 }
+/* Titre du passage trouve : sur sa propre ligne, pour qu'un mot present
+   seulement dans le titre soit visiblement surligne lui aussi. */
+.recherche-item .ri-titre {
+    display: block;
+    font-weight: 700;
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+.recherche-item .ri-page mark,
+.recherche-item .ri-titre mark {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0 2px;
+    border-radius: 2px;
+}
