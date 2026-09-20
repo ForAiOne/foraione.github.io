@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ce que les musiciens du groupe font aujourd'hui : bande dessinée, photographie, scène — et leurs liens.">
+    <title>Aujourd'hui | Saint Erblon</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .activite {
+            max-width: 900px;
+            margin: 0 auto 28px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+            border-left: 3px solid var(--color-primary);
+            transition: 0.3s;
+        }
+        .activite:hover { transform: translateX(6px); }
+        .activite-nom {
+            font-family: var(--font-head);
+            font-size: 1.9rem;
+            color: #fff;
+            line-height: 1.1;
+        }
+        .activite-role {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+            margin: 6px 0 16px;
+        }
+        .activite p { color: #ccc; margin-bottom: 16px; }
+        .activite-liens { display: flex; flex-wrap: wrap; gap: 10px; }
+        .lien-externe {
+            display: inline-block;
+            padding: 9px 16px;
+            border: 1px solid var(--color-primary);
+            border-radius: 20px;
+            color: var(--color-text-main);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.78rem;
+            transition: 0.25s;
+        }
+        .lien-externe:hover { background: var(--color-primary); color: #fff; }
+        .lien-externe i { font-size: 0.7rem; opacity: 0.8; }
+        .grimoire {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+        }
+        .grimoire h3 { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 18px; }
+        .grimoire p { color: #ccc; margin-bottom: 12px; }
+        .grimoire p:last-child { margin-bottom: 0; }
+        .source {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 16px 22px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .deux-colonnes { display: flex; flex-wrap: wrap; gap: 14px; }
+        .deux-colonnes .lien-externe { flex: 0 0 auto; }
+        @media (max-width: 768px) {
+            .activite, .grimoire { padding: 24px 20px; }
+            .activite-nom { font-size: 1.5rem; }
+            .lien-externe { font-size: 0.72rem; padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Ouvrir le menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">RETOUR ACCUEIL</a>
+                <a href="environnement.html">ENVIRONNEMENT</a>
+                <a href="histoire.html">HISTOIRE</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="labo.html">LABO</a>
+                <a href="aujourdhui.html" style="color:var(--color-primary)">AUJOURD'HUI</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher dans le site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/music.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>AUJOURD'HUI</h1>
+                <p>Le groupe s'est arrêté en 2010. Eux ont continué.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>CE QU'ILS FONT AUJOURD'HUI</h2>
+                <p>Ceux qui ont tenu les instruments, et ce qu'ils sont devenus.</p>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Tanguy</div>
+                <div class="activite-role">Chant — Desastrax, à l'origine</div>
+                <p>Aujourd'hui graphiste et scénariste de bande dessinée. Il a signé <em>Vaudou Dou Wap</em> (2004, avec Benjamin Bozonnet), <em>La Mue</em> (2007, avec Léo Quiévreux), <em>Les Grands Peintres</em> (2015) et <em>Texto Maudit</em> (2018). Il mène aussi <em>L'Écho Sonore</em>, une chronique sur le son, dans la revue <em>Aaarg !</em>, et collabore à la Gazette du Rock de Liège.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://opalebd.com/auteurs/fiche/3138" target="_blank" rel="noopener">Fiche auteur — Opale BD <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://editions-jungle.com/auteurs/tanguy-ferrand/" target="_blank" rel="noopener">Biographie et bibliographie — Éditions Jungle <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Loran</div>
+                <div class="activite-role">Guitare — Desastrax, à l'origine</div>
+                <p>Photographe de concert — son objectif a suivi les groupes internationaux et français des scènes rock, notamment U2, les Wampas, Yann Tiersen et les Ramones, avec une exposition intitulée <em>Tohu-Bohu</em>. Il est aussi cofondateur, avec Yoann Pouteau, du fanzine punk et BD <em>Bullshit'n'roll</em> (depuis 2015) et du festival <em>Spank</em> qui l'accompagne.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://www.tranzistor.org/singulier-pluriel/" target="_blank" rel="noopener">Portrait du fanzine Bullshit'n'roll — Tranzistor <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://fanzinarium.fr/fanzinarium/opac_css/index.php?id=3181&lvl=notice_display" target="_blank" rel="noopener">Le fanzine au catalogue — Le Fanzinarium <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Alex</div>
+                <div class="activite-role">Chant et guitare — Wöw (2004-2010)</div>
+                <p>Arrivé au chant et à la guitare après le départ de Jean-François, il est aujourd'hui le chanteur du groupe lavallois <strong>Octane</strong> — rock métal, plus de dix ans de scène et plus de 150 concerts.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://groupeoctane.fr/" target="_blank" rel="noopener">Octane — le groupe <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-wave-square"></i> LE PROJET : CRUMBLE HEAD</h3>
+                <p>Régis, Loran, Gilles et Tony se sont donné ce nom après une soirée, pour une reconstruction
+                   du groupe. Des morceaux ont commencé à naître en 2022 — ils sont à écouter dans Le Labo.</p>
+                <div class="deux-colonnes">
+                    <a class="lien-externe" href="labo.html"><i class="fas fa-music"></i> Écouter dans Le Labo</a>
+                    <a class="lien-externe" href="histoire.html"><i class="fas fa-book-open"></i> Lire l'histoire</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>LES PAGES DU GROUPE</h2>
+                <p>Ce que le groupe laisse en ligne, ailleurs qu'ici.</p>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-link"></i> AILLEURS SUR LE WEB</h3>
+                <p>La page <strong>NO Mug Musics</strong> sur Facebook, et la chaîne <strong>WöW</strong> sur
+                   YouTube — six vidéos, dont la plus ancienne remonte aux environs de 2010.</p>
+                <div class="deux-colonnes">
+                    <a class="lien-externe" href="https://www.facebook.com/nomug.mug" target="_blank" rel="noopener">NO Mug Musics sur Facebook <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://www.youtube.com/@sevendustwow" target="_blank" rel="noopener">La chaîne WöW sur YouTube <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p style="margin-top:18px;">Les liens ci-dessus mènent hors de ce site : ils s'ouvrent dans un nouvel
+                   onglet. La chaîne YouTube garde aussi le teaser du groupe, visible depuis les Anecdotes.</p>
+            </div>
+
+            <div class="source">
+                <i class="fas fa-info-circle"></i> Activités et adresses vérifiées une par une en septembre 2026 :
+                chaque lien a été testé avant d'être publié ici. Aucune adresse n'est reprise d'une supposition.
+            </div>
+        </section>
+
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>TU AS JOUÉ DANS LE GROUPE ?</h2>
+                <p>Un lien, une activité, un projet : cette page est faite pour ça.</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    Un ancien du groupe a une page, une exposition à venir, un disque, un atelier ? Écris-nous :
+                    ça rejoint cette page, avec ou sans lien.
+                </p>
+                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> NOUS ÉCRIRE</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
+    <link rel="prefetch" href="recherche/index.json">
+    <script src="recherche/recherche.js" defer></script>
+    <script src="menu.js" defer></script>
+</body>
+</html>
