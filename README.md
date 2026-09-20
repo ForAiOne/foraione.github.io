@@ -100,7 +100,7 @@ Il doit être relancé après toute modification du **texte** d'une page, et le
 
 ## Aujourd'hui
 
-La page `aujourdhui.html` (entrée « AUJOURD'HUI » du menu) rassemble ce que les
+La page `aujourdhui.html` (entrée « LIENS » du menu) rassemble ce que les
 membres sont devenus : une fiche par personne, avec son activité actuelle et ses
 liens, plus les pages du groupe ailleurs sur le web (Facebook, YouTube).
 
