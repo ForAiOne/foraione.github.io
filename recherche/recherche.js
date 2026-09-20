@@ -120,7 +120,17 @@
                 return texteNorm.indexOf(jeton) !== -1;
             });
             if (!complet) return;
-            resultats.push({ id: parseInt(id, 10), score: scores[id] + (bloc.ancre ? 1 : 0) });
+            // Un mot trouve DANS LE TITRE designe mieux le passage : sans ce
+            // poids, une page qui cite les mots au detour d'une phrase passait
+            // devant le passage qui porte precisement le sujet.
+            var titreNorm = sansAccents(bloc.titre || '');
+            var dansLeTitre = jetons.filter(function (jeton) {
+                return titreNorm.indexOf(jeton) !== -1;
+            }).length;
+            resultats.push({
+                id: parseInt(id, 10),
+                score: scores[id] + dansLeTitre * 5 + (bloc.ancre ? 1 : 0)
+            });
         });
         resultats.sort(function (a, b) { return b.score - a.score; });
         return resultats.slice(0, MAX_RESULTATS);
