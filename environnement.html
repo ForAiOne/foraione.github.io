@@ -64,6 +64,48 @@
             font-size: 0.85rem;
         }
 
+        /* === LA FRISE DES LOCAUX === */
+        .frise {
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+            position: relative;
+            padding-left: 28px;
+        }
+        .frise::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #333;
+        }
+        .etape-lieu { position: relative; margin-bottom: 26px; }
+        .etape-lieu:last-child { margin-bottom: 0; }
+        .etape-lieu::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            top: 7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-bg);
+        }
+        .etape-lieu .quand {
+            display: block;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+        .etape-lieu h4 { font-size: 1.15rem; margin-bottom: 6px; }
+        .etape-lieu p { color: #ccc; }
+        .etape-lieu .hors-carte { color: var(--color-text-muted); font-size: 0.85rem; }
+
         /* === LES COMMUNES === */
         .commune {
             max-width: 1100px;
@@ -184,6 +226,47 @@
             </div>
         </section>
 
+        <!-- LA FRISE DES LOCAUX -->
+        <section>
+            <div class="section-header">
+                <h2>LES LOCAUX, DANS L'ORDRE</h2>
+                <p>Six adresses, une quinzaine d'années : les murs ont changé plus souvent que les musiciens.</p>
+            </div>
+
+            <div class="frise">
+                <div class="etape-lieu">
+                    <span class="quand">1988 &middot; Saint-Erblon</span>
+                    <h4>Chez la grand-mère de Tanguy et Loran</h4>
+                    <p>C'est là que tout commence. Dans cette maison de Saint-Erblon, le quatuor d'origine &ndash; les Rotoplo Fires, qui deviendront Desastrax &ndash; enregistre sa première K7 : quatre titres sur un magnéto d'époque.</p>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">Début des années 1990 &middot; Saint-Erblon</span>
+                    <h4>Le sous-sol des parents de Régis et Tony</h4>
+                    <p>Les répétitions descendent à la cave &ndash; « le sous-sol, bien évidemment ». C'est la période Explicit, puis No Mug : Gilles arrive à la basse en 1991, Régis passe à la batterie, Loran à la guitare, Tony au chant.</p>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">1998 &middot; Longuefuye, aux Courans</span>
+                    <h4>Le studio en boîtes à œufs</h4>
+                    <p>Régis prend une location avec un copain, Mickaël Lairy, près du manoir des Courans. Assez de place pour monter un petit studio de répétition, calfeutré avec des boîtes à œufs et des palettes, et préparer le CD de Jar.</p>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">1999 &middot; Renazé</span>
+                    <h4>Rue de l'Aubinière</h4>
+                    <p>Quelques mois de répétitions dans une maison de la rue de l'Aubinière.</p>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">2001 &middot; Craon</span>
+                    <h4>Près de l'espace Saint-Clément</h4>
+                    <p>Une étape un peu à l'écart des trois communes de cette page, à une dizaine de kilomètres à l'est de Renazé. <span class="hors-carte">(hors carte)</span></p>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">À partir de 2002 &middot; Renazé</span>
+                    <h4>Le local de TOUS AZIC'MUTS</h4>
+                    <p>Les répétitions reviennent à Renazé, cette fois dans le cadre de l'association musicale TOUS AZIC'MUTS, créée avec Hippy Groovy and the stylee mens &ndash; les deux groupes partagent le local. C'est l'époque des concerts à Renazé et de la Fête de la musique.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- LES COMMUNES -->
         <section>
             <article class="commune" id="saint-erblon">
@@ -204,7 +287,8 @@
 
                 <div class="encadre-groupe">
                     <h4>Le groupe</h4>
-                    <p>C'est ici que le groupe était implanté, et c'est de ce village que partaient les répétitions. Les archives de 2004 situent Saint-Erblon « non loin de Rennes et Angers ».</p>
+                    <p>C'est ici que le groupe était implanté, et ici que se sont tenues les toutes premières répétitions : dans la maison de la grand-mère de Tanguy et Loran, où Desastrax a enregistré sa première K7, puis au sous-sol de la maison des parents de Régis et Tony.</p>
+                    <p>Les archives de 2004 situent Saint-Erblon « non loin de Rennes et Angers ».</p>
                 </div>
             </article>
 
@@ -226,7 +310,7 @@
 
                 <div class="encadre-groupe">
                     <h4>Le groupe</h4>
-                    <p>Renazé compte double dans l'histoire : c'est la ville « qui a permis la création de l'association TOUS AZIC'MUTS », dont Codéine fut l'un des deux premiers membres, aux côtés d'Hippy Groovy and the stylee mens &ndash; les deux formations partageant le local de répétition.</p>
+                    <p>Renazé compte double dans l'histoire. On y a d'abord répété quelque temps rue de l'Aubinière, en 1999, avant un passage par Craon &ndash; puis les répétitions sont revenues ici, dans le cadre de l'association TOUS AZIC'MUTS : c'est la ville « qui a permis la création de l'association », dont Codéine fut l'un des deux premiers membres, aux côtés d'Hippy Groovy and the stylee mens, les deux formations partageant le local.</p>
                     <p>On y retrouve aussi la Fête de la musique, un concert en juin 2002 et une date le 27 juin 2003.</p>
                 </div>
             </article>
@@ -264,7 +348,8 @@
             <div class="sources">
                 <p>Chiffres de population, repères historiques et patrimoine : articles « Renazé », « Saint-Erblon (Mayenne) », « Longuefuye » et « Gennes-Longuefuye » de Wikipédia, consultés en septembre 2026 (INSEE pour la démographie).</p>
                 <p>Histoire du groupe, association TOUS AZIC'MUTS et dates de concerts : archives du site d'origine, dernière mise à jour le 7 septembre 2004.</p>
-                <p>Le local de Longuefuye (les Courans) et le studio Panoramix chez Nono : boîtier du CD de Jar (remerciements et adresses portées sur le disque) et page Anecdotes du site. La location de Régis avec Mickaël Lairy et les boîtes à œufs : souvenirs de Tony, septembre 2026.</p>
+                <p>Le local de Longuefuye (les Courans) et le studio Panoramix chez Nono : boîtier du CD de Jar (remerciements et adresses portées sur le disque) et page Anecdotes du site.</p>
+                <p>Emplacement des locaux &ndash; la maison de la grand-mère de Tanguy et Loran, le sous-sol des parents de Régis et Tony, la rue de l'Aubinière, Craon près de l'espace Saint-Clément, la location de Régis avec Mickaël Lairy et les boîtes à œufs : souvenirs de Tony, septembre 2026. Ces adresses ne figurent dans aucune archive.</p>
                 <p>Distances : à vol d'oiseau, calculées à partir des coordonnées des communes.</p>
             </div>
         </section>
