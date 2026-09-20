@@ -786,3 +786,10 @@ footer {
     .back-nav ~ .recherche { right: 10px; }
     .back-nav ~ .recherche #recherche-champ { width: 132px; padding: 8px 10px; }
 }
+/* Lien au fil d'un paragraphe. Le style global des liens est neutre
+   (couleur heritee), un lien dans le texte doit donc se voir. */
+.lien {
+    color: var(--color-primary);
+    border-bottom: 1px solid rgba(185, 29, 29, 0.45);
+}
+.lien:hover { border-bottom-color: var(--color-primary); }
