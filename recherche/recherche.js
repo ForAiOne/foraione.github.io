@@ -19,6 +19,7 @@
     var index = null;          // { pages: [...], blocs: [...] }
     var inverse = null;        // mot -> [ids de blocs]
     var chargement = null;     // promesse de chargement, pour ne charger qu'une fois
+    var minuteurSurlignage = null;   // retrait differe du surlignage de passage
 
     // ------------------------------------------------------------------ outils
     /* Normalisation : accents, casse, et LIGATURES. Le point des ligatures est
@@ -308,11 +309,20 @@
             if (!bloc) return;
             var cible = trouverElement(bloc);
             if (!cible) return;
+            // Un seul passage surligne a la fois : sans ce nettoyage, enchainer
+            // deux resultats de la MEME page laissait le premier allume.
+            var anciens = document.querySelectorAll('.surligne');
+            for (var i = 0; i < anciens.length; i++) {
+                anciens[i].classList.remove('surligne');
+            }
+            clearTimeout(minuteurSurlignage);
             // defilement instantane : le « smooth » ne s'execute pas toujours
             // (navigateur sans animation, onglet en arriere-plan)
             cible.scrollIntoView({ block: 'center' });
             cible.classList.add('surligne');
-            setTimeout(function () { cible.classList.remove('surligne'); }, 3500);
+            minuteurSurlignage = setTimeout(function () {
+                cible.classList.remove('surligne');
+            }, 3500);
         }).catch(function () {});
     }
 
