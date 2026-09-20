@@ -2,13 +2,140 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Environnement | Saint Erblon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saint-Erblon, Renazé et Longuefuye : les trois communes du Sud-Mayenne où se trouvaient le local de répétition et la vie du groupe.">
+    <title>Les lieux | Saint Erblon</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Même police et icônes pour la cohérence -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === LA CARTE === */
+        .carte-figure {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 14px;
+            /* Sur petit ecran la carte reste lisible : on la fait glisser
+               horizontalement plutot que de la reduire a l'ilisible. */
+            overflow-x: auto;
+        }
+        .carte-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-width: 640px;
+            border-radius: 2px;
+        }
+        .carte-figure figcaption {
+            margin-top: 12px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .glisser { display: none; }
+        @media (max-width: 768px) {
+            .glisser { display: inline; color: var(--color-primary); }
+        }
+
+        /* === LES DISTANCES === */
+        .distances {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 14px;
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+        }
+        .distance {
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            padding: 16px 18px;
+        }
+        .distance b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            line-height: 1.1;
+        }
+        .distance span {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* === LES COMMUNES === */
+        .commune {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 28px 30px;
+        }
+        .commune > h3 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+        .commune > h3 span { color: var(--color-text-muted); font-size: 1rem; }
+        .commune-sous-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            margin-bottom: 18px;
+        }
+        .fiches { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+        .fiche {
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 10px 16px;
+            min-width: 132px;
+        }
+        .fiche b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+        .fiche span { font-size: 0.8rem; color: var(--color-text-muted); }
+        .commune p { color: #ccc; }
+        .commune p + p { margin-top: 12px; }
+        .encadre-groupe {
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+        }
+        .encadre-groupe h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+        .sources {
+            max-width: 1100px;
+            margin: 0 auto;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .commune { padding: 22px 20px; }
+            .fiches { gap: 10px; }
+            .fiche { min-width: 0; flex: 1 1 45%; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
@@ -25,46 +152,125 @@
     </header>
 
     <main>
-        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1590059802792-0f915d4742d2?w=1200'); min-height: 60vh;">
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/background.png'); min-height: 60vh;">
             <div class="hero-content">
-                <h1>L'ENVIRONNEMENT</h1>
-                <p>Les lieux qui ont forgé le son du groupe.</p>
+                <h1>LES LIEUX</h1>
+                <p>Saint-Erblon, Renazé, Longuefuye : trois communes du Sud-Mayenne.</p>
             </div>
         </section>
 
+        <!-- LA CARTE -->
         <section>
             <div class="section-header">
-                <h2>LES LIEUX MYTHIQUES</h2>
-                <p>Du sous-sol humide aux studios industriels.</p>
+                <h2>LA CARTE DES TROIS VILLAGES</h2>
+                <p>Le décor tient sur une carte routière : deux villages à l'ouest, un à l'est de Château-Gontier.</p>
             </div>
-            <div class="collections-grid">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" class="card-img" alt="Garage">
-                    <div class="card-content">
-                        <h3>Le Garage</h3>
-                        <span class="card-meta">Saint Erblon • QG Originel</span>
-                        <p>Le lieu où tout a commencé. Isolation phonique inexistante, mais une acoustique brute incomparable.</p>
-                    </div>
+
+            <figure class="carte-figure">
+                <img src="images/Carte_route.jpg" alt="Carte routière du Sud-Mayenne situant Saint-Erblon, Renazé et Longuefuye" width="1820" height="592">
+                <figcaption>Saint-Erblon et Renazé, à l'ouest ; Longuefuye, à l'est, du côté de Château-Gontier. <span class="glisser">&larr; faites glisser la carte &rarr;</span></figcaption>
+            </figure>
+
+            <div class="labo-intro">
+                <p>« Implanté à saint erblon en Mayenne, non loin de Rennes et Angers. » C'est la phrase des archives, et elle suffit à poser le décor : tout se passe dans le sud du département de la Mayenne, dans cette partie de l'Anjou rattachée à la Mayenne en 1790, à quelques kilomètres de l'Ille-et-Vilaine et du Maine-et-Loire.</p>
+                <p>Le local de répétition, les villages où vivaient les musiciens et l'association qui a porté les concerts se répartissent sur trois communes : Saint-Erblon, Renazé et Longuefuye.</p>
+            </div>
+
+            <div class="distances">
+                <div class="distance"><b>8 km</b><span>Saint-Erblon &ndash; Renazé</span></div>
+                <div class="distance"><b>5 km</b><span>Saint-Erblon &ndash; Pouancé</span></div>
+                <div class="distance"><b>34 km</b><span>Renazé &ndash; Longuefuye</span></div>
+                <div class="distance"><b>8 km</b><span>Longuefuye &ndash; Château-Gontier</span></div>
+            </div>
+        </section>
+
+        <!-- LES COMMUNES -->
+        <section>
+            <article class="commune" id="saint-erblon">
+                <h3>SAINT-ERBLON <span>(53)</span></h3>
+                <p class="commune-sous-titre">Le village d'origine</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>153</b><span>habitants</span></div>
+                    <div class="fiche"><b>100 %</b><span>territoire agricole</span></div>
+                    <div class="fiche"><b>8 km</b><span>de Renazé</span></div>
+                    <div class="fiche"><b>5 km</b><span>de Pouancé</span></div>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=400&h=300&fit=crop" class="card-img" alt="Studio">
-                    <div class="card-content">
-                        <h3>Studio Alpha</h3>
-                        <span class="card-meta">Rennes • 2002</span>
-                        <p>Le premier vrai studio professionnel où le groupe a enregistré "Acier Noir".</p>
-                    </div>
+
+                <p>Saint-Erblon est un village du Sud-Mayenne, dans ce qu'on appelle la Mayenne angevine. La commune est classée « rurale à habitat très dispersé » : son territoire est aujourd'hui agricole à 100 %, entre zones agricoles hétérogènes, terres arables et quelques prairies.</p>
+                <p>Son nom vient de saint Herblon &ndash; saint Hermeland, moine-abbé du diocèse de Nantes mort en 720, invoqué pour la guérison des paralytiques. Sous la Révolution, la commune s'appelait Erblou-sur-Araize. Ses habitants sont les Saint-Erblonnais.</p>
+                <p>Au Moyen Âge, le village n'était composé que d'une église et de deux maisons, et la paroisse appartenait à la baronnie de Pouancé. Au XVIIe siècle, on y cultivait le seigle sur des terrains défrichés par les moines d'un prieuré &ndash; un prieuré qui allait devenir l'unique café de la commune. Le village passa ensuite à la famille de Ghaisne, comtes de Bourmont.</p>
+                <p>En 1903, l'abbé Angot notait que le plan cadastral de la commune, placardé à la mairie, tenait sur « une seule feuille ».</p>
+
+                <div class="encadre-groupe">
+                    <h4>Le groupe</h4>
+                    <p>C'est ici que le groupe était implanté, et c'est de ce village que partaient les répétitions. Les archives de 2004 situent Saint-Erblon « non loin de Rennes et Angers ».</p>
                 </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e63?w=400&h=300&fit=crop" class="card-img" alt="Village">
-                    <div class="card-content">
-                        <h3>Le Village</h3>
-                        <span class="card-meta">Saint Erblon • Inspiration</span>
-                        <p>Les ruelles, l'église, les champs. La campagne bretonne comme muse pour les textes.</p>
-                    </div>
+            </article>
+
+            <article class="commune" id="renaze">
+                <h3>RENAZÉ <span>(53)</span></h3>
+                <p class="commune-sous-titre">La ville d'ardoise et l'association</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>2 504</b><span>habitants</span></div>
+                    <div class="fiche"><b>XVe</b><span>siècle : l'ardoise</span></div>
+                    <div class="fiche"><b>3 564</b><span>habitants en 1901</span></div>
+                    <div class="fiche"><b>40 km</b><span>de Laval</span></div>
                 </div>
+
+                <p>Renazé est la plus grande des trois communes : un bourg rural à une quarantaine de kilomètres de Laval, sur l'axe routier Laval &ndash; Saint-Nazaire, traversé par la route départementale 771. La commune touche le Maine-et-Loire, et la Bretagne n'est pas loin : Eancé, en Ille-et-Vilaine, est à une quinzaine de kilomètres à vol d'oiseau.</p>
+                <p>C'est une ville d'ardoise. Dès le XVe siècle, Renazé est un haut lieu de l'industrie ardoisière &ndash; la légende fait même de saint Lézin, évêque d'Angers du VIe siècle, le premier à avoir eu l'idée de couvrir les toitures de pierre d'ardoise, ce qui lui valut d'être proclamé patron des ardoisiers.</p>
+                <p>En 1850, la commune comptait 300 ouvriers. De 1880 à 1900, sa population passe de 2 253 à 3 564 habitants, dont 1 500 ouvriers en 1900 : une progression due à l'amélioration des méthodes d'exploitation et au fait que l'ardoise de Renazé était considérée comme la meilleure. Le maximum de population est atteint en 1901 ; la commune en compte aujourd'hui 2 504.</p>
+                <p>Deux dates de passage : le 21 mars 1793, Fouché, en mission en Mayenne, indique que Renazé est l'une des communes « où l'on emprisonne les gens sans aucun soupçon ». Le 11 juin 1856, Napoléon III vient au bourg à pied, depuis la grand-route où les habitants, à genoux, lui avaient barré le chemin.</p>
+
+                <div class="encadre-groupe">
+                    <h4>Le groupe</h4>
+                    <p>Renazé compte double dans l'histoire : c'est la ville « qui a permis la création de l'association TOUS AZIC'MUTS », dont Codéine fut l'un des deux premiers membres, aux côtés d'Hippy Groovy and the stylee mens &ndash; les deux formations partageant le local de répétition.</p>
+                    <p>On y retrouve aussi la Fête de la musique, un concert en juin 2002 et une date le 27 juin 2003.</p>
+                </div>
+            </article>
+
+            <article class="commune" id="longuefuye">
+                <h3>LONGUEFUYE <span>(53)</span></h3>
+                <p class="commune-sous-titre">Le village des deux châteaux</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>334</b><span>habitants</span></div>
+                    <div class="fiche"><b>2019</b><span>commune déléguée</span></div>
+                    <div class="fiche"><b>8 km</b><span>de Château-Gontier</span></div>
+                    <div class="fiche"><b>1 354</b><span>habitants de Gennes-Longuefuye</span></div>
+                </div>
+
+                <p>Longuefuye est un village du Sud-Mayenne, à huit kilomètres de Château-Gontier. Depuis le 1er janvier 2019, ce n'est plus une commune à part entière : elle a fusionné avec Gennes-sur-Glaize pour former la commune nouvelle de Gennes-Longuefuye, dont elle est une commune déléguée, avec un maire délégué. La fusion a été actée par un arrêté préfectoral du 14 novembre 2018.</p>
+                <p>Sous l'Ancien Régime, la paroisse dépendait de la sénéchaussée angevine de Château-Gontier, elle-même rattachée à Angers. En 1790, la création des départements a fait de cette partie du Haut-Anjou le sud de la Mayenne &ndash; la Mayenne angevine.</p>
+                <p>Le village a son patrimoine : deux châteaux, celui de la Villette (XVe et XVIIe siècles) et celui des Courans (XVIIIe siècle). Il a aussi son personnage, Henri-Augustin Girard de Charnacé (1777-1847), chouan et maire de Longuefuye.</p>
+
+                <div class="encadre-groupe">
+                    <h4>Le groupe</h4>
+                    <p>C'est la troisième commune où le groupe a posé ses amplis, à une trentaine de kilomètres à l'est de Renazé.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- SOURCES -->
+        <section>
+            <div class="section-header">
+                <h2>SOURCES</h2>
+            </div>
+            <div class="sources">
+                <p>Chiffres de population, repères historiques et patrimoine : articles « Renazé », « Saint-Erblon (Mayenne) », « Longuefuye » et « Gennes-Longuefuye » de Wikipédia, consultés en septembre 2026 (INSEE pour la démographie).</p>
+                <p>Histoire du groupe, association TOUS AZIC'MUTS et dates de concerts : archives du site d'origine, dernière mise à jour le 7 septembre 2004.</p>
+                <p>Distances : à vol d'oiseau, calculées à partir des coordonnées des communes.</p>
             </div>
         </section>
     </main>
-    <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
 </body>
 </html>
