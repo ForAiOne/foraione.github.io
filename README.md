@@ -1,7 +1,7 @@
 # Saint Erblon Archives
 
 Site des archives du groupe **Saint Erblon / Erblon Prod** (Mayenne) : de Desastrax
-(1988) à Codéine (2004), en passant par Explicit, No Mug, Helium et Jar.
+(1988) à Wöw (2010), en passant par Explicit, No Mug, Helium, Jar et Codéine.
 
 - **Erblon Prod** : la maison de production montée par le groupe.
 - **Saint-Erblon** : le village mayennais où se trouvaient le local et les répétitions.
