@@ -247,7 +247,11 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
-            <nav class="nav-links">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Ouvrir le menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
                 <a href="index.html">RETOUR ACCUEIL</a>
                 <a href="environnement.html">ENVIRONNEMENT</a>
                 <a href="histoire.html">HISTOIRE</a>
@@ -496,5 +500,6 @@
     </script>
     <link rel="prefetch" href="recherche/index.json">
     <script src="recherche/recherche.js" defer></script>
+    <script src="menu.js" defer></script>
 </body>
 </html>

@@ -127,7 +127,8 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ERBLON<span>PROD</span></a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Ouvrir le menu"
+                    aria-controls="navLinks" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
             <nav class="nav-links" id="navLinks">
@@ -622,10 +623,6 @@
 </script>
         
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
 
         // URL du teaser : sans autoplay au chargement de la page (aucun son
         // tant que l'on n'a pas clique), AVEC autoplay a l'ouverture du modal.
@@ -699,5 +696,6 @@
 
     <link rel="prefetch" href="recherche/index.json">
     <script src="recherche/recherche.js" defer></script>
+    <script src="menu.js" defer></script>
 </body>
 </html>

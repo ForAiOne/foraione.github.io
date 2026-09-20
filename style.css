@@ -755,3 +755,34 @@ footer {
     padding: 0 2px;
     border-radius: 2px;
 }
+/* --- Menu du bandeau, petit ecran ------------------------------------- */
+/* Le menu s'ouvre SOUS le bandeau entier. Avec top:60px (valeur d'origine), il
+   recouvrait le champ de recherche installe sur sa propre ligne. */
+@media (max-width: 768px) {
+    .nav-container { position: relative; }
+    .nav-links { top: 100%; }
+    .mobile-menu-btn { padding: 4px 6px; line-height: 1; }
+}
+
+/* --- Champ de recherche de studio.html (jukebox, sans bandeau) --------- */
+/* La page n'a qu'un bouton de retour fixe en haut a gauche : sans ces regles,
+   le champ se posait en haut de page, cache derriere le bouton. Il passe donc
+   en haut a droite, et le panneau de resultats s'ouvre vers la gauche. */
+.back-nav ~ .recherche {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    width: auto;
+    z-index: 101;
+}
+.back-nav ~ .recherche #recherche-champ { width: 240px; }
+.back-nav ~ .recherche .recherche-resultats {
+    right: 0;
+    left: auto;
+    width: min(520px, calc(100vw - 24px));
+}
+@media (max-width: 600px) {
+    .back-nav ~ .recherche { right: 10px; }
+    .back-nav ~ .recherche #recherche-champ { width: 132px; padding: 8px 10px; }
+}
