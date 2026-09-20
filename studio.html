@@ -703,6 +703,11 @@
             <span>RETOUR BACKSTAGE</span>
         </a>
     </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher dans le site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+
 
     <!-- Container principal -->
     <div class="jukebox-container">
@@ -1264,5 +1269,7 @@
         });
     </script>
 
+    <link rel="prefetch" href="recherche/index.json">
+    <script src="recherche/recherche.js" defer></script>
 </body>
 </html>

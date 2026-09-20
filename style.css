@@ -672,3 +672,69 @@ footer {
     border-radius: 50%;
     pointer-events: none;
 }
+/* === RECHERCHE === */
+.recherche { position: relative; margin-left: 18px; }
+#recherche-champ {
+    width: 200px;
+    padding: 8px 14px;
+    background: #1b1b1b;
+    border: 1px solid #3a3a3a;
+    border-radius: 20px;
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+}
+#recherche-champ::placeholder { color: #6b7280; }
+#recherche-champ:focus { outline: none; border-color: var(--color-primary); }
+.recherche-resultats {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(540px, 92vw);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--color-bg-card);
+    border: 1px solid #333;
+    border-radius: 6px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+    z-index: 1000;
+}
+.recherche-item {
+    display: block;
+    padding: 12px 15px;
+    border-bottom: 1px solid #2c2c2c;
+    text-decoration: none;
+    color: var(--color-text-main);
+}
+.recherche-item:last-child { border-bottom: none; }
+.recherche-item:hover, .recherche-item:focus { background: #2f2f2f; }
+.recherche-item .ri-page {
+    display: block;
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.7rem;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+}
+.recherche-item .ri-extrait { display: block; color: #bbb; font-size: 0.88rem; line-height: 1.5; }
+.recherche-item mark {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+.recherche-vide { padding: 14px 15px; color: var(--color-text-muted); font-size: 0.9rem; }
+.surligne {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 6px;
+    border-radius: 3px;
+    background: rgba(185, 29, 29, 0.10);
+}
+@media (max-width: 1100px) { #recherche-champ { width: 150px; } }
+@media (max-width: 768px) {
+    .nav-container { flex-wrap: wrap; row-gap: 10px; padding-bottom: 12px; }
+    .recherche { margin-left: 0; width: 100%; order: 3; }
+    #recherche-champ { width: 100%; }
+    .recherche-resultats { width: 100%; right: auto; left: 0; }
+}

@@ -24,6 +24,8 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `labo/morceaux.json` | Liste des morceaux affichés dans Le Labo |
 | `labo/audio/` | Fichiers audio publiés du Labo (alimenté par le formulaire de dépôt) |
 | `soirees.html` | Galerie photo des soirées (alimentée automatiquement) |
+| `recherche/index.json` | Index de recherche du site (texte des pages) |
+| `recherche/recherche.js` | Moteur de recherche, dans le navigateur |
 | `images/` | Photos, pochettes, portraits des musiciens |
 | `mp3/` | Morceaux du jukebox |
 
@@ -71,6 +73,29 @@ Funnel en HTTPS (`https://ubuntu.tail1ccb87.ts.net/depot`). Ce service :
 
 Rien n'est mis en ligne sans cette validation. Un morceau de 20 Mo devient ~4 Mo
 sur le site, ce qui protège le plafond de 1 Go de GitHub Pages.
+
+## Recherche dans le site
+
+Un champ de recherche est présent dans le bandeau de **toutes les pages**. Il
+cherche dans le texte du site et renvoie les **passages eux-mêmes**, jamais une
+reformulation : chaque résultat est un extrait avec la page d'où il vient, et le
+lien ouvre la page directement sur ce passage (défilement + surlignage).
+
+Il n'y a **aucun service, aucune IA, aucun appel à l'extérieur** : l'index est un
+fichier du site (`recherche/index.json`), téléchargé une fois par le visiteur et
+interrogé dans son navigateur. La recherche fonctionne donc même hors ligne, et
+rien ne sort de chez le lecteur.
+
+L'index se **régénère tout seul** : après chaque publication de photo dans la
+galerie des soirées (qui ajoute du texte à `soirees.html`). À la main :
+
+```
+python3 /root/site_indexer.py                       # index du site publié
+SITE_REPO=<chemin d'un dépôt> python3 /root/site_indexer.py   # index d'un autre dépôt
+```
+
+Il doit être relancé après toute modification du **texte** d'une page, et le
+`recherche/index.json` modifié doit être commité : c'est lui qui est servi.
 
 ## Sources
 

@@ -106,6 +106,11 @@
                 <a href="interview.html">ANECDOTES</a>
                 <a href="labo.html">LABO</a>
             </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher dans le site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+
         </div>
     </header>
 
@@ -296,5 +301,7 @@
         <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
     </footer>
 
+    <link rel="prefetch" href="recherche/index.json">
+    <script src="recherche/recherche.js" defer></script>
 </body>
 </html>
