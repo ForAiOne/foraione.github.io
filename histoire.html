@@ -96,8 +96,9 @@
             margin: 0;
             flex: 1 1 240px;
             min-width: 0;
+            max-width: 420px;
         }
-        .media-histoire figure.large { flex-basis: 100%; }
+        .media-histoire figure.large { flex-basis: 100%; max-width: 100%; }
         .media-histoire img {
             width: auto;
             height: auto;
@@ -105,12 +106,8 @@
             max-height: 460px;
             margin: 0 auto;
         }
-        .media-histoire video {
-            width: 100%;
-            height: auto;
-        }
         .media-histoire img,
-        .media-histoire video {
+        .media-histoire .vignette {
             display: block;
             border-radius: var(--border-radius);
             border: 1px solid #2a2a2a;
@@ -127,11 +124,124 @@
             font-family: var(--font-head);
             letter-spacing: 1px;
         }
+        /* --- Vignette de video : image de couverture + bouton de lecture --- */
+        .vignette {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.25s;
+        }
+        .vignette:hover,
+        .vignette:focus-visible {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        .vignette img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+            max-height: none;
+        }
+        .vignette-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(185, 29, 29, 0.88);
+            color: #fff;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 4px;
+            box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.3);
+            transition: 0.25s;
+            pointer-events: none;
+        }
+        .vignette:hover .vignette-play,
+        .vignette:focus-visible .vignette-play {
+            background: var(--color-primary-hover, #d62828);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .vignette-duree {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        /* --- Visionneuse : la video en grand, par-dessus la page --- */
+        .visionneuse {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.93);
+        }
+        .visionneuse[hidden] { display: none; }
+        .visionneuse video {
+            max-width: min(1100px, 96vw);
+            max-height: 86vh;
+            width: auto;
+            height: auto;
+            background: #000;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+        }
+        .visionneuse-fermer {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .visionneuse-fermer:hover { background: var(--color-primary); }
+        .visionneuse-erreur {
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(185, 29, 29, 0.9);
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .visionneuse-erreur[hidden] { display: none; }
+        .visionneuse-erreur a { color: #fff; text-decoration: underline; }
+        body.visionneuse-ouverte { overflow: hidden; }
         @media (max-width: 768px) {
             .periode, .grimoire { padding: 24px 20px; }
             .periode-annee { font-size: 2rem; }
             table.lineups th, table.lineups td { padding: 10px 6px; font-size: 0.85rem; }
             .media-histoire figure { flex-basis: 100%; }
+            .visionneuse { padding: 12px; }
+            .visionneuse video { max-height: 74vh; }
+            .visionneuse-fermer { top: 8px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -191,10 +301,12 @@
             </div>
 
             <div class="media-histoire">
-                <figure class="large">
-                    <video controls preload="metadata" poster="videos/desastrax.jpg">
-                        <source src="videos/desastrax.mp4" type="video/mp4">
-                    </video>
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/desastrax.mp4" data-poster="videos/desastrax.jpg" aria-label="Lire la vidéo Desastrax, 1988">
+                        <img src="videos/desastrax.jpg" alt="Desastrax, 1988" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
                     <figcaption><span class="media-date">1988</span> &mdash; Desastrax.</figcaption>
                 </figure>
             </div>
@@ -385,8 +497,15 @@
         <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
     </footer>
 
+    <div class="visionneuse" id="visionneuse" hidden role="dialog" aria-modal="true" aria-label="Lecture de la vidéo">
+        <button class="visionneuse-fermer" type="button" aria-label="Fermer la vidéo">&times;</button>
+        <video controls playsinline preload="none"></video>
+        <p class="visionneuse-erreur" hidden>La lecture n'a pas fonctionné dans ce navigateur. <a class="visionneuse-lien" href="#" download>Télécharger la vidéo</a>.</p>
+    </div>
+
     <link rel="prefetch" href="recherche/index.json">
     <script src="recherche/recherche.js" defer></script>
     <script src="menu.js" defer></script>
+    <script src="visionneuse.js" defer></script>
 </body>
 </html>

@@ -27,6 +27,7 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `soirees.html` | Galerie photo des soirées (alimentée automatiquement) |
 | `recherche/index.json` | Index de recherche du site (texte des pages) |
 | `recherche/recherche.js` | Moteur de recherche, dans le navigateur |
+| `visionneuse.js` | Ouvre les vidéos de l'Histoire en grand au clic, les referme à la fin |
 | `images/` | Photos, pochettes, portraits des musiciens |
 | `images/histoire/` | Photos d'archives illustrant la page Histoire |
 | `videos/` | Vidéos de la page Histoire (MP4, affiches JPG, `medias.json`) |
@@ -73,18 +74,30 @@ de 100 Mo par fichier). Photos : JPEG, 1920 px de côté au maximum, orientation
 appliquée, métadonnées retirées. Les originaux sont conservés hors du dépôt dans
 `/root/histoire_origine/<horodatage>/`.
 
-Dans la page, les illustrations se placent dans un `<div class="media-histoire">`,
-une `<figure>` par média (ajouter `class="large"` pour un média pleine largeur) :
+Dans la page, les illustrations se placent dans un `<div class="media-histoire">`, une
+`<figure>` par média. Les vidéos s'affichent en **vignette** (leur image de couverture et
+un bouton de lecture) : au clic, `visionneuse.js` les ouvre en grand par-dessus la page et
+la referme d'elle-même à la fin de la lecture (ou sur Échap, sur la croix, sur le fond).
+Le fichier vidéo n'est téléchargé qu'à l'ouverture, la vignette ne coûte donc qu'une image.
 
 ```html
 <div class="media-histoire">
     <figure><img src="images/histoire/affiche-2004.jpg" alt="Affiche du concert de 2004" loading="lazy">
         <figcaption><span class="media-date">2004</span> — Affiche du concert à Rennes.</figcaption></figure>
-    <figure class="large"><video controls preload="metadata" poster="videos/concert-1998.jpg">
-        <source src="videos/concert-1998.mp4" type="video/mp4"></video>
-        <figcaption>Concert de 1998, extrait de la K7.</figcaption></figure>
+    <figure class="vignette-video">
+        <button class="vignette" type="button" data-video="videos/concert-1998.mp4"
+                data-poster="videos/concert-1998.jpg" aria-label="Lire la vidéo : concert de 1998">
+            <img src="videos/concert-1998.jpg" alt="Concert de 1998" loading="lazy">
+            <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+            <span class="vignette-duree">1:24</span>
+        </button>
+        <figcaption>Concert de 1998, extrait de la K7.</figcaption>
+    </figure>
 </div>
 ```
+
+`/root/histoire_medias.py --html` sort ces blocs déjà remplis (durée comprise) : il ne reste
+qu'à écrire les légendes. La page Histoire charge `visionneuse.js` en fin de document.
 
 ## Le Labo
 
