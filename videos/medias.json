@@ -1,0 +1,15 @@
+{
+  "maj": "2026-09-22 17:30",
+  "videos": [
+    {
+      "type": "video",
+      "fichier": "desastrax.mp4",
+      "mo": 2.8,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "desastrax.jpg"
+    }
+  ],
+  "photos": []
+}
