@@ -28,6 +28,8 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `recherche/index.json` | Index de recherche du site (texte des pages) |
 | `recherche/recherche.js` | Moteur de recherche, dans le navigateur |
 | `images/` | Photos, pochettes, portraits des musiciens |
+| `images/histoire/` | Photos d'archives illustrant la page Histoire |
+| `videos/` | Vidéos de la page Histoire (MP4, affiches JPG, `medias.json`) |
 | `mp3/` | Morceaux du jukebox |
 
 ## Jukebox : ajouter un morceau
@@ -47,6 +49,42 @@ Le libellé et le nom du fichier doivent rester cohérents, sinon la lecture éc
 Les photos sont publiées automatiquement : dépôt dans MEGA, validation, puis envoi
 au VPS qui réduit l'image, met à jour le bloc `PHOTOS_AUTO` de `soirees.html`,
 commite et pousse. Aucune manipulation manuelle de ce fichier n'est nécessaire.
+
+## Photos et vidéos de la page Histoire
+
+Les archives (photos d'époque, affiches, coupures, petites vidéos) illustrent
+`histoire.html`. Les photos publiées vivent dans `images/histoire/`, les vidéos dans
+`videos/` — chaque vidéo a son image de couverture du même nom, et
+`videos/medias.json` recense ce qui est en ligne.
+
+Le dépôt ne se fait pas dans le dépôt git mais dans `/root/incoming/histoire/` : on y
+dépose les originaux tels quels (`.jpg`, `.png`, `.heic`, `.mov`, `.avi`, `.mp4`…),
+puis `/root/histoire_medias.py` les optimise pour le web et publie.
+
+| Commande | Effet |
+|---|---|
+| `/root/histoire_medias.py --dry-run` | annonce ce qui serait fait, sans rien écrire |
+| `/root/histoire_medias.py` | optimise, range dans le dépôt, commite et pousse |
+| `/root/histoire_medias.py --liste` | inventaire des médias en ligne |
+| `/root/histoire_medias.py --html` | blocs `<figure>` prêts à coller dans la page |
+
+Vidéos : H.264/AAC, 720 px de large au maximum, moins de 20 Mo (GitHub refuse au-delà
+de 100 Mo par fichier). Photos : JPEG, 1920 px de côté au maximum, orientation EXIF
+appliquée, métadonnées retirées. Les originaux sont conservés hors du dépôt dans
+`/root/histoire_origine/<horodatage>/`.
+
+Dans la page, les illustrations se placent dans un `<div class="media-histoire">`,
+une `<figure>` par média (ajouter `class="large"` pour un média pleine largeur) :
+
+```html
+<div class="media-histoire">
+    <figure><img src="images/histoire/affiche-2004.jpg" alt="Affiche du concert de 2004" loading="lazy">
+        <figcaption><span class="media-date">2004</span> — Affiche du concert à Rennes.</figcaption></figure>
+    <figure class="large"><video controls preload="metadata" poster="videos/concert-1998.jpg">
+        <source src="videos/concert-1998.mp4" type="video/mp4"></video>
+        <figcaption>Concert de 1998, extrait de la K7.</figcaption></figure>
+</div>
+```
 
 ## Le Labo
 

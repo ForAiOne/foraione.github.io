@@ -85,10 +85,53 @@
             margin: 3px 4px 3px 0;
             font-size: 0.85rem;
         }
+        /* --- Illustrations : photos et videos d'archives --- */
+        .media-histoire {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 20px;
+        }
+        .media-histoire figure {
+            margin: 0;
+            flex: 1 1 240px;
+            min-width: 0;
+        }
+        .media-histoire figure.large { flex-basis: 100%; }
+        .media-histoire img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 460px;
+            margin: 0 auto;
+        }
+        .media-histoire video {
+            width: 100%;
+            height: auto;
+        }
+        .media-histoire img,
+        .media-histoire video {
+            display: block;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+            background: #000;
+        }
+        .media-histoire figcaption {
+            color: var(--color-text-muted);
+            font-size: 0.82rem;
+            line-height: 1.4;
+            padding-top: 7px;
+        }
+        .media-histoire .media-date {
+            color: var(--color-primary);
+            font-family: var(--font-head);
+            letter-spacing: 1px;
+        }
         @media (max-width: 768px) {
             .periode, .grimoire { padding: 24px 20px; }
             .periode-annee { font-size: 2rem; }
             table.lineups th, table.lineups td { padding: 10px 6px; font-size: 0.85rem; }
+            .media-histoire figure { flex-basis: 100%; }
         }
     </style>
 </head>
