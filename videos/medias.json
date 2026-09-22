@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-22 17:30",
+  "maj": "2026-09-22 17:53",
   "videos": [
     {
       "type": "video",
@@ -9,6 +9,42 @@
       "largeur": 640,
       "hauteur": 480,
       "affiche": "desastrax.jpg"
+    },
+    {
+      "type": "video",
+      "fichier": "loran-guitare.mp4",
+      "mo": 2.5,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "loran-guitare.jpg"
+    },
+    {
+      "type": "video",
+      "fichier": "regis-batterie.mp4",
+      "mo": 1.8,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "regis-batterie.jpg"
+    },
+    {
+      "type": "video",
+      "fichier": "tanguy-chant.mp4",
+      "mo": 1.8,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "tanguy-chant.jpg"
+    },
+    {
+      "type": "video",
+      "fichier": "tony-synthe.mp4",
+      "mo": 1.9,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "tony-synthe.jpg"
     }
   ],
   "photos": []
