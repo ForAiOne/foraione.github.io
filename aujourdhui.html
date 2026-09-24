@@ -70,10 +70,68 @@
         }
         .deux-colonnes { display: flex; flex-wrap: wrap; gap: 14px; }
         .deux-colonnes .lien-externe { flex: 0 0 auto; }
+
+        /* ---- Liens : amis, associations, festivals ------------------------ */
+        .liens-categorie {
+            max-width: 900px;
+            margin: 0 auto 18px;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+        }
+        .liens-categorie i { margin-right: 8px; }
+        .liens-categorie:not(:first-of-type) { margin-top: 38px; }
+        /* Cartes de largeur fixe : une seule carte ne s'etire pas sur toute
+           la largeur, et plusieurs se rangent cote a cote. */
+        .liens-grille {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .lien-carte {
+            flex: 0 1 280px;
+            max-width: 100%;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--color-primary);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .lien-carte:hover { transform: translateX(6px); }
+        .lien-pastille {
+            align-self: flex-start;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.66rem;
+            color: var(--color-text-muted);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 4px 10px;
+            margin-bottom: 12px;
+        }
+        .lien-nom {
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            color: #fff;
+            line-height: 1.2;
+            margin: 0 0 8px;
+        }
+        .lien-carte p { color: #ccc; font-size: 0.92rem; margin: 0 0 16px; }
+        .lien-carte .lien-externe { margin-top: auto; align-self: flex-start; }
+
         @media (max-width: 768px) {
             .activite, .grimoire { padding: 24px 20px; }
             .activite-nom { font-size: 1.5rem; }
             .lien-externe { font-size: 0.72rem; padding: 8px 12px; }
+            .lien-carte { flex: 1 1 100%; padding: 16px 18px; }
+            .lien-nom { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -157,6 +215,51 @@
                     <a class="lien-externe" href="histoire.html"><i class="fas fa-book-open"></i> Lire l'histoire</a>
                 </div>
             </div>
+        </section>
+
+        <!-- ==================================================================
+             LIENS : amis, associations, festivals, evenements, sites.
+             Une categorie par bloc ; dans chaque bloc, une carte par lien
+             (pastille + nom + une phrase + bouton externe).
+             Pour ajouter un lien : dupliquer un <article class="lien-carte">
+             dans le bloc de sa categorie, et le bloc nait s'il n'existe pas
+             encore (titre h3 + <div class="liens-grille">).
+             ================================================================== -->
+        <section id="liens">
+
+            <div class="section-header">
+                <h2>AMIS, ASSOCIATIONS, FESTIVALS</h2>
+                <p>Les sites, les associations, les festivals et les amis artistes qui ont accompagné le groupe.</p>
+            </div>
+
+            <!-- --- Festivals & evenements artistiques --- -->
+            <h3 class="liens-categorie"><i class="fas fa-guitar"></i> Festivals &amp; événements</h3>
+            <div class="liens-grille">
+
+                <article class="lien-carte">
+                    <span class="lien-pastille">Festival — aujourd'hui</span>
+                    <h4 class="lien-nom">Hellfest</h4>
+                    <p>Festival de metal à Clisson, en Loire-Atlantique.</p>
+                    <a class="lien-externe" href="https://hellfest.fr/" target="_blank" rel="noopener">hellfest.fr — site officiel <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+            </div>
+
+            <!-- --- Associations & collectifs : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-people-group"></i> Associations &amp; collectifs</h3>
+            <div class="liens-grille"></div>
+            -->
+
+            <!-- --- Amis artistes & groupes : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-microphone-lines"></i> Amis artistes &amp; groupes</h3>
+            <div class="liens-grille"></div>
+            -->
+
+            <!-- --- Sites & medias : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-newspaper"></i> Sites &amp; médias</h3>
+            <div class="liens-grille"></div>
+            -->
+
         </section>
 
         <section>
