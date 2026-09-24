@@ -271,6 +271,12 @@
             object-fit: cover;
             filter: sepia(0.28) contrast(1.05);
         }
+        /* Coupure de presse : le document est en portrait, on montre donc la
+           page entiere au lieu de la rogner en bandeau (object-fit: cover).
+           Le double nom de classe tient la largeur meme sous 860 px, ou
+           .photo-punaisee passe a 100% (une regle de media query plus bas). */
+        .photo-punaisee.photo-punaisee-article { width: 320px; max-width: 100%; }
+        .photo-punaisee.photo-punaisee-article img { height: auto; object-fit: contain; }
         .mur-culdelampe {
             position: relative;
             z-index: 2;
@@ -442,9 +448,9 @@
                         <p class="fiche-a">L'explosion rock de l'Ouest, Angers notamment, nous poussait à créer vite. Les compos défilaient, Jérôme avait rejoint le quatuor, et les influences se multipliaient : Fugazi, Sonic Youth, les Thugs, les Skippies... et l'incontournable Nirvana. Le concert a été suivi d'une bonne prestation — ce qui, avec du recul, a fait d'Explicit autre chose : No Mug.</p>
                         <span class="fiche-auteur">Régis, fondateur</span>
                     </article>
-                    <figure class="photo-punaisee">
-                        <img src="images/repetitions.jpg" alt="Répétition au sous-sol">
-                        <figcaption>Le sous-sol, Saint-Erblon</figcaption>
+                    <figure class="photo-punaisee photo-punaisee-article">
+                        <img src="images/articleFJT.jpg" alt="Article de journal — Château-Gontier">
+                        <figcaption>Article de journal - Château-Gontier</figcaption>
                     </figure>
                     <article class="fiche">
                     <span class="fiche-annotation">1996</span>
