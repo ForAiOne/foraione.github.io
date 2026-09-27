@@ -4,6 +4,12 @@
   "nouveautes": [
     {
       "date": "2026-09-27",
+      "type": "histoire",
+      "texte": "Nouveaux medias sur la page Histoire",
+      "url": "histoire.html"
+    },
+    {
+      "date": "2026-09-27",
       "type": "labo",
       "texte": "Nouveau morceau dans Le Labo : Whispers in the Dark",
       "url": "labo.html"

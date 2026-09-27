@@ -1,6 +1,15 @@
 {
-  "maj": "2026-09-22 17:53",
+  "maj": "2026-09-27 16:26",
   "videos": [
+    {
+      "type": "video",
+      "fichier": "desast.mp4",
+      "mo": 2.0,
+      "duree": 5.0,
+      "largeur": 1280,
+      "hauteur": 710,
+      "affiche": "desast.jpg"
+    },
     {
       "type": "video",
       "fichier": "desastrax.mp4",
@@ -9,6 +18,15 @@
       "largeur": 640,
       "hauteur": 480,
       "affiche": "desastrax.jpg"
+    },
+    {
+      "type": "video",
+      "fichier": "loran-chant.mp4",
+      "mo": 1.8,
+      "duree": 6.0,
+      "largeur": 640,
+      "hauteur": 480,
+      "affiche": "loran-chant.jpg"
     },
     {
       "type": "video",
@@ -27,15 +45,6 @@
       "largeur": 640,
       "hauteur": 480,
       "affiche": "tanguy-boite.jpg"
-    },
-    {
-      "type": "video",
-      "fichier": "loran-chant.mp4",
-      "mo": 1.8,
-      "duree": 6.0,
-      "largeur": 640,
-      "hauteur": 480,
-      "affiche": "loran-chant.jpg"
     },
     {
       "type": "video",
