@@ -119,6 +119,90 @@
                 font-size: 1rem;
             }
         }
+
+        /* === BANDEAU DES NOUVEAUTES (accueil) =============================
+           Ecrit par /root/nouveautes_maj.py : le bloc HTML, entre les
+           marqueurs NOUVEAUTES_AUTO, est regenere depuis nouveautes.json.
+           Le hero n'est pas touche, la bande se pose juste apres. */
+        .actu-bande {
+            background: radial-gradient(ellipse at center, rgba(185, 29, 29, 0.18), rgba(185, 29, 29, 0.05) 55%, transparent 85%);
+            border-top: 1px solid rgba(185, 29, 29, 0.30);
+            border-bottom: 1px solid rgba(185, 29, 29, 0.30);
+            padding: 13px 20px;
+            text-align: center;
+        }
+
+        .actu-lien {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            text-decoration: none;
+            font-family: var(--font-head);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--color-text-main);
+        }
+
+        .actu-pastille {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(185, 29, 29, 0.14);
+            border: 1px solid rgba(185, 29, 29, 0.55);
+            color: var(--color-primary-hover);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* le point rouge qui pulse doucement (halo de 2 s, jamais clignotant) */
+        .actu-point {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary-hover);
+            animation: actu-pulse 2s ease-in-out infinite;
+        }
+
+        .actu-texte { color: var(--color-text-main); }
+
+        .actu-age {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+        }
+
+        .actu-lien i {
+            font-size: 0.8rem;
+            color: var(--color-primary);
+            transition: transform 0.25s ease;
+        }
+
+        .actu-lien:hover .actu-texte { color: var(--color-primary-hover); }
+        .actu-lien:hover i { transform: translateX(3px); }
+        .actu-lien:focus-visible { outline: 2px solid var(--color-primary-hover); outline-offset: 4px; }
+
+        @keyframes actu-pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.65); }
+            70%  { box-shadow: 0 0 0 9px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        @media (max-width: 600px) {
+            .actu-bande { padding: 11px 14px; }
+            .actu-lien { gap: 8px; font-size: 0.88rem; }
+            .actu-texte { flex-basis: 100%; text-align: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .actu-point { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -169,6 +253,19 @@
             </button>
         </div>
     </div>
+</section>
+
+        <!-- NOUVEAUTES_AUTO : bloc reecrit par nouveautes_maj.py, ne pas editer a la main -->
+        <div class="actu-bande" id="actu">
+            <a class="actu-lien" href="histoire.html">
+                <span class="actu-pastille"><span class="actu-point" aria-hidden="true"></span>NOUVEAU</span>
+                <span class="actu-texte">Deux images ajoutées à l'histoire du groupe</span>
+                <span class="actu-age" data-date="2026-09-27">aujourd'hui</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </div>
+        <!-- /NOUVEAUTES_AUTO -->
+
 </section>
 
 <!-- SVG FILTRE CACHÉ (Pour l'effet de distorsion) -->
@@ -709,6 +806,35 @@
                 }
             });
         });
+
+    // -- Bandeau des nouveautes : age relatif recalcule a chaque visite ------
+    // La date est ecrite par nouveautes_maj.py dans data-date ; le texte est
+    // rafraichi ici pour qu'« il y a 3 jours » ne devienne pas faux.
+    function ageNouveauteEnTexte(jours) {
+        if (jours <= 0) return "aujourd'hui";
+        if (jours === 1) return "hier";
+        if (jours < 7) return "il y a " + jours + " jours";
+        if (jours < 30) {
+            var semaines = Math.floor(jours / 7);
+            return "il y a " + semaines + (semaines > 1 ? " semaines" : " semaine");
+        }
+        if (jours < 365) return "il y a " + Math.floor(jours / 30) + " mois";
+        var ans = Math.floor(jours / 365);
+        return "il y a " + ans + (ans > 1 ? " ans" : " an");
+    }
+
+    function majAgeNouveautes() {
+        var maintenant = new Date();
+        var auj = Date.UTC(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
+        document.querySelectorAll('.actu-age[data-date]').forEach(function (el) {
+            var parties = el.getAttribute('data-date').split('-');
+            if (parties.length !== 3) return;
+            var jours = Math.round((auj - Date.UTC(+parties[0], +parties[1] - 1, +parties[2])) / 86400000);
+            el.textContent = ageNouveauteEnTexte(jours);
+        });
+    }
+
+    majAgeNouveautes();
     </script>
 
     <link rel="prefetch" href="recherche/index.json">

@@ -1,0 +1,12 @@
+{
+  "maj": "2026-09-27",
+  "note": "Source des nouveautes affichees en bandeau sur l'accueil. Une entree = date (AAAA-MM-JJ), texte court, page visee. La plus recente est affichee. Ajouter avec : python3 /root/nouveautes_maj.py --ajouter \"le texte\" --url page.html",
+  "nouveautes": [
+    {
+      "date": "2026-09-27",
+      "type": "histoire",
+      "texte": "Deux images ajoutées à l'histoire du groupe",
+      "url": "histoire.html"
+    }
+  ]
+}
