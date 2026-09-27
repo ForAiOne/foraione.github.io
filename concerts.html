@@ -93,6 +93,21 @@
             margin: 4px 4px;
             font-size: 0.85rem;
         }
+        /* --- Coupure de presse : article annoncant le premier concert --- */
+        .concert-doc {
+            margin: 22px auto 26px;
+            text-align: center;
+        }
+        .concert-doc img {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+        }
+
         @media (max-width: 768px) {
             .concert { flex-direction: column; gap: 6px; }
             .concert-date { min-width: 0; }
@@ -168,6 +183,12 @@
                 <div class="concert">
                     <div class="concert-date">Sept. 1993</div>
                     <div class="concert-lieu">Château-Gontier (53)<span class="concert-note">Au FJT — le premier concert du groupe, le 4 septembre 1993</span></div>
+                </div>
+
+                <div class="concert-doc">
+                    <figure>
+                        <img src="images/article_journal.jpg" alt="Article de presse annonçant le concert d'Explicit au FJT de Château-Gontier, septembre 1993" loading="lazy">
+                    </figure>
                 </div>
                 <div class="concert">
                     <div class="concert-date">Mars 1994</div>
