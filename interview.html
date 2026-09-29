@@ -225,6 +225,10 @@
             text-align: right;
         }
         .fiche-auteur::before { content: "— "; color: #a91f18; }
+        /* Signature d'une anecdote : une carte est sombre (#252525), l'encre du
+           mur de liege (#5c5140) n'y serait pas lisible. */
+        .card-content .fiche-auteur { color: #d8cdb8; font-size: 1.1rem; }
+        .card-content .fiche-auteur::before { color: #d4503f; }
         .polaroid,
         .photo-punaisee {
             position: relative;
@@ -539,13 +543,14 @@
             <div class="collections-grid">
 
                 <article class="card">
-                    <img src="images/anectdotes.jpg" class="card-img" alt="Dessin du groupe jouant sur un terrain, devant les motards d'une concentration">
+                    <img src="images/tas_fumier.jpg" class="card-img" alt="Un tas de fumier dans un champ, au crépuscule">
                     <div class="card-content">
                         <h3>Le tas de fumier</h3>
                         <span class="card-meta">Concentration de motards • Saint-Saturnin-du-Limet (53)</span>
                         <p>À la suite de l'un de nos premiers concerts, à la fête de la musique à Pouancé (49), nous avions été généreusement invités à effectuer un concert à Saint-Saturnin-du-Limet (53), dans le cadre d'une concentration de motards — en septembre, il me semble. Nous avions été invités par le frère de Jérome, à l'époque.</p>
                         <p style="margin-top:10px;">Le jour du concert, nous étions arrivés dans l'indifférence la plus totale : « la moitié des personnes présentes étaient plus qu'alcoolisées », je me souviens. Et pour couronner le tout, il pleuvait — nous sommes arrivés avec nos instruments sous l'eau.</p>
                         <p style="margin-top:10px;">Je me souviens, nous avons demandé au frère de Jérome : « Où est la scène ? » Et là, il nous a dit : « Et bien, vous avez qu'à vous mettre là, sur une bâche, en plein milieu du champ. » Nous avons joué, mais ce fut terrible. Depuis, nous nous rappelons ce jour avec la boutade : « nous avons joué sur le tas de fumier ».</p>
+                        <span class="fiche-auteur">Tony, chanteur</span>
                     </div>
                 </article>
 
