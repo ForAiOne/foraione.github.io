@@ -359,6 +359,33 @@
             .polaroid { width: 46%; }
             .photo-punaisee { width: 100%; }
         }
+
+        /* === Commentaires des anecdotes (giscus) === */
+        .commentaires { margin-top: 18px; padding-top: 14px; border-top: 1px solid #3a3a3a; }
+        .btn-commentaires {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; border: 1px solid #4a4a4a; color: #d8cdb8;
+            font-family: var(--font-head); text-transform: uppercase; letter-spacing: 1px;
+            font-size: 0.75rem; padding: 9px 18px; border-radius: 20px;
+            cursor: pointer; transition: 0.25s;
+        }
+        .btn-commentaires:hover { border-color: var(--color-primary); color: #fff; }
+        .btn-commentaires[aria-expanded="true"] {
+            background: var(--color-primary); border-color: var(--color-primary); color: #fff;
+        }
+        .btn-commentaires i { font-size: 0.85rem; }
+        .zone-commentaires { margin-top: 14px; }
+        .zone-commentaires[hidden] { display: none; }
+        /* la classe « giscus » est retiree apres montage (voir le script) : on
+           garde donc la geometrie par nous-memes */
+        .zone-commentaires > div, .zone-commentaires.giscus-monte > div {
+            width: 100%; min-height: 150px;
+        }
+        .zone-commentaires iframe { width: 100%; border: none; }
+        .note-commentaires {
+            max-width: 900px; margin: 26px auto 0; color: #a8a8a8;
+            font-size: 0.85rem; line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -551,6 +578,12 @@
                         <p style="margin-top:10px;">Le jour du concert, nous étions arrivés dans l'indifférence la plus totale : « la moitié des personnes présentes étaient plus qu'alcoolisées », je me souviens. Et pour couronner le tout, il pleuvait — nous sommes arrivés mouillés, il a fallu jouer avec les vestes.</p>
                         <p style="margin-top:10px;">Nous avons demandé au frère de Jérome : « Où est la scène ? » Et là, il nous a dit : « Et bien, vous avez qu'à vous poser là », sur une bâche, en plein milieu du champ. Nous avons joué, mais ce fut terrible. Depuis, nous nous rappelons ce jour avec la boutade : « nous avons joué sur le tas de fumier ».</p>
                         <span class="fiche-auteur">Tony, chanteur</span>
+                        <div class="commentaires" data-anecdote="Le tas de fumier">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-1">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-1" hidden></div>
+                        </div>
                     </div>
                 </article>
 
@@ -560,6 +593,12 @@
                         <h3>Jar, chez Nono</h3>
                         <span class="card-meta">1998 • Studio Panoramix</span>
                         <p>Le CD cinq titres enregistré au studio Panoramix, chez Nono, à Saint-Sauveur-de-Flée. Les répétitions, elles, se tenaient aux Courans, à Longuefuye. Le boîtier porte les deux adresses comme des coordonnées de jeunesse.</p>
+                        <div class="commentaires" data-anecdote="Jar, chez Nono">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-2">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-2" hidden></div>
+                        </div>
                     </div>
                 </article>
 
@@ -569,6 +608,12 @@
                         <h3>Les remerciements du boîtier</h3>
                         <span class="card-meta">1998 • Le disque</span>
                         <p>Nono, Tanguy, Mickaël, les parents, Jérome, Christophe, Cédric, Saint Erblon, Novembre, Daniel du palais, Cavirok d'Échemiré, le FJT, Aline &amp; Jean-Marie, les Tomyknockers, l'abbé Frock — « et tous les autres qui se reconnaîtront ».</p>
+                        <div class="commentaires" data-anecdote="Les remerciements du boîtier">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-3">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-3" hidden></div>
+                        </div>
                     </div>
                 </article>
 
@@ -578,6 +623,12 @@
                         <h3>Sur la pochette</h3>
                         <span class="card-meta">Design • Photo</span>
                         <p>Conception graphique : Tanguy Ferrand. Photos : Loran Ferrand. Paroles et musique : le groupe. Contact : Mickaël Lairy. Un disque fait entièrement à la main, par ceux qui jouaient dessus.</p>
+                        <div class="commentaires" data-anecdote="Sur la pochette">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-4">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-4" hidden></div>
+                        </div>
                     </div>
                 </article>
 
@@ -587,6 +638,12 @@
                         <h3>Tous Azic'Muts</h3>
                         <span class="card-meta">2002 • L'association</span>
                         <p>Début 2002, Codéine et Hippy Groovy créent l'association Tous Azic'Muts pour le développement des musiques actuelles. Premier concert le 8 juin 2002 à Bourg-l'Évêque, en compagnie des Allumés du Bocal.</p>
+                        <div class="commentaires" data-anecdote="Tous Azic'Muts">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-5">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-5" hidden></div>
+                        </div>
                     </div>
                 </article>
 
@@ -596,10 +653,17 @@
                         <h3>Deux ans de silence</h3>
                         <span class="card-meta">1999 • 2002</span>
                         <p>Fin 1999, le groupe se sépare et cesse toute activité pendant deux ans. Certains intègrent accessoirement d'autres formations — puis début 2002, tout le monde remet ça sous le nom de Codéine.</p>
+                        <div class="commentaires" data-anecdote="Deux ans de silence">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-6">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Commenter
+                            </button>
+                            <div class="zone-commentaires" id="comm-6" hidden></div>
+                        </div>
                     </div>
                 </article>
 
             </div>
+            <p class="note-commentaires">Les commentaires sont hébergés par GitHub : pour écrire, il faut un compte GitHub.</p>
         </section>
 
         <!-- 4. LES NOMS -->
@@ -782,5 +846,69 @@
     <link rel="prefetch" href="recherche/index.json">
     <script src="recherche/recherche.js" defer></script>
     <script src="menu.js" defer></script>
+<script>
+    // === Commentaires des anecdotes : giscus charge au clic ==================
+    // Un clic ouvre le fil de l'anecdote ; le widget n'est jamais charge avant.
+    // Detail giscus : la config est lue sur la balise <script>, et le montage se
+    // fait dans le PREMIER .giscus du document. Avant chaque montage, on donc
+    // retire la classe « giscus » des widgets deja en place, sans quoi le
+    // suivant ecraserait le premier.
+    (function () {
+        var GISCUS = {
+            repo: "ForAiOne/foraione.github.io",
+            repoId: "R_kgDOS53E5Q",
+            category: "General",
+            categoryId: "DIC_kwDOS53E5c4DG0p9",
+            theme: "dark_dimmed"
+        };
+
+        function libererAutresWidgets() {
+            document.querySelectorAll('.zone-commentaires .giscus').forEach(function (w) {
+                w.classList.remove('giscus');
+                w.classList.add('giscus-monte');
+            });
+        }
+
+        function charger(bloc, zone) {
+            libererAutresWidgets();
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            var reglages = {
+                'data-repo': GISCUS.repo,
+                'data-repo-id': GISCUS.repoId,
+                'data-category': GISCUS.category,
+                'data-category-id': GISCUS.categoryId,
+                'data-mapping': 'specific',
+                'data-term': bloc.getAttribute('data-anecdote'),
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '0',
+                'data-input-position': 'bottom',
+                'data-theme': GISCUS.theme,
+                'data-lang': 'fr',
+                'data-loading': 'lazy'
+            };
+            Object.keys(reglages).forEach(function (cle) {
+                script.setAttribute(cle, reglages[cle]);
+            });
+            zone.appendChild(script);
+            zone.setAttribute('data-charge', 'oui');
+        }
+
+        document.addEventListener('click', function (e) {
+            var bouton = e.target.closest ? e.target.closest('.btn-commentaires') : null;
+            if (!bouton) { return; }
+            var bloc = bouton.closest('.commentaires');
+            var zone = bloc.querySelector('.zone-commentaires');
+            var ouvert = bouton.getAttribute('aria-expanded') === 'true';
+            if (!ouvert && !zone.getAttribute('data-charge')) { charger(bloc, zone); }
+            zone.hidden = ouvert;
+            bouton.setAttribute('aria-expanded', ouvert ? 'false' : 'true');
+        });
+    })();
+    </script>
+
 </body>
 </html>

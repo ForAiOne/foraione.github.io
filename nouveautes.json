@@ -5,6 +5,12 @@
     {
       "date": "2026-10-01",
       "type": "interview",
+      "texte": "Les anecdotes s'ouvrent aux commentaires",
+      "url": "interview.html"
+    },
+    {
+      "date": "2026-10-01",
+      "type": "interview",
       "texte": "Une nouvelle anecdote : le tas de fumier",
       "url": "interview.html"
     },
