@@ -4,6 +4,12 @@
   "nouveautes": [
     {
       "date": "2026-10-02",
+      "type": "labo",
+      "texte": "Nouveau morceau dans Le Labo : Rue Morgue",
+      "url": "labo.html"
+    },
+    {
+      "date": "2026-10-02",
       "type": "interview",
       "texte": "Une nouvelle anecdote : Le médiator de trop",
       "url": "interview.html"

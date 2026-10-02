@@ -2,6 +2,14 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
+      "titre": "Rue Morgue",
+      "fichier": "labo/audio/rue-morgue.mp3",
+      "categorie": "morceaux",
+      "date": "2026-10-02",
+      "duree": "1:39",
+      "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony, revisité par Suno."
+    },
+    {
       "titre": "Whispers in the Dark",
       "fichier": "labo/audio/whispers-in-the-dark.mp3",
       "categorie": "morceaux",
