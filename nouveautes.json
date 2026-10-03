@@ -1,7 +1,13 @@
 {
-  "maj": "2026-10-02",
+  "maj": "2026-10-03",
   "note": "Source des nouveautes affichees en bandeau sur l'accueil. Une entree = date (AAAA-MM-JJ), texte court, page visee. La plus recente est affichee. Ajouter avec : python3 /root/nouveautes_maj.py --ajouter \"le texte\" --url page.html",
   "nouveautes": [
+    {
+      "date": "2026-10-03",
+      "type": "site",
+      "texte": "Aux Courans, la maison louée par Régis et Mickaël Lairy était une dépendance du manoir",
+      "url": "environnement.html"
+    },
     {
       "date": "2026-10-02",
       "type": "labo",
