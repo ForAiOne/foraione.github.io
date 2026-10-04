@@ -4,6 +4,12 @@
   "nouveautes": [
     {
       "date": "2026-10-04",
+      "type": "histoire",
+      "texte": "Nouveaux medias sur la page Histoire",
+      "url": "histoire.html"
+    },
+    {
+      "date": "2026-10-04",
       "type": "interview",
       "texte": "Une nouvelle anecdote : la Fête de la musique au Mans",
       "url": "interview.html"
