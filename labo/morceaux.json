@@ -2,6 +2,14 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
+      "titre": "Road between us",
+      "fichier": "labo/audio/road-between-us.mp3",
+      "categorie": "morceaux",
+      "date": "2026-10-15",
+      "duree": "2:59",
+      "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina"
+    },
+    {
       "titre": "Ever ever know",
       "fichier": "labo/audio/ever-ever-know.mp3",
       "categorie": "morceaux",
