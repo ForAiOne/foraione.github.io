@@ -2,12 +2,12 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
-      "titre": "Road between us",
-      "fichier": "labo/audio/road-between-us.mp3",
+      "titre": "Ever ever know",
+      "fichier": "labo/audio/ever-ever-know.mp3",
       "categorie": "morceaux",
       "date": "2026-10-15",
       "duree": "2:16",
-      "note": "Morceau créé par Loran et son groupe Sayyadima revisitée par suno"
+      "note": "Morceau à l'ambiance Weezer créé par Tony en 2019 et revisité par Suno."
     },
     {
       "titre": "Rue Morgue",
