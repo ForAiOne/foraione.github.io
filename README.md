@@ -18,7 +18,7 @@ un `git push` suffit, la mise en ligne prend une minute environ.
 | `interview.html` | Anecdotes, interviews, le sous-sol, la frise des noms |
 | `concerts.html` | Concerts (1993-2004) |
 | `environnement.html` | Les lieux |
-| `repetition.html` | Répétitions et enregistrements |
+| `musee.html` | Le Musée : les objets qui ont suivi le groupe (boîte de K7, guitare à une corde, synthé) |
 | `labo.html` | Le Labo : morceaux, riffs et expérimentations (aujourd'hui) |
 | `aujourdhui.html` | Ce que les membres font aujourd'hui : activités et liens externes |
 | `studio.html` | Jukebox vintage : lecture des morceaux de `mp3/` |

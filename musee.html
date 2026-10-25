@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Musée | Saint Erblon</title>
+    <meta name="description" content="Les objets qui ont suivi le groupe : la boîte de K7 en bois de Tanguy, la guitare à une corde de Régis, le synthé smooby de Tony.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Le musée : une salle, des fiches d'objet --- */
+        .salle {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        .salle-intro {
+            max-width: 760px;
+            margin: 0 auto 42px;
+            text-align: center;
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+        .salle-intro strong { color: #fff; }
+        .affiche-musee {
+            max-width: 420px;
+            margin: 0 auto 46px;
+        }
+        .affiche-musee img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--border-radius);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+            cursor: zoom-in;
+        }
+        .affiche-musee img:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+        .affiche-musee figcaption {
+            color: var(--color-text-muted);
+            font-size: 0.82rem;
+            padding-top: 8px;
+            text-align: center;
+        }
+        .objet {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 28px;
+            align-items: center;
+            background: linear-gradient(180deg, #202020, #1a1a1a);
+            border: 1px solid #2c2c2c;
+            border-radius: var(--border-radius);
+            padding: 26px;
+            margin-bottom: 30px;
+        }
+        .objet:nth-of-type(even) .objet-vitrine { order: 2; }
+        .objet:nth-of-type(even) .objet-cartel { order: 1; }
+        .objet-vitrine {
+            margin: 0;
+            min-width: 0;
+        }
+        .objet-vitrine .vignette {
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+            background: #000;
+        }
+        .objet-vitrine figcaption {
+            color: var(--color-text-muted);
+            font-size: 0.82rem;
+            line-height: 1.4;
+            padding-top: 8px;
+        }
+        .objet-vitrine .media-date {
+            color: var(--color-primary);
+            font-family: var(--font-head);
+            letter-spacing: 1px;
+        }
+        .photo-objet { margin: 0 0 14px; }
+        .photo-objet img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--border-radius);
+            cursor: zoom-in;
+        }
+        .photo-objet img:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+        .photo-objet figcaption {
+            color: var(--color-text-muted);
+            font-size: 0.82rem;
+            padding-top: 7px;
+        }
+        .objet-cartel { min-width: 0; }
+        .objet-num {
+            display: inline-block;
+            font-family: var(--font-head);
+            letter-spacing: 0.28em;
+            font-size: 0.72rem;
+            color: var(--color-primary);
+            border: 1px solid rgba(185, 29, 29, 0.45);
+            border-radius: 20px;
+            padding: 3px 12px;
+            margin-bottom: 14px;
+        }
+        .objet-cartel h3 {
+            font-size: 1.55rem;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .objet-fiche {
+            margin: 0 0 18px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        .objet-fiche div {
+            display: flex;
+            gap: 10px;
+            padding: 5px 0;
+            border-bottom: 1px dashed #2e2e2e;
+            font-size: 0.92rem;
+        }
+        .objet-fiche dt {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-text-muted);
+            font-size: 0.74rem;
+            min-width: 92px;
+            padding-top: 2px;
+        }
+        .objet-fiche dd { margin: 0; color: #eee; }
+        .objet-cartel p {
+            color: #ccc;
+            font-size: 0.97rem;
+            margin-bottom: 10px;
+        }
+        .objet-cartel p:last-child { margin-bottom: 0; }
+        .source-musee {
+            max-width: 1040px;
+            margin: 0 auto 40px;
+            padding: 16px 22px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        /* --- Vignette de video : image de couverture + bouton de lecture --- */
+        .vignette {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.25s;
+        }
+        .vignette:hover,
+        .vignette:focus-visible {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        .vignette img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+            max-height: none;
+        }
+        .vignette-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(185, 29, 29, 0.88);
+            color: #fff;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3px;
+            box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: 0.25s;
+            pointer-events: none;
+        }
+        .vignette:hover .vignette-play,
+        .vignette:focus-visible .vignette-play {
+            background: var(--color-primary-hover, #d62828);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .vignette-duree {
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.68rem;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+        /* --- Visionneuse : la video en grand, par-dessus la page --- */
+        .visionneuse {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.93);
+        }
+        .visionneuse[hidden] { display: none; }
+        .visionneuse video {
+            max-width: min(1100px, 96vw);
+            max-height: 86vh;
+            width: auto;
+            height: auto;
+            background: #000;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+        }
+        .visionneuse-fermer {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .visionneuse-fermer:hover { background: var(--color-primary); }
+        .visionneuse-erreur {
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(185, 29, 29, 0.9);
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .visionneuse-erreur[hidden] { display: none; }
+        .visionneuse-erreur a { color: #fff; text-decoration: underline; }
+        body.visionneuse-ouverte { overflow: hidden; }
+
+        /* === LA VISIONNEUSE DE PHOTOS (agrandissement au clic) === */
+        /* Le script visionneuse-photos.js fabrique lui-meme la boite
+           (#visionneuse-photos) : rien a declarer dans la page. Seul cet
+           habillage est ici. */
+        body.photo-ouverte { overflow: hidden; }
+        .visionneuse-photos {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            padding: 3.4rem 1.2rem 2.4rem;
+            background: rgba(6, 7, 8, 0.95);
+        }
+        .visionneuse-photos[hidden] { display: none; }
+        .visionneuse-photos-figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            max-width: min(1400px, 100%);
+        }
+        .visionneuse-photos-figure img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 76vh;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--border-radius);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+        }
+        .visionneuse-photos-legende {
+            text-align: center;
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .visionneuse-photos-legende[hidden] { display: none; }
+        .visionneuse-photos-titre {
+            display: block;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-main);
+        }
+        .visionneuse-photos-titre[hidden] { display: none; }
+        .visionneuse-photos-details {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-details[hidden] { display: none; }
+        .visionneuse-photos-compteur {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-compteur[hidden] { display: none; }
+        .visionneuse-photos-fermer {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .visionneuse-photos-fermer:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .visionneuse-photos-nav:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav[hidden] { display: none; }
+
+        @media (max-width: 860px) {
+            .objet {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 20px;
+            }
+            .objet:nth-of-type(even) .objet-vitrine { order: 0; }
+            .objet:nth-of-type(even) .objet-cartel { order: 0; }
+            .objet-cartel h3 { font-size: 1.3rem; }
+            .salle-intro { font-size: 1rem; }
+        }
+        @media (max-width: 620px) {
+            .visionneuse-photos { padding: 3rem 0.6rem 1.2rem; gap: 0.45rem; }
+            .visionneuse-photos-figure img { max-height: 68vh; }
+            .visionneuse-photos-nav { width: 38px; height: 38px; }
+            .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
+            .visionneuse { padding: 12px; }
+            .visionneuse video { max-height: 74vh; }
+            .visionneuse-fermer { top: 8px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Ouvrir le menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">ACCUEIL</a>
+                <a href="environnement.html">ENVIRONNEMENT</a>
+                <a href="histoire.html">HISTOIRE</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html">SOIRÉES</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="labo.html">LABO</a>
+                <a href="aujourdhui.html">LIENS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Rechercher…" autocomplete="off" aria-label="Rechercher dans le site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url('images/musee-fond.jpg'); background-position: 50% 50%; min-height: 60vh;">
+            <div class="hero-content">
+                <h1>LE MUSÉE</h1>
+                <p>Les objets qui ont suivi le groupe.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>SALLE DES ORIGINES</h2>
+                <p>Trois instruments qui ne ressemblaient à rien, et qui ont fait le son des débuts.</p>
+            </div>
+
+            <div class="salle">
+                <p class="salle-intro">Le quatuor d'origine, sans instruments « normaux » : guitare à une corde, boîte de K7 en bois, synthé smooby. <strong>Bref, tout pour réussir...</strong></p>
+
+                <figure class="affiche-musee">
+                    <img src="images/musee-affiche.jpg" alt="L'affiche du musée : le hall, les blousons à clous, les guitares et la batterie" loading="lazy" data-zoom>
+                    <figcaption>L'affiche du musée.</figcaption>
+                </figure>
+
+                <article class="objet">
+                    <figure class="objet-vitrine">
+                        <!-- PHOTO RÉELLE DE L'OBJET : se pose justement ici, avant la vidéo
+                             <figure class="photo-objet">
+                                 <img src="images/musee/boite-k7.jpg" alt="…" loading="lazy" data-zoom>
+                                 <figcaption>…</figcaption>
+                             </figure>
+                        -->
+                        <button class="vignette" type="button" data-video="videos/tanguy-boite.mp4" data-poster="videos/tanguy-boite.jpg" aria-label="Lire la vidéo : Tanguy aux percussions">
+                            <img src="videos/tanguy-boite.jpg" alt="Tanguy aux percussions" loading="lazy">
+                            <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                            <span class="vignette-duree">0:06</span>
+                        </button>
+                        <figcaption><span class="media-date">1988</span> &mdash; Tanguy, batterie (boîte de K7 en bois).</figcaption>
+                    </figure>
+                    <div class="objet-cartel">
+                        <span class="objet-num">PIÈCE 01</span>
+                        <h3>La boîte de K7 en bois</h3>
+                        <dl class="objet-fiche">
+                            <div><dt>Période</dt><dd>Les débuts, Rotoplo Fires et Desastrax</dd></div>
+                            <div><dt>Musicien</dt><dd>Tanguy</dd></div>
+                            <div><dt>Rôle</dt><dd>La batterie</dd></div>
+                        </dl>
+                        <p>« Tanguy à la batterie, au son d'une boîte de K7 en bois percutée avec énergie... » C'est la première phrase de l'historique du groupe, et le premier instrument du quatuor d'origine.</p>
+                        <p>Tanguy est aussi le graphiste des pochettes. Il quitte Desastrax en 1988 et monte un peu plus tard le groupe Totem Stille, sur Paris.</p>
+                    </div>
+                </article>
+
+                <article class="objet">
+                    <figure class="objet-vitrine">
+                        <!-- PHOTO RÉELLE DE L'OBJET : se pose justement ici, avant la vidéo
+                             <figure class="photo-objet">
+                                 <img src="images/musee/guitare-une-corde.jpg" alt="…" loading="lazy" data-zoom>
+                                 <figcaption>…</figcaption>
+                             </figure>
+                        -->
+                        <button class="vignette" type="button" data-video="videos/regis-guitare.mp4" data-poster="videos/regis-guitare.jpg" aria-label="Lire la vidéo : Régis à la guitare">
+                            <img src="videos/regis-guitare.jpg" alt="Régis à la guitare" loading="lazy">
+                            <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                            <span class="vignette-duree">0:06</span>
+                        </button>
+                        <figcaption><span class="media-date">1988</span> &mdash; Régis, guitare à une corde.</figcaption>
+                    </figure>
+                    <div class="objet-cartel">
+                        <span class="objet-num">PIÈCE 02</span>
+                        <h3>La guitare à une corde</h3>
+                        <dl class="objet-fiche">
+                            <div><dt>Période</dt><dd>Les débuts, Rotoplo Fires et Desastrax</dd></div>
+                            <div><dt>Musicien</dt><dd>Régis</dd></div>
+                            <div><dt>Rôle</dt><dd>La guitare électrique</dd></div>
+                        </dl>
+                        <p>« Régis à la guitare électrique (à une corde...) » Le détail est de l'historique du groupe, entre parenthèses, et il en dit long sur les moyens du bord.</p>
+                        <p>Aux débuts la guitare à une corde, puis une petite boîte à rythmes électronique en 1990, et la vraie batterie à partir de 1991 — jusqu'en 2012.</p>
+                    </div>
+                </article>
+
+                <article class="objet">
+                    <figure class="objet-vitrine">
+                        <!-- PHOTO RÉELLE DE L'OBJET : se pose justement ici, avant la vidéo
+                             <figure class="photo-objet">
+                                 <img src="images/musee/synthe-smooby.jpg" alt="…" loading="lazy" data-zoom>
+                                 <figcaption>…</figcaption>
+                             </figure>
+                        -->
+                        <button class="vignette" type="button" data-video="videos/tony-synthe.mp4" data-poster="videos/tony-synthe.jpg" aria-label="Lire la vidéo : Tony au synthétiseur">
+                            <img src="videos/tony-synthe.jpg" alt="Tony au synthétiseur" loading="lazy">
+                            <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                            <span class="vignette-duree">0:06</span>
+                        </button>
+                        <figcaption><span class="media-date">1988</span> &mdash; Tony, synthétiseur.</figcaption>
+                    </figure>
+                    <div class="objet-cartel">
+                        <span class="objet-num">PIÈCE 03</span>
+                        <h3>Le synthé smooby</h3>
+                        <dl class="objet-fiche">
+                            <div><dt>Période</dt><dd>Les débuts, Desastrax</dd></div>
+                            <div><dt>Musicien</dt><dd>Tony</dd></div>
+                            <div><dt>Rôle</dt><dd>Le synthétiseur</dd></div>
+                        </dl>
+                        <p>« Tony au synthé smooby » : le troisième instrument du quatuor d'origine, avec la guitare à une corde et la boîte de K7 en bois.</p>
+                        <p>Au synthé chez Desastrax, chanteur d'Explicit à Jar. Il quitte le groupe début 2002.</p>
+                    </div>
+                </article>
+            </div>
+
+            <p class="source-musee">Fiches établies à partir de l'historique du groupe et des fiches des membres. Les vidéos sont des archives du groupe.</p>
+        </section>
+
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>LE MUSÉE S'AGRANDIT</h2>
+                <p>Les vitrines ne sont pas toutes remplies.</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    La batterie Tama, les amplis du sous-sol, les K7 de Desastrax, les affiches, les pochettes :
+                    il reste des pièces dans les cartons. Si tu as gardé un objet de cette histoire, ou sa photo,
+                    il a sa place dans le musée.
+                </p>
+                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UN OBJET</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Archives du Groupe. Tous droits réservés.</p>
+        <p class="footer-text">Site « Une jeunesse sous distorsion. »</p>
+    </footer>
+
+    <div class="visionneuse" id="visionneuse" hidden role="dialog" aria-modal="true" aria-label="Lecture de la vidéo">
+        <button class="visionneuse-fermer" type="button" aria-label="Fermer la vidéo">&times;</button>
+        <video controls playsinline preload="none"></video>
+        <p class="visionneuse-erreur" hidden>La lecture n'a pas fonctionné dans ce navigateur. <a class="visionneuse-lien" href="#" download>Télécharger la vidéo</a>.</p>
+    </div>
+
+    <link rel="prefetch" href="recherche/index.json">
+    <script src="recherche/recherche.js" defer></script>
+    <script src="menu.js" defer></script>
+    <script src="visionneuse.js" defer></script>
+    <script src="visionneuse-photos.js" defer></script>
+</body>
+</html>
