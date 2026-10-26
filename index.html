@@ -298,7 +298,12 @@
                 
                 <!-- Carte 1 : Le Musée -->
                 <a href="musee.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
-                    <img src="images/musee-carte.jpg" alt="Le musée du groupe" class="card-img">
+                    <picture>
+                        <source srcset="images/musee-carte.avif" type="image/avif">
+                        <img src="images/musee-carte.jpg" class="card-img" width="800" height="482"
+                             alt="Le musée du groupe : le couloir éclairé de torches, entre les guitares et les amplis"
+                             loading="lazy" decoding="async">
+                    </picture>
                     <div class="card-content">
                         <h3>Le Musée</h3>
                         <span class="card-meta">1988 • Les objets • Archives</span>
