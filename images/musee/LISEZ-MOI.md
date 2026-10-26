@@ -8,6 +8,9 @@ la batterie Tama, les affiches… tout ce qui a suivi le groupe.
 
 ```bash
 python3 /root/musee_publier.py --titre "La boîte de K7 en bois" /chemin/photo.jpg
+python3 /root/musee_publier.py --titre "La guitare de Jérôme" \
+        --legende "Guitare de Jérôme, Washburn, récupérée quand il a quitté le groupe." \
+        /chemin/photo.jpg
 ```
 
 Le script, dans l'ordre :
@@ -15,8 +18,11 @@ Le script, dans l'ordre :
 1. vérifie que c'est une vraie image (signature, extension, poids ≤ 40 Mo) ;
 2. garde l'original dans `/root/musee_origine/<horodatage>/` ;
 3. écrit la copie web ici (1 600 px de côté max, qualité 82) — une photo déjà
-   légère est copiée telle quelle ;
-4. insère la carte encadrée en tête du bloc `MUSEE_AUTO` de `musee.html` ;
+   légère est copiée telle quelle ; l'orientation EXIF est redressée (une photo
+   de téléphone ne sort pas couchée) ;
+4. insère la carte encadrée en tête du bloc `MUSEE_AUTO` de `musee.html` ; la
+   légende passée en `--legende` s'affiche sous le titre, avant la date, et
+   ressort aussi dans la visionneuse quand on clique sur la photo ;
 5. régénère l'index de recherche (le titre est du texte visible) ;
 6. annonce la pièce dans le bandeau des nouveautés de l'accueil ;
 7. commit + push.
