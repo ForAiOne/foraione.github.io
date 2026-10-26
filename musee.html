@@ -185,6 +185,13 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        /* Le texte de la piece (anecdote) reste entier : deux lignes suffisent
+           pour la date, pas pour raconter l'objet. */
+        .legende .legende-texte {
+            display: block;
+            overflow: visible;
+            -webkit-line-clamp: none;
+        }
 
         /* La grille s'adapte d'elle-meme (auto-fit) ; sous 620 px, un cadre
            par ligne. */
@@ -354,6 +361,17 @@
             </div>
             <div class="galerie-metal">
                 <!-- MUSEE_AUTO_DEBUT -->
+                                <!-- Piece publiee automatiquement -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="images/musee/la-guitare-de-jerome.jpg" alt="La guitare de Jérôme" loading="lazy" data-zoom tabindex="0">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>La guitare de Jérôme</h3>
+                                        <p class="legende-texte">Guitare de Jérôme, Washburn, que j'ai récupérée lorsque Jérôme a quitté le groupe. Aujourd'hui, elle est accrochée derrière ma TV. — Tony</p>
+                                        <p>Ajout&eacute;e le 26/10/2026</p>
+                                    </div>
+                                </div>
                 <!-- MUSEE_AUTO_FIN -->
             </div>
         </section>
