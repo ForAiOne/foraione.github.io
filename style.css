@@ -478,6 +478,46 @@ section {
     box-shadow: 0 0 0 3px rgba(185, 29, 29, 0.2);
 }
 
+/* --- Champs fichier : photos jointes au formulaire --------------- */
+.form-fichier {
+    padding: 11px;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.55rem;
+    cursor: pointer;
+}
+
+.form-fichier::file-selector-button {
+    background: var(--color-bg-card);
+    border: 1px solid #3a3a3a;
+    border-radius: var(--border-radius);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.form-fichier::file-selector-button:hover {
+    border-color: var(--color-primary);
+}
+
+.form-aide {
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+.form-aide.alerte { color: #f2857f; }
+
+.form-facultatif {
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
 .social-links {
     margin-top: 30px;
 }

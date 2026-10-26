@@ -551,10 +551,10 @@
             <div class="contact-container">
                 <div class="contact-form">
                     <h3>Contactez l'équipe des archives</h3>
-                    <p style="margin-bottom: 25px; color: #aaa; font-size: 0.9rem;">Pour proposer des archives, des photos, presse, anecdotes.</p>
+                    <p style="margin-bottom: 25px; color: #aaa; font-size: 0.9rem;">Pour proposer des archives, des photos d'objets, de la presse ou une anecdote. Jusqu'à trois photos peuvent être jointes au message.</p>
   
   <!-- Formulaire modifié pour envoyer à nomug2020 -->
- <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST">
+ <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Nouveau message depuis le site Saint Erblon Archives">
     
@@ -569,6 +569,14 @@
     <div class="form-group">
         <label for="message">Message</label>
         <textarea id="message" name="test_message" rows="5" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="photo1">Photos de l'objet <span class="form-facultatif">(facultatif)</span></label>
+        <input type="file" id="photo1" name="photo1" accept="image/*" class="form-control form-fichier" data-photo>
+        <input type="file" id="photo2" name="photo2" accept="image/*" class="form-control form-fichier" data-photo aria-label="Deuxième photo de l'objet">
+        <input type="file" id="photo3" name="photo3" accept="image/*" class="form-control form-fichier" data-photo aria-label="Troisième photo de l'objet">
+        <p class="form-aide" id="photos-etat" role="status" data-consigne="JPG, PNG ou HEIC — 3 photos maximum (10 Mo au total). Les photos sont réduites automatiquement avant l'envoi.">JPG, PNG ou HEIC — 3 photos maximum (10 Mo au total). Les photos sont réduites automatiquement avant l'envoi.</p>
     </div>
     <button type="submit" class="btn">Envoyer</button>
 </form>
@@ -845,5 +853,6 @@
     <link rel="prefetch" href="recherche/index.json">
     <script src="recherche/recherche.js" defer></script>
     <script src="menu.js" defer></script>
+    <script src="photos-formulaire.js" defer></script>
 </body>
 </html>
