@@ -41,7 +41,8 @@ VOIE MANUELLE (SECOURS)
          "note": "Un riff enregistré au téléphone, une nuit."
        }
 
-   Catégories possibles : morceaux | riffs | remixes
+   Catégories possibles : originaux (morceau original) | remasterises
+   (morceau remasterisé) | riffs (riff / idée)
 
 3. Vérifier que le JSON reste valide (virgules entre les entrées) :
 

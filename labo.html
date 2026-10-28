@@ -301,9 +301,9 @@
 
             <div class="filtres" id="filtres" style="display:none;">
                 <button class="filtre actif" data-cat="tous">TOUT</button>
-                <button class="filtre" data-cat="morceaux">MORCEAUX</button>
-                <button class="filtre" data-cat="riffs">RIFFS &amp; IDÉES</button>
-                <button class="filtre" data-cat="remixes">REMIXES</button>
+                <button class="filtre" data-cat="originaux">MORCEAUX ORIGINAUX</button>
+                <button class="filtre" data-cat="remasterises">MORCEAUX REMASTERISÉS</button>
+                <button class="filtre" data-cat="riffs">RIFFS ET IDÉES</button>
             </div>
 
             <div class="morceaux" id="morceaux"></div>
@@ -350,9 +350,9 @@
                 <div class="depot-champ">
                     <label for="depot-categorie">Rubrique</label>
                     <select id="depot-categorie">
-                        <option value="morceaux">Morceau</option>
+                        <option value="originaux">Morceau original</option>
+                        <option value="remasterises">Morceau remasterisé</option>
                         <option value="riffs">Riff / idée</option>
-                        <option value="remixes">Remix</option>
                     </select>
                 </div>
 
@@ -390,6 +390,10 @@
     <script>
         // ====== Chargement de la liste (labo/morceaux.json) ======
         const LISTE = 'labo/morceaux.json';
+        // Libelles des rubriques (les cles sont celles de morceaux.json)
+        const LIBELLES = { originaux: 'original', remasterises: 'remasterisé', riffs: 'riff et idée' };
+        // Anciennes cles encore presentes dans un cache de morceaux.json
+        const ALIAS = { originaux: ['morceaux'], remasterises: ['remixes'] };
         let morceaux = [];
         let filtre = 'tous';
         let indexCourant = -1;
@@ -412,8 +416,14 @@
             return m + ':' + String(s).padStart(2, '0');
         }
 
+        function correspond(m) {
+            if (filtre === 'tous') return true;
+            if (m.categorie === filtre) return true;
+            return (ALIAS[filtre] || []).indexOf(m.categorie) !== -1;
+        }
+
         function afficher() {
-            const visibles = morceaux.filter(m => filtre === 'tous' || m.categorie === filtre);
+            const visibles = morceaux.filter(correspond);
             zoneListe.innerHTML = '';
             if (!morceaux.length) {
                 zoneVide.style.display = 'block';
@@ -436,7 +446,7 @@
                     '<div><div class="morceau-titre">' + m.titre + '</div>' +
                     '<div class="morceau-meta">' + (m.date || '') + (m.duree ? ' • ' + m.duree : '') + '</div>' +
                     (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
-                    '<div class="etiquette">' + (m.categorie || 'morceau') + '</div>';
+                    '<div class="etiquette">' + (LIBELLES[m.categorie] || m.categorie || 'morceau') + '</div>';
                 d.addEventListener('click', () => lancer(i));
                 zoneListe.appendChild(d);
             });

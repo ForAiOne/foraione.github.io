@@ -1,10 +1,10 @@
 {
-  "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (morceaux | riffs | remixes), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
+  "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
       "titre": "Road between us",
       "fichier": "labo/audio/road-between-us.mp3",
-      "categorie": "morceaux",
+      "categorie": "originaux",
       "date": "2026-10-15",
       "duree": "2:59",
       "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina"
@@ -12,7 +12,7 @@
     {
       "titre": "Ever ever know",
       "fichier": "labo/audio/ever-ever-know.mp3",
-      "categorie": "morceaux",
+      "categorie": "originaux",
       "date": "2026-10-15",
       "duree": "2:16",
       "note": "Morceau à l'ambiance Weezer créé par Tony en 2019 et revisité par Suno."
@@ -20,7 +20,7 @@
     {
       "titre": "Rue Morgue",
       "fichier": "labo/audio/rue-morgue.mp3",
-      "categorie": "morceaux",
+      "categorie": "originaux",
       "date": "2026-10-02",
       "duree": "1:39",
       "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony en 1988, revisité par Suno."
@@ -28,7 +28,7 @@
     {
       "titre": "Whispers in the Dark",
       "fichier": "labo/audio/whispers-in-the-dark.mp3",
-      "categorie": "morceaux",
+      "categorie": "originaux",
       "date": "2026-09-27",
       "duree": "2:26",
       "note": "Morceau créé par Florent en 2017 joué avec Regis, Sam et Tony, revisité par Suno"
@@ -36,7 +36,7 @@
     {
       "titre": "No future",
       "fichier": "labo/audio/no-future.mp3",
-      "categorie": "morceaux",
+      "categorie": "originaux",
       "date": "2026-09-20",
       "duree": "3:55",
       "note": "morceau créé en 2022. ( Regis, Gilles, Tony )"
