@@ -1,7 +1,13 @@
 {
-  "maj": "2026-10-26",
+  "maj": "2026-10-30",
   "note": "Source des nouveautes affichees en bandeau sur l'accueil. Une entree = date (AAAA-MM-JJ), texte court, page visee. La plus recente est affichee. Ajouter avec : python3 /root/nouveautes_maj.py --ajouter \"le texte\" --url page.html",
   "nouveautes": [
+    {
+      "date": "2026-10-30",
+      "type": "photo",
+      "texte": "1 photo(s) ajoutee(s) a la galerie des soirees",
+      "url": "soirees.html"
+    },
     {
       "date": "2026-10-26",
       "type": "site",
