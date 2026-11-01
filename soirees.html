@@ -83,6 +83,55 @@
         #upload-fallback a {
             color: var(--color-primary);
         }
+        /* Etat de l'atelier : le depot part tout de suite ou attend la
+           prochaine ouverture. Alimente par https://ubuntu.tail1ccb87.ts.net/presence
+           (service soirees_serveur.py du VPS, expose par Tailscale Funnel). */
+        #atelier-etat {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1.1rem;
+            background: var(--color-bg-light);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--color-text-muted);
+        }
+        #atelier-etat strong { color: var(--color-text-main); }
+        #atelier-etat .atelier-pastille {
+            flex: none;
+            width: 10px;
+            height: 10px;
+            margin-top: 0.35rem;
+            border-radius: 50%;
+            background: #6b7280;
+            box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.15);
+        }
+        #atelier-etat.atelier-ouvert .atelier-pastille {
+            background: #4ade80;
+            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+            animation: atelier-pouls 2s ease-in-out infinite;
+        }
+        #atelier-etat.atelier-ferme .atelier-pastille {
+            background: #fbbf24;
+            box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.16);
+        }
+        #atelier-etat.atelier-inconnu .atelier-pastille { background: #9ca3af; }
+        #atelier-etat .atelier-detail {
+            display: block;
+            margin-top: 0.25rem;
+            font-size: 0.78rem;
+            color: #6b7280;
+        }
+        @keyframes atelier-pouls {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #atelier-etat.atelier-ouvert .atelier-pastille { animation: none; }
+        }
         .status-success {
             color: #4ade80;
         }
@@ -451,6 +500,10 @@
         <!-- Depot de photos : page de depot MEGA (aucun compte requis) -->
         <div id="upload-section">
             <h2>Dépôt de photos</h2>
+            <div id="atelier-etat" class="atelier-inconnu" role="status" aria-live="polite">
+                <span class="atelier-pastille" aria-hidden="true"></span>
+                <span class="atelier-texte">Vérification de l'atelier…</span>
+            </div>
             <div id="upload-instructions">
                 <p>Cliquez sur le bouton ci-dessous : une page de dépôt sécurisée s'ouvre, vous y envoyez vos photos (JPG, PNG…), puis vous revenez ici.</p>
                 <p>Aucun compte n'est nécessaire. Chaque photo est relue avant d'être ajoutée à la galerie.</p>
@@ -610,6 +663,8 @@
                 setTimeout(() => {
                     document.getElementById('security-question').style.display = 'none';
                     document.getElementById('upload-section').style.display = 'block';
+                    majEtatAtelier();
+                    surveillerAtelier();
                 }, 800);
                 return;
             }
@@ -626,6 +681,80 @@
             statut.textContent = 'Réponse incorrecte. Il vous reste ' + (MAX_ESSAIS - essais) + ' essai(s).';
             statut.className = 'status-error';
             setTimeout(loadQuestion, 1000);
+        }
+
+        // -- Etat de l'atelier : traite maintenant ou en differe ? -------------
+        // Lu sur le service du VPS, expose par Tailscale Funnel : la page est
+        // hebergee sur GitHub Pages et ne peut pas joindre le VPS autrement
+        // (le port 8001 n'est pas ouvert sur l'Internet).
+        const URL_ATELIER = 'https://ubuntu.tail1ccb87.ts.net/presence';
+        let minuteurAtelier = null;
+
+        function duree(secondes) {
+            if (secondes < 90) return "moins de 2 minutes";
+            const minutes = Math.round(secondes / 60);
+            if (minutes < 60) return minutes + " minutes";
+            const heures = Math.floor(minutes / 60);
+            const reste = minutes % 60;
+            if (heures < 24) {
+                return heures + " h" + (reste ? " " + String(reste).padStart(2, '0') : "");
+            }
+            const jours = Math.round(heures / 24);
+            return jours + (jours > 1 ? " jours" : " jour");
+        }
+
+        function afficherEtatAtelier(donnees) {
+            const bloc = document.getElementById('atelier-etat');
+            const texte = bloc.querySelector('.atelier-texte');
+            if (!donnees || typeof donnees.ouvert !== 'boolean') {
+                bloc.className = 'atelier-inconnu';
+                texte.innerHTML = "<strong>État de l'atelier momentanément indisponible.</strong>"
+                    + " Votre dépôt fonctionne normalement : les photos sont conservées"
+                    + " et relues à la prochaine ouverture de l'atelier.";
+                return;
+            }
+            if (donnees.ouvert) {
+                bloc.className = 'atelier-ouvert';
+                texte.innerHTML = "<strong>Atelier ouvert : dépôt traité maintenant.</strong>"
+                    + " Votre photo part tout de suite dans la file de relecture et rejoint"
+                    + " la galerie dès qu'elle est validée, en général dans la foulée.";
+                return;
+            }
+            bloc.className = 'atelier-ferme';
+            let detail = '';
+            if (typeof donnees.age === 'number') {
+                detail = '<span class="atelier-detail">Dernier passage de l\'atelier : il y a '
+                       + duree(donnees.age) + '.</span>';
+            }
+            texte.innerHTML = "<strong>Atelier fermé : dépôt traité en différé.</strong>"
+                + " Vos photos sont bien enregistrées et relues à la prochaine ouverture"
+                + " de l'atelier (souvent le lendemain). Déposez dès maintenant, c'est conservé."
+                + detail;
+        }
+
+        function majEtatAtelier() {
+            const controleur = new AbortController();
+            const delai = setTimeout(() => controleur.abort(), 5000);
+            fetch(URL_ATELIER, { cache: 'no-store', signal: controleur.signal })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(afficherEtatAtelier)
+                .catch(function () { afficherEtatAtelier(null); })
+                .finally(function () { clearTimeout(delai); });
+        }
+
+        // Rafraichi l'etat toutes les minutes tant que la page reste ouverte,
+        // pour ne pas afficher « ouvert » alors que l'atelier vient de fermer.
+        function surveillerAtelier() {
+            clearInterval(minuteurAtelier);
+            minuteurAtelier = setInterval(function () {
+                const section = document.getElementById('upload-section');
+                if (document.visibilityState === 'visible' && section.offsetParent !== null) {
+                    majEtatAtelier();
+                }
+            }, 60000);
         }
 
         document.getElementById('submit-answer').addEventListener('click', verifierReponse);
