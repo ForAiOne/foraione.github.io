@@ -709,6 +709,7 @@
 
         function afficherEtatAtelier(donnees, origine) {
             const bloc = document.getElementById('atelier-etat');
+            if (!bloc) return;                       // bloc absent : rien a afficher
             const texte = bloc.querySelector('.atelier-texte');
             if (!donnees || typeof donnees.ouvert !== 'boolean') {
                 bloc.className = 'atelier-inconnu';
