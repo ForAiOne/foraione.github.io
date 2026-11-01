@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Archives and history of the rock-metal band - the story of Saint Erblon.">
+    <title>Saint Erblon | Between Strings and Ashes</title>
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        /* === VIDEO MODAL STYLES === */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-close:hover {
+            background: #ff4444;
+            border-color: #ff4444;
+            transform: rotate(90deg);
+        }
+
+        .video-title {
+            color: #fff;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .video-modal-content {
+                width: 95%;
+                max-height: 70vh;
+            }
+
+            .video-title {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            .video-close {
+                width: 35px;
+                height: 35px;
+                top: -35px;
+                font-size: 1rem;
+            }
+        }
+
+        /* === BANDEAU DES NOUVEAUTES (accueil) =============================
+           Ecrit par /root/nouveautes_maj.py : le bloc HTML, entre les
+           marqueurs NOUVEAUTES_AUTO, est regenere depuis nouveautes.json.
+           Le hero n'est pas touche, la bande se pose juste apres. */
+        .actu-bande {
+            background: radial-gradient(ellipse at center, rgba(185, 29, 29, 0.18), rgba(185, 29, 29, 0.05) 55%, transparent 85%);
+            border-top: 1px solid rgba(185, 29, 29, 0.30);
+            border-bottom: 1px solid rgba(185, 29, 29, 0.30);
+            padding: 13px 20px;
+            text-align: center;
+        }
+
+        .actu-lien {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            text-decoration: none;
+            font-family: var(--font-head);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--color-text-main);
+        }
+
+        .actu-pastille {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(185, 29, 29, 0.14);
+            border: 1px solid rgba(185, 29, 29, 0.55);
+            color: var(--color-primary-hover);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* le point rouge qui pulse doucement (halo de 2 s, jamais clignotant) */
+        .actu-point {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary-hover);
+            animation: actu-pulse 2s ease-in-out infinite;
+        }
+
+        .actu-texte { color: var(--color-text-main); }
+
+        .actu-age {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+        }
+
+        .actu-lien i {
+            font-size: 0.8rem;
+            color: var(--color-primary);
+            transition: transform 0.25s ease;
+        }
+
+        .actu-lien:hover .actu-texte { color: var(--color-primary-hover); }
+        .actu-lien:hover i { transform: translateX(3px); }
+        .actu-lien:focus-visible { outline: 2px solid var(--color-primary-hover); outline-offset: 4px; }
+
+        @keyframes actu-pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.65); }
+            70%  { box-shadow: 0 0 0 9px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        @media (max-width: 600px) {
+            .actu-bande { padding: 11px 14px; }
+            .actu-lien { gap: 8px; font-size: 0.88rem; }
+            .actu-texte { flex-basis: 100%; text-align: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .actu-point { animation: none; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/index.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/index.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/index.html">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ERBLON<span>PROD</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">HOME</a>
+                <a href="#collections">BACKSTAGE</a>
+                <a href="#members">LINE-UPS</a>
+                <a href="#discography">DISCOGRAPHY</a>
+                <a href="#chronology">TIMELINE</a>
+                <a href="#community">COMMUNITY</a>
+                <a href="../aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../index.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+
+        <!-- 1. Entre Cordes et Cendres (Home) -->
+                
+<section id="home">
+    <div class="hero-content">
+        
+        <!-- CONTENEUR ANIMATION NOMS -->
+        <div id="name-evolution-container">
+            <!-- Les noms seront injectés ici par JavaScript -->
+        </div>
+
+        <p>From the shadow of the garage to the light of the stage. A raw story. Pure energy.</p>
+        <div style="margin-top: 2.5rem;">
+            <a href="#collections" class="btn">DISCOVER BACKSTAGE</a>
+            <button class="btn btn-outline" onclick="playTeaser()">
+                <i class="fas fa-play"></i> THE TEASER
+            </button>
+        </div>
+    </div>
+</section>
+
+        <!-- NOUVEAUTES_AUTO : bloc reecrit par nouveautes_maj.py, ne pas editer a la main -->
+        <div class="actu-bande" id="actu">
+            <a class="actu-lien" href="../soirees.html">
+                <span class="actu-pastille"><span class="actu-point" aria-hidden="true"></span>NEW</span>
+                <span class="actu-texte">1 photo(s) added to the party gallery</span>
+                <span class="actu-age" data-date="2026-10-30">today</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </div>
+        <!-- /NOUVEAUTES_AUTO -->
+
+<!-- SVG FILTRE CACHÉ (Pour l'effet de distorsion) -->
+<svg style="display: none;">
+    <defs>
+        <filter id="displacementFilter">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </defs>
+</svg>
+
+        <!-- 2. BACKSTAGE (Collections) - MODIFIÉ AVEC LES 8 LIENS -->
+        <section id="collections">
+            <div class="section-header">
+                <h2>BACKSTAGE</h2>
+                <p>From the garage to the stage, a story of decibels: photos, videos, audio and documents.</p>
+            </div>
+            
+            <!-- Filtres : 4 Boutons (Pages Globales) -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="../environnement.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">ENVIRONMENT</a>
+                <a href="../histoire.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">STORY</a>
+                <a href="../concerts.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">CONCERTS</a>
+                <a href="../soirees.html" class="btn btn-outline" style="margin:0 5px; font-size: 0.85rem;">PHOTO GALLERIES</a>
+            </div>
+
+            <!-- Grille : 4 Cartes (Pages Spécifiques) -->
+            <div class="collections-grid">
+                
+                <!-- Carte 1 : Le Musée -->
+                <a href="../musee.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <picture>
+                        <source srcset="../images/musee-carte.avif" type="image/avif">
+                        <img src="../images/musee-carte.jpg" class="card-img" width="800" height="482"
+                             alt="The band's museum: the torch-lit corridor, between the guitars and the amps"
+                             loading="lazy" decoding="async">
+                    </picture>
+                    <div class="card-content">
+                        <h3>The Museum</h3>
+                        <span class="card-meta">1988 • The objects • Archives</span>
+                        <p>The objects that left a mark on us, the ones that lifted some gigs or rehearsals, and helped make those moments unforgettable.</p>
+                    </div>
+                </a>
+
+                <!-- Carte 2 : Le Labo -->
+                <a href="../labo.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="../images/labo.jpg" alt="The Lab" class="card-img">
+                    <div class="card-content">
+                        <h3>The Lab</h3>
+                        <span class="card-meta">Today • Tracks &amp; riffs • Audio</span>
+                        <p>Riffs, demos, remixes: what is being made right now, to listen to as it comes.</p>
+                    </div>
+                </a>
+
+                <!-- Carte 3 : Studio -->
+                <a href="../studio.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="../images/music.jpg" alt="Studio" class="card-img">
+                    <div class="card-content">
+                        <h3>Listening sessions </h3>
+                        <span class="card-meta">Music library </span>
+                        <p>Riffs, tracks, a few notes on CDs, come and listen ...</p>
+                    </div>
+                </a>
+
+                <!-- Carte 4 : Interview -->
+                <a href="../interview.html" class="card" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                    <img src="../images/memoires.jpg" alt="Interview" class="card-img">
+                    <div class="card-content">
+                        <h3>ANECDOTES</h3>
+                        <span class="card-meta">2020 • Saint Erblon • Video</span>
+                        <p>The members look back on their early days, 20 years later.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- 3. LINE-UPS (Membres) -->
+        <section id="members">
+            <div class="section-header">
+                <h2>LINE-UPS</h2>
+                <p>The sound craftsmen of Saint Erblon.</p>
+            </div>
+            <div class="members-grid">
+                <div class="member-card">
+                    <img src="../images/regis1.jpg" alt="drummer" class="member-avatar">
+                    <h3>Regis.</h3>
+                    <span class="member-role">Drums</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The one-string guitar at the start, then a small electronic drum machine in 1990, and the real drum kit from 1991 — until 2012.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/Tanguy.jpg" alt="Percussion" class="member-avatar">
+                    <h3>Tanguy. </h3>
+                    <span class="member-role">Percussion (Desastrax)</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The wooden cassette box he hit at the start, and the artwork designer. He left the band and later started Totem Stille, in Paris.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/loran.jpg" alt="Singer, then guitarist" class="member-avatar">
+                    <h3>Loran. </h3>
+                    <span class="member-role">Vocals, then guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The singer at the start, until 1988, then guitarist and photographer for the band.</p>
+                </div>
+                 <div class="member-card">
+                    <img src="../images/Tony.jpg" alt="Keyboards, then vocals" class="member-avatar">
+                    <h3>Tony. </h3>
+                    <span class="member-role">Synth, then vocals</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. On synths in Desastrax, singer from Explicit to Jar. Left the band in early 2002.</p>
+                </div>
+                                <div class="member-card">
+                    <img src="../images/gilles.jpg" alt="Bassist, then guitarist" class="member-avatar">
+                    <h3>Gilles.</h3>
+                    <span class="member-role">Bass, then guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Joined in 1991: bass until 1998, guitar until December 2003.</p>
+                </div>
+                                <div class="member-card">
+                    <img src="../images/jerome.jpg" alt="Guitarist" class="member-avatar">
+                    <h3>Jérome. </h3>
+                    <span class="member-role">Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Second guitar in Explicit, No Mug and Helium, from 1993 to 1998.</p>
+                </div>
+                                <div class="member-card">
+                    <img src="../images/flo.jpg" alt="Guitarist" class="member-avatar">
+                    <h3>Florent. </h3>
+                    <span class="member-role">Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Guitarist from 1998, moved to seven strings in 2003, until the end of Wöw in 2012.</p>
+                </div>  
+                                <div class="member-card">
+                    <img src="../images/jean.jpg" alt="Bassist" class="member-avatar">
+                    <h3>JeanMarie. </h3>
+                    <span class="member-role">Bass — “Jean-Jean”</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Bass in Jar, then Codéine and Wöw, from 1998.</p>
+                </div>
+                                <div class="member-card">
+                    <img src="../images/jef.jpg" alt="Singer" class="member-avatar">
+                    <h3>Jean-François. </h3>
+                    <span class="member-role">Vocals — “Jef”</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">The “new kid” who came in on vocals in 2002, nicknamed Jef by the other musicians. He left in 2004, replaced by Alex.</p>
+                </div>                                          
+           </div>
+        </section>
+
+        <!-- 4. DISCOGRAPHIE -->
+        <section id="discography">
+            <div class="section-header">
+                <h2>DISCOGRAPHY</h2>
+                <p>Listen to how the band changed.</p>
+            </div>
+            <div class="album-list">
+                <div class="album-item">
+                    <img src="../images/album_jar.jpg" alt="Cover Album 1" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • Front</span>
+                        <p>Recorded at Studio "Panoramix", "chez nono" in Saint-Sauveur-de-Flée.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i> 01. little Shit</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 02. Endfeels</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 03. Quiet</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i> 04. Self Made Women</div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i> 05. Shelter for Anger</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album-item">
+                    <img src="../images/back_cd.jpg" alt="Cover Album 2" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • Back</span>
+                        <p>Graphic design: Tanguy Ferrand, photo: Loran Ferrand.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i> Guitar: Gilles, guitar: Florent, bass: Jeanjean, drums: Regis, vocals: Tony   </div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i> Words and music: Jar  </div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i> contact: Mickael Lairy </div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i> graphic design: Tanguy Ferrand</div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i> Photo: Loran Ferrand </div>
+                        </div>
+                    </div>
+                </div>
+            
+                        <div class="album-item">
+                    <img src="../images/interieur.jpg" alt="Cover Album 2" class="album-cover">
+                    <div class="album-info">
+                        <h3>Jar (1998)</h3>
+                        <span style="color: var(--color-primary);">Jar • inside the CD case</span>
+                        <p>Rehearsals at les Courans, 53200 Longuefuye.</p>
+                        <div class="tracklist">
+                            <div class="track"><i class="fas fa-play play-icon"></i>Thanks: Nono, Tanguy, Mickaêl, our parents </div>
+                            <div class="track"><i class="fas fa-play play-icon"></i>Jérome, Christophe, Cédric, Saint Erblon, November</div>
+                            <div class="track"><i class="fas fa-play play-icon"></i>Daniel du Palais, Cavirok from Échemiré, friends from all over</div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i>Le Fjt, Aline & Jean Marie, the Tomyknockers, L'abbé Frock</div>
+                                                        <div class="track"><i class="fas fa-play play-icon"></i>And all the others who will recognise themselves, and the audience</div>
+                        </div>
+                    </div>
+                </div>                  
+                        </div>
+        </section>
+
+        <!-- 5. CHRONOLOGIE -->
+        <section id="chronology">
+            <div class="section-header">
+                <h2>TIMELINE</h2>
+                <p>The key dates in the band's story.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1988</div>
+                    <h3>The cassette: DESASTRAX</h3>
+                    <p>Régis, Tanguy, Tony and Loran, based in Saint-Erblon between Rennes and Angers, under French alternative influence. The four of them went for songs with words, recorded a four-track cassette on a tape recorder of the time — then split up in 1988.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1991</div>
+                    <h3>The comeback: EXPLICIT</h3>
+                    <p>Tony, Régis and Loran kept playing as best they could. Gilles joined and went straight to the bass; Régis moved to drums, Loran to guitar, Tony to vocals. Explicit was born, with a stop at Soul Famous Carpet along the way.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1993</div>
+                    <h3>First gig: NO MUG</h3>
+                    <p>Jérôme joined the four. First gig in Château-Gontier (53) on 2 September 1993, and a good one. Looking back, Explicit became No Mug. Loran left for Paris.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1996</div>
+                    <h3>Hardcore fusion: HELIUM</h3>
+                    <p>The band took the line of American hardcore fusion, with Dischord influences (Fugazi, Quicksand) and grunge.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1998</div>
+                    <h3>The CD: JAR</h3>
+                    <p>Jérôme left, Jean-Marie and Florent came in. The band reached its peak and recorded a five-track CD in a studio. At the end of 1999 it broke up and stopped everything for two years.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2002</div>
+                    <h3>The comeback without Tony: CODEINE</h3>
+                    <p>The band did it again without Tony, with new influences (Incubus, Sevendust) and a new singer, Jean-François. Creation of the Tous Azic'Muts association with Hippy Groovy.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2003</div>
+                    <h3>The last turn</h3>
+                    <p>December 2003: Gilles left the band for work reasons. The sound went towards metal, Florent moved to seven strings.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2004</div>
+                    <h3>The last dates</h3>
+                    <p>Rennes (Campus Kerlan, Bruz) on 24 January 2004, then Saint-Michel-de-la-Röe at the Aperoconcert festival on 18 September 2004.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2004</div>
+                    <h3>WÖW: going professional</h3>
+                    <p>Jean-François left, Alex came in on vocals and guitar. The band became Wöw, with Régis, Jean-Marie and Florent, aiming for a more professional direction.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2012</div>
+                    <h3>The end of it</h3>
+                    <p>Gigs went on around the area until the band disappeared, in 2012.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022</div>
+                    <h3>CRUMBLE HEAD: the project</h3>
+                    <p>Régis, Loran, Gilles and Tony got back together around a name given after a party, to rebuild the band. Tracks started to come in 2022, for the fun of it, then a few more — nothing concrete for now. A sample can be heard in <a class="lien" href="../labo.html">The Lab</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. COMMUNAUTÉ & CONTACT -->
+        <section id="community">
+            <div class="section-header">
+                <h2>COMMUNITY</h2>
+                <p>Share your memories and stay in touch.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Contact the archive team</h3>
+                    <p style="margin-bottom: 25px; color: #aaa; font-size: 0.9rem;">To offer archives, press or a story. Say it in the message, we will reply about how to receive it.</p>
+  
+  <!-- Formulaire modifié pour envoyer à nomug2020 -->
+ <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Nouveau message depuis le site Saint Erblon Archives">
+    
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="test_nom" class="form-control" required>
+    </div>    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="test_email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="test_message" rows="5" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn">Send</button>
+</form>
+        </div>
+
+                <div class="contact-info">
+                    <h3>Let's stay connected</h3>
+                    <p style="margin-bottom: 25px;">Sign up to the newsletter to hear about new archives going online.</p>
+                    
+<form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" style="margin-bottom: 40px;">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="Nouvelle inscription Newsletter - Saint Erblon Archives">
+    
+                <div class="form-group">
+                <input type="email" name="newsletter_email" placeholder="Your email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-outline">Sign up</button>
+</form>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/nomug.mug" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@sevendustwow" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    
+                    <div style="margin-top: 50px; padding: 25px; background: rgba(0,0,0,0.2); border-left: 2px solid var(--color-primary);">
+                        <h4 style="color:white; margin-bottom: 10px;">The Archive HQ</h4>
+                        <p style="color: #aaa; line-height: 1.8;">
+                            Le Bourg<br>
+                            53390 Saint Erblon<br>
+                            France
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+        <p class="footer-text" style="opacity:0.75; font-size:0.85rem; margin-top:10px;">
+            Erblon Prod: the production company set up by the band — Saint-Erblon: the Mayenne village where it all started.
+        </p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--color-primary); color: white; padding: 15px 25px; border-radius: 4px; transform: translateY(150%); transition: transform 0.3s ease; z-index: 2000;">
+        Message sent!
+    </div>
+
+    <!-- Video Modal for Teaser -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-close" onclick="closeVideoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-title">TEASER</div>
+            <div class="video-wrapper">
+                <iframe 
+                    id="teaserVideo"
+                    src="https://www.youtube.com/embed/HtYu6UUCcds?rel=0&amp;modestbranding=1"
+                    title="Saint Erblon teaser"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+        <script>
+    // Configuration des noms chronologiques
+    const nameSequence = [
+        { text: "Desastrax", effect: "shatter" },
+        { text: "Soul Famous Carpet", effect: "burn" },
+        { text: "Rock'n Chair", effect: "shatter" },
+        { text: "Explicit", effect: "burn" },
+        { text: "No Mug", effect: "shatter" },
+        { text: "Helium", effect: "burn" },
+        { text: "Jar", effect: "shatter" },
+        { text: "Codeine", effect: "burn" },
+        { text: "Wöw", effect: "shatter" },
+        { text: "Crumble Head", effect: "burn" },
+        { text: "Du garage à la scène", effect: "reborn" }
+
+    ];
+
+    let currentIndex = 0;
+    const container = document.getElementById('name-evolution-container');
+
+    function createSparks() {
+        // Crée des particules (étincelles) au centre de l'écran
+        for (let i = 0; i < 20; i++) {
+            const spark = document.createElement('div');
+            spark.classList.add('particle');
+            
+            spark.style.left = '50%';
+            spark.style.top = '50%';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 50 + Math.random() * 100;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+
+            document.body.appendChild(spark);
+            
+            const animation = spark.animate([
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+            ], {
+                duration: 800 + Math.random() * 400,
+                easing: 'cubic-bezier(0, .9, .57, 1)'
+            });
+
+            animation.onfinish = () => spark.remove();
+        }
+    }
+
+    function playNextName() {
+        if (currentIndex >= nameSequence.length) return;
+
+        const data = nameSequence[currentIndex];
+        const el = document.createElement('div');
+        el.textContent = data.text;
+        el.classList.add('evolution-text');
+
+        // 1. Apparition initiale
+        el.style.opacity = '1';
+        
+        // Ajustement de la taille de police pour les très longs noms
+        if (data.text.length > 12) {
+            el.style.fontSize = "3.5rem";
+        }
+
+        container.appendChild(el);
+
+        // 2. Lancer l'effet après un court délai (Accéléré pour 9 noms)
+        const displayTime = 1200; // Le texte reste 1.2 sec
+        const animTime = 800;     // L'anim dure 0.8 sec
+
+        setTimeout(() => {
+            if (data.effect === 'shatter') {
+                el.classList.add('anim-shatter');
+                createSparks();
+            } else if (data.effect === 'burn') {
+                el.classList.add('anim-burn');
+            } else if (data.effect === 'reborn') {
+                el.classList.add('anim-reborn');
+            }
+
+            // 3. Passer au suivant après l'animation
+            setTimeout(() => {
+                if (data.effect !== 'reborn') {
+                    el.remove();
+                    currentIndex++;
+                    playNextName();
+                }
+            }, animTime); 
+
+        }, displayTime);
+    }
+
+    // Lancer l'animation au chargement
+    window.addEventListener('load', () => {
+        setTimeout(playNextName, 500);
+    });
+</script>
+        
+    <script>
+
+        // URL du teaser : sans autoplay au chargement de la page (aucun son
+        // tant que l'on n'a pas clique), AVEC autoplay a l'ouverture du modal.
+        const TEASER_SRC = 'https://www.youtube.com/embed/HtYu6UUCcds?rel=0&modestbranding=1';
+        const TEASER_SRC_AUTOPLAY = 'https://www.youtube.com/embed/HtYu6UUCcds?autoplay=1&rel=0&modestbranding=1';
+
+        function playTeaser() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('teaserVideo');
+            
+            modal.classList.add('active');
+            
+            // Recharger l'iframe avec autoplay pour lancer la vidéo AVEC le son
+            // (le son ne demarre qu'ici, sur un clic de l'internaute)
+            iframe.src = TEASER_SRC_AUTOPLAY;
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('teaserVideo');
+            
+            // Arrêter la vidéo YouTube en rechargeant l'iframe sans autoplay
+            iframe.src = TEASER_SRC;
+            modal.classList.remove('active');
+        }
+
+        // Fermer le modal en cliquant en dehors de la vidéo
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Fermer le modal avec la touche Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        function showNotification(message = "Message envoyé avec succès !") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.transform = "translateY(0)";
+            
+            setTimeout(() => {
+                toast.style.transform = "translateY(150%)";
+            }, 3000);
+        }
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+    // -- Bandeau des nouveautes : age relatif recalcule a chaque visite ------
+    // La date est ecrite par nouveautes_maj.py dans data-date ; le texte est
+    // rafraichi ici pour qu'« il y a 3 jours » ne devienne pas faux.
+    function ageNouveauteEnTexte(jours) {
+        if (jours <= 0) return "aujourd'hui";
+        if (jours === 1) return "hier";
+        if (jours < 7) return "il y a " + jours + " jours";
+        if (jours < 30) {
+            var semaines = Math.floor(jours / 7);
+            return "il y a " + semaines + (semaines > 1 ? " semaines" : " semaine");
+        }
+        if (jours < 365) return "il y a " + Math.floor(jours / 30) + " mois";
+        var ans = Math.floor(jours / 365);
+        return "il y a " + ans + (ans > 1 ? " ans" : " an");
+    }
+
+    function majAgeNouveautes() {
+        var maintenant = new Date();
+        var auj = Date.UTC(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
+        document.querySelectorAll('.actu-age[data-date]').forEach(function (el) {
+            var parties = el.getAttribute('data-date').split('-');
+            if (parties.length !== 3) return;
+            var jours = Math.round((auj - Date.UTC(+parties[0], +parties[1] - 1, +parties[2])) / 86400000);
+            el.textContent = ageNouveauteEnTexte(jours);
+        });
+    }
+
+    majAgeNouveautes();
+    </script>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+</body>
+</html>

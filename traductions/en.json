@@ -1,0 +1,639 @@
+{
+ "version": 1,
+ "pages": {
+  "index.html": {
+   "4441ce2a8995": {
+    "fr": "Saint Erblon | Entre Cordes et Cendres",
+    "en": "Saint Erblon | Between Strings and Ashes"
+   },
+   "b8e79044c5d0": {
+    "fr": "ERBLON",
+    "en": "ERBLON"
+   },
+   "ae9ab1f8a7a1": {
+    "fr": "PROD",
+    "en": "PROD"
+   },
+   "a60dfd03146c": {
+    "fr": "ACCUEIL",
+    "en": "HOME"
+   },
+   "aa83ecb99832": {
+    "fr": "BACKSTAGE",
+    "en": "BACKSTAGE"
+   },
+   "c773df85ff31": {
+    "fr": "LINE-UPS",
+    "en": "LINE-UPS"
+   },
+   "01adcd35880c": {
+    "fr": "DISCOGRAPHIE",
+    "en": "DISCOGRAPHY"
+   },
+   "7ee939ea3e2c": {
+    "fr": "CHRONOLOGIE",
+    "en": "TIMELINE"
+   },
+   "a70fac692011": {
+    "fr": "COMMUNAUTÉ",
+    "en": "COMMUNITY"
+   },
+   "1b07e82dcd27": {
+    "fr": "LIENS",
+    "en": "LINKS"
+   },
+   "f7afabb8b170": {
+    "fr": "De l'ombre du garage à la lumière de la scène. Une histoire brute. Une énergie pure.",
+    "en": "From the shadow of the garage to the light of the stage. A raw story. Pure energy."
+   },
+   "0a86a7dc2a22": {
+    "fr": "DÉCOUVRIR BACKSTAGE",
+    "en": "DISCOVER BACKSTAGE"
+   },
+   "009ad0bee35f": {
+    "fr": "LE TEASER",
+    "en": "THE TEASER"
+   },
+   "eab6c151c371": {
+    "fr": "NOUVEAU",
+    "en": "NEW"
+   },
+   "fcdcf357dd26": {
+    "fr": "1 photo(s) ajoutee(s) a la galerie des soirees",
+    "en": "1 photo(s) added to the party gallery"
+   },
+   "6df94695625d": {
+    "fr": "aujourd'hui",
+    "en": "today"
+   },
+   "e1d28321b3de": {
+    "fr": "Du garage à la scène, une histoire de décibels : photos, vidéos, audio et documents.",
+    "en": "From the garage to the stage, a story of decibels: photos, videos, audio and documents."
+   },
+   "915496eb6b41": {
+    "fr": "ENVIRONNEMENT",
+    "en": "ENVIRONMENT"
+   },
+   "408eb1709d0a": {
+    "fr": "HISTOIRE",
+    "en": "STORY"
+   },
+   "3acf4266ffe7": {
+    "fr": "CONCERTS",
+    "en": "CONCERTS"
+   },
+   "ee2434edd9ac": {
+    "fr": "GALERIES PHOTOS",
+    "en": "PHOTO GALLERIES"
+   },
+   "89e54a7fad7b": {
+    "fr": "Le Musée",
+    "en": "The Museum"
+   },
+   "471d6eae9478": {
+    "fr": "1988 • Les objets • Archives",
+    "en": "1988 • The objects • Archives"
+   },
+   "3888c7c888a5": {
+    "fr": "Les objets qui nous ont marqués, ceux qui ont sublimé certains concerts ou répétitions et qui ont contribué à rendre ces moments inoubliables.",
+    "en": "The objects that left a mark on us, the ones that lifted some gigs or rehearsals, and helped make those moments unforgettable."
+   },
+   "a4976d43214d": {
+    "fr": "Le Labo",
+    "en": "The Lab"
+   },
+   "5a6cc8eb5edb": {
+    "fr": "Aujourd'hui • Morceaux &amp; riffs • Audio",
+    "en": "Today • Tracks &amp; riffs • Audio"
+   },
+   "e285907cc08d": {
+    "fr": "Riffs, maquettes, remixes : ce qui se fabrique maintenant, à écouter au fil de l'eau.",
+    "en": "Riffs, demos, remixes: what is being made right now, to listen to as it comes."
+   },
+   "c543517e772b": {
+    "fr": "Sessions écoutes",
+    "en": "Listening sessions"
+   },
+   "242bd39b8691": {
+    "fr": "Bibliothèque de musique",
+    "en": "Music library"
+   },
+   "d9d8fdcbbd09": {
+    "fr": "Riffs, morceaux, quelques notes aux Cd, venez écouter ...",
+    "en": "Riffs, tracks, a few notes on CDs, come and listen ..."
+   },
+   "0cd3dbc65ced": {
+    "fr": "ANECDOTES",
+    "en": "ANECDOTES"
+   },
+   "331233ef69ff": {
+    "fr": "2020 • Saint Erblon • Vidéo",
+    "en": "2020 • Saint Erblon • Video"
+   },
+   "2398170706f5": {
+    "fr": "Les membres reviennent sur leurs débuts 20 ans plus tard.",
+    "en": "The members look back on their early days, 20 years later."
+   },
+   "9c82008980af": {
+    "fr": "Les artisans du son de Saint Erblon.",
+    "en": "The sound craftsmen of Saint Erblon."
+   },
+   "e6a2f3cda86f": {
+    "fr": "Regis.",
+    "en": "Regis."
+   },
+   "eb1df8432f35": {
+    "fr": "Batterie",
+    "en": "Drums"
+   },
+   "6bc51a07feb7": {
+    "fr": "Fondateur. La guitare à une corde aux débuts, puis une petite boîte à rythmes électronique en 1990, et la vraie batterie à partir de 1991 — jusqu'en 2012.",
+    "en": "Founder. The one-string guitar at the start, then a small electronic drum machine in 1990, and the real drum kit from 1991 — until 2012."
+   },
+   "5669a5121d0c": {
+    "fr": "Tanguy.",
+    "en": "Tanguy."
+   },
+   "32e43c32f7b6": {
+    "fr": "Percussions (Desastrax)",
+    "en": "Percussion (Desastrax)"
+   },
+   "bb702b280342": {
+    "fr": "Fondateur. La boîte de K7 en bois percutée aux débuts, et le graphiste des pochettes. Il quitte le groupe et monte un peu plus tard Totem Stille, sur Paris.",
+    "en": "Founder. The wooden cassette box he hit at the start, and the artwork designer. He left the band and later started Totem Stille, in Paris."
+   },
+   "138d5999f6c9": {
+    "fr": "Loran.",
+    "en": "Loran."
+   },
+   "0b9a034f9242": {
+    "fr": "Chant puis Guitare",
+    "en": "Vocals, then guitar"
+   },
+   "43e09ffc4415": {
+    "fr": "Fondateur. Le chanteur des débuts, jusqu'en 1988, puis guitariste et photographe du groupe.",
+    "en": "Founder. The singer at the start, until 1988, then guitarist and photographer for the band."
+   },
+   "3f4cd6a9c43b": {
+    "fr": "Tony.",
+    "en": "Tony."
+   },
+   "06a83dab3901": {
+    "fr": "Synthé puis Chant",
+    "en": "Synth, then vocals"
+   },
+   "fd57401bfdf9": {
+    "fr": "Fondateur. Au synthé chez Desastrax, chanteur d'Explicit à Jar. Quitte le groupe début 2002.",
+    "en": "Founder. On synths in Desastrax, singer from Explicit to Jar. Left the band in early 2002."
+   },
+   "5452ec96f6b8": {
+    "fr": "Gilles.",
+    "en": "Gilles."
+   },
+   "b8c84f4e61b1": {
+    "fr": "Basse puis Guitare",
+    "en": "Bass, then guitar"
+   },
+   "1617bea41b41": {
+    "fr": "Arrivé en 1991 : la basse jusqu'en 1998, la guitare jusqu'en décembre 2003.",
+    "en": "Joined in 1991: bass until 1998, guitar until December 2003."
+   },
+   "c0d19923191c": {
+    "fr": "Jérome.",
+    "en": "Jérome."
+   },
+   "79d097366dd4": {
+    "fr": "Guitare",
+    "en": "Guitar"
+   },
+   "573392341a94": {
+    "fr": "La seconde guitare d'Explicit, No Mug et Helium, de 1993 à 1998.",
+    "en": "Second guitar in Explicit, No Mug and Helium, from 1993 to 1998."
+   },
+   "65407946b164": {
+    "fr": "Florent.",
+    "en": "Florent."
+   },
+   "98d87af67972": {
+    "fr": "Guitariste à partir de 1998, passé à sept cordes à partir de 2003, jusqu'à la fin de Wöw en 2012.",
+    "en": "Guitarist from 1998, moved to seven strings in 2003, until the end of Wöw in 2012."
+   },
+   "2a48dc2610a7": {
+    "fr": "JeanMarie.",
+    "en": "JeanMarie."
+   },
+   "5426b4c31101": {
+    "fr": "Basse — « Jean-Jean »",
+    "en": "Bass — “Jean-Jean”"
+   },
+   "168f77dec851": {
+    "fr": "La basse de Jar, de Codéine puis de Wöw, à partir de 1998.",
+    "en": "Bass in Jar, then Codéine and Wöw, from 1998."
+   },
+   "292fc31e2e5f": {
+    "fr": "Jean-François.",
+    "en": "Jean-François."
+   },
+   "6e29689387dc": {
+    "fr": "Chant — « Jef »",
+    "en": "Vocals — “Jef”"
+   },
+   "80a35d4c2929": {
+    "fr": "Le « petit nouveau » arrivé au chant en 2002, surnommé Jef par les autres musiciens. Il quitte le groupe en 2004, remplacé par Alex.",
+    "en": "The “new kid” who came in on vocals in 2002, nicknamed Jef by the other musicians. He left in 2004, replaced by Alex."
+   },
+   "f630a7e96a2f": {
+    "fr": "Écoutez l'évolution du groupe.",
+    "en": "Listen to how the band changed."
+   },
+   "8adb97311aa8": {
+    "fr": "Jar (1998)",
+    "en": "Jar (1998)"
+   },
+   "88decfca5398": {
+    "fr": "Jar • Face avant",
+    "en": "Jar • Front"
+   },
+   "7be9f03effb6": {
+    "fr": "Enregistré au Studio \"Panoramix\", \"chez nono\" à Saint Sauveur de Flée.",
+    "en": "Recorded at Studio \"Panoramix\", \"chez nono\" in Saint-Sauveur-de-Flée."
+   },
+   "2d3c08e2ca39": {
+    "fr": "01. little Shit",
+    "en": "01. little Shit"
+   },
+   "40f7e06a98c0": {
+    "fr": "02. Endfeels",
+    "en": "02. Endfeels"
+   },
+   "4b187c3dad5b": {
+    "fr": "03. Quiet",
+    "en": "03. Quiet"
+   },
+   "a9649df2c4ea": {
+    "fr": "04. Self Made Women",
+    "en": "04. Self Made Women"
+   },
+   "f626797ed78a": {
+    "fr": "05. Shelter for Anger",
+    "en": "05. Shelter for Anger"
+   },
+   "4e8a112fb868": {
+    "fr": "Jar • Face arrière",
+    "en": "Jar • Back"
+   },
+   "b249f9eed762": {
+    "fr": "Une conception Graphique : tanguy Ferrand, Photo : Lora ferrand.",
+    "en": "Graphic design: Tanguy Ferrand, photo: Loran Ferrand."
+   },
+   "f500e42c18d5": {
+    "fr": "Guitare: Gilles, Guitare: florent, Basse: Jeanjean, Batterie: Regis, Chant: Tony",
+    "en": "Guitar: Gilles, guitar: Florent, bass: Jeanjean, drums: Regis, vocals: Tony"
+   },
+   "b3703b8b4923": {
+    "fr": "Paroles et musique: Jar",
+    "en": "Words and music: Jar"
+   },
+   "65c1e1af1d14": {
+    "fr": "contact: Mickael Lairy",
+    "en": "contact: Mickael Lairy"
+   },
+   "2963a450afc5": {
+    "fr": "conception graphique : Tanguy Ferrand",
+    "en": "graphic design: Tanguy Ferrand"
+   },
+   "40145aa9a641": {
+    "fr": "Photo : Loran Ferrand",
+    "en": "Photo: Loran Ferrand"
+   },
+   "dd19f44bba80": {
+    "fr": "Jar • intérieur du boitier de Cd",
+    "en": "Jar • inside the CD case"
+   },
+   "2b782dda27ba": {
+    "fr": "Répétitions effectuées aux courans 53200 Longuefuye.",
+    "en": "Rehearsals at les Courans, 53200 Longuefuye."
+   },
+   "a88cf7ea2923": {
+    "fr": "Remerciements : Nono, Tanguy, Mickaêl, Nos parents",
+    "en": "Thanks: Nono, Tanguy, Mickaêl, our parents"
+   },
+   "79758e996b55": {
+    "fr": "Jérome, Christophe, Cédric, Saint Erblon, Novembre",
+    "en": "Jérome, Christophe, Cédric, Saint Erblon, November"
+   },
+   "c610b178a74f": {
+    "fr": "Daniel du palais, Cavirok d'Échemiré, les copains du monde",
+    "en": "Daniel du Palais, Cavirok from Échemiré, friends from all over"
+   },
+   "e9280223b45b": {
+    "fr": "Le Fjt, Aline&Jean Marie, aux Tomyknockers, L'abbé Frock",
+    "en": "Le Fjt, Aline & Jean Marie, the Tomyknockers, L'abbé Frock"
+   },
+   "15caf8909ada": {
+    "fr": "Et tous les autres qui se reconnaîtront, au public",
+    "en": "And all the others who will recognise themselves, and the audience"
+   },
+   "026412713cdb": {
+    "fr": "Les dates clés de l'histoire du groupe.",
+    "en": "The key dates in the band's story."
+   },
+   "3cacfd9c7fb9": {
+    "fr": "1988",
+    "en": "1988"
+   },
+   "71e7191badd2": {
+    "fr": "La K7 : DESASTRAX",
+    "en": "The cassette: DESASTRAX"
+   },
+   "42d46bf114aa": {
+    "fr": "Régis, Tanguy, Tony et Loran, implantés à Saint-Erblon, entre Rennes et Angers, sous influence alternative française. Le quatuor privilégie la chanson à texte, enregistre une K7 de quatre titres sur un magnéto d'époque — puis se dissout en 1988.",
+    "en": "Régis, Tanguy, Tony and Loran, based in Saint-Erblon between Rennes and Angers, under French alternative influence. The four of them went for songs with words, recorded a four-track cassette on a tape recorder of the time — then split up in 1988."
+   },
+   "643fec50e79c": {
+    "fr": "1991",
+    "en": "1991"
+   },
+   "0766d8285f80": {
+    "fr": "Le retour : EXPLICIT",
+    "en": "The comeback: EXPLICIT"
+   },
+   "ce7c2b10620f": {
+    "fr": "Tony, Régis et Loran continuent de jouer tant bien que mal. Gilles arrive et s'investit immédiatement dans la basse ; Régis passe à la batterie, Loran à la guitare, Tony au chant. Explicit est né, en passant par Soul Famous Carpet.",
+    "en": "Tony, Régis and Loran kept playing as best they could. Gilles joined and went straight to the bass; Régis moved to drums, Loran to guitar, Tony to vocals. Explicit was born, with a stop at Soul Famous Carpet along the way."
+   },
+   "271a77093bf0": {
+    "fr": "1993",
+    "en": "1993"
+   },
+   "80c6bde5b775": {
+    "fr": "Premier concert : NO MUG",
+    "en": "First gig: NO MUG"
+   },
+   "6075aa1ae33f": {
+    "fr": "Jérôme rejoint le quatuor. Premier concert à Château-Gontier (53) le 2 septembre 1993, suivi d'une bonne prestation. Avec du recul, Explicit devient No Mug. Loran rejoint la capitale.",
+    "en": "Jérôme joined the four. First gig in Château-Gontier (53) on 2 September 1993, and a good one. Looking back, Explicit became No Mug. Loran left for Paris."
+   },
+   "204d1b68ca70": {
+    "fr": "1996",
+    "en": "1996"
+   },
+   "9f08549f9fd5": {
+    "fr": "Fusion hardcore : HELIUM",
+    "en": "Hardcore fusion: HELIUM"
+   },
+   "bfdb609530f2": {
+    "fr": "Le groupe prend le trait de la fusion hardcore américaine, sur des influences Dischord (Fugazi, Quicksand) et grunge.",
+    "en": "The band took the line of American hardcore fusion, with Dischord influences (Fugazi, Quicksand) and grunge."
+   },
+   "3c4a80dbdfac": {
+    "fr": "1998",
+    "en": "1998"
+   },
+   "b77df4da500f": {
+    "fr": "Le CD : JAR",
+    "en": "The CD: JAR"
+   },
+   "3666ecaf5232": {
+    "fr": "Jérôme quitte la formation, Jean-Marie et Florent arrivent. Le groupe atteint son apogée et enregistre un CD 5 titres en studio. Fin 1999, il se sépare et cesse toute activité pendant deux ans.",
+    "en": "Jérôme left, Jean-Marie and Florent came in. The band reached its peak and recorded a five-track CD in a studio. At the end of 1999 it broke up and stopped everything for two years."
+   },
+   "2e8c0277e396": {
+    "fr": "2002",
+    "en": "2002"
+   },
+   "1ec9326621c9": {
+    "fr": "Le retour sans Tony : CODEINE",
+    "en": "The comeback without Tony: CODEINE"
+   },
+   "12c923bc9aa2": {
+    "fr": "Le groupe remet ça sans Tony, avec de nouvelles influences (Incubus, Sevendust) et un nouveau chanteur, Jean-François. Création de l'association Tous Azic'Muts avec Hippy Groovy.",
+    "en": "The band did it again without Tony, with new influences (Incubus, Sevendust) and a new singer, Jean-François. Creation of the Tous Azic'Muts association with Hippy Groovy."
+   },
+   "ab165cb90d19": {
+    "fr": "2003",
+    "en": "2003"
+   },
+   "9cacdb38597f": {
+    "fr": "Le dernier virage",
+    "en": "The last turn"
+   },
+   "1ea4438f606e": {
+    "fr": "Décembre 2003 : Gilles quitte le groupe pour raisons professionnelles. Le son part vers le métal, Florent passe à sept cordes.",
+    "en": "December 2003: Gilles left the band for work reasons. The sound went towards metal, Florent moved to seven strings."
+   },
+   "667e624fb374": {
+    "fr": "2004",
+    "en": "2004"
+   },
+   "9aabc1c068da": {
+    "fr": "Les dernières dates",
+    "en": "The last dates"
+   },
+   "d21ddad876af": {
+    "fr": "Rennes (Campus Kerlan, Bruz) le 24 janvier 2004, puis Saint-Michel-de-la-Röe au festival Aperoconcert le 18 septembre 2004.",
+    "en": "Rennes (Campus Kerlan, Bruz) on 24 January 2004, then Saint-Michel-de-la-Röe at the Aperoconcert festival on 18 September 2004."
+   },
+   "bb69a2eaf16a": {
+    "fr": "WÖW : la direction professionnelle",
+    "en": "WÖW: going professional"
+   },
+   "91636b5ee01f": {
+    "fr": "Jean-François part, Alex arrive au chant et à la guitare. Le groupe devient Wöw, avec Régis, Jean-Marie et Florent, avec l'objectif de prendre une direction plus professionnelle.",
+    "en": "Jean-François left, Alex came in on vocals and guitar. The band became Wöw, with Régis, Jean-Marie and Florent, aiming for a more professional direction."
+   },
+   "084b3af47af3": {
+    "fr": "2012",
+    "en": "2012"
+   },
+   "7fd3168d519e": {
+    "fr": "La fin de l'aventure",
+    "en": "The end of it"
+   },
+   "dda53145647f": {
+    "fr": "Les concerts continuent dans la région jusqu'à la disparition du groupe, en 2012.",
+    "en": "Gigs went on around the area until the band disappeared, in 2012."
+   },
+   "e575dccc7114": {
+    "fr": "2022",
+    "en": "2022"
+   },
+   "eda2b0297f66": {
+    "fr": "CRUMBLE HEAD : le projet",
+    "en": "CRUMBLE HEAD: the project"
+   },
+   "7b148965099a": {
+    "fr": "Régis, Loran, Gilles et Tony se retrouvent autour d'un nom donné après une soirée, pour une reconstruction du groupe. Des morceaux commencent à naître en 2022, pour le plaisir, puis quelques autres — rien de concret pour le moment. Un aperçu est à écouter dans",
+    "en": "Régis, Loran, Gilles and Tony got back together around a name given after a party, to rebuild the band. Tracks started to come in 2022, for the fun of it, then a few more — nothing concrete for now. A sample can be heard in"
+   },
+   "3a52ce780950": {
+    "fr": ".",
+    "en": "."
+   },
+   "31f646e3796d": {
+    "fr": "Partagez vos souvenirs et restez informés.",
+    "en": "Share your memories and stay in touch."
+   },
+   "9f848a98deef": {
+    "fr": "Contactez l'équipe des archives",
+    "en": "Contact the archive team"
+   },
+   "587930841fce": {
+    "fr": "Pour proposer des archives, de la presse ou une anecdote. Indiquez-le dans le message, nous vous répondrons pour la réception.",
+    "en": "To offer archives, press or a story. Say it in the message, we will reply about how to receive it."
+   },
+   "7ff20370c8e0": {
+    "fr": "Nom",
+    "en": "Name"
+   },
+   "84add5b29527": {
+    "fr": "Email",
+    "en": "Email"
+   },
+   "68f4145fee7d": {
+    "fr": "Message",
+    "en": "Message"
+   },
+   "e9ce243b4a8a": {
+    "fr": "Envoyer",
+    "en": "Send"
+   },
+   "92994da9aacf": {
+    "fr": "Restons connectés",
+    "en": "Let's stay connected"
+   },
+   "9c063aa560d7": {
+    "fr": "Inscrivez-vous à la newsletter pour recevoir les actualités sur les nouvelles mises en ligne d'archives.",
+    "en": "Sign up to the newsletter to hear about new archives going online."
+   },
+   "68b8ee57fb71": {
+    "fr": "S'inscrire",
+    "en": "Sign up"
+   },
+   "fdb4ac57de52": {
+    "fr": "Le QG des Archives",
+    "en": "The Archive HQ"
+   },
+   "c109ac46052e": {
+    "fr": "Le Bourg",
+    "en": "Le Bourg"
+   },
+   "cf0bc462d8d2": {
+    "fr": "53390 Saint Erblon",
+    "en": "53390 Saint Erblon"
+   },
+   "e3772ac4b4db": {
+    "fr": "France",
+    "en": "France"
+   },
+   "973660e9491e": {
+    "fr": "SAINT",
+    "en": "SAINT"
+   },
+   "5e0cc9717dee": {
+    "fr": "ARCHIVES",
+    "en": "ARCHIVES"
+   },
+   "138751de0188": {
+    "fr": "© 2025-2026 Archives du Groupe. Tous droits réservés.",
+    "en": "© 2025-2026 Band Archives. All rights reserved."
+   },
+   "327ed4455a06": {
+    "fr": "Site « Une jeunesse sous distorsion. »",
+    "en": "Site “A youth under distortion.”"
+   },
+   "4bd349fdd6b3": {
+    "fr": "Erblon Prod : la maison de production montée par le groupe — Saint-Erblon : le village mayennais où tout a commencé.",
+    "en": "Erblon Prod: the production company set up by the band — Saint-Erblon: the Mayenne village where it all started."
+   },
+   "a0bbaf207d18": {
+    "fr": "Message envoyé !",
+    "en": "Message sent!"
+   },
+   "3f44efb45e2c": {
+    "fr": "TEASER",
+    "en": "TEASER"
+   },
+   "9b313ccf13c1": {
+    "fr": "Archives et Histoire du Groupe Rock Métal - L'histoire de Saint Erblon.",
+    "en": "Archives and history of the rock-metal band - the story of Saint Erblon."
+   },
+   "43c7e150dbdd": {
+    "fr": "Ouvrir le menu",
+    "en": "Open the menu"
+   },
+   "1d12cdfbd87a": {
+    "fr": "Rechercher…",
+    "en": "Search…"
+   },
+   "0140946a947c": {
+    "fr": "Rechercher dans le site",
+    "en": "Search the site"
+   },
+   "29a01ae591b8": {
+    "fr": "Read this page in English",
+    "en": "Read this page in English"
+   },
+   "197cda5107b0": {
+    "fr": "Le musée du groupe : le couloir éclairé de torches, entre les guitares et les amplis",
+    "en": "The band's museum: the torch-lit corridor, between the guitars and the amps"
+   },
+   "5b23bd71b38c": {
+    "fr": "Studio",
+    "en": "Studio"
+   },
+   "19ad8ec7231e": {
+    "fr": "Interview",
+    "en": "Interview"
+   },
+   "89d8f96c77fd": {
+    "fr": "batteur",
+    "en": "drummer"
+   },
+   "daa8009d95a8": {
+    "fr": "Percussions",
+    "en": "Percussion"
+   },
+   "f02da9862134": {
+    "fr": "Chanteur puis Guitariste",
+    "en": "Singer, then guitarist"
+   },
+   "cc090ceb50e8": {
+    "fr": "Clavier puis Chant",
+    "en": "Keyboards, then vocals"
+   },
+   "998e64b426e7": {
+    "fr": "Bassiste puis Guitariste",
+    "en": "Bassist, then guitarist"
+   },
+   "bb0f8efd14dc": {
+    "fr": "Guitariste",
+    "en": "Guitarist"
+   },
+   "ae2fc5ac0032": {
+    "fr": "Bassiste",
+    "en": "Bassist"
+   },
+   "086bd9440faf": {
+    "fr": "Chanteur",
+    "en": "Singer"
+   },
+   "0427b8765d7f": {
+    "fr": "Cover Album 1",
+    "en": "Cover Album 1"
+   },
+   "b8ef91e89963": {
+    "fr": "Cover Album 2",
+    "en": "Cover Album 2"
+   },
+   "cba2edf94795": {
+    "fr": "Votre email",
+    "en": "Your email"
+   },
+   "68f711a58973": {
+    "fr": "Teaser Saint Erblon",
+    "en": "Saint Erblon teaser"
+   }
+  }
+ }
+}
