@@ -308,6 +308,10 @@
             .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
         }
         /* --- Formulaire « proposer un objet » (avec photos jointes) ------ */
+        /* Il reste ouvert si JavaScript est coupe (le lien mene alors au bloc) ;
+           avec JavaScript, il n'apparait qu'au clic sur « PROPOSER UN OBJET ». */
+        html.js .musee-formulaire { display: none; }
+        html.js .musee-formulaire.ouvert { display: block; }
         .musee-formulaire {
             max-width: 700px;
             margin: 0 auto;
@@ -321,6 +325,7 @@
             .musee-formulaire { padding: 22px; }
         }
     </style>
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
     <header>
@@ -400,7 +405,7 @@
                     il reste des pièces dans les cartons. Si tu as gardé un objet de cette histoire, ou sa photo,
                     il a sa place dans le musée.
                 </p>
-                <a href="#proposer-un-objet" class="btn"><i class="fas fa-envelope"></i> PROPOSER UN OBJET</a>
+                <a href="#proposer-un-objet" class="btn" id="ouvrir-objet" role="button" aria-expanded="false" aria-controls="proposer-un-objet"><i class="fas fa-envelope"></i> PROPOSER UN OBJET</a>
             </div>
 
             <div class="musee-formulaire" id="proposer-un-objet">
@@ -445,5 +450,22 @@
     <script src="menu.js" defer></script>
     <script src="visionneuse-photos.js" defer></script>
     <script src="photos-formulaire.js" defer></script>
+    <script>
+        // Le formulaire « proposer un objet » ne s'affiche qu'au clic sur le bouton.
+        (function () {
+            var lien = document.getElementById('ouvrir-objet');
+            var bloc = document.getElementById('proposer-un-objet');
+            if (!lien || !bloc) return;
+            lien.addEventListener('click', function (evenement) {
+                evenement.preventDefault();
+                var ouvert = bloc.classList.toggle('ouvert');
+                lien.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+                if (!ouvert) return;
+                bloc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var premier = bloc.querySelector('input:not([type="hidden"]), textarea');
+                if (premier) setTimeout(function () { premier.focus({ preventScroll: true }); }, 400);
+            });
+        })();
+    </script>
 </body>
 </html>
