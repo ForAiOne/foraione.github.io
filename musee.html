@@ -307,6 +307,19 @@
             .visionneuse-photos-nav { width: 38px; height: 38px; }
             .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
         }
+        /* --- Formulaire « proposer un objet » (avec photos jointes) ------ */
+        .musee-formulaire {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--color-bg-light);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            text-align: left;
+        }
+        @media (max-width: 620px) {
+            .musee-formulaire { padding: 22px; }
+        }
     </style>
 </head>
 <body>
@@ -387,7 +400,36 @@
                     il reste des pièces dans les cartons. Si tu as gardé un objet de cette histoire, ou sa photo,
                     il a sa place dans le musée.
                 </p>
-                <a href="index.html#community" class="btn"><i class="fas fa-envelope"></i> PROPOSER UN OBJET</a>
+                <a href="#proposer-un-objet" class="btn"><i class="fas fa-envelope"></i> PROPOSER UN OBJET</a>
+            </div>
+
+            <div class="musee-formulaire" id="proposer-un-objet">
+                <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Proposition d'objet pour le musée - Saint Erblon Archives">
+
+                    <div class="form-group">
+                        <label for="objet-nom">Nom</label>
+                        <input type="text" id="objet-nom" name="nom" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="objet-email">Email</label>
+                        <input type="email" id="objet-email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="objet-message">Message</label>
+                        <textarea id="objet-message" name="message" rows="5" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo1">Photos de l'objet <span class="form-facultatif">(facultatif)</span></label>
+                        <input type="file" id="photo1" name="photo1" accept="image/*" class="form-control form-fichier" data-photo>
+                        <input type="file" id="photo2" name="photo2" accept="image/*" class="form-control form-fichier" data-photo aria-label="Deuxième photo de l'objet">
+                        <input type="file" id="photo3" name="photo3" accept="image/*" class="form-control form-fichier" data-photo aria-label="Troisième photo de l'objet">
+                        <p class="form-aide" id="photos-etat" role="status" data-consigne="JPG, PNG ou HEIC — 3 photos maximum (10 Mo au total). Les photos sont réduites automatiquement avant l'envoi.">JPG, PNG ou HEIC — 3 photos maximum (10 Mo au total). Les photos sont réduites automatiquement avant l'envoi.</p>
+                    </div>
+                    <button type="submit" class="btn">Proposer cet objet</button>
+                </form>
             </div>
         </section>
     </main>
@@ -402,5 +444,6 @@
     <script src="recherche/recherche.js" defer></script>
     <script src="menu.js" defer></script>
     <script src="visionneuse-photos.js" defer></script>
+    <script src="photos-formulaire.js" defer></script>
 </body>
 </html>
