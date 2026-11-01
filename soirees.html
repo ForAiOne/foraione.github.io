@@ -688,6 +688,10 @@
         // hebergee sur GitHub Pages et ne peut pas joindre le VPS autrement
         // (le port 8001 n'est pas ouvert sur l'Internet).
         const URL_ATELIER = 'https://ubuntu.tail1ccb87.ts.net/presence';
+        // Repli : etat recopie dans le site par /root/presence_publier.py
+        // (minuteur toutes les 10 minutes). Sert quand le service direct est
+        // injoignable, notamment depuis un appareil connecte au tailnet.
+        const URL_ATELIER_REPLI = 'atelier.json';
         let minuteurAtelier = null;
 
         function duree(secondes) {
@@ -703,7 +707,7 @@
             return jours + (jours > 1 ? " jours" : " jour");
         }
 
-        function afficherEtatAtelier(donnees) {
+        function afficherEtatAtelier(donnees, origine) {
             const bloc = document.getElementById('atelier-etat');
             const texte = bloc.querySelector('.atelier-texte');
             if (!donnees || typeof donnees.ouvert !== 'boolean') {
@@ -715,9 +719,15 @@
             }
             if (donnees.ouvert) {
                 bloc.className = 'atelier-ouvert';
+                let releve = '';
+                if (origine === 'repli' && typeof donnees.maj === 'string') {
+                    releve = '<span class="atelier-detail">État relevé le '
+                           + donnees.maj.split('-').reverse().join('/') + '.</span>';
+                }
                 texte.innerHTML = "<strong>Atelier ouvert : dépôt traité maintenant.</strong>"
                     + " Votre photo part tout de suite dans la file de relecture et rejoint"
-                    + " la galerie dès qu'elle est validée, en général dans la foulée.";
+                    + " la galerie dès qu'elle est validée, en général dans la foulée."
+                    + releve;
                 return;
             }
             bloc.className = 'atelier-ferme';
@@ -725,6 +735,9 @@
             if (typeof donnees.age === 'number') {
                 detail = '<span class="atelier-detail">Dernier passage de l\'atelier : il y a '
                        + duree(donnees.age) + '.</span>';
+            } else if (origine === 'repli' && typeof donnees.maj === 'string') {
+                detail = '<span class="atelier-detail">État relevé le '
+                       + donnees.maj.split('-').reverse().join('/') + '.</span>';
             }
             texte.innerHTML = "<strong>Atelier fermé : dépôt traité en différé.</strong>"
                 + " Vos photos sont bien enregistrées et relues à la prochaine ouverture"
@@ -740,9 +753,24 @@
                     if (!r.ok) throw new Error('HTTP ' + r.status);
                     return r.json();
                 })
-                .then(afficherEtatAtelier)
-                .catch(function () { afficherEtatAtelier(null); })
+                .then(function (d) { afficherEtatAtelier(d, 'direct'); })
+                .catch(function () {
+                    // Service direct injoignable : adresse privee vue depuis un
+                    // appareil du tailnet, Funnel coupe... On lit l'etat recopie
+                    // dans le site (atelier.json), qui fonctionne partout.
+                    return lireEtatReplie();
+                })
                 .finally(function () { clearTimeout(delai); });
+        }
+
+        function lireEtatReplie() {
+            return fetch(URL_ATELIER_REPLI + '?t=' + Date.now(), { cache: 'no-store' })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(function (d) { afficherEtatAtelier(d, 'repli'); })
+                .catch(function () { afficherEtatAtelier(null); });
         }
 
         // Rafraichi l'etat toutes les minutes tant que la page reste ouverte,
