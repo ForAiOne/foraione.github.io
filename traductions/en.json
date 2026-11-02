@@ -3824,6 +3824,258 @@
     "fr": "Déposer mes photos",
     "en": "Drop my photos"
    }
+  },
+  "musee.html": {
+   "1ded83166fa7": {
+    "fr": "Le Musée | Saint Erblon",
+    "en": "The Museum | Saint Erblon"
+   },
+   "973660e9491e": {
+    "fr": "SAINT",
+    "en": "SAINT"
+   },
+   "b8e79044c5d0": {
+    "fr": "ERBLON",
+    "en": "ERBLON"
+   },
+   "a60dfd03146c": {
+    "fr": "ACCUEIL",
+    "en": "HOME"
+   },
+   "915496eb6b41": {
+    "fr": "ENVIRONNEMENT",
+    "en": "ENVIRONMENT"
+   },
+   "408eb1709d0a": {
+    "fr": "HISTOIRE",
+    "en": "STORY"
+   },
+   "3acf4266ffe7": {
+    "fr": "CONCERTS",
+    "en": "CONCERTS"
+   },
+   "976953cb169d": {
+    "fr": "SOIRÉES",
+    "en": "EVENINGS"
+   },
+   "0cd3dbc65ced": {
+    "fr": "ANECDOTES",
+    "en": "ANECDOTES"
+   },
+   "a85dddfc4441": {
+    "fr": "LABO",
+    "en": "LAB"
+   },
+   "1b07e82dcd27": {
+    "fr": "LIENS",
+    "en": "LINKS"
+   },
+   "230ef2a7317d": {
+    "fr": "LE MUSÉE",
+    "en": "THE MUSEUM"
+   },
+   "709b6a0c6bbf": {
+    "fr": "Les objets qui ont suivi le groupe.",
+    "en": "The objects that followed the band."
+   },
+   "2593f0c66b9c": {
+    "fr": "Le quatuor d'origine, sans instruments « normaux » : guitare à une corde, boîte de K7 en bois, synthé smooby.",
+    "en": "The original quartet, with no “normal” instruments: one-string guitar, wooden cassette box, smooby synth."
+   },
+   "8ce8c540a6a2": {
+    "fr": "Bref, tout pour réussir...",
+    "en": "In short, everything to succeed..."
+   },
+   "c11206536c93": {
+    "fr": "Ce qui a survécu de tout ça est exposé ici, photo par photo.",
+    "en": "What survived all that is exhibited here, photo by photo."
+   },
+   "413a5f818f83": {
+    "fr": "L'affiche du musée.",
+    "en": "The museum poster."
+   },
+   "ddd21669fae5": {
+    "fr": "Les pièces du musée",
+    "en": "The pieces of the museum"
+   },
+   "6a10fe1f5e60": {
+    "fr": "La collection",
+    "en": "The collection"
+   },
+   "9673ce30fe65": {
+    "fr": "Les objets qui ont suivi le groupe, encadrés comme des pièces de musée. Cliquez sur une photo pour la voir en grand.",
+    "en": "The objects that followed the band, framed like museum pieces. Click a photo to see it large."
+   },
+   "ad9e5ce83752": {
+    "fr": "La guitare de Jérôme",
+    "en": "Jérôme's guitar"
+   },
+   "da0d60baa4bb": {
+    "fr": "Guitare de Jérôme, Washburn, que j'ai récupérée lorsque Jérôme a quitté le groupe. Aujourd'hui, elle est accrochée derrière ma TV. — Tony",
+    "en": "Jérôme's guitar, a Washburn, that I got back when Jérôme left the band. Today it hangs behind my TV. — Tony"
+   },
+   "c5eecf922d86": {
+    "fr": "Ajout&eacute;e le 26/10/2026",
+    "en": "Added on 26/10/2026"
+   },
+   "0bf993cecda0": {
+    "fr": "LE MUSÉE S'AGRANDIT",
+    "en": "THE MUSEUM IS GROWING"
+   },
+   "0408e2ba8fe3": {
+    "fr": "Les vitrines ne sont pas toutes remplies.",
+    "en": "The display cases are not all filled."
+   },
+   "fda302a9e675": {
+    "fr": "La batterie Tama, les amplis du sous-sol, les K7 de Desastrax, les affiches, les pochettes : il reste des pièces dans les cartons. Si tu as gardé un objet de cette histoire, ou sa photo, il a sa place dans le musée.",
+    "en": "The Tama drum kit, the amps from the basement, the Desastrax cassettes, the posters, the covers: there are still pieces in the boxes. If you kept an object from this story, or its photo, it has its place in the museum."
+   },
+   "a6bb6d5ee3da": {
+    "fr": "PROPOSER UN OBJET",
+    "en": "SUGGEST AN OBJECT"
+   },
+   "7ff20370c8e0": {
+    "fr": "Nom",
+    "en": "Name"
+   },
+   "84add5b29527": {
+    "fr": "Email",
+    "en": "Email"
+   },
+   "68f4145fee7d": {
+    "fr": "Message",
+    "en": "Message"
+   },
+   "1d07a4d14535": {
+    "fr": "Photos de l'objet",
+    "en": "Photos of the object"
+   },
+   "6d7d6db41825": {
+    "fr": "(facultatif)",
+    "en": "(optional)"
+   },
+   "8ddba47f338a": {
+    "fr": "JPG, PNG ou HEIC — 3 photos maximum (10 Mo au total). Les photos sont réduites automatiquement avant l'envoi.",
+    "en": "JPG, PNG or HEIC — 3 photos maximum (10 MB in total). The photos are reduced automatically before sending."
+   },
+   "c7010b586bd8": {
+    "fr": "Proposer cet objet",
+    "en": "Suggest this object"
+   },
+   "5e0cc9717dee": {
+    "fr": "ARCHIVES",
+    "en": "ARCHIVES"
+   },
+   "138751de0188": {
+    "fr": "© 2025-2026 Archives du Groupe. Tous droits réservés.",
+    "en": "© 2025-2026 Band Archives. All rights reserved."
+   },
+   "327ed4455a06": {
+    "fr": "Site « Une jeunesse sous distorsion. »",
+    "en": "Site “A youth under distortion.”"
+   },
+   "d351de663be4": {
+    "fr": "Le musée des objets du groupe : les pièces qui ont suivi Saint Erblon, exposées en photos.",
+    "en": "The museum of the objects of the band: the pieces that followed Saint Erblon, exhibited in photos."
+   },
+   "43c7e150dbdd": {
+    "fr": "Ouvrir le menu",
+    "en": "Open the menu"
+   },
+   "1d12cdfbd87a": {
+    "fr": "Rechercher…",
+    "en": "Search…"
+   },
+   "0140946a947c": {
+    "fr": "Rechercher dans le site",
+    "en": "Search the site"
+   },
+   "29a01ae591b8": {
+    "fr": "Read this page in English",
+    "en": "Read this page in English"
+   },
+   "9c2d0ec1e0a6": {
+    "fr": "L'affiche du musée : le hall, les blousons à clous, les guitares et la batterie",
+    "en": "The museum poster: the hall, the studded jackets, the guitars and the drums"
+   },
+   "0c4c26fd19d2": {
+    "fr": "Deuxième photo de l'objet",
+    "en": "Second photo of the object"
+   },
+   "3a482df6f7e0": {
+    "fr": "Troisième photo de l'objet",
+    "en": "Third photo of the object"
+   }
+  },
+  "studio.html": {
+   "d6b6df05a8eb": {
+    "fr": "Jukebox Vintage | Saint Erblon Archives",
+    "en": "Jukebox Vintage | Saint Erblon Archives"
+   },
+   "357c6cbb697a": {
+    "fr": "RETOUR BACKSTAGE",
+    "en": "BACK TO BACKSTAGE"
+   },
+   "07807b86665b": {
+    "fr": "Sélectionnez une lettre",
+    "en": "Select a letter"
+   },
+   "44b8a84ef873": {
+    "fr": "NOW PLAYING :",
+    "en": "NOW PLAYING:"
+   },
+   "b46f025f3d9a": {
+    "fr": "Titre de la chanson",
+    "en": "Song title"
+   },
+   "3259ad677ea8": {
+    "fr": "STOP",
+    "en": "STOP"
+   },
+   "1fad35b8ba54": {
+    "fr": "A-K",
+    "en": "A-K"
+   },
+   "0bf17cd119f8": {
+    "fr": "Sélectionnez une",
+    "en": "Select a"
+   },
+   "d6b0723355ae": {
+    "fr": "LETTRE",
+    "en": "LETTER"
+   },
+   "41c774393e4e": {
+    "fr": "puis un",
+    "en": "then a"
+   },
+   "f0aaf0c66c06": {
+    "fr": "CHIFFRE",
+    "en": "NUMBER"
+   },
+   "e54eace46c09": {
+    "fr": "pour lancer la musique",
+    "en": "to start the music"
+   },
+   "eb820320a3d4": {
+    "fr": "Jukebox Vintage - Sélectionnez votre musique",
+    "en": "Jukebox Vintage - Select your music"
+   },
+   "1d12cdfbd87a": {
+    "fr": "Rechercher…",
+    "en": "Search…"
+   },
+   "0140946a947c": {
+    "fr": "Rechercher dans le site",
+    "en": "Search the site"
+   },
+   "29a01ae591b8": {
+    "fr": "Read this page in English",
+    "en": "Read this page in English"
+   },
+   "804fe32bcfac": {
+    "fr": "Jukebox Vintage",
+    "en": "Jukebox Vintage"
+   }
   }
  }
 }
