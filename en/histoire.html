@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Band history: the Rotoplo Fires, Desastrax, Explicit, No Mug, Helium, Jar and Codéine — Saint-Erblon, Mayenne.">
+    <title>History | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .periode {
+            max-width: 900px;
+            margin: 0 auto 28px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+            border-left: 3px solid var(--color-primary);
+            transition: 0.3s;
+        }
+        .periode:hover { transform: translateX(6px); }
+        .periode.lieu {
+            border-left-color: var(--color-primary-hover);
+            background: linear-gradient(90deg, rgba(185, 29, 29, 0.12), var(--color-bg-card) 55%);
+        }
+        .periode.lieu .periode-annee { font-size: 1.9rem; }
+        .periode-annee {
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .periode-nom {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .periode p { color: #ccc; margin-bottom: 12px; }
+        .periode p:last-child { margin-bottom: 0; }
+        .source {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 16px 22px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .grimoire {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+        }
+        .grimoire h3 { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 18px; }
+        .grimoire p { color: #ccc; margin-bottom: 12px; }
+        table.lineups { width: 100%; border-collapse: collapse; }
+        table.lineups th, table.lineups td {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #333;
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+        table.lineups th {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-size: 0.85rem;
+        }
+        table.lineups td:first-child { font-family: var(--font-head); color: #fff; white-space: nowrap; }
+        .style-courant {
+            display: inline-block;
+            background: rgba(185, 29, 29, 0.15);
+            border: 1px solid rgba(185, 29, 29, 0.5);
+            color: var(--color-text-main);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 3px 4px 3px 0;
+            font-size: 0.85rem;
+        }
+        /* --- Illustrations : photos et videos d'archives --- */
+        .media-histoire {
+            max-width: 900px;
+            margin: 20px auto 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .media-histoire figure {
+            margin: 0;
+            flex: 0 1 280px;
+            min-width: 0;
+            max-width: 100%;
+        }
+        .media-histoire figure.large { flex-basis: 100%; max-width: 100%; }
+        .media-histoire.centre { justify-content: center; }
+        .media-histoire img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 460px;
+            margin: 0 auto;
+        }
+        .media-histoire img,
+        .media-histoire .vignette {
+            display: block;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+            background: #000;
+        }
+        .media-histoire figcaption {
+            color: var(--color-text-muted);
+            font-size: 0.82rem;
+            line-height: 1.4;
+            padding-top: 7px;
+        }
+        .media-histoire .media-date {
+            color: var(--color-primary);
+            font-family: var(--font-head);
+            letter-spacing: 1px;
+        }
+        /* --- Vignette de video : image de couverture + bouton de lecture --- */
+        .vignette {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.25s;
+        }
+        .vignette:hover,
+        .vignette:focus-visible {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        .vignette img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+            max-height: none;
+        }
+        .vignette-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(185, 29, 29, 0.88);
+            color: #fff;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3px;
+            box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: 0.25s;
+            pointer-events: none;
+        }
+        .vignette:hover .vignette-play,
+        .vignette:focus-visible .vignette-play {
+            background: var(--color-primary-hover, #d62828);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .vignette-duree {
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.68rem;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+        /* --- Visionneuse : la video en grand, par-dessus la page --- */
+        .visionneuse {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.93);
+        }
+        .visionneuse[hidden] { display: none; }
+        .visionneuse video {
+            max-width: min(1100px, 96vw);
+            max-height: 86vh;
+            width: auto;
+            height: auto;
+            background: #000;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+        }
+        .visionneuse-fermer {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .visionneuse-fermer:hover { background: var(--color-primary); }
+        .visionneuse-erreur {
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(185, 29, 29, 0.9);
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .visionneuse-erreur[hidden] { display: none; }
+        .visionneuse-erreur a { color: #fff; text-decoration: underline; }
+        body.visionneuse-ouverte { overflow: hidden; }
+        @media (max-width: 768px) {
+            .periode, .grimoire { padding: 24px 20px; }
+            .periode-annee { font-size: 2rem; }
+            table.lineups th, table.lineups td { padding: 10px 6px; font-size: 0.85rem; }
+            .media-histoire figure { flex-basis: 100%; }
+            .visionneuse { padding: 12px; }
+            .visionneuse video { max-height: 74vh; }
+            .visionneuse-fermer { top: 8px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
+        }
+
+        /* === LA VISIONNEUSE DE PHOTOS (agrandissement au clic) === */
+        /* Le script visionneuse-photos.js fabrique lui-meme la boite
+           (#visionneuse-photos) : rien a declarer dans la page. Seul cet
+           habillage est ici. */
+        body.photo-ouverte { overflow: hidden; }
+        .visionneuse-photos {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            padding: 3.4rem 1.2rem 2.4rem;
+            background: rgba(6, 7, 8, 0.95);
+        }
+        .visionneuse-photos[hidden] { display: none; }
+        .visionneuse-photos-figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            max-width: min(1400px, 100%);
+        }
+        .visionneuse-photos-figure img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 76vh;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--border-radius);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+        }
+        .visionneuse-photos-legende {
+            text-align: center;
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .visionneuse-photos-legende[hidden] { display: none; }
+        .visionneuse-photos-titre {
+            display: block;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-main);
+        }
+        .visionneuse-photos-titre[hidden] { display: none; }
+        .visionneuse-photos-details {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-details[hidden] { display: none; }
+        .visionneuse-photos-compteur {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-compteur[hidden] { display: none; }
+        .visionneuse-photos-fermer {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .visionneuse-photos-fermer:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .visionneuse-photos-nav:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav[hidden] { display: none; }
+        .media-histoire img[data-zoom] { cursor: zoom-in; }
+        .media-histoire img[data-zoom]:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+        @media (max-width: 620px) {
+            .visionneuse-photos { padding: 3rem 0.6rem 1.2rem; gap: 0.45rem; }
+            .visionneuse-photos-figure img { max-height: 68vh; }
+            .visionneuse-photos-nav { width: 38px; height: 38px; }
+            .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/histoire.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/histoire.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/histoire.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/histoire.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="../environnement.html">ENVIRONMENT</a>
+                <a href="../histoire.html" style="color:var(--color-primary)">STORY</a>
+                <a href="../concerts.html">CONCERTS</a>
+                <a href="../soirees.html">EVENINGS</a>
+                <a href="../interview.html">ANECDOTES</a>
+                <a href="../labo.html">LAB</a>
+                <a href="../aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../histoire.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/histoiredg.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>THE STORY</h1>
+                <p>The original text, as it was written at the time.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>THE STORY OF THE BAND</h2>
+                <p>Taken as it is from the band's archives.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">AT THE START</div>
+                <div class="periode-nom">Les Rotoplo Fires</div>
+                <p>At the start, a quartet “les rotoplo fires”, which makes up a third of the base of Jar. Tanguy on drums (with the sound of a wooden cassette box hit with energy...), Loran singer — and lady-killer hero to roll on the ground for —, Régis on electric guitar (with one string...) and Tony on the smooby synth. In short, everything to succeed...</p>
+                <p>Based in Saint-Erblon in Mayenne, not far from Rennes and Angers. The band stays mainly influenced by the French alternative wave (berrus, Parabellum, OTH...).</p>
+            </div>
+
+            <div class="media-histoire centre">
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/desast.mp4" data-poster="../videos/desast.jpg" aria-label="Play the video: Desastrax, the band as a cartoon">
+                        <img src="../videos/desast.jpg" alt="Desastrax, the band as a cartoon" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:05</span>
+                    </button>
+                    <figcaption><span class="media-date">1988</span> &mdash; Desastrax, the band as a cartoon.</figcaption>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1988</div>
+                <div class="periode-nom">Desastrax</div>
+                <p>This one does not take long to change name, naturally favouring songs with words... it was <strong>DESASTRAX</strong>, the time to record a four-track cassette on a tape recorder of the time. And the band dissolves in 1988. Tanguy leaves Desastrax and a bit later starts the band <strong>Totem Stille</strong>, in Paris.</p>
+            </div>
+
+            <div class="media-histoire">
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/desastrax.mp4" data-poster="../videos/desastrax.jpg" aria-label="Play the video Desastrax, 1988">
+                        <img src="../videos/desastrax.jpg" alt="Desastrax, 1988" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
+                    <figcaption><span class="media-date">1988</span> &mdash; Desastrax.</figcaption>
+                </figure>
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/tanguy-boite.mp4" data-poster="../videos/tanguy-boite.jpg" aria-label="Play the video: Tanguy on percussion">
+                        <img src="../videos/tanguy-boite.jpg" alt="Tanguy on percussion" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
+                    <figcaption>Tanguy, drums (wooden cassette box).</figcaption>
+                </figure>
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/regis-guitare.mp4" data-poster="../videos/regis-guitare.jpg" aria-label="Play the video: Régis on guitar">
+                        <img src="../videos/regis-guitare.jpg" alt="Régis on guitar" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
+                    <figcaption>Régis, one-string guitar.</figcaption>
+                </figure>
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/tony-synthe.mp4" data-poster="../videos/tony-synthe.jpg" aria-label="Play the video: Tony on synthesizer">
+                        <img src="../videos/tony-synthe.jpg" alt="Tony on synthesizer" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
+                    <figcaption>Tony, synthesizer.</figcaption>
+                </figure>
+                <figure class="vignette-video">
+                    <button class="vignette" type="button" data-video="videos/loran-chant.mp4" data-poster="../videos/loran-chant.jpg" aria-label="Play the video: Loran on vocals">
+                        <img src="../videos/loran-chant.jpg" alt="Loran on vocals" loading="lazy">
+                        <span class="vignette-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="vignette-duree">0:06</span>
+                    </button>
+                    <figcaption>Loran, vocals.</figcaption>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1991</div>
+                <div class="periode-nom">Explicit, passing through Soul Famous Carpet</div>
+                <p>Tony, Régis and Loran meet from time to time to play and get involved musically as best they can (start of the struggle...) until 1991, with the arrival of Gilles who goes straight into the bass. Régis moves to drums, Loran to guitar and Tony to vocals: the progress shows. <strong>“Explicit”</strong> was born passing through “Soul Famous Carpet”. Régis keeping at it...</p>
+            </div>
+
+            <div class="media-histoire centre">
+                <figure>
+                    <img src="../images/soul_famous_carpets.jpg" alt="Soul Famous Carpet logo" loading="lazy" data-zoom>
+                    <figcaption><span class="media-date">1991</span> &mdash; Soul Famous Carpet.</figcaption>
+                </figure>
+            </div>
+
+            <div class="periode lieu">
+                <div class="periode-annee"><i class="fas fa-house-chimney"></i></div>
+                <div class="periode-nom">The basement</div>
+                <p>The rehearsals happened in the <strong>basement of the family house</strong>, in Saint-Erblon: the amps downstairs, the parents in front of the television upstairs. The sound went up through the floor, and it is in this raw acoustics that the sound of the band was shaped.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1993</div>
+                <div class="periode-nom">No Mug — first concert</div>
+                <p>The rock explosion of Western France (Angers especially) pushes them to create fast. While the songs go by, Jérôme joins the quartet and the various influences multiply (Fugazi, Sonic Youth, les Thugs, les Skippies... and the unavoidable Nirvana).</p>
+                <p>Their first concert happened in Château-Gontier (53) on 2 September 1993, followed by a good performance. Looking back, Explicit becomes <strong>“No Mug”</strong>. Loran ends up joining the capital.</p>
+            </div>
+
+            <div class="media-histoire centre">
+                <figure class="large">
+                    <img src="../images/rockerlst.jpg" alt="Rehearsal in the garage" loading="lazy" data-zoom>
+                    <figcaption><span class="media-date">1993</span> &mdash; Rehearsal in the garage.</figcaption>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1996</div>
+                <div class="periode-nom">Helium</div>
+                <p>The band then takes the line of American hardcore fusion under the name<strong>HELIUM</strong>, in 1996.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1998</div>
+                <div class="periode-nom">Jar</div>
+                <p>It is Jérôme's turn to leave the line-up, to make room for Jean-Jean and Florent for <strong>JAR</strong> in 1998. The band then reaches its peak and comes to record a 5-track CD in studio.</p>
+            </div>
+
+            <div class="media-histoire centre">
+                <figure class="large">
+                    <img src="../images/jar.jpg" alt="The cover of Jar" loading="lazy" data-zoom>
+                    <figcaption><span class="media-date">1998</span> &mdash; The cover of Jar.</figcaption>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">1999</div>
+                <div class="periode-nom">The split</div>
+                <p>At the end of 1999 the band splits and stops all activity for 2 years. Some, missing music, then join other bands on the side (Jean-Marie joins Hippy Groovy and the Stylee Mens).</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2002</div>
+                <div class="periode-nom">Codeine, without Tony</div>
+                <p>But in early 2002 the band does it again under the name <strong>CODEINE</strong>, WITHOUT TONY, and builds on new musical influences like INCUBUS and SEVENDUST, bringing in a new one: “Jean-François” on vocals.</p>
+                <p>The band then starts creating a music association: “ <strong>TOUS AZIC'MUTS</strong> ”, and so becomes, with Hippy Groovy, one of the 2 first members of the association.</p>
+            </div>
+
+            <div class="media-histoire centre">
+                <figure class="large">
+                    <img src="../images/codrepet.jpg" alt="Four musicians rehearsing — drums, djembe and electric guitar" loading="lazy" data-zoom>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2003</div>
+                <div class="periode-nom">A more metal style</div>
+                <p>December 2003: now it is Gilles who has to leave the band for work reasons. From then on the rest of the band keeps going and takes inspiration from a more metal style, with Florent moving to 7 strings.</p>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2004</div>
+                <div class="periode-nom">Wöw</div>
+                <p>Jean-François (Jef) leaves the band, and <strong>Alex</strong> arrives on vocals and guitar. The band then takes the name <strong>WÖW</strong>, with Régis, Jean-Marie (Jean-Jean), Florent and Alex — the goal being to take a more professional direction.</p>
+                <p>The concerts then continue in the region, until the band disappears in 2012.</p>
+            </div>
+
+            <div class="source">
+                <i class="fas fa-info-circle"></i> The Wöw period (2004-2012) is not in the 2004 archives: it comes from Tony's memories, collected in September 2026.
+            </div>
+
+            <div class="media-histoire centre">
+                <figure>
+                    <img src="../images/wow_faceA-vignette.jpg" alt="Wöw: the record cover, the band and the logo in pink neon" loading="lazy" data-zoom>
+                </figure>
+                <figure>
+                    <img src="../images/wow_faceI-vignette.jpg" alt="Wöw: the inner sleeve — Florent, Alex, Régis and Jean-Marie and their instruments" loading="lazy" data-zoom>
+                </figure>
+            </div>
+
+            <div class="periode">
+                <div class="periode-annee">2022</div>
+                <div class="periode-nom">Crumble Head</div>
+                <p>The name we gave ourselves after an evening, for a rebuild of the band: Régis, Loran, Gilles and Tony. The first songs started to be born in 2022, like that, for the pleasure, then a few others — nothing concrete for the moment.</p>
+                <p>The songs of this project are in <a class="lien" href="../labo.html">The Lab</a>.</p>
+            </div>
+
+            <div class="source">
+                <i class="fas fa-info-circle"></i> Crumble Head is not a closed period: it is a project in progress, opened in 2022. These elements come from Tony's memories, collected in September 2026.
+            </div>
+
+            <div class="media-histoire centre">
+                <figure>
+                    <img src="../images/crumble-vignette.jpg" alt="Crumble Head: three musicians in a selfie, in a bright interior" loading="lazy" data-zoom>
+                </figure>
+            </div>
+
+            <div class="source">
+                <i class="fas fa-info-circle"></i> Text taken from the history published on the band's original site (last update: 7 September 2004), spelling aside. Two 2004 concerts have completed it since: Rennes (Campus Kerlan, Bruz) on 24 January, and Saint-Michel-de-la-Röe (Aperoconcert festival) on 18 September.
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>THE LINE-UPS</h2>
+                <p>As the archives of the time kept them, completed up to 2012.</p>
+            </div>
+            <div class="grimoire">
+                <table class="lineups">
+                    <tr>
+                        <th>Period</th>
+                        <th>Line-up</th>
+                    </tr>
+                    <tr>
+                        <td>Desastrax<br><span style="color:#777; font-size:0.8rem;">1988</span></td>
+                        <td>Tanguy (drums — wooden cassette box), Régis (one-string guitar), Tony (synthesizer), Loran (vocals)</td>
+                    </tr>
+                    <tr>
+                        <td>No Mug<br>Helium<br><span style="color:#777; font-size:0.8rem;">1991-1998</span></td>
+                        <td>Tony (vocals), Loran (guitar), Jérôme (guitar), Gilles (bass), Régis (drums)</td>
+                    </tr>
+                    <tr>
+                        <td>Jar<br><span style="color:#777; font-size:0.8rem;">1998-1999</span></td>
+                        <td>Tony (vocals), Florent (guitar), Gilles (guitar), Jean-Marie (bass), Régis (drums)</td>
+                    </tr>
+                    <tr>
+                        <td>Codéine<br><span style="color:#777; font-size:0.8rem;">2002-2004</span></td>
+                        <td>Jean-François (vocals), Florent (guitar — seven strings from 2003), Gilles (guitar, until December 2003), Jean-Marie (bass), Régis (drums)</td>
+                    </tr>
+                    <tr>
+                        <td>Wöw<br><span style="color:#777; font-size:0.8rem;">2004-2012</span></td>
+                        <td>Alex (vocals, guitar), Florent (guitar), Jean-Marie (bass), Régis (drums)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-wave-square"></i> THE EVOLUTION OF THE STYLE</h3>
+                <p>The musical style changed enormously because of the changes of players, but also because of the various musical influences the band met. The band went from a French alternative rock genre to a more American hardcore genre, being influenced by bands in the Dischord line like Fugazi and Quicksand.</p>
+                <p>The grunge boom also started a certain melody in the riffs with a punky sauce; the explosion of bands like Sonic Youth, Mudhoney, Pearl Jam, Soundgarden and necessarily Nirvana was the cause of many changes. Then it was the turn of Smashing Pumpkins, Tool, RATM... Today their musical style is closer to new metal bands like Korn, Limp Bizkit, VOD and Deftones.</p>
+                <p>Musically, one could say that <em>Jar</em> it is influenced by everything it knows: the sound is quite heavy, with a predominance of saturated guitars, the tempo stays fast without being too much, and the voice can be as melodic as not at all — up to you to judge...</p>
+                <p style="margin-top:14px;">
+                    <span class="style-courant">French alternative rock</span>
+                    <span class="style-courant">American hardcore (Fugazi, Quicksand)</span>
+                    <span class="style-courant">Grunge (Sonic Youth, Mudhoney, Pearl Jam, Soundgarden, Nirvana)</span>
+                    <span class="style-courant">Smashing Pumpkins, Tool, RATM</span>
+                    <span class="style-courant">Metal (Korn, Limp Bizkit, VOD, Deftones)</span>
+                </p>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-handshake"></i> THE TOUS AZIC'MUTS ASSOCIATION</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 20px;">For the development of current musics.</p>
+                <table class="lineups">
+                    <tr>
+                        <th>Date</th>
+                        <th>Step</th>
+                    </tr>
+                    <tr>
+                        <td>Early 2002</td>
+                        <td>Creation of the association. The 2 founding bands are Codéine and Hippy Groovy.</td>
+                    </tr>
+                    <tr>
+                        <td>8 June 2002</td>
+                        <td>First concert in Bourg-l'Évêque (49), with the band “Les allumés du Bocal”.</td>
+                    </tr>
+                    <tr>
+                        <td>End of June 2002</td>
+                        <td>Fête de la musique in Renazé (53).</td>
+                    </tr>
+                    <tr>
+                        <td>March 2003</td>
+                        <td>Hippy Groovy and the Stylee Mens record a 5-track demo in studio.</td>
+                    </tr>
+                    <tr>
+                        <td>May 2003</td>
+                        <td>Purchase of a complete PA: PA, monitors, mics, mic stands, mixing desk...</td>
+                    </tr>
+                    <tr>
+                        <td>January 2004</td>
+                        <td>Organisation of an evening at the Salsa for the new year.</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>COMPLETE THE STORY</h2>
+                <p>Live photos, posters, press articles, cassettes: there are surely boxes left to open.</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    The original text stops in 2004; the story itself goes to 2012, and a rebuild project, Crumble Head, was born in 2022. The Wöw period — its concerts, its places — still needs documenting. If you have photos, posters, press cuttings or dated memories, send them: they will join this page.
+                </p>
+                <a href="../index.html#community" class="btn"><i class="fas fa-envelope"></i> SUGGEST AN ARCHIVE</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <div class="visionneuse" id="visionneuse" hidden role="dialog" aria-modal="true" aria-label="Video playback">
+        <button class="visionneuse-fermer" type="button" aria-label="Close the video">&times;</button>
+        <video controls playsinline preload="none"></video>
+        <p class="visionneuse-erreur" hidden>Playback did not work in this browser. <a class="visionneuse-lien" href="#" download>Download the video</a>.</p>
+    </div>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+    <script src="../visionneuse.js" defer></script>
+    <script src="../visionneuse-photos.js" defer></script>
+</body>
+</html>
