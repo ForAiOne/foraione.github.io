@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Lab: tracks, riffs and experiments of the band, today. An open workspace.">
+    <title>The Lab | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .labo-intro {
+            max-width: 820px;
+            margin: 0 auto 3rem;
+            padding: 26px 30px;
+            background: var(--color-bg-light);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            color: #ccc;
+        }
+        .labo-intro p + p { margin-top: 12px; }
+        .filtres { text-align: center; margin-bottom: 2.5rem; }
+        .filtre {
+            background: transparent;
+            border: 1px solid #444;
+            color: var(--color-text-muted);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            padding: 10px 20px;
+            margin: 4px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .filtre:hover { border-color: var(--color-primary); color: var(--color-text-main); }
+        .filtre.actif { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+        /* === LECTEUR === */
+        .lecteur {
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 26px;
+            border-left: 3px solid var(--color-primary);
+        }
+        .lecteur-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+        .lecteur-note { color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+        .lecteur-boutons { display: flex; align-items: center; gap: 16px; }
+        .bouton-lecture {
+            background: var(--color-primary);
+            border: none;
+            color: #fff;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex: 0 0 auto;
+            transition: 0.25s;
+        }
+        .bouton-lecture:hover { background: var(--color-primary-hover); transform: scale(1.06); }
+        .barre {
+            flex: 1 1 auto;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        .barre-remplie {
+            height: 100%;
+            width: 0;
+            background: var(--color-primary);
+            border-radius: 3px;
+            transition: width 0.15s linear;
+        }
+        .temps {
+            font-family: var(--font-head);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            min-width: 90px;
+            text-align: right;
+        }
+        /* === LISTE === */
+        .morceaux { max-width: 900px; margin: 0 auto; }
+        .morceau {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: var(--color-bg-card);
+            border-left: 3px solid #333;
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            margin-bottom: 9px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .morceau:hover { transform: translateX(6px); border-left-color: var(--color-primary); }
+        .morceau.en-lecture { border-left-color: var(--color-primary); background: #2b2222; }
+        .morceau-icone {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #333;
+            color: var(--color-text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            font-size: 0.85rem;
+        }
+        .morceau.en-lecture .morceau-icone { background: var(--color-primary); }
+        .morceau-titre { color: var(--color-text-main); font-weight: 700; }
+        .morceau-meta { color: var(--color-text-muted); font-size: 0.85rem; }
+        .morceau-note { color: #999; font-size: 0.85rem; margin-top: 3px; }
+        .etiquette {
+            margin-left: auto;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.7rem;
+            color: var(--color-primary);
+            border: 1px solid rgba(185, 29, 29, 0.5);
+            border-radius: 20px;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+        .vide {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 25px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+        }
+        .vide i { font-size: 2.4rem; color: var(--color-primary); margin-bottom: 16px; display: block; }
+        .comment { max-width: 900px; margin: 0 auto; }
+        .etapes { display: flex; flex-wrap: wrap; gap: 18px; }
+        .etape {
+            flex: 1 1 220px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 20px;
+            border-top: 3px solid var(--color-primary);
+        }
+        .etape b {
+            display: block;
+            font-family: var(--font-head);
+            color: var(--color-primary);
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+        .etape span { color: #ccc; font-size: 0.95rem; }
+        @media (max-width: 768px) {
+            .morceau { flex-wrap: wrap; }
+            .etiquette { margin-left: 0; }
+            .temps { min-width: 70px; }
+        }
+            /* === DEPOT D'UN MORCEAU === */
+        .depot-question, .depot-formulaire {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--color-bg-light);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            padding: 26px 30px;
+            color: #ccc;
+        }
+        .depot-question h3 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .depot-question > p { margin-bottom: 8px; }
+        .depot-question-texte { color: var(--color-text-main); font-size: 1.05rem; margin: 14px 0 18px; }
+        .depot-champ { margin-bottom: 18px; }
+        .depot-champ label {
+            display: block;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+        .depot-question input[type="text"],
+        .depot-champ input[type="text"],
+        .depot-champ select,
+        .depot-champ input[type="file"] {
+            width: 100%;
+            padding: 12px 14px;
+            background: #1b1b1b;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #eee;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .depot-champ input[type="file"] { border-style: dashed; }
+        .depot-question input[type="text"]:focus,
+        .depot-champ input[type="text"]:focus,
+        .depot-champ select:focus { outline: none; border-color: var(--color-primary); }
+        .depot-statut { margin-top: 14px; font-size: 0.95rem; min-height: 1.4rem; }
+        .depot-statut.ok { color: #8fd14f; }
+        .depot-statut.erreur { color: #ff7b7b; }
+        .depot-consigne { margin-bottom: 22px; font-size: 0.95rem; }
+        .depot-progression { margin-top: 18px; }
+        .depot-progression-barre {
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .depot-progression-barre > div {
+            height: 100%;
+            width: 0;
+            background: var(--color-primary);
+            transition: width 0.15s linear;
+        }
+        .depot-petit { color: var(--color-text-muted); font-size: 0.85rem; margin-top: 12px; }
+</style>
+    <link rel="canonical" href="https://foraione.github.io/en/labo.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/labo.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/labo.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/labo.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="environnement.html">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html">EVENINGS</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="labo.html" style="color:var(--color-primary)">LAB</a>
+                <a href="aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../labo.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.62)), url('images/Labo1.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>THE LAB</h1>
+                <p>Tracks, riffs and experiments — what is being made today.</p>
+            </div>
+        </section>
+
+        <!-- INTRO -->
+        <section>
+            <div class="section-header">
+                <h2>THE OPEN WORKSHOP</h2>
+                <p>The archives tell 1988-2012. Here, we work in the present.</p>
+            </div>
+            <div class="labo-intro">
+                <p>The Lab is the sandbox of the band: a place to put down what is not finished. A riff recorded on a phone, a demo put together on a Sunday, an old song covered thirty years later, a remix, an idea of a chorus, a piece of text laid on a guitar layer.</p>
+                <p>Nothing is frozen here. The tracks arrive, change, sometimes disappear. You can listen to everything, leave everything playing in the background — and if you also have something lying around, the door is open.</p>
+                <p>Today's tracks are those of <strong>Crumble Head</strong> — the project of Régis, Loran, Gilles and Tony, born in 2022. <a class="lien" href="histoire.html">The story of the band</a> says a word about it.</p>
+            </div>
+        </section>
+
+        <!-- LECTEUR + LISTE -->
+        <section>
+            <div class="section-header">
+                <h2>TO LISTEN</h2>
+                <p>Click a track to play it.</p>
+            </div>
+
+            <div class="lecteur" id="lecteur" style="display:none;">
+                <div class="lecteur-titre" id="lecteurTitre">—</div>
+                <div class="lecteur-note" id="lecteurNote"></div>
+                <div class="lecteur-boutons">
+                    <button class="bouton-lecture" id="boutonLecture" aria-label="Play"><i class="fas fa-play"></i></button>
+                    <div class="barre" id="barre"><div class="barre-remplie" id="barreRemplie"></div></div>
+                    <div class="temps" id="temps">0:00 / 0:00</div>
+                </div>
+            </div>
+
+            <div class="filtres" id="filtres" style="display:none;">
+                <button class="filtre actif" data-cat="tous">ALL</button>
+                <button class="filtre" data-cat="originaux">ORIGINAL TRACKS</button>
+                <button class="filtre" data-cat="remasterises">REMASTERED TRACKS</button>
+                <button class="filtre" data-cat="riffs">RIFFS AND IDEAS</button>
+            </div>
+
+            <div class="morceaux" id="morceaux"></div>
+
+            <div class="vide" id="vide">
+                <i class="fas fa-sliders"></i>
+                <p style="font-size:1.1rem; color:var(--color-text-main); margin-bottom:8px;">The Lab is still empty.</p>
+                <p>The first tracks will arrive here — as soon as they are ready to be heard.</p>
+            </div>
+
+            <audio id="audio"></audio>
+        </section>
+
+        <!-- DEPOT D'UN MORCEAU -->
+        <section>
+            <div class="section-header">
+                <h2>DROP A TRACK</h2>
+                <p>No need for a studio: a phone recording is enough. MP3 only, 20 MB maximum.</p>
+            </div>
+
+            <!-- Question de securite : le formulaire n'apparait qu'apres -->
+            <div class="depot-question" id="depot-question">
+                <h3>Guests only</h3>
+                <p>To reach the drop area, answer the security question:</p>
+                <p class="depot-question-texte" id="depot-question-texte"></p>
+                <input type="text" id="depot-reponse" placeholder="Your answer" autocomplete="off">
+                <button type="button" id="depot-valider-reponse" class="btn">VALIDATE</button>
+                <div class="depot-statut" id="depot-statut-question"></div>
+            </div>
+
+            <!-- Formulaire de depot -->
+            <div class="depot-formulaire" id="depot-formulaire" hidden>
+                <p class="depot-consigne">
+                    Choose your file, give it a title, and say in one sentence what it is — a riff, a demo, a remix, a cover. That sentence becomes the note shown under the title. The track is listened to again before being put online.
+                </p>
+
+                <div class="depot-champ">
+                    <label for="depot-titre">Track title *</label>
+                    <input type="text" id="depot-titre" maxlength="80" placeholder="E.g. Sunday riff">
+                </div>
+
+                <div class="depot-champ">
+                    <label for="depot-categorie">Category</label>
+                    <select id="depot-categorie">
+                        <option value="originaux">Original track</option>
+                        <option value="remasterises">Remastered track</option>
+                        <option value="riffs">Riff / idea</option>
+                    </select>
+                </div>
+
+                <div class="depot-champ">
+                    <label for="depot-note">One sentence to present it</label>
+                    <input type="text" id="depot-note" maxlength="200" placeholder="E.g. Recorded on a phone, one night.">
+                </div>
+
+                <div class="depot-champ">
+                    <label for="depot-fichier">MP3 file (20 MB maximum)</label>
+                    <input type="file" id="depot-fichier" accept=".mp3,audio/mpeg,audio/mp3">
+                </div>
+
+                <button type="button" id="depot-envoyer" class="btn">SEND THE TRACK</button>
+
+                <div class="depot-progression" id="depot-progression" hidden>
+                    <div class="depot-progression-barre"><div id="depot-progression-remplie"></div></div>
+                    <p class="depot-statut" id="depot-progression-texte"></p>
+                </div>
+
+                <div class="depot-statut" id="depot-statut-envoi"></div>
+                <p class="depot-petit">A track that is too heavy or in another format (WAV, M4A) must first be converted to MP3.</p>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <script>
+        // ====== Chargement de la liste (labo/morceaux.json) ======
+        const LISTE = '/labo/morceaux.json';
+        // Libelles des rubriques (les cles sont celles de morceaux.json)
+        // Deux langues dans le meme fichier : le generateur recopie le script tel quel,
+        // donc on choisit l'etiquette d'apres la langue de la page.
+        const LIBELLES = (document.documentElement.lang === 'en')
+            ? { originaux: 'original', remasterises: 'remastered', riffs: 'riff & idea' }
+            : { originaux: 'original', remasterises: 'remasterisé', riffs: 'riff et idée' };
+        // Anciennes cles encore presentes dans un cache de morceaux.json
+        const ALIAS = { originaux: ['morceaux'], remasterises: ['remixes'] };
+        let morceaux = [];
+        let filtre = 'tous';
+        let indexCourant = -1;
+
+        const audio = document.getElementById('audio');
+        const lecteur = document.getElementById('lecteur');
+        const zoneVide = document.getElementById('vide');
+        const zoneListe = document.getElementById('morceaux');
+        const zoneFiltres = document.getElementById('filtres');
+        const titreEl = document.getElementById('lecteurTitre');
+        const noteEl = document.getElementById('lecteurNote');
+        const bouton = document.getElementById('boutonLecture');
+        const barre = document.getElementById('barre');
+        const remplie = document.getElementById('barreRemplie');
+        const tempsEl = document.getElementById('temps');
+
+        function duree(sec) {
+            if (!isFinite(sec)) return '0:00';
+            const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+            return m + ':' + String(s).padStart(2, '0');
+        }
+
+        function correspond(m) {
+            if (filtre === 'tous') return true;
+            if (m.categorie === filtre) return true;
+            return (ALIAS[filtre] || []).indexOf(m.categorie) !== -1;
+        }
+
+        function afficher() {
+            const visibles = morceaux.filter(correspond);
+            zoneListe.innerHTML = '';
+            if (!morceaux.length) {
+                zoneVide.style.display = 'block';
+                zoneFiltres.style.display = 'none';
+                lecteur.style.display = 'none';
+                return;
+            }
+            zoneVide.style.display = 'none';
+            zoneFiltres.style.display = 'block';
+            if (!visibles.length) {
+                zoneListe.innerHTML = '<div class="vide"><p>Aucun morceau dans cette rubrique pour l\'instant.</p></div>';
+                return;
+            }
+            visibles.forEach(m => {
+                const i = morceaux.indexOf(m);
+                const d = document.createElement('div');
+                d.className = 'morceau' + (i === indexCourant ? ' en-lecture' : '');
+                d.innerHTML =
+                    '<div class="morceau-icone"><i class="fas ' + (i === indexCourant && !audio.paused ? 'fa-volume-up' : 'fa-play') + '"></i></div>' +
+                    '<div><div class="morceau-titre">' + m.titre + '</div>' +
+                    '<div class="morceau-meta">' + (m.date || '') + (m.duree ? ' • ' + m.duree : '') + '</div>' +
+                    (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
+                    '<div class="etiquette">' + (LIBELLES[m.categorie] || m.categorie || 'morceau') + '</div>';
+                d.addEventListener('click', () => lancer(i));
+                zoneListe.appendChild(d);
+            });
+        }
+
+        function lancer(i) {
+            const m = morceaux[i];
+            if (!m) return;
+            if (i === indexCourant && !audio.paused) { audio.pause(); afficher(); return; }
+            indexCourant = i;
+            // morceaux.json donne un chemin depuis la racine du site : on le rend absolu
+            // pour qu'il marche aussi depuis /en/ (sinon /en/labo/audio/... en 404)
+            audio.src = '/' + String(m.fichier || '').replace(/^\/+/, '');
+            audio.play().catch(() => {});
+            lecteur.style.display = 'block';
+            titreEl.textContent = m.titre;
+            noteEl.textContent = m.note || '';
+            afficher();
+        }
+
+        bouton.addEventListener('click', () => {
+            if (indexCourant < 0) { if (morceaux.length) lancer(0); return; }
+            if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+        });
+        audio.addEventListener('play', () => { bouton.innerHTML = '<i class="fas fa-pause"></i>'; afficher(); });
+        audio.addEventListener('pause', () => { bouton.innerHTML = '<i class="fas fa-play"></i>'; afficher(); });
+        audio.addEventListener('timeupdate', () => {
+            const p = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+            remplie.style.width = p + '%';
+            tempsEl.textContent = duree(audio.currentTime) + ' / ' + duree(audio.duration);
+        });
+        barre.addEventListener('click', e => {
+            if (!audio.duration) return;
+            const r = barre.getBoundingClientRect();
+            audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+        });
+        document.querySelectorAll('.filtre').forEach(b => b.addEventListener('click', () => {
+            document.querySelectorAll('.filtre').forEach(x => x.classList.remove('actif'));
+            b.classList.add('actif');
+            filtre = b.dataset.cat;
+            afficher();
+        }));
+
+        fetch(LISTE, { cache: 'no-store' })
+            .then(r => r.ok ? r.json() : { morceaux: [] })
+            .then(d => { morceaux = (d && d.morceaux) || []; afficher(); })
+            .catch(() => { morceaux = []; afficher(); });
+    </script>
+
+
+    <script>
+// ===== Depôt d'un morceau : question de sécurité + envoi vers le VPS =====
+// Le site est statique : c'est le service du VPS (Tailscale Funnel, HTTPS) qui
+// recoit le fichier. Rien n'est publie sans la validation de Tony.
+(function () {
+    'use strict';
+
+    var DEPOT_URL = window.DEPOT_URL || 'https://ubuntu.tail1ccb87.ts.net/depot';
+    var TAILLE_MAX = 20 * 1024 * 1024;
+    var MAX_ESSAIS = 3;
+    var BLOCAGE_MS = 120000;
+
+    var zoneQuestion = document.getElementById('depot-question');
+    var champReponse = document.getElementById('depot-reponse');
+    var boutonReponse = document.getElementById('depot-valider-reponse');
+    var statutQuestion = document.getElementById('depot-statut-question');
+    var zoneFormulaire = document.getElementById('depot-formulaire');
+    var champTitre = document.getElementById('depot-titre');
+    var champCategorie = document.getElementById('depot-categorie');
+    var champNote = document.getElementById('depot-note');
+    var champFichier = document.getElementById('depot-fichier');
+    var boutonEnvoyer = document.getElementById('depot-envoyer');
+    var zoneProgression = document.getElementById('depot-progression');
+    var barreProgression = document.getElementById('depot-progression-remplie');
+    var texteProgression = document.getElementById('depot-progression-texte');
+    var statutEnvoi = document.getElementById('depot-statut-envoi');
+
+    if (!zoneQuestion || !zoneFormulaire) return;   // page sans bloc de depot
+
+const questions = [
+        { q: "De quel groupe fut inspiré le prénom du fils ainé de Loran", h: "c3334e9c038aac79f765c9eaf93edae51ad07b3c14670e9de8bd6e4c7f170be8" },
+        { q: "Nom du musicien qui à jeté sa guitare encore branché pendant un concert", h: "223a97e66ce2a81442eeabbb56f7762689432895810868c6e63091405bca4a94" },
+        { q: "Qui fut la victime de Loran lors d'une partie de baseball", h: "aedb71445fd9dbd8b0476dcd1c1c5d3780f9adb59344643bf2adeb7b55881408" },
+        { q: "ou était les meilleures pizzas d'après repetition", h: "4a8486029316ef8d8ad73d223fea6f049f3c6495b88ccf89e5ad6e0a8d04132d" },
+        { q: "nom de notre café préféré à chio", h: "476d574b5993b85b3c148ab94f547baf289f3d451584e7e1fc53766520c4ca1e" },
+        { q: "Qui avait un rat en guise d'animal de compagnie", h: "be6c906f71630d2f7a3370d487f9b382d83add8b489f5c250c7612b4b68f2803" },
+        { q: "Qui était Mister burn", h: "502913bfdd49eab564282dff101e6d167321237eeec66eedb2a438ed80fdeaa0" },
+        { q: "Modèle de la voiture blanche de Jérôme", h: "c38c694be0201b1fe5ab1dd8dac366a9fbd75daae63e34a23cad3a38b70c21f7" },
+        { q: "Qui à pété son tendon en jouant de son instrument", h: "b193ce3c0dc5e1a8724e2c784e34968e79f44cd4eb009878e4e57860c2f052a7" },
+        { q: "Qui chantait \"Petite boite\"", h: "9c3125a008064087e6d93acf34289862fd3a625256787183f3b05ed503050809" }
+    ];
+
+function normaliser(texte) {
+        return texte.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, '');
+    }
+
+function sha256(texte) {
+        const K = [
+            0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+            0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+            0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+            0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+            0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+            0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+            0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+            0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+        ];
+        const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+
+        const octets = [];
+        for (let i = 0; i < texte.length; i++) octets.push(texte.charCodeAt(i) & 0xff);
+        const bits = octets.length * 8;
+        octets.push(0x80);
+        while (octets.length % 64 !== 56) octets.push(0);
+        octets.push(0, 0, 0, 0);
+        octets.push((bits >>> 24) & 0xff, (bits >>> 16) & 0xff, (bits >>> 8) & 0xff, bits & 0xff);
+
+        let H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+
+        for (let bloc = 0; bloc < octets.length; bloc += 64) {
+            const w = new Array(64);
+            for (let i = 0; i < 16; i++) {
+                w[i] = (octets[bloc + 4*i] << 24) | (octets[bloc + 4*i + 1] << 16)
+                     | (octets[bloc + 4*i + 2] << 8) | octets[bloc + 4*i + 3];
+            }
+            for (let i = 16; i < 64; i++) {
+                const s0 = rotr(w[i-15], 7) ^ rotr(w[i-15], 18) ^ (w[i-15] >>> 3);
+                const s1 = rotr(w[i-2], 17) ^ rotr(w[i-2], 19) ^ (w[i-2] >>> 10);
+                w[i] = (w[i-16] + s0 + w[i-7] + s1) | 0;
+            }
+            let [a, b, c, d, e, f, g, h] = H;
+            for (let i = 0; i < 64; i++) {
+                const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+                const ch = (e & f) ^ (~e & g);
+                const t1 = (h + S1 + ch + K[i] + w[i]) | 0;
+                const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+                const maj = (a & b) ^ (a & c) ^ (b & c);
+                const t2 = (S0 + maj) | 0;
+                h = g; g = f; f = e; e = (d + t1) | 0;
+                d = c; c = b; b = a; a = (t1 + t2) | 0;
+            }
+            H = [(H[0]+a)|0, (H[1]+b)|0, (H[2]+c)|0, (H[3]+d)|0,
+                 (H[4]+e)|0, (H[5]+f)|0, (H[6]+g)|0, (H[7]+h)|0];
+        }
+        return H.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+    }
+
+    // -- Anti force brute : les essais survivent a un F5 -------------------
+    var essais = 0;
+    var bloqueJusqua = 0;
+    var minuteur = null;
+    var questionCourante = null;
+
+    function chargerCompteur() {
+        try {
+            var e = JSON.parse(localStorage.getItem('labo_acces') || '{}');
+            essais = e.essais || 0;
+            bloqueJusqua = e.bloque || 0;
+        } catch (err) { essais = 0; bloqueJusqua = 0; }
+    }
+    function sauverCompteur() {
+        try {
+            localStorage.setItem('labo_acces', JSON.stringify({ essais: essais, bloque: bloqueJusqua }));
+        } catch (err) {}
+    }
+
+    function message(zone, texte, bon) {
+        if (!zone) return;
+        zone.textContent = texte;
+        zone.className = 'depot-statut ' + (bon ? 'ok' : 'erreur');
+    }
+
+    function afficherBlocage() {
+        var restant = Math.max(1, Math.ceil((bloqueJusqua - Date.now()) / 1000));
+        message(statutQuestion, 'Trop d\'essais incorrects. Patientez ' + restant + ' s.', false);
+        champReponse.disabled = true;
+        boutonReponse.disabled = true;
+        clearTimeout(minuteur);
+        minuteur = setTimeout(nouvelleQuestion, 1000);
+    }
+
+    function nouvelleQuestion() {
+        clearTimeout(minuteur);
+        champReponse.value = '';
+        if (Date.now() < bloqueJusqua) { afficherBlocage(); return; }
+        if (bloqueJusqua > 0) { essais = 0; bloqueJusqua = 0; sauverCompteur(); }
+        champReponse.disabled = false;
+        boutonReponse.disabled = false;
+        questionCourante = questions[Math.floor(Math.random() * questions.length)];
+        document.getElementById('depot-question-texte').textContent = questionCourante.q + ' ?';
+        statutQuestion.textContent = '';
+        statutQuestion.className = 'depot-statut';
+        champReponse.focus();
+    }
+
+    function ouvrirFormulaire() {
+        zoneQuestion.hidden = true;
+        zoneFormulaire.hidden = false;
+        try { sessionStorage.setItem('labo_depot_ouvert', '1'); } catch (err) {}
+        if (champTitre) champTitre.focus();
+    }
+
+    function verifierReponse() {
+        if (!questionCourante) return;
+        var donnee = normaliser(champReponse.value);
+        if (!donnee) { message(statutQuestion, 'Écris une réponse.', false); return; }
+        if (sha256(donnee) === questionCourante.h) {
+            sauverCompteur();
+            message(statutQuestion, 'Accès accordé.', true);
+            setTimeout(ouvrirFormulaire, 350);
+            return;
+        }
+        essais += 1;
+        if (essais >= MAX_ESSAIS) {
+            essais = 0;
+            bloqueJusqua = Date.now() + BLOCAGE_MS;
+            sauverCompteur();
+            afficherBlocage();
+            return;
+        }
+        sauverCompteur();
+        // On laisse le message a l'ecran avant de changer de question :
+        // nouvelleQuestion() efface la zone de statut.
+        message(statutQuestion, 'Réponse incorrecte. Il reste ' + (MAX_ESSAIS - essais) + ' essai(s).', false);
+        champReponse.disabled = true;
+        boutonReponse.disabled = true;
+        clearTimeout(minuteur);
+        minuteur = setTimeout(nouvelleQuestion, 1200);
+    }
+
+    boutonReponse.addEventListener('click', verifierReponse);
+    champReponse.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); verifierReponse(); }
+    });
+
+    // -- Le formulaire -----------------------------------------------------
+    function enteteMp3(fichier, rappel) {
+        // Un MP3 commence par 'ID3' ou par une synchronisation de trame (0xFF 0xEx).
+        // On lit les 16 premiers octets : ca ecarte un fichier renomme en .mp3.
+        try {
+            var lecteur = new FileReader();
+            lecteur.onload = function () {
+                var o = new Uint8Array(lecteur.result);
+                var ok = (o.length >= 3 && o[0] === 0x49 && o[1] === 0x44 && o[2] === 0x33) ||
+                         (o.length >= 2 && o[0] === 0xFF && (o[1] & 0xE0) === 0xE0);
+                rappel(ok);
+            };
+            lecteur.onerror = function () { rappel(true); };   // lecture impossible : on laisse le serveur trancher
+            lecteur.readAsArrayBuffer(fichier.slice(0, 16));
+        } catch (err) { rappel(true); }
+    }
+
+    function octetsLisible(n) {
+        return n < 1024 * 1024 ? Math.round(n / 1024) + ' ko' : (n / 1024 / 1024).toFixed(1) + ' Mo';
+    }
+
+    function envoyer() {
+        var fichier = champFichier.files && champFichier.files[0];
+        var titre = (champTitre.value || '').trim();
+
+        statutEnvoi.textContent = '';
+        statutEnvoi.className = 'depot-statut';
+        zoneProgression.hidden = true;
+
+        if (!titre) { message(statutEnvoi, 'Donne un titre au morceau.', false); champTitre.focus(); return; }
+        if (!fichier) { message(statutEnvoi, 'Choisis un fichier MP3.', false); return; }
+        if (!/\.mp3$/i.test(fichier.name)) {
+            message(statutEnvoi, 'Seuls les fichiers MP3 sont acceptés (' + fichier.name + ').', false);
+            return;
+        }
+        if (fichier.size > TAILLE_MAX) {
+            message(statutEnvoi, 'Le fichier fait ' + octetsLisible(fichier.size) + ' : la limite est de 20 Mo.', false);
+            return;
+        }
+        if (!fichier.size) { message(statutEnvoi, 'Ce fichier est vide.', false); return; }
+
+        enteteMp3(fichier, function (bonEntete) {
+            if (!bonEntete) {
+                message(statutEnvoi, 'Ce fichier ne commence pas comme un MP3. Convertis-le en MP3 et réessaie.', false);
+                return;
+            }
+            envoyerVraiment(fichier, titre);
+        });
+    }
+
+    function envoyerVraiment(fichier, titre) {
+        var adresse = DEPOT_URL + '?' + [
+            'titre=' + encodeURIComponent(titre),
+            'categorie=' + encodeURIComponent(champCategorie.value),
+            'note=' + encodeURIComponent((champNote.value || '').trim()),
+            'fichier=' + encodeURIComponent(fichier.name),
+        ].join('&');
+
+        var requete = new XMLHttpRequest();
+        boutonEnvoyer.disabled = true;
+        boutonEnvoyer.textContent = 'ENVOI EN COURS...';
+        zoneProgression.hidden = false;
+        barreProgression.style.width = '0%';
+        texteProgression.textContent = 'Envoi de ' + octetsLisible(fichier.size) + '...';
+        texteProgression.className = 'depot-statut';
+
+        function termine() {
+            boutonEnvoyer.disabled = false;
+            boutonEnvoyer.textContent = 'ENVOYER LE MORCEAU';
+        }
+
+        requete.upload.onprogress = function (e) {
+            if (!e.lengthComputable) return;
+            var pourcent = Math.round(e.loaded / e.total * 100);
+            barreProgression.style.width = pourcent + '%';
+            texteProgression.textContent = 'Envoi : ' + pourcent + ' % (' + octetsLisible(e.loaded) + ')';
+        };
+
+        requete.onload = function () {
+            termine();
+            var reponse = {};
+            try { reponse = JSON.parse(requete.responseText); } catch (err) {}
+            if (requete.status === 200 && reponse.ok) {
+                barreProgression.style.width = '100%';
+                texteProgression.textContent = 'Fichier reçu.';
+                message(statutEnvoi, reponse.message || 'Morceau reçu : il part en validation.', true);
+                champTitre.value = '';
+                champNote.value = '';
+                champFichier.value = '';
+                setTimeout(function () { zoneProgression.hidden = true; }, 2500);
+            } else {
+                zoneProgression.hidden = true;
+                message(statutEnvoi, reponse.erreur || ('Envoi refusé (code ' + requete.status + ').'), false);
+            }
+        };
+
+        requete.onerror = function () {
+            termine();
+            zoneProgression.hidden = true;
+            message(statutEnvoi, 'Connexion impossible : vérifie ton réseau et réessaie.', false);
+        };
+
+        requete.ontimeout = function () {
+            termine();
+            zoneProgression.hidden = true;
+            message(statutEnvoi, 'L\'envoi a pris trop de temps. Réessaie depuis une meilleure connexion.', false);
+        };
+
+        requete.open('POST', adresse, true);
+        requete.timeout = 600000;                        // 10 minutes : un telephone en 4G
+        requete.setRequestHeader('Content-Type', 'audio/mpeg');
+        requete.send(fichier);
+    }
+
+    boutonEnvoyer.addEventListener('click', envoyer);
+
+    // -- Demarrage ---------------------------------------------------------
+    chargerCompteur();
+    if (Date.now() < bloqueJusqua) {
+        afficherBlocage();
+    } else {
+        nouvelleQuestion();
+    }
+})();
+
+    </script>
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+</body>
+</html>

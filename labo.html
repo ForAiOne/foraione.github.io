@@ -394,9 +394,13 @@
 
     <script>
         // ====== Chargement de la liste (labo/morceaux.json) ======
-        const LISTE = 'labo/morceaux.json';
+        const LISTE = '/labo/morceaux.json';
         // Libelles des rubriques (les cles sont celles de morceaux.json)
-        const LIBELLES = { originaux: 'original', remasterises: 'remasterisé', riffs: 'riff et idée' };
+        // Deux langues dans le meme fichier : le generateur recopie le script tel quel,
+        // donc on choisit l'etiquette d'apres la langue de la page.
+        const LIBELLES = (document.documentElement.lang === 'en')
+            ? { originaux: 'original', remasterises: 'remastered', riffs: 'riff & idea' }
+            : { originaux: 'original', remasterises: 'remasterisé', riffs: 'riff et idée' };
         // Anciennes cles encore presentes dans un cache de morceaux.json
         const ALIAS = { originaux: ['morceaux'], remasterises: ['remixes'] };
         let morceaux = [];
@@ -462,7 +466,9 @@
             if (!m) return;
             if (i === indexCourant && !audio.paused) { audio.pause(); afficher(); return; }
             indexCourant = i;
-            audio.src = m.fichier;
+            // morceaux.json donne un chemin depuis la racine du site : on le rend absolu
+            // pour qu'il marche aussi depuis /en/ (sinon /en/labo/audio/... en 404)
+            audio.src = '/' + String(m.fichier || '').replace(/^\/+/, '');
             audio.play().catch(() => {});
             lecteur.style.display = 'block';
             titreEl.textContent = m.titre;

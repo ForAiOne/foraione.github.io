@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenings | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preload" as="image" href="../images/fond-soirees.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Upload section styles */
+        #security-question {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            text-align: center;
+        }
+        #security-question h2 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+        #security-question p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+        #answer-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            background: var(--color-bg);
+            border: 1px solid #333;
+            color: white;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+        }
+        #submit-answer {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #submit-answer:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+        #upload-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            display: none;
+        }
+        #upload-section h2 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        #upload-instructions {
+            background: var(--color-bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+        #upload-embed {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        #upload-fallback {
+            text-align: center;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        #upload-fallback a {
+            color: var(--color-primary);
+        }
+        /* Etat de l'atelier : le depot part tout de suite ou attend la
+           prochaine ouverture. Alimente par https://ubuntu.tail1ccb87.ts.net/presence
+           (service soirees_serveur.py du VPS, expose par Tailscale Funnel). */
+        #atelier-etat {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1.1rem;
+            background: var(--color-bg-light);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--color-text-muted);
+        }
+        #atelier-etat strong { color: var(--color-text-main); }
+        #atelier-etat .atelier-pastille {
+            flex: none;
+            width: 10px;
+            height: 10px;
+            margin-top: 0.35rem;
+            border-radius: 50%;
+            background: #6b7280;
+            box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.15);
+        }
+        #atelier-etat.atelier-ouvert .atelier-pastille {
+            background: #4ade80;
+            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+            animation: atelier-pouls 2s ease-in-out infinite;
+        }
+        #atelier-etat.atelier-ferme .atelier-pastille {
+            background: #fbbf24;
+            box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.16);
+        }
+        #atelier-etat.atelier-inconnu .atelier-pastille { background: #9ca3af; }
+        #atelier-etat .atelier-detail {
+            display: block;
+            margin-top: 0.25rem;
+            font-size: 0.78rem;
+            color: #6b7280;
+        }
+        @keyframes atelier-pouls {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #atelier-etat.atelier-ouvert .atelier-pastille { animation: none; }
+        }
+        .status-success {
+            color: #4ade80;
+        }
+        .status-error {
+            color: #f87171;
+        }
+        .status-info {
+            color: #60a5fa;
+        }
+        /* ---- Galerie : tirages encadres, ambiance metal ------------------- */
+        .galerie-section {
+            --acier-clair: #a8afb6;
+            --acier-sombre: #2b3034;
+            --passe-partout: #141719;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 4.5rem 1.5rem 3.5rem;
+            background:
+                radial-gradient(120% 70% at 50% 0%, rgba(185, 29, 29, 0.07) 0%, rgba(18, 18, 18, 0) 62%),
+                linear-gradient(180deg, #0f0f0f 0%, #141414 100%);
+            border-top: 1px solid #232323;
+        }
+        .galerie-entete { text-align: center; margin-bottom: 3.2rem; }
+        .galerie-entete .eyebrow {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.76rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 0.9rem;
+        }
+        .galerie-entete h2 {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-main);
+            margin: 0;
+        }
+        .galerie-entete h2::after {
+            content: "";
+            display: block;
+            width: 130px;
+            height: 3px;
+            margin: 1.2rem auto 0;
+            background: linear-gradient(90deg, var(--acier-sombre), var(--acier-clair), var(--acier-sombre));
+        }
+        .galerie-entete p {
+            margin: 1.1rem auto 0;
+            max-width: 640px;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Grille : 4 cadres par ligne, puis retour a la ligne. Les photos
+           gardent leurs proportions reelles ; chaque ligne prend la hauteur
+           de son cadre le plus haut (les plus courts laissent un vide dessous). */
+        .galerie-metal {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 2.4rem 1.8rem;
+            align-items: start;
+        }
+        /* Etat vide : tant qu'aucune photo n'est publiee, le bloc PHOTOS_AUTO
+           ne contient rien et la section ressemblerait a un grand vide.
+           Cette regle disparait d'elle-meme des la premiere photo. */
+        .galerie-section:not(:has(.oeuvre))::after {
+            content: "Les photos des soirées arriveront ici, au fil des dépôts.";
+            display: block;
+            margin-top: 0.5rem;
+            padding: 54px 20px;
+            text-align: center;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            border: 1px dashed #2a2a2a;
+        }
+        .oeuvre {
+            /* Chaque cadre est une cellule de la grille : il garde la largeur
+               de sa colonne et se cale en haut de la ligne. */
+            width: 100%;
+            margin: 0;
+            transition: transform 0.3s ease-in-out;
+        }
+        .oeuvre:hover { transform: translateY(-4px); }
+
+        /* l'encadrement : bordure acier + passe-partout, comme un tirage */
+        .cadre {
+            border: 5px solid transparent;
+            border-image: linear-gradient(140deg, #050505 0%, var(--acier-clair) 45%, var(--acier-sombre) 100%) 1;
+            padding: 14px;
+            background:
+                radial-gradient(120% 90% at 50% -10%, rgba(214, 222, 230, 0.10) 0%, rgba(20, 23, 25, 0) 62%),
+                var(--passe-partout);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        /* Le cadre epouse les proportions reelles de la photo : elle reste
+           visible en entier, jamais rognee. Le passe-partout s'adapte donc
+           a chaque image, comme un vrai encadrement. */
+        .cadre img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 78vh;
+            object-fit: contain;
+            filter: saturate(0.95) contrast(1.06);
+            transition: filter 0.35s ease-in-out;
+        }
+        .oeuvre:hover .cadre img { filter: saturate(1.08) contrast(1.12); }
+        /* lisere acier au survol : on eclaircit le cadre, pas la photo */
+        .oeuvre:hover .cadre {
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(168, 175, 182, 0.55);
+        }
+
+        .legende { padding: 0.85rem 0 0; }
+        .legende h3 {
+            margin: 0;
+            font-family: var(--font-head);
+            font-weight: 500;
+            font-size: 1.02rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--color-text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.2s ease-in-out;
+        }
+        .oeuvre:hover .legende h3 { color: var(--color-primary); }
+        .legende p {
+            margin: 0.3rem 0 0;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: var(--color-text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 4 cadres par ligne sur ordinateur, puis 2, puis 1 */
+        @media (max-width: 980px) {
+            .galerie-metal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 1.2rem; }
+        }
+        @media (max-width: 600px) {
+            .galerie-metal { grid-template-columns: minmax(0, 1fr); gap: 1.8rem; }
+            .cadre { border-width: 4px; padding: 9px; }
+            .legende h3 { font-size: 0.9rem; }
+        }
+
+        /* ---- Visionneuse de photos : agrandissement au clic --------------- */
+        /* Le script visionneuse-photos.js fabrique lui-meme la boite
+           (#visionneuse-photos) : rien a declarer dans la page. Seul cet
+           habillage est ici, avec le reste de la galerie. */
+        .cadre img { cursor: zoom-in; }
+        .cadre img:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+        body.photo-ouverte { overflow: hidden; }
+
+        .visionneuse-photos {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            padding: 3.4rem 1.2rem 2.4rem;
+            background: rgba(6, 7, 8, 0.95);
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+        }
+        .visionneuse-photos[hidden] { display: none; }
+
+        .visionneuse-photos-figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            max-width: min(1400px, 100%);
+        }
+        /* Meme encadrement que les tuiles, sans les variables de la section
+           (la boite est posee sur body, hors de .galerie-section). */
+        .visionneuse-photos-figure img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 76vh;
+            border: 5px solid transparent;
+            border-image: linear-gradient(140deg, #050505 0%, var(--acier-clair, #a8afb6) 45%, var(--acier-sombre, #2b3034) 100%) 1;
+            padding: 11px;
+            background: var(--passe-partout, #141719);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+        }
+        .visionneuse-photos-legende {
+            text-align: center;
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .visionneuse-photos-legende[hidden] { display: none; }
+        .visionneuse-photos-titre {
+            display: block;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-main);
+        }
+        .visionneuse-photos-titre[hidden] { display: none; }
+        .visionneuse-photos-details {
+            display: block;
+            margin-top: 0.35rem;
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-details[hidden] { display: none; }
+
+        .visionneuse-photos-compteur {
+            position: absolute;
+            top: 1.15rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            letter-spacing: 0.22em;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-compteur[hidden] { display: none; }
+
+        .visionneuse-photos-fermer {
+            position: absolute;
+            top: 0.9rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            line-height: 1;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #333;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+        }
+        .visionneuse-photos-fermer:hover { background: var(--color-primary); }
+
+        .visionneuse-photos-nav {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid #2c2c2c;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .visionneuse-photos-nav:hover {
+            background: var(--color-primary);
+            transform: scale(1.06);
+        }
+        .visionneuse-photos-nav[hidden] { display: none; }
+
+        @media (max-width: 600px) {
+            .visionneuse-photos { padding: 3rem 0.6rem 1.2rem; gap: 0.45rem; }
+            .visionneuse-photos-figure img { max-height: 68vh; border-width: 4px; padding: 7px; }
+            .visionneuse-photos-nav { width: 38px; height: 38px; }
+            .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/soirees.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/soirees.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/soirees.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/soirees.html">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="environnement.html">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="soirees.html" style="color:var(--color-primary)">EVENINGS</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="labo.html">LAB</a>
+                <a href="aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../soirees.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.7)), url('images/fond-soirees.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>EVENINGS</h1>
+                <p>After the music, friendship.</p>
+            </div>
+        </section>
+
+        <section id="gallery" class="galerie-section">
+            <div class="galerie-entete">
+                <span class="eyebrow">Backstage &amp; after-show</span>
+                <h2>Photo Gallery</h2>
+                <p>The evenings of the band, framed like prints. Click a shot to see it large.</p>
+            </div>
+            <div class="galerie-metal">
+                <!-- PHOTOS_AUTO_DEBUT -->
+                                <!-- Photo publiee automatiquement -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="../images/soirees/gillesguit1.jpg" alt="Gilles in the middle of a Codéine concert" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>Gilles</h3>
+                                        <p>In the middle of a Codéine concert — added on 30/10/2026</p>
+                                    </div>
+                                </div>
+                                <!-- Photo publiee automatiquement -->
+                                <div class="oeuvre">
+                                    <div class="cadre">
+                                        <img src="../images/soirees/concert.jpg" alt="concert" loading="lazy">
+                                    </div>
+                                    <div class="legende">
+                                        <h3>concert</h3>
+                                        <p>Added on 11/09/2026</p>
+                                    </div>
+                                </div>
+                                <!-- PHOTOS_AUTO_FIN -->
+            </div>
+        </section>
+
+        <!-- Security Question Section -->
+        <div id="security-question">
+            <h2>Guests only</h2>
+            <p>To reach the photo drop area, please answer the following security question:</p>
+            <p id="question-text"></p>
+            <input type="text" id="answer-input" placeholder="Your answer" autocomplete="off">
+            <button id="submit-answer">Validate</button>
+            <div id="question-status" style="margin-top:1rem; min-height:1.5rem;"></div>
+        </div>
+
+        <!-- Depot de photos : page de depot MEGA (aucun compte requis) -->
+        <div id="upload-section">
+            <h2>Photo drop</h2>
+            <div id="atelier-etat" class="atelier-inconnu" role="status" aria-live="polite">
+                <span class="atelier-pastille" aria-hidden="true"></span>
+                <span class="atelier-texte">Checking the workshop…</span>
+            </div>
+            <div id="upload-instructions">
+                <p>Click the button below: a secure drop page opens, you send your photos there (JPG, PNG…), then you come back here.</p>
+                <p>No account is needed. Every photo is reviewed before being added to the gallery.</p>
+            </div>
+            <div id="upload-embed">
+                <iframe width="250" height="54" frameborder="0" src="https://mega.nz/filerequest#!6S6s5WsFgpk!l!fr" title="Drop my photos"></iframe>
+            </div>
+            <p id="upload-fallback">The button does not show? <a href="https://mega.nz/filerequest#!6S6s5WsFgpk!l!fr" target="_blank" rel="noopener noreferrer">Open the drop page</a></p>
+        </div>
+    </main>
+
+    <footer><p class="footer-text">© 2024 Saint Erblon Archives.</p></footer>
+
+    <script>
+        // -- Controle d'acces ----------------------------------------------------
+        // AUCUNE reponse n'est ecrite en clair dans cette page : seules les
+        // empreintes SHA-256 sont stockees. Impossible de lire les reponses
+        // avec "Afficher le code source".
+        // Pour modifier une reponse :
+        //     python3 /root/soirees_hash.py "la reponse"
+        // puis remplacer la valeur de "h".
+        const questions = [
+            { q: "De quel groupe fut inspiré le prénom du fils ainé de Loran", h: "c3334e9c038aac79f765c9eaf93edae51ad07b3c14670e9de8bd6e4c7f170be8" },
+            { q: "Nom du musicien qui à jeté sa guitare encore branché pendant un concert", h: "223a97e66ce2a81442eeabbb56f7762689432895810868c6e63091405bca4a94" },
+            { q: "Qui fut la victime de Loran lors d'une partie de baseball", h: "aedb71445fd9dbd8b0476dcd1c1c5d3780f9adb59344643bf2adeb7b55881408" },
+            { q: "ou était les meilleures pizzas d'après repetition", h: "4a8486029316ef8d8ad73d223fea6f049f3c6495b88ccf89e5ad6e0a8d04132d" },
+            { q: "nom de notre café préféré à chio", h: "476d574b5993b85b3c148ab94f547baf289f3d451584e7e1fc53766520c4ca1e" },
+            { q: "Qui avait un rat en guise d'animal de compagnie", h: "be6c906f71630d2f7a3370d487f9b382d83add8b489f5c250c7612b4b68f2803" },
+            { q: "Qui était Mister burn", h: "502913bfdd49eab564282dff101e6d167321237eeec66eedb2a438ed80fdeaa0" },
+            { q: "Modèle de la voiture blanche de Jérôme", h: "c38c694be0201b1fe5ab1dd8dac366a9fbd75daae63e34a23cad3a38b70c21f7" },
+            { q: "Qui à pété son tendon en jouant de son instrument", h: "b193ce3c0dc5e1a8724e2c784e34968e79f44cd4eb009878e4e57860c2f052a7" },
+            { q: "Qui chantait \"Petite boite\"", h: "9c3125a008064087e6d93acf34289862fd3a625256787183f3b05ed503050809" }
+        ];
+
+        const MAX_ESSAIS = 3;         // essais autorises avant blocage
+        const BLOCAGE_MS = 120000;    // duree du blocage : 2 minutes
+
+        // Meme normalisation que soirees_hash.py : majuscules, accents, espaces
+        // et ponctuation sont ignores. "Cafe-Theatre" = "cafetheatre".
+        function normaliser(texte) {
+            return texte.normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]/g, '');
+        }
+
+        // SHA-256 autonome (aucune bibliotheque, fonctionne aussi sans HTTPS)
+        function sha256(texte) {
+            const K = [
+                0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+                0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+                0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+                0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+                0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+                0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+                0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+                0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+            ];
+            const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+
+            const octets = [];
+            for (let i = 0; i < texte.length; i++) octets.push(texte.charCodeAt(i) & 0xff);
+            const bits = octets.length * 8;
+            octets.push(0x80);
+            while (octets.length % 64 !== 56) octets.push(0);
+            octets.push(0, 0, 0, 0);
+            octets.push((bits >>> 24) & 0xff, (bits >>> 16) & 0xff, (bits >>> 8) & 0xff, bits & 0xff);
+
+            let H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+
+            for (let bloc = 0; bloc < octets.length; bloc += 64) {
+                const w = new Array(64);
+                for (let i = 0; i < 16; i++) {
+                    w[i] = (octets[bloc + 4*i] << 24) | (octets[bloc + 4*i + 1] << 16)
+                         | (octets[bloc + 4*i + 2] << 8) | octets[bloc + 4*i + 3];
+                }
+                for (let i = 16; i < 64; i++) {
+                    const s0 = rotr(w[i-15], 7) ^ rotr(w[i-15], 18) ^ (w[i-15] >>> 3);
+                    const s1 = rotr(w[i-2], 17) ^ rotr(w[i-2], 19) ^ (w[i-2] >>> 10);
+                    w[i] = (w[i-16] + s0 + w[i-7] + s1) | 0;
+                }
+                let [a, b, c, d, e, f, g, h] = H;
+                for (let i = 0; i < 64; i++) {
+                    const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+                    const ch = (e & f) ^ (~e & g);
+                    const t1 = (h + S1 + ch + K[i] + w[i]) | 0;
+                    const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+                    const maj = (a & b) ^ (a & c) ^ (b & c);
+                    const t2 = (S0 + maj) | 0;
+                    h = g; g = f; f = e; e = (d + t1) | 0;
+                    d = c; c = b; b = a; a = (t1 + t2) | 0;
+                }
+                H = [(H[0]+a)|0, (H[1]+b)|0, (H[2]+c)|0, (H[3]+d)|0,
+                     (H[4]+e)|0, (H[5]+f)|0, (H[6]+g)|0, (H[7]+h)|0];
+            }
+            return H.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+        }
+
+        // -- Anti force brute : les essais sont memorises, meme apres F5 --------
+        let essais = 0;
+        let bloqueJusqua = 0;
+        let minuteur = null;
+
+        function chargerCompteur() {
+            try {
+                const e = JSON.parse(localStorage.getItem('soirees_acces') || '{}');
+                essais = e.essais || 0;
+                bloqueJusqua = e.bloque || 0;
+            } catch (err) { essais = 0; bloqueJusqua = 0; }
+        }
+        function sauverCompteur() {
+            try {
+                localStorage.setItem('soirees_acces', JSON.stringify({ essais: essais, bloque: bloqueJusqua }));
+            } catch (err) {}
+        }
+
+        let currentQuestion = null;
+
+        function afficherBlocage() {
+            const restant = Math.max(1, Math.ceil((bloqueJusqua - Date.now()) / 1000));
+            const statut = document.getElementById('question-status');
+            statut.textContent = "Trop d'essais incorrects. Patientez " + restant + " s.";
+            statut.className = 'status-error';
+            document.getElementById('answer-input').disabled = true;
+            document.getElementById('submit-answer').disabled = true;
+            clearTimeout(minuteur);
+            minuteur = setTimeout(loadQuestion, 1000);
+        }
+
+        function loadQuestion() {
+            clearTimeout(minuteur);
+            document.getElementById('answer-input').value = '';
+            if (Date.now() < bloqueJusqua) { afficherBlocage(); return; }
+            if (bloqueJusqua > 0) { essais = 0; bloqueJusqua = 0; sauverCompteur(); }
+
+            const idx = Math.floor(Math.random() * questions.length);
+            currentQuestion = questions[idx];
+            document.getElementById('question-text').textContent = currentQuestion.q;
+            document.getElementById('question-status').textContent = '';
+            document.getElementById('question-status').className = '';
+            document.getElementById('answer-input').disabled = false;
+            document.getElementById('submit-answer').disabled = false;
+        }
+
+        function verifierReponse() {
+            if (Date.now() < bloqueJusqua) { afficherBlocage(); return; }
+            const statut = document.getElementById('question-status');
+            const saisie = document.getElementById('answer-input').value;
+
+            // On compare les empreintes : la reponse attendue n'existe nulle part
+            if (sha256(normaliser(saisie)) === currentQuestion.h) {
+                statut.textContent = 'Réponse correcte ! Accès accordé.';
+                statut.className = 'status-success';
+                essais = 0; bloqueJusqua = 0; sauverCompteur();
+                document.getElementById('answer-input').disabled = true;
+                document.getElementById('submit-answer').disabled = true;
+                setTimeout(() => {
+                    document.getElementById('security-question').style.display = 'none';
+                    document.getElementById('upload-section').style.display = 'block';
+                    majEtatAtelier();
+                    surveillerAtelier();
+                }, 800);
+                return;
+            }
+
+            essais++;
+            sauverCompteur();
+            if (essais >= MAX_ESSAIS) {
+                bloqueJusqua = Date.now() + BLOCAGE_MS;
+                essais = 0;
+                sauverCompteur();
+                afficherBlocage();
+                return;
+            }
+            statut.textContent = 'Réponse incorrecte. Il vous reste ' + (MAX_ESSAIS - essais) + ' essai(s).';
+            statut.className = 'status-error';
+            setTimeout(loadQuestion, 1000);
+        }
+
+        // -- Etat de l'atelier : traite maintenant ou en differe ? -------------
+        // Lu sur le service du VPS, expose par Tailscale Funnel : la page est
+        // hebergee sur GitHub Pages et ne peut pas joindre le VPS autrement
+        // (le port 8001 n'est pas ouvert sur l'Internet).
+        const URL_ATELIER = 'https://ubuntu.tail1ccb87.ts.net/presence';
+        // Repli : etat recopie dans le site par /root/presence_publier.py
+        // (minuteur toutes les 10 minutes). Sert quand le service direct est
+        // injoignable, notamment depuis un appareil connecte au tailnet.
+        const URL_ATELIER_REPLI = 'atelier.json';
+        let minuteurAtelier = null;
+
+        function duree(secondes) {
+            if (secondes < 90) return "moins de 2 minutes";
+            const minutes = Math.round(secondes / 60);
+            if (minutes < 60) return minutes + " minutes";
+            const heures = Math.floor(minutes / 60);
+            const reste = minutes % 60;
+            if (heures < 24) {
+                return heures + " h" + (reste ? " " + String(reste).padStart(2, '0') : "");
+            }
+            const jours = Math.round(heures / 24);
+            return jours + (jours > 1 ? " jours" : " jour");
+        }
+
+        function afficherEtatAtelier(donnees, origine) {
+            const bloc = document.getElementById('atelier-etat');
+            if (!bloc) return;                       // bloc absent : rien a afficher
+            const texte = bloc.querySelector('.atelier-texte');
+            if (!donnees || typeof donnees.ouvert !== 'boolean') {
+                bloc.className = 'atelier-inconnu';
+                texte.innerHTML = "<strong>État de l'atelier momentanément indisponible.</strong>"
+                    + " Votre dépôt fonctionne normalement : les photos sont conservées"
+                    + " et relues à la prochaine ouverture de l'atelier.";
+                return;
+            }
+            if (donnees.ouvert) {
+                bloc.className = 'atelier-ouvert';
+                let releve = '';
+                if (origine === 'repli' && typeof donnees.maj === 'string') {
+                    releve = '<span class="atelier-detail">État relevé le '
+                           + donnees.maj.split('-').reverse().join('/') + '.</span>';
+                }
+                texte.innerHTML = "<strong>Atelier ouvert : dépôt traité maintenant.</strong>"
+                    + " Votre photo part tout de suite dans la file de relecture et rejoint"
+                    + " la galerie dès qu'elle est validée, en général dans la foulée."
+                    + releve;
+                return;
+            }
+            bloc.className = 'atelier-ferme';
+            let detail = '';
+            if (typeof donnees.age === 'number') {
+                detail = '<span class="atelier-detail">Dernier passage de l\'atelier : il y a '
+                       + duree(donnees.age) + '.</span>';
+            } else if (origine === 'repli' && typeof donnees.maj === 'string') {
+                detail = '<span class="atelier-detail">État relevé le '
+                       + donnees.maj.split('-').reverse().join('/') + '.</span>';
+            }
+            texte.innerHTML = "<strong>Atelier fermé : dépôt traité en différé.</strong>"
+                + " Vos photos sont bien enregistrées et relues à la prochaine ouverture"
+                + " de l'atelier (souvent le lendemain). Déposez dès maintenant, c'est conservé."
+                + detail;
+        }
+
+        function majEtatAtelier() {
+            const controleur = new AbortController();
+            const delai = setTimeout(() => controleur.abort(), 5000);
+            fetch(URL_ATELIER, { cache: 'no-store', signal: controleur.signal })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(function (d) { afficherEtatAtelier(d, 'direct'); })
+                .catch(function () {
+                    // Service direct injoignable : adresse privee vue depuis un
+                    // appareil du tailnet, Funnel coupe... On lit l'etat recopie
+                    // dans le site (atelier.json), qui fonctionne partout.
+                    return lireEtatReplie();
+                })
+                .finally(function () { clearTimeout(delai); });
+        }
+
+        function lireEtatReplie() {
+            return fetch(URL_ATELIER_REPLI + '?t=' + Date.now(), { cache: 'no-store' })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(function (d) { afficherEtatAtelier(d, 'repli'); })
+                .catch(function () { afficherEtatAtelier(null); });
+        }
+
+        // Rafraichi l'etat toutes les minutes tant que la page reste ouverte,
+        // pour ne pas afficher « ouvert » alors que l'atelier vient de fermer.
+        function surveillerAtelier() {
+            clearInterval(minuteurAtelier);
+            minuteurAtelier = setInterval(function () {
+                const section = document.getElementById('upload-section');
+                if (document.visibilityState === 'visible' && section.offsetParent !== null) {
+                    majEtatAtelier();
+                }
+            }, 60000);
+        }
+
+        document.getElementById('submit-answer').addEventListener('click', verifierReponse);
+        document.getElementById('answer-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); verifierReponse(); }
+        });
+
+        chargerCompteur();
+
+        // Initialize
+        loadQuestion();
+    </script>
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../visionneuse-photos.js" defer></script>
+    <script src="../menu.js" defer></script>
+</body>
+</html>
