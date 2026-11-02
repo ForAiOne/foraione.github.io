@@ -58,10 +58,6 @@
     "fr": "NOUVEAU",
     "en": "NEW"
    },
-   "fcdcf357dd26": {
-    "fr": "1 photo(s) ajoutee(s) a la galerie des soirees",
-    "en": "1 photo(s) added to the party gallery"
-   },
    "6df94695625d": {
     "fr": "aujourd'hui",
     "en": "today"
@@ -666,7 +662,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -1348,7 +1344,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -2146,7 +2142,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -2592,7 +2588,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -3082,7 +3078,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -3472,7 +3468,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -3682,7 +3678,7 @@
   "soirees.html": {
    "023c8be7de6b": {
     "fr": "Soirées | Saint Erblon",
-    "en": "Evenings | Saint Erblon"
+    "en": "Hangouts | Saint Erblon"
    },
    "973660e9491e": {
     "fr": "SAINT",
@@ -3710,7 +3706,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
@@ -3738,7 +3734,7 @@
    },
    "cb6d978c04e8": {
     "fr": "Les soir&eacute;es du groupe, encadr&eacute;es comme des tirages. Cliquez sur un clich&eacute; pour le voir en grand.",
-    "en": "The evenings of the band, framed like prints. Click a shot to see it large."
+    "en": "The hangouts of the band, framed like prints. Click a shot to see it large."
    },
    "23ca12223bee": {
     "fr": "Gilles",
@@ -3852,7 +3848,7 @@
    },
    "976953cb169d": {
     "fr": "SOIRÉES",
-    "en": "EVENINGS"
+    "en": "HANGOUTS"
    },
    "0cd3dbc65ced": {
     "fr": "ANECDOTES",
