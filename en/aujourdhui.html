@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What the musicians of the band do today: comic books, photography, stage — and their links.">
+    <title>Today | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .activite {
+            max-width: 900px;
+            margin: 0 auto 28px;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+            border-left: 3px solid var(--color-primary);
+            transition: 0.3s;
+        }
+        .activite:hover { transform: translateX(6px); }
+        .activite-nom {
+            font-family: var(--font-head);
+            font-size: 1.9rem;
+            color: #fff;
+            line-height: 1.1;
+        }
+        .activite-role {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+            margin: 6px 0 16px;
+        }
+        .activite p { color: #ccc; margin-bottom: 16px; }
+        .activite-liens { display: flex; flex-wrap: wrap; gap: 10px; }
+        .lien-externe {
+            display: inline-block;
+            padding: 9px 16px;
+            border: 1px solid var(--color-primary);
+            border-radius: 20px;
+            color: var(--color-text-main);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.78rem;
+            transition: 0.25s;
+        }
+        .lien-externe:hover { background: var(--color-primary); color: #fff; }
+        .lien-externe i { font-size: 0.7rem; opacity: 0.8; }
+        .grimoire {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px 34px;
+        }
+        .grimoire h3 { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 18px; }
+        .grimoire p { color: #ccc; margin-bottom: 12px; }
+        .grimoire p:last-child { margin-bottom: 0; }
+        .source {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 16px 22px;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .deux-colonnes { display: flex; flex-wrap: wrap; gap: 14px; }
+        .deux-colonnes .lien-externe { flex: 0 0 auto; }
+
+        /* ---- Liens : amis, associations, festivals ------------------------ */
+        .liens-categorie {
+            max-width: 900px;
+            margin: 0 auto 18px;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+        }
+        .liens-categorie i { margin-right: 8px; }
+        .liens-categorie:not(:first-of-type) { margin-top: 38px; }
+        /* Cartes de largeur fixe : une seule carte ne s'etire pas sur toute
+           la largeur, et plusieurs se rangent cote a cote. */
+        .liens-grille {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .lien-carte {
+            flex: 0 1 280px;
+            max-width: 100%;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--color-primary);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .lien-carte:hover { transform: translateX(6px); }
+        .lien-pastille {
+            align-self: flex-start;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.66rem;
+            color: var(--color-text-muted);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 4px 10px;
+            margin-bottom: 12px;
+        }
+        .lien-nom {
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            color: #fff;
+            line-height: 1.2;
+            margin: 0 0 8px;
+        }
+        .lien-carte p { color: #ccc; font-size: 0.92rem; margin: 0 0 16px; }
+        .lien-carte .lien-externe { margin-top: auto; align-self: flex-start; }
+
+        @media (max-width: 768px) {
+            .activite, .grimoire { padding: 24px 20px; }
+            .activite-nom { font-size: 1.5rem; }
+            .lien-externe { font-size: 0.72rem; padding: 8px 12px; }
+            .lien-carte { flex: 1 1 100%; padding: 16px 18px; }
+            .lien-nom { font-size: 1.1rem; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/aujourdhui.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/aujourdhui.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/aujourdhui.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/aujourdhui.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="environnement.html">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="../soirees.html">EVENINGS</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="../labo.html">LAB</a>
+                <a href="../aujourdhui.html" style="color:var(--color-primary)">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../aujourdhui.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/art.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>TODAY</h1>
+                <p>The band stopped in 2012. They went on.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>WHAT THEY DO TODAY</h2>
+                <p>Those who held the instruments, and what they have become.</p>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Tanguy</div>
+                <div class="activite-role">Vocals — Desastrax, at the start</div>
+                <p>Today a graphic designer and comic book writer. He has signed <em>Vaudou Dou Wap</em> (2004, with Benjamin Bozonnet), <em>La Mue</em> (2007, with Léo Quiévreux), <em>Les Grands Peintres</em> (2015) and <em>Texto Maudit</em> (2018). He also runs <em>L'Écho Sonore</em>, a column about sound, in the magazine <em>Aaarg !</em>, and contributes to the Gazette du Rock of Liège.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://opalebd.com/auteurs/fiche/3138" target="_blank" rel="noopener">Author page — Opale BD <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://editions-jungle.com/auteurs/tanguy-ferrand/" target="_blank" rel="noopener">Biography and bibliography — Éditions Jungle <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Loran</div>
+                <div class="activite-role">Guitar — Desastrax, at the start</div>
+                <p>Concert photographer — his lens has followed international and French bands of the rock scene, notably U2, les Wampas, Yann Tiersen and the Ramones, with an exhibition entitled <em>Tohu-Bohu</em>. He is also co-founder, with Yoann Pouteau, of the punk and comic fanzine <em>Bullshit'n'roll</em> (since 2015) and of the festival <em>Spank</em> that goes with it.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://www.tranzistor.org/singulier-pluriel/" target="_blank" rel="noopener">Portrait of the fanzine Bullshit'n'roll — Tranzistor <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://fanzinarium.fr/fanzinarium/opac_css/index.php?id=3181&lvl=notice_display" target="_blank" rel="noopener">The fanzine in the catalogue — Le Fanzinarium <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="activite">
+                <div class="activite-nom">Alex</div>
+                <div class="activite-role">Vocals and guitar — Wöw (2004-2012)</div>
+                <p>Arrived on vocals and guitar after Jean-François left, he is today the singer of the band from Laval <strong>Octane</strong> — rock metal, more than ten years on stage and more than 150 concerts.</p>
+                <div class="activite-liens">
+                    <a class="lien-externe" href="https://groupeoctane.fr/" target="_blank" rel="noopener">Octane — the band <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-wave-square"></i> THE PROJECT: CRUMBLE HEAD</h3>
+                <p>Régis, Loran, Gilles and Tony gave themselves this name after an evening, for a rebuild of the band. Songs started to be born in 2022 — they can be heard in The Lab.</p>
+                <div class="deux-colonnes">
+                    <a class="lien-externe" href="../labo.html"><i class="fas fa-music"></i> Listen in The Lab</a>
+                    <a class="lien-externe" href="histoire.html"><i class="fas fa-book-open"></i> Read the story</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             LIENS : amis, associations, festivals, evenements, sites.
+             Une categorie par bloc ; dans chaque bloc, une carte par lien
+             (pastille + nom + une phrase + bouton externe).
+             Pour ajouter un lien : dupliquer un <article class="lien-carte">
+             dans le bloc de sa categorie, et le bloc nait s'il n'existe pas
+             encore (titre h3 + <div class="liens-grille">).
+             ================================================================== -->
+        <section id="liens">
+
+            <div class="section-header">
+                <h2>FRIENDS, ASSOCIATIONS, FESTIVALS</h2>
+                <p>The places, the festivals, the labels, the associations and the artist friends that accompanied the band.</p>
+            </div>
+
+            <!-- --- Festivals & evenements artistiques --- -->
+            <h3 class="liens-categorie"><i class="fas fa-guitar"></i> Festivals &amp; events</h3>
+            <div class="liens-grille">
+
+                <article class="lien-carte">
+                    <span class="lien-pastille">Festival — today</span>
+                    <h4 class="lien-nom">Hellfest</h4>
+                    <p>The date of every year.</p>
+                    <a class="lien-externe" href="https://hellfest.fr/" target="_blank" rel="noopener">hellfest.fr — official site <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+                <article class="lien-carte">
+                    <span class="lien-pastille">Festival — today</span>
+                    <h4 class="lien-nom">Rock'n Solex</h4>
+                    <p>We used to go there when we were students.</p>
+                    <a class="lien-externe" href="https://www.rocknsolex.fr/" target="_blank" rel="noopener">rocknsolex.fr — official site <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+            </div>
+
+            <!-- --- Salles de concert --- -->
+            <h3 class="liens-categorie"><i class="fas fa-ticket"></i> Concert halls</h3>
+            <div class="liens-grille">
+
+                <article class="lien-carte">
+                    <span class="lien-pastille">Hall — today</span>
+                    <h4 class="lien-nom">Le Chabada — Angers</h4>
+                    <p>We used to go there to see our favourite bands.</p>
+                    <a class="lien-externe" href="https://lechabada.com/" target="_blank" rel="noopener">lechabada.com — official site <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+            </div>
+
+            <!-- --- Labels & disquaires --- -->
+            <h3 class="liens-categorie"><i class="fas fa-compact-disc"></i> Labels &amp; record shops</h3>
+            <div class="liens-grille">
+
+                <article class="lien-carte">
+                    <span class="lien-pastille">Label — at the time</span>
+                    <h4 class="lien-nom">Black & Noir — Angers</h4>
+                    <p>Angers, our first reference town for rock.</p>
+                    <a class="lien-externe" href="https://fr.wikipedia.org/wiki/Black_%26_Noir" target="_blank" rel="noopener">The history of the label — Wikipedia <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+            </div>
+
+            <!-- --- Associations & collectifs : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-people-group"></i> Associations &amp; collectifs</h3>
+            <div class="liens-grille"></div>
+            -->
+
+            <!-- --- Amis artistes & groupes : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-microphone-lines"></i> Amis artistes &amp; groupes</h3>
+            <div class="liens-grille"></div>
+            -->
+
+            <!-- --- Sites & medias : bloc a creer au premier lien ---
+            <h3 class="liens-categorie"><i class="fas fa-newspaper"></i> Sites &amp; médias</h3>
+            <div class="liens-grille"></div>
+            -->
+
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>THE BAND'S PAGES</h2>
+                <p>What the band leaves online, elsewhere than here.</p>
+            </div>
+
+            <div class="grimoire">
+                <h3><i class="fas fa-link"></i> ELSEWHERE ON THE WEB</h3>
+                <p>The page <strong>NO Mug Musics</strong> on Facebook, and the channel <strong>WöW</strong> on YouTube — six videos, the oldest going back to around 2010.</p>
+                <div class="deux-colonnes">
+                    <a class="lien-externe" href="https://www.facebook.com/nomug.mug" target="_blank" rel="noopener">NO Mug Musics on Facebook <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    <a class="lien-externe" href="https://www.youtube.com/@sevendustwow" target="_blank" rel="noopener">The WöW channel on YouTube <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <p style="margin-top:18px;">The links above lead out of this site: they open in a new tab. The YouTube channel also keeps the teaser of the band, visible from the Anecdotes page.</p>
+            </div>
+
+            <div class="source">
+                <i class="fas fa-info-circle"></i> Activities and addresses checked one by one in September 2026: every link was tested before being published here. No address comes from a guess.
+            </div>
+        </section>
+
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>DID YOU PLAY IN THE BAND?</h2>
+                <p>A link, an activity, a project: this page is made for that.</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    A former member of the band has a page, an exhibition coming, a record, a workshop? Write to us: it joins this page, with or without a link.
+                </p>
+                <a href="../index.html#community" class="btn"><i class="fas fa-envelope"></i> WRITE TO US</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+</body>
+</html>

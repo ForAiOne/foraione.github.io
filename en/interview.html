@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anecdotes and interviews: the Rotoplo Fires, the basement of Saint-Erblon, the Desastrax cassette, the Jar CD, the 1999 split and the return of Codéine.">
+    <title>Anecdotes &amp; Interviews | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Rubrique « tableau de liège » --- */
+        .mur {
+            position: relative;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 44px 44px 50px;
+            border: 14px solid #553a1d;
+            border-radius: 5px;
+            background-color: #b7913f;
+            background-image:
+                repeating-linear-gradient(58deg, rgba(92,62,20,0.10) 0 2px, transparent 2px 5px),
+                repeating-linear-gradient(-47deg, rgba(122,86,30,0.10) 0 2px, transparent 2px 6px),
+                radial-gradient(120% 80% at 15% 4%, rgba(255,226,150,0.30), transparent 55%),
+                radial-gradient(100% 70% at 86% 96%, rgba(78,48,10,0.38), transparent 62%),
+                linear-gradient(160deg, #cda65f 0%, #bb9040 45%, #a67c33 100%);
+            box-shadow: inset 0 0 70px rgba(58,34,4,0.55), 0 26px 60px rgba(0,0,0,0.55);
+            overflow: hidden;
+        }
+        .mur-fils {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        .mur-fils path {
+            fill: none;
+            stroke: #b3241c;
+            stroke-width: 2;
+            vector-effect: non-scaling-stroke;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.45));
+        }
+        .mur-manchette {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            margin: 8px auto 34px;
+            padding: 26px 30px 20px;
+            text-align: center;
+            background: linear-gradient(#fffdf6, #f3ead4);
+            border: 1px solid #ded2b8;
+            box-shadow: 0 18px 30px rgba(0,0,0,0.45), inset 0 1px 0 #fff;
+            transform: rotate(-1.2deg);
+        }
+        .mur-manchette::before {
+            content: "";
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            margin-left: -9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #f5716a, #a51d16 62%, #6d100b);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+        }
+        .mur-surtitre {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: #8a2b1e;
+        }
+        .mur-titre {
+            display: block;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            font-size: clamp(1.85rem, 5vw, 2.9rem);
+            line-height: 1.04;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #1d1913;
+            border: 0;
+            margin: 10px 0 8px;
+            padding: 0;
+            text-align: center;
+        }
+        .mur-accroche {
+            font-family: 'Caveat', cursive;
+            font-size: 1.28rem;
+            line-height: 1.25;
+            color: #4a4238;
+        }
+        .mur-chapeau {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto 36px;
+            padding: 20px 26px 22px;
+            background: linear-gradient(#fffdf6, #f5eeda);
+            border: 1px solid #ded2b8;
+            box-shadow: 0 14px 24px rgba(0,0,0,0.4);
+            transform: rotate(0.8deg);
+            font-size: 1.02rem;
+            line-height: 1.72;
+            color: #2b2519;
+            text-align: justify;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        .mur-chapeau::before {
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: 34px;
+            width: 92px;
+            height: 24px;
+            background: rgba(255,255,255,0.32);
+            border-left: 1px dashed rgba(255,255,255,0.5);
+            border-right: 1px dashed rgba(255,255,255,0.5);
+            transform: rotate(-4deg);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        }
+        .mur-fiches {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px 22px;
+            align-items: flex-start;
+        }
+        .fiche {
+            position: relative;
+            flex: 0 0 auto;
+            width: 46%;
+            padding: 26px 26px 22px;
+            background: linear-gradient(175deg, #fffdf7 0%, #f7f0dd 100%);
+            border: 1px solid #e0d4ba;
+            box-shadow: 0 16px 26px rgba(0,0,0,0.42), inset 0 1px 0 #fff;
+            transition: transform 0.25s;
+        }
+        .fiche:nth-child(4n+3) { width: 44%; }
+        .fiche:nth-child(4n) { width: 48%; }
+        .fiche:nth-child(3n) { margin-top: 24px; }
+        .fiche:nth-child(5n) { margin-top: -6px; }
+        .fiche:nth-child(odd) { transform: rotate(-1.5deg); }
+        .fiche:nth-child(2n) { transform: rotate(0.7deg); }
+        .fiche:nth-child(3n) { transform: rotate(1.8deg); }
+        .fiche:nth-child(5n) { transform: rotate(-2.4deg); }
+        .fiche:nth-child(7n) { transform: rotate(1.1deg); }
+        .fiche:hover { transform: rotate(0deg) translateY(-4px); }
+        .fiche::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            margin-left: -7px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #f1706a, #a91f18 62%, #6c110c);
+            box-shadow: 0 3px 4px rgba(0,0,0,0.5);
+        }
+        .fiche:nth-child(2n)::before { background: radial-gradient(circle at 35% 30%, #7d8c9c, #2b3a49 62%, #101820); }
+        .fiche:nth-child(3n)::before { left: 24px; margin-left: 0; }
+        .fiche:nth-child(4n)::after {
+            content: "";
+            position: absolute;
+            top: -11px;
+            right: 42px;
+            width: 84px;
+            height: 22px;
+            background: rgba(255,255,255,0.30);
+            border-left: 1px dashed rgba(255,255,255,0.45);
+            border-right: 1px dashed rgba(255,255,255,0.45);
+            transform: rotate(6deg);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.22);
+        }
+        .fiche-annotation {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: #7a2a1c;
+            transform: rotate(6deg);
+        }
+        .fiche-q {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 1.12rem;
+            line-height: 1.3;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #191410;
+            text-align: left;
+            margin-bottom: 10px;
+            padding-right: 34px;
+        }
+        .fiche-q i { display: none; }
+        .fiche-q mark {
+            background: linear-gradient(transparent 52%, rgba(255,222,60,0.85) 52%);
+            color: inherit;
+            padding: 0 1px;
+        }
+        .fiche-a {
+            font-family: 'Lora', Georgia, serif;
+            color: #2c2619;
+            font-size: 0.97rem;
+            line-height: 1.72;
+            text-align: justify;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        .fiche-auteur {
+            display: block;
+            margin-top: 12px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.14rem;
+            color: #5c5140;
+            text-align: right;
+        }
+        .fiche-auteur::before { content: "— "; color: #a91f18; }
+        /* Signature d'une anecdote : une carte est sombre (#252525), l'encre du
+           mur de liege (#5c5140) n'y serait pas lisible. */
+        .card-content .fiche-auteur { color: #d8cdb8; font-size: 1.1rem; }
+        .card-content .fiche-auteur::before { color: #d4503f; }
+        .polaroid,
+        .photo-punaisee {
+            position: relative;
+            flex: 0 0 auto;
+            padding: 12px 12px 8px;
+            background: #fffdf7;
+            border: 1px solid #e0d4ba;
+            box-shadow: 0 16px 26px rgba(0,0,0,0.45);
+        }
+        .polaroid { width: 206px; }
+        .polaroid img {
+            width: 100%;
+            height: 206px;
+            object-fit: cover;
+            filter: contrast(1.05) saturate(0.82);
+        }
+        .polaroid figcaption,
+        .photo-punaisee figcaption {
+            padding-top: 6px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: #4a4238;
+            text-align: center;
+        }
+        .polaroid:nth-of-type(odd) { transform: rotate(-2.4deg); }
+        .polaroid:nth-of-type(even) { transform: rotate(2deg); }
+        .polaroid::before,
+        .photo-punaisee::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            margin-left: -7px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #f1706a, #a91f18 62%, #6c110c);
+            box-shadow: 0 3px 4px rgba(0,0,0,0.5);
+        }
+        .photo-punaisee { width: 296px; transform: rotate(1.6deg); }
+        .photo-punaisee img {
+            width: 100%;
+            height: 182px;
+            object-fit: cover;
+            filter: sepia(0.28) contrast(1.05);
+        }
+        /* Coupure de presse : le document est en portrait, on montre donc la
+           page entiere au lieu de la rogner en bandeau (object-fit: cover).
+           Le double nom de classe tient la largeur meme sous 860 px, ou
+           .photo-punaisee passe a 100% (une regle de media query plus bas). */
+        .photo-punaisee.photo-punaisee-article { width: 320px; max-width: 100%; }
+        .photo-punaisee.photo-punaisee-article img { height: auto; object-fit: contain; }
+        .mur-culdelampe {
+            position: relative;
+            z-index: 2;
+            max-width: 560px;
+            margin: 46px auto 0;
+            padding: 24px 26px 18px;
+            text-align: center;
+            background: linear-gradient(#fffdf7, #f6efdc);
+            border: 1px solid #ded2b8;
+            box-shadow: 0 16px 26px rgba(0,0,0,0.42);
+            transform: rotate(-0.9deg);
+        }
+        .mur-culdelampe::before {
+            content: "";
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            margin-left: -9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #f5716a, #a51d16 62%, #6d100b);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+        }
+        .mur-culdelampe p {
+            font-family: 'Caveat', cursive;
+            font-size: 1.65rem;
+            line-height: 1.2;
+            color: #26201a;
+        }
+        .mur-culdelampe span {
+            display: block;
+            margin-top: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #6d6250;
+        }
+        .video-block {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+            padding-bottom: 50%;
+            background: #000;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(185, 29, 29, 0.25);
+        }
+        .video-block iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .encart-soussol {
+            max-width: 860px;
+            margin: 0 auto 40px;
+            padding: 26px 30px;
+            background: linear-gradient(90deg, rgba(185, 29, 29, 0.12), var(--color-bg-light) 55%);
+            border-left: 3px solid var(--color-primary-hover);
+            border-radius: var(--border-radius);
+        }
+        .encart-soussol h3 { color: var(--color-primary); margin-bottom: 12px; font-size: 1.2rem; }
+        .encart-soussol p { color: #ccc; }
+        @media (max-width: 860px) {
+            .mur { padding: 26px 18px 32px; border-width: 10px; }
+            .mur-fils { display: none; }
+            .fiche,
+            .fiche:nth-child(4n+3),
+            .fiche:nth-child(4n) { width: 100%; }
+            .fiche:nth-child(odd),
+            .fiche:nth-child(3n),
+            .fiche:nth-child(5n) { transform: rotate(-0.4deg); margin-top: 0; }
+            .fiche-a { text-align: left; }
+            .mur-manchette,
+            .mur-chapeau,
+            .mur-culdelampe { transform: rotate(0deg); }
+            .mur-chapeau { text-align: left; }
+            .polaroid { width: 46%; }
+            .photo-punaisee { width: 100%; }
+        }
+
+        /* === Commentaires des anecdotes (giscus) === */
+        .commentaires { margin-top: 18px; padding-top: 14px; border-top: 1px solid #3a3a3a; }
+        .btn-commentaires {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; border: 1px solid #4a4a4a; color: #d8cdb8;
+            font-family: var(--font-head); text-transform: uppercase; letter-spacing: 1px;
+            font-size: 0.75rem; padding: 9px 18px; border-radius: 20px;
+            cursor: pointer; transition: 0.25s;
+        }
+        .btn-commentaires:hover { border-color: var(--color-primary); color: #fff; }
+        .btn-commentaires[aria-expanded="true"] {
+            background: var(--color-primary); border-color: var(--color-primary); color: #fff;
+        }
+        .btn-commentaires i { font-size: 0.85rem; }
+        .zone-commentaires { margin-top: 14px; }
+        .zone-commentaires[hidden] { display: none; }
+        /* la classe « giscus » est retiree apres montage (voir le script) : on
+           garde donc la geometrie par nous-memes */
+        .zone-commentaires > div, .zone-commentaires.giscus-monte > div {
+            width: 100%; min-height: 150px;
+        }
+        .zone-commentaires iframe { width: 100%; border: none; }
+        .note-commentaires {
+            max-width: 900px; margin: 26px auto 0; color: #a8a8a8;
+            font-size: 0.85rem; line-height: 1.6;
+        }
+        .note-commentaires a { color: #d8cdb8; text-decoration: underline; }
+        .note-commentaires a:hover { color: #fff; }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/interview.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/interview.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/interview.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/interview.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="../environnement.html">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="../concerts.html">CONCERTS</a>
+                <a href="../soirees.html">EVENINGS</a>
+                <a href="../interview.html" style="color:var(--color-primary)">ANECDOTES</a>
+                <a href="../labo.html">LAB</a>
+                <a href="../aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../interview.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.62)), url('images/bande_interv.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>ANECDOTES &amp; INTERVIEWS</h1>
+                <p>From the Rotoplo Fires to Codéine: what is behind the dates.</p>
+            </div>
+        </section>
+
+        <!-- 1. INTERVIEW : tableau de liège -->
+        <section id="interview">
+            <div class="mur">
+
+                <svg class="mur-fils" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M16,7 C42,15 64,11 86,21"/>
+                    <path d="M86,21 C70,35 32,31 12,45"/>
+                    <path d="M12,45 C36,57 68,53 90,67"/>
+                    <path d="M90,67 C66,79 30,75 16,88"/>
+                </svg>
+
+                <div class="mur-manchette">
+                    <p class="mur-surtitre">Saint-Erblon &bull; Mayenne &mdash; band archives</p>
+                    <h2 class="mur-titre">The Twenty Years Interview</h2>
+                    <p class="mur-accroche">Questions asked to the old ones, and the answers the archives light up.</p>
+                </div>
+
+                <p class="mur-chapeau">For the launch of the archives online, the team got the boxes out again: the CD case <em>Jar</em> (1998), the posters, the 1993 photos, and the history written at the time. The four from the start and the pillars of the band — Régis, Tanguy, Tony, Loran, Gilles, Jean-Jean and Florent — agreed to follow the thread back.</p>
+
+                <div class="mur-fiches">
+                    <article class="fiche">
+                        <h3 class="fiche-q">At the start, four kids and no instrument. How does it begin?</h3>
+                        <p class="fiche-a">At the start, a quartet “les rotoplo fires”, which makes up a third of the base of Jar. Tanguy on drums — with the sound of a wooden cassette box hit with energy —, Loran singer and lady-killer hero to roll on the ground for, Régis on electric guitar — with one string — and Tony on the smooby synth. In short, everything to succeed...</p>
+                        <span class="fiche-auteur">Tanguy, founder</span>
+                    </article>
+                    <article class="fiche">
+                        <h3 class="fiche-q">And there were never any “normal” instruments at the start?</h3>
+                        <p class="fiche-a">Not in the proper sense, no. We were based in Saint-Erblon, in Mayenne, not far from Rennes and Angers, with the French alternative wave as soundtrack — berrus, Parabellum, OTH... We would soon change name, naturally favouring songs with words: it would be Desastrax. Time to record a four-track cassette on a tape recorder of the time.</p>
+                        <span class="fiche-auteur">Tony, founder</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/Tanguy.jpg" alt="Tanguy">
+                        <figcaption>Tanguy &mdash; percussion</figcaption>
+                    </figure>
+                    <article class="fiche">
+                        <h3 class="fiche-q">The basement, what was it exactly?</h3>
+                        <p class="fiche-a">Our place. The basement of the family house, in Saint-Erblon. The amps downstairs, the parents in front of the television upstairs. Everything went back up through the floor. It is this raw acoustics that we still hear on the recordings — and it is there that the sound of the band made itself alone.</p>
+                        <span class="fiche-auteur">Régis, founder</span>
+                    </article>
+                    <article class="fiche">
+                    <span class="fiche-annotation">1991</span>
+                        <h3 class="fiche-q"><mark>1991</mark>, the band starts again. What changes?</h3>
+                        <p class="fiche-a">We met from time to time to play, as best we could — the start of the struggle — until the arrival of Gilles, who goes straight into the bass. Régis moves to drums, Loran to guitar, Tony to vocals: the progress shows. “Explicit” was born, passing through Soul Famous Carpet.</p>
+                        <span class="fiche-auteur">Tony, founder</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/loran.jpg" alt="Loran">
+                        <figcaption>Loran &mdash; guitar</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">1993</span>
+                        <h3 class="fiche-q">First concert: Château-Gontier, 2 September 1993. Do you remember it?</h3>
+                        <p class="fiche-a">The rock explosion of the West, Angers especially, pushed us to create fast. The songs went by, Jérôme had joined the quartet, and the influences multiplied: Fugazi, Sonic Youth, les Thugs, les Skippies... and the unavoidable Nirvana. The concert was followed by a good performance — which, looking back, made Explicit something else: No Mug.</p>
+                        <span class="fiche-auteur">Loran, founder</span>
+                    </article>
+                    <figure class="photo-punaisee photo-punaisee-article">
+                        <img src="../images/articleFJT.jpg" alt="Newspaper article — Château-Gontier">
+                        <figcaption>Newspaper article - Château-Gontier</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">1996</span>
+                        <h3 class="fiche-q">Then Helium, in 1996. The hardcore turn?</h3>
+                        <p class="fiche-a">Yes: the band takes the line of American hardcore fusion, with the Dischord filiation — Fugazi, Quicksand — and all the grunge that was coming in. The guitars got harder, the tempo got tighter.</p>
+                        <span class="fiche-auteur">Loran, founder</span>
+                    </article>
+                    <article class="fiche">
+                    <span class="fiche-annotation">1998</span>
+                        <h3 class="fiche-q"><mark>1998</mark> : <em>Jar</em>, the CD. How do you record a disc when you rehearse in a basement?</h3>
+                        <p class="fiche-a">Jérôme leaves the line-up and makes room for Jean-Marie and Florent — that is when the band reaches its peak and records a five-track CD in studio. Five tracks: <em>Little Shit</em>, <em>Endfeels</em>, <em>Quiet</em>, <em>Self Made Women</em>, <em>Shelter for Anger</em>. Recorded at Nono's, at the Panoramix studio, in Saint-Sauveur-de-Flée; the rehearsals happened at Les Courans, in Longuefuye.</p>
+                        <span class="fiche-auteur">Tony, founder</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/Tony.jpg" alt="Tony">
+                        <figcaption>Tony &mdash; synth</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">1999</span>
+                        <h3 class="fiche-q">End of 1999, everything stops. Two years of silence.</h3>
+                        <p class="fiche-a">The band splits and stops all activity for two years. Some, missing music, then join other bands on the side — Jean-Marie joins Hippy Groovy and the Stylee Mens. It was not an end: just a pause we had not admitted to ourselves.</p>
+                        <span class="fiche-auteur">Régis, founder</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/regis1.jpg" alt="Régis">
+                        <figcaption>Régis &mdash; drums</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">2002</span>
+                        <h3 class="fiche-q"><mark>2002</mark> : Codéine, without Tony. How does it go?</h3>
+                        <p class="fiche-a">We do it again without Tony, on new influences — Incubus, Sevendust — and with a new one on vocals: Jean-François (jef). We also set up an association, Tous Azic'Muts, with Hippy Groovy: music, but also a structure to defend it.</p>
+                        <span class="fiche-auteur">Gilles, guitarist</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/gilles.jpg" alt="Gilles">
+                        <figcaption>Gilles &mdash; bass</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">2004</span>
+                        <h3 class="fiche-q">And the last straight line, until 2004?</h3>
+                        <p class="fiche-a">December 2003: it is Gilles who has to leave the band, for work reasons. The rest keeps going, with a more metal style and Florent moving to seven strings. We still play in Rennes, at Campus Kerlan, in January 2004, then in Saint-Michel-de-la-Röe for Aperoconcert, in September. Today the story goes on with more or less empty periods, at the rhythm of everyone's work situation...</p>
+                        <span class="fiche-auteur">Jean-Jean president of the Tous Azic'Muts association</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/jeanjean.jpg" alt="Jean-Marie">
+                        <figcaption>Jean-Marie &mdash; bass</figcaption>
+                    </figure>
+                    <article class="fiche">
+                    <span class="fiche-annotation">2004</span>
+                        <h3 class="fiche-q"><mark>2004</mark> : after Jef leaves, what becomes of the band?</h3>
+                        <p class="fiche-a">After Jean-François left, Alex arrived on vocals and guitar. The band took the name Wöw, with Régis, Jean-Marie (Jean-Jean) and Florent, the goal being to take a more professional direction. They went on doing concerts in the region, until the band disappears in 2012.</p>
+                        <span class="fiche-auteur">Florent, guitarist</span>
+                    </article>
+                    <figure class="polaroid">
+                        <img src="../images/flo.jpg" alt="Florent">
+                        <figcaption>Florent &mdash; guitar</figcaption>
+                    </figure>
+                </div>
+
+                <div class="mur-culdelampe">
+                    <p>“In short, everything to succeed...”</p>
+                    <span>The band history, about the Rotoplo Fires</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. LE SOUS-SOL -->
+        <section>
+            <div class="section-header">
+                <h2>THE BASEMENT</h2>
+                <p>The place, the legend, and the floor that never insulated anything.</p>
+            </div>
+            <div class="encart-soussol">
+                <h3><i class="fas fa-house-chimney"></i> THE AMPS DOWNSTAIRS, THE PARENTS UPSTAIRS</h3>
+                <p>The rehearsals took place in the basement of the family house, in Saint-Erblon: the amps and the drums downstairs, the parents in front of the television upstairs. The sound went up through the floor — no sound insulation at all, incomparable raw acoustics.</p>
+                <p style="margin-top:12px;">It is this place that shaped the sound of the band, and it stays attached to all the periods: from Desastrax to Jar, passing through Explicit and No Mug.</p>
+            </div>
+        </section>
+
+        <!-- 3. ANECDOTES -->
+        <section>
+            <div class="section-header">
+                <h2>THE ANECDOTES</h2>
+                <p>What the archives tell between the lines.</p>
+            </div>
+            <div class="collections-grid">
+
+                <article class="card">
+                    <img src="../images/tas_fumier.jpg" class="card-img" alt="A manure heap in a field, at dusk">
+                    <div class="card-content">
+                        <h3>The manure heap</h3>
+                        <span class="card-meta">Bikers' rally • Saint-Saturnin-du-Limet (53)</span>
+                        <p>Following one of our first concerts, at the Fête de la musique in Pouancé (49), we had been generously invited to do a concert in Saint-Saturnin-du-Limet (53), as part of a bikers' rally — in September, I think. We had been invited by Jérôme's brother, at the time.</p>
+                        <p style="margin-top:10px;">On the day of the concert we had arrived in the most total indifference: “half of the people there were more than drunk”, I remember. And to top it all, it was raining — we arrived wet, we had to play with our jackets on.</p>
+                        <p style="margin-top:10px;">We asked Jérôme's brother: “Where is the stage?” And there he told us: “Well, you just have to set up there”, on a tarpaulin, right in the middle of the field. We played, but it was terrible.</p>
+                        <p style="margin-top:10px;">The bikers took our instruments to play in front of more spectators than us. We suffered that day.</p>
+                        <p style="margin-top:10px;">Since then we remember that day with the joke: “we played on the manure heap”.</p>
+                        <span class="fiche-auteur">Régis, drummer</span>
+                        <div class="commentaires" data-anecdote="Le tas de fumier">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-1">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-1" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="../images/echemire-vignette.jpg" class="card-img" alt="A rock band in full concert, in front of its audience">
+                    <div class="card-content">
+                        <h3>Échemiré, Not even ready</h3>
+                        <span class="card-meta">Festival Cavirock • Échemiré (Maine-et-Loire)</span>
+                        <p>Échemiré, in Maine-et-Loire, we were taking part in this rock festival near Angers organised by the Cavirock association. From my memories, Jérôme was ill. Loran, who had not played with us for a long time, was learning the new songs as best he could in the car on the way. We were before the last band or maybe before, I do not remember too well. It goes back a while.</p>
+                        <p style="margin-top:10px;">Finally we arrive; and there, it is the big shock. The bands playing before us were very good technically. Nothing to do with us, the stress went up and the feeling of being completely lost took hold of us.</p>
+                        <p style="margin-top:10px;">At the moment of playing, Loran said: “guys, let's go all in” and we started to play and to free ourselves completely. We were jumping everywhere, and there, curiously, the audience started to enjoy it. Loran threw his guitar, held back by its jack cable. It made a return trip above the audience to come back on the stage floor. The audience was stunned. A very good memory.</p>
+                        <span class="fiche-auteur">Tony, singer</span>
+                        <div class="commentaires" data-anecdote="Échemiré, Même pas prêts">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-2">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-2" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="../images/doit_casse.jpg" class="card-img" alt="A bass player sitting, his bass on his knees, looks at his injured thumb">
+                    <div class="card-content">
+                        <h3>One plectrum too many</h3>
+                        <span class="card-meta">Explicit • The parents' garage, New Year's Day</span>
+                        <p>We had planned to do a concert for friends in the parents' garage, on the evening of New Year's Day. It was during Explicit, maybe in 91-92, Gilles will be able to remind us.</p>
+                        <p style="margin-top:10px;">As usual, the stress of bands that play faster in concert than in rehearsal. We started the concert full on, even faster than usual, I think.</p>
+                        <p style="margin-top:10px;">Gilles, our bass player, was suffering with his plectrum, but kept playing until the fateful moment when the tendon gave way. But most of the players had not even noticed and kept playing.</p>
+                        <p style="margin-top:10px;">Meanwhile Gilles, sitting on a stool, the bass on his thighs, was trying, as best he could, to lift that thumb that did not want to anymore. I remember trying to lift it with his other hand, but nothing worked. The tendon was well cut. And me, too taken by the music, I was asking him to continue ...</p>
+                        <p style="margin-top:10px;">Gilles had to go to a specialist. I remember his hand with a kind of splint, held with rubber bands. A kind of thumb pulley.</p>
+                        <p style="margin-top:10px;">We laughed a lot about it. But, honestly, I do not think we would have liked to be in his place.</p>
+                        <p style="margin-top:10px;">The positive side, still: after the rehabilitation, Gilles played the bass differently. Pop, slap (Red Hot influence).</p>
+                        <p style="margin-top:10px;">He had acquired a remarkable technique, envied by the other bands.</p>
+                        <span class="fiche-auteur">Loran, guitarist</span>
+                        <div class="commentaires" data-anecdote="Le médiator de trop">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-3">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-3" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="../images/la-gare-vignette.jpg" class="card-img" alt="The station district of Le Mans: shops, cars and trees">
+                    <div class="card-content">
+                        <h3>Fête de la musique in Le Mans</h3>
+                        <span class="card-meta">Jar • Fête de la musique, Le Mans (72)</span>
+                        <p>In the Jar days, Mickaël had organised a concert for us with a stage dedicated to us. We had to bring the PA in the cars as well as the instruments of course. We were very excited at the idea of presenting our music in a big city of the West. It was finally the moment for us to express our music. Besides, the drinks and snacks were offered by the bar. It smelled of top organisation, not like the ones we had met before.</p>
+                        <p style="margin-top:10px;">At last ... After a frustration linked to a missing XLR cable on a PA speaker, we were finally ready. Unfortunately, it was the total flop, not a cat; the famous organising bar was located at Le Mans station. When you know Le Mans, the Fête de la musique is organised in the town centre, not at the station. We had badly digested the adventure. Unfortunately, that is part of the life of a band.</p>
+                        <div class="commentaires" data-anecdote="Fête de la musique au Mans">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-4">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-4" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="../images/biere1-vignette.jpg" class="card-img" alt="A village hall on New Year's Eve: the band plays on stage, the dancers fill the floor and a beer bottle flies near the heads">
+                    <div class="card-content">
+                        <h3>A concert on New Year's Day, oh never</h3>
+                        <span class="card-meta">New Year's Eve party • Maine-et-Loire, around 1995-1996</span>
+                        <p>We were invited to a village hall for New Year's Eve, in a village of Maine-et-Loire, not very far from Noëllet. Jérôme was still with us, I would say around 1995-96. The evening had already started well. Tables with white paper tablecloths were laid out facing the stage.</p>
+                        <p style="margin-top:10px;">So we started to play. And there, it was the most total disarray. Not an indifference, as we had known on the “manure heap”, but a total rejection of what we were doing. Basically the music did not please. The young people there were not there to listen to a concert but to party and dance. We had whistles, we received food, it seems.</p>
+                        <p style="margin-top:10px;">We had entered the cliché of flying tomatoes. We had to react and we reacted. First, by using the feedback full on so as to burst their ears, until we ourselves threw food within reach at the audience. We were wounded inside.</p>
+                        <p style="margin-top:10px;">I even saw beer bottles passing from the back of the stage and thrown at the people, not happy to see us there that day. We even learned that a friend, Jean-Marie, who had made the trip from Château-Gontier to see us play, felt a beer bottle fly 5 cm from his head.</p>
+                        <p style="margin-top:10px;">A memorable event.</p>
+                        <div class="commentaires" data-anecdote="Concert un 1er de l'an, oh grand jamais">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-5">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-5" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="../images/codeine.jpg" class="card-img" alt="Codéine">
+                    <div class="card-content">
+                        <h3>Two years of silence</h3>
+                        <span class="card-meta">1999 • 2002</span>
+                        <p>At the end of 1999 the band splits and stops all activity for two years. Some join other line-ups on the side — then in early 2002 everyone does it again under the name Codéine.</p>
+                        <div class="commentaires" data-anecdote="Deux ans de silence">
+                            <button type="button" class="btn-commentaires" aria-expanded="false" aria-controls="comm-6">
+                                <i class="fas fa-comments" aria-hidden="true"></i> Comment
+                            </button>
+                            <div class="zone-commentaires" id="comm-6" hidden></div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <p class="note-commentaires">The comments are hosted by GitHub: to write, you need a GitHub account. No GitHub account? <a href="../index.html#community">Tell us your memory through the contact form</a>, we will publish it.</p>
+        </section>
+
+        <!-- 4. LES NOMS -->
+        <section>
+            <div class="section-header">
+                <h2>THE NAMES OF THE BAND</h2>
+                <p>In order, with the years the archives allow to date.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Before 1988</div>
+                    <h3>Les Rotoplo Fires</h3>
+                    <p>The original quartet, with no “normal” instruments: one-string guitar, wooden cassette box, smooby synth.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1988</div>
+                    <h3>Desastrax</h3>
+                    <p>Songs with words, a four-track cassette on a tape recorder of the time — then the dissolution.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Late 80s</div>
+                    <h3>Soul Famous Carpet</h3>
+                    <p>The passing name, before Explicit takes over.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1991</div>
+                    <h3>Explicit</h3>
+                    <p>The return: Gilles on bass, Régis on drums, Loran on guitar, Tony on vocals.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1993</div>
+                    <h3>No Mug</h3>
+                    <p>First concert in Château-Gontier on 2 September 1993; Jérôme joins the line-up.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1996</div>
+                    <h3>Helium</h3>
+                    <p>American hardcore fusion, inherited from Fugazi, Quicksand and grunge.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1998</div>
+                    <h3>Jar</h3>
+                    <p>Jean-Marie and Florent join, the band reaches its peak and records its 5-track CD.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2002</div>
+                    <h3>Codeine</h3>
+                    <p>Without Tony, with Jean-François (Jef) on vocals, and the Tous Azic'Muts association.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2004</div>
+                    <h3>Wöw</h3>
+                    <p>Jean-François leaves, Alex arrives on vocals and guitar: the band takes the name Wöw, with Régis, Jean-Marie and Florent, and aims at a more professional direction. It still plays in the region until 2012.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022</div>
+                    <h3>Crumble Head</h3>
+                    <p>The name we gave ourselves after an evening, for a rebuild of the band — Régis, Loran, Gilles and Tony. Songs started to be born in 2022, like that, for the pleasure, then a few others: nothing concrete for the moment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LES MUSICIENS -->
+        <section id="members">
+            <div class="section-header">
+                <h2>THOSE WHO HELD THE INSTRUMENTS</h2>
+                <p>All the line-ups, from the basement to the last stages.</p>
+            </div>
+            <div class="members-grid">
+                <div class="member-card">
+                    <img src="../images/regis1.jpg" alt="Régis" class="member-avatar">
+                    <h3>Régis</h3>
+                    <span class="member-role">Drums</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The one-string guitar at the start, then a small electronic drum machine in 1990, and the real drum kit from 1991 — until 2012.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/Tanguy.jpg" alt="Tanguy" class="member-avatar">
+                    <h3>Tanguy</h3>
+                    <span class="member-role">Percussion, then graphic design</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The wooden cassette box hit — in the Desastrax days —, then the covers, including the one of Jar. He leaves the band and a bit later starts Totem Stille, in Paris.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/loran.jpg" alt="Loran" class="member-avatar">
+                    <h3>Loran</h3>
+                    <span class="member-role">Vocals, then Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. The singer at the start, until 1988, then guitarist and photographer for the band.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/Tony.jpg" alt="Tony" class="member-avatar">
+                    <h3>Tony</h3>
+                    <span class="member-role">Synth, then Vocals</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Founder. On the smooby synth in Desastrax, singer of Explicit up to Jar. Leaves the band in 2002.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/gilles.jpg" alt="Gilles" class="member-avatar">
+                    <h3>Gilles</h3>
+                    <span class="member-role">Bass, then Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Joined in 1991: bass until 1998, guitar until December 2003.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/jerome.jpg" alt="Jérome" class="member-avatar">
+                    <h3>Jérome</h3>
+                    <span class="member-role">Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Second guitar in Explicit, No Mug and Helium, from 1993 to 1998.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/flo.jpg" alt="Florent" class="member-avatar">
+                    <h3>Florent</h3>
+                    <span class="member-role">Guitar</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">Arrived in 1998, moved to seven strings from 2003.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/jean.jpg" alt="Jean-Marie" class="member-avatar">
+                    <h3>Jean-Marie</h3>
+                    <span class="member-role">Bass — “Jean-Jean”</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">The bass of Jar and Codéine, from 1998.</p>
+                </div>
+                <div class="member-card">
+                    <img src="../images/jef.jpg" alt="Jean-François" class="member-avatar">
+                    <h3>Jean-François</h3>
+                    <span class="member-role">Vocals — “Jef”</span>
+                    <p style="font-size: 0.95rem; color: #aaa;">The “new one” of 2002, on vocals in Codéine.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. VIDEO -->
+        <section>
+            <div class="section-header">
+                <h2>ON SCREEN</h2>
+                <p>The archives teaser: stages, rehearsals and memories.</p>
+            </div>
+            <div class="video-block">
+                <iframe src="https://www.youtube.com/embed/HtYu6UUCcds?rel=0&amp;modestbranding=1"
+                        title="Saint Erblon teaser"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="https://www.youtube.com/@sevendustwow" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-youtube"></i> THE ARCHIVES CHANNEL
+                </a>
+            </div>
+        </section>
+
+        <!-- 7. CONTRIBUER -->
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>DO YOU HAVE MEMORIES?</h2>
+                <p>A photo, a cassette, a poster, a concert ticket, a forgotten name?</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    The archives are built with everyone. If you have something lying in a box — a rehearsal cassette, a concert polaroid, a press article, an anecdote — send it: that is how the next twenty years will be told.
+                </p>
+                <a href="../index.html#community" class="btn"><i class="fas fa-envelope"></i> SUGGEST AN ARCHIVE</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+<script>
+    // === Commentaires des anecdotes : giscus charge au clic ==================
+    // Un clic ouvre le fil de l'anecdote ; le widget n'est jamais charge avant.
+    // Detail giscus : la config est lue sur la balise <script>, et le montage se
+    // fait dans le PREMIER .giscus du document. Avant chaque montage, on donc
+    // retire la classe « giscus » des widgets deja en place, sans quoi le
+    // suivant ecraserait le premier.
+    (function () {
+        var GISCUS = {
+            repo: "ForAiOne/foraione.github.io",
+            repoId: "R_kgDOS53E5Q",
+            category: "General",
+            categoryId: "DIC_kwDOS53E5c4DG0p9",
+            theme: "dark_dimmed"
+        };
+
+        function libererAutresWidgets() {
+            document.querySelectorAll('.zone-commentaires .giscus').forEach(function (w) {
+                w.classList.remove('giscus');
+                w.classList.add('giscus-monte');
+            });
+        }
+
+        function charger(bloc, zone) {
+            libererAutresWidgets();
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            var reglages = {
+                'data-repo': GISCUS.repo,
+                'data-repo-id': GISCUS.repoId,
+                'data-category': GISCUS.category,
+                'data-category-id': GISCUS.categoryId,
+                'data-mapping': 'specific',
+                'data-term': bloc.getAttribute('data-anecdote'),
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '0',
+                'data-input-position': 'bottom',
+                'data-theme': GISCUS.theme,
+                'data-lang': 'fr',
+                'data-loading': 'lazy'
+            };
+            Object.keys(reglages).forEach(function (cle) {
+                script.setAttribute(cle, reglages[cle]);
+            });
+            zone.appendChild(script);
+            zone.setAttribute('data-charge', 'oui');
+        }
+
+        document.addEventListener('click', function (e) {
+            var bouton = e.target.closest ? e.target.closest('.btn-commentaires') : null;
+            if (!bouton) { return; }
+            var bloc = bouton.closest('.commentaires');
+            var zone = bloc.querySelector('.zone-commentaires');
+            var ouvert = bouton.getAttribute('aria-expanded') === 'true';
+            if (!ouvert && !zone.getAttribute('data-charge')) { charger(bloc, zone); }
+            zone.hidden = ouvert;
+            bouton.setAttribute('aria-expanded', ouvert ? 'false' : 'true');
+        });
+    })();
+    </script>
+
+</body>
+</html>

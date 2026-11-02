@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The concerts of the band: 27 dates found again from 1993 to 2004, between Mayenne, Anjou and Brittany.">
+    <title>Concerts | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .compteurs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+        .compteur {
+            flex: 1 1 150px;
+            text-align: center;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 22px 14px;
+            border-top: 3px solid var(--color-primary);
+        }
+        .compteur b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .compteur span {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .epoque-bloc { max-width: 900px; margin: 0 auto 4rem; }
+        .epoque-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-bg-light);
+        }
+        .epoque-titre small {
+            display: block;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+        .concert {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            margin-bottom: 9px;
+            transition: 0.25s;
+        }
+        .concert:hover { transform: translateX(6px); border-left-color: var(--color-primary-hover); }
+        .concert-date {
+            font-family: var(--font-head);
+            color: var(--color-primary);
+            min-width: 145px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .concert-lieu { color: var(--color-text-main); }
+        .concert-note {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 3px;
+        }
+        .villes { text-align: center; max-width: 900px; margin: 0 auto; }
+        .tag {
+            display: inline-block;
+            background: rgba(185, 29, 29, 0.12);
+            border: 1px solid rgba(185, 29, 29, 0.45);
+            color: var(--color-text-main);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin: 4px 4px;
+            font-size: 0.85rem;
+        }
+        /* --- Coupure de presse : article annoncant le premier concert --- */
+        .concert-doc {
+            margin: 22px auto 26px;
+            text-align: center;
+        }
+        .concert-doc img {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+        }
+
+        @media (max-width: 768px) {
+            .concert { flex-direction: column; gap: 6px; }
+            .concert-date { min-width: 0; }
+            .compteur b { font-size: 2rem; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/concerts.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/concerts.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/concerts.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/concerts.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="../environnement.html">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="../concerts.html" style="color:var(--color-primary)">CONCERTS</a>
+                <a href="../soirees.html">EVENINGS</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="../labo.html">LAB</a>
+                <a href="../aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../concerts.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/affiche.jpg'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>THE CONCERTS</h1>
+                <p>1993-2004: twenty-seven dates found again in the archives.</p>
+            </div>
+        </section>
+
+        <!-- COMPTEURS -->
+        <section>
+            <div class="section-header">
+                <h2>TWELVE YEARS ON STAGE</h2>
+                <p>From fêtes de la musique to festivals, in Mayenne, in Anjou and all the way to Brittany.</p>
+            </div>
+            <div class="compteurs">
+                <div class="compteur"><b>27</b><span>listed concerts</span></div>
+                <div class="compteur"><b>12</b><span>years on stage</span></div>
+                <div class="compteur"><b>3</b><span>eras</span></div>
+                <div class="compteur"><b>17</b><span>towns</span></div>
+            </div>
+            <div style="max-width: 760px; margin: 0 auto 2rem; padding: 20px 25px; background: var(--color-bg-light); border-left: 3px solid var(--color-primary); border-radius: var(--border-radius); color: #ccc;">
+                <i class="fas fa-info-circle" style="color:var(--color-primary)"></i>
+                This list is the one the band had put online in 2004. It only contains the dates the archives keep a trace of — between village fêtes, bars, rock festivals and association evenings, there are necessarily others missing here. The Wöw period (2004-2012) is not in it yet: it still needs documenting.
+            </div>
+        </section>
+
+        <!-- 1993-1996 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Explicit, No Mug, Helium
+                    <small>1993-1996 • the beginnings, the rock festivals and the fêtes de la musique</small>
+                </div>
+
+                <div class="concert">
+                    <div class="concert-date">Sept. 1993</div>
+                    <div class="concert-lieu">Château-Gontier (53)<span class="concert-note">At the FJT — the first concert of the band, on 2 September 1993</span></div>
+                </div>
+
+                <div class="concert-doc">
+                    <figure>
+                        <img src="../images/article_journal.jpg" alt="Press article announcing the Explicit concert at the FJT in Château-Gontier, September 1993" loading="lazy">
+                    </figure>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">March 1994</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet (53)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">March 1994</div>
+                    <div class="concert-lieu">Échemiré (49)<span class="concert-note">Rock festival</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">9 April 1994</div>
+                    <div class="concert-lieu">Pouancé (49)<span class="concert-note">Rock festival</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 June 1994</div>
+                    <div class="concert-lieu">Craon<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">23 June 1994</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">12 March 1995</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 June 1995</div>
+                    <div class="concert-lieu">Craon<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">June 1995</div>
+                    <div class="concert-lieu">Congrier</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">9 Dec. 1995</div>
+                    <div class="concert-lieu">Saint-Saturnin-du-Limet<span class="concert-note">CJF rock festival</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">3 Feb. 1996</div>
+                    <div class="concert-lieu">Ballot</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Feb. 1996</div>
+                    <div class="concert-lieu">Bazouges</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1998-1999 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Jar
+                    <small>1998-1999 • the CD period</small>
+                </div>
+
+                <div class="concert">
+                    <div class="concert-date">June 1998</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">June 1998</div>
+                    <div class="concert-lieu">Châteaubriant (44)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Oct. 1998</div>
+                    <div class="concert-lieu">Château-Gontier (53)</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">Nov. 1998</div>
+                    <div class="concert-lieu">Saint-Erblon (53)<span class="concert-note">At home</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">21 June 1999</div>
+                    <div class="concert-lieu">Le Mans (72)<span class="concert-note">Fête de la musique — the last date before the split</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2002-2004 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Codéine
+                    <small>2002-2004 • the return, without Tony, with Jean-François on vocals</small>
+                </div>
+
+                <div class="concert">
+                    <div class="concert-date">8 June 2002</div>
+                    <div class="concert-lieu">Bourg-l'Évêque (49)<span class="concert-note">First concert of the Tous Azic'Muts association, with Les Allumés du Bocal</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">June 2002</div>
+                    <div class="concert-lieu">Château-Gontier<span class="concert-note">Fête de la musique</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">June 2002</div>
+                    <div class="concert-lieu">Renazé</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">14 Dec. 2002</div>
+                    <div class="concert-lieu">Saint-Erblon<span class="concert-note">The date filmed and recorded by the band</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">19 April 2003</div>
+                    <div class="concert-lieu">Saint-Saturnin<span class="concert-note">La Salsa</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">17 May 2003</div>
+                    <div class="concert-lieu">La Prévière<span class="concert-note">Bar La Boulaie</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">20 June 2003</div>
+                    <div class="concert-lieu">Segré</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">27 June 2003</div>
+                    <div class="concert-lieu">Renazé</div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">24 January 2004</div>
+                    <div class="concert-lieu">Rennes — Campus Kerlan, Bruz<span class="concert-note">Recorded: four live tracks in the archives</span></div>
+                </div>
+                <div class="concert">
+                    <div class="concert-date">18 Sept. 2004</div>
+                    <div class="concert-lieu">Saint-Michel-de-la-Röe<span class="concert-note">Aperoconcert festival — the last listed date</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2004-2012 -->
+        <section>
+            <div class="epoque-bloc">
+                <div class="epoque-titre">
+                    Wöw
+                    <small>2004-2012 • the professional direction, with Alex on vocals</small>
+                </div>
+
+                <p style="color:#ccc; max-width:760px;">
+                    Jean-François leaves, Alex arrives on vocals and guitar: the band becomes Wöw, with Régis, Jean-Marie and Florent. The goal is to take a more professional direction, and the concerts continue in the region until the band disappears, in 2012. No date of this period is listed here yet.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- LES LIEUX -->
+        <section>
+            <div class="section-header">
+                <h2>THE TOWNS CROSSED</h2>
+                <p>Seventeen towns, three départements, and a lot of country roads.</p>
+            </div>
+            <div class="villes">
+                <span class="tag">Château-Gontier</span>
+                <span class="tag">Craon</span>
+                <span class="tag">Renazé</span>
+                <span class="tag">Saint-Erblon</span>
+                <span class="tag">Congrier</span>
+                <span class="tag">Bazouges</span>
+                <span class="tag">Ballot</span>
+                <span class="tag">Saint-Michel-de-la-Röe</span>
+                <span class="tag">Segré</span>
+                <span class="tag">Pouancé</span>
+                <span class="tag">Échemiré</span>
+                <span class="tag">Bourg-l'Évêque</span>
+                <span class="tag">La Prévière</span>
+                <span class="tag">Saint-Saturnin-du-Limet</span>
+                <span class="tag">Le Mans</span>
+                <span class="tag">Châteaubriant</span>
+                <span class="tag">Bruz / Rennes</span>
+            </div>
+        </section>
+
+        <!-- CONTRIBUER -->
+        <section id="contribuer">
+            <div class="section-header">
+                <h2>DATES ARE MISSING</h2>
+                <p>A poster, a ticket, a live photo, a local paper?</p>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <p style="color: #aaa; margin-bottom: 2rem;">
+                    This list stops at what the archives kept. If you remember a concert that is not in it — a fête de la musique, an evening in a bar, a festival, a date of the Wöw period (2004-2012) — or if you have a poster of the time, send it: it will join the list.
+                </p>
+                <a href="../index.html#community" class="btn"><i class="fas fa-envelope"></i> SUGGEST A DATE</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+</body>
+</html>

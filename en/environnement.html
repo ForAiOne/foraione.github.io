@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saint-Erblon, Renazé and Longuefuye: the three communes of South Mayenne where the rehearsal place and the life of the band were.">
+    <title>The places | Saint Erblon</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === LA CARTE === */
+        .carte-figure {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 14px;
+            /* Sur petit ecran la carte reste lisible : on la fait glisser
+               horizontalement plutot que de la reduire a l'ilisible. */
+            overflow-x: auto;
+        }
+        .carte-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-width: 640px;
+            border-radius: 2px;
+        }
+        .carte-figure figcaption {
+            margin-top: 12px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .glisser { display: none; }
+        @media (max-width: 768px) {
+            .glisser { display: inline; color: var(--color-primary); }
+        }
+
+        /* === LES DISTANCES === */
+        .distances {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 14px;
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+        }
+        .distance {
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            padding: 16px 18px;
+        }
+        .distance b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            line-height: 1.1;
+        }
+        .distance span {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* === LA FRISE DES LOCAUX === */
+        .frise {
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+            position: relative;
+            padding-left: 28px;
+        }
+        .frise::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #333;
+        }
+        .etape-lieu { position: relative; margin-bottom: 26px; }
+        .etape-lieu:last-child { margin-bottom: 0; }
+        .etape-lieu::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            top: 7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-bg);
+        }
+        .etape-lieu .quand {
+            display: block;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+        .etape-lieu h4 { font-size: 1.15rem; margin-bottom: 6px; }
+        .etape-lieu p { color: #ccc; }
+        .etape-lieu .hors-carte { color: var(--color-text-muted); font-size: 0.85rem; }
+
+        /* === LA PHOTO DE LA FRISE === */
+        .etape-lieu .photo-lieu {
+            max-width: 620px;
+            margin: 16px auto 0;
+        }
+        .etape-lieu .photo-lieu img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+        }
+
+        /* === LES PHOTOS DU SOUS-SOL === */
+        /* Trois cliches sur une meme ligne : meme hauteur pour les trois,
+           donc des largeurs proportionnelles a chaque image (aucun
+           rognage). La hauteur suit la largeur de la fenetre pour que la
+           rangee tienne sur une seule ligne a toute taille. */
+        .etape-lieu .photos-lieu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 10px;
+            max-width: 900px;
+            margin: 16px auto 0;
+        }
+        .etape-lieu .photos-lieu figure {
+            margin: 0;
+            flex: 0 0 auto;
+        }
+        .etape-lieu .photos-lieu img {
+            display: block;
+            width: auto;
+            height: clamp(84px, 19vw, 250px);
+            border-radius: var(--border-radius);
+            border: 1px solid #2a2a2a;
+            cursor: zoom-in;
+        }
+        .etape-lieu .photos-lieu img:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+
+        /* === LA VISIONNEUSE DE PHOTOS === */
+        /* Le script visionneuse-photos.js fabrique lui-meme la boite
+           (#visionneuse-photos) : rien a declarer dans la page. Seul cet
+           habillage est ici. */
+        body.photo-ouverte { overflow: hidden; }
+        .visionneuse-photos {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            padding: 3.4rem 1.2rem 2.4rem;
+            background: rgba(6, 7, 8, 0.95);
+        }
+        .visionneuse-photos[hidden] { display: none; }
+        .visionneuse-photos-figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            max-width: min(1400px, 100%);
+        }
+        .visionneuse-photos-figure img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 76vh;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--border-radius);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+        }
+        .visionneuse-photos-legende {
+            text-align: center;
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .visionneuse-photos-legende[hidden] { display: none; }
+        .visionneuse-photos-titre {
+            display: block;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-main);
+        }
+        .visionneuse-photos-titre[hidden] { display: none; }
+        .visionneuse-photos-details {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-details[hidden] { display: none; }
+        .visionneuse-photos-compteur {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-head);
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+        }
+        .visionneuse-photos-compteur[hidden] { display: none; }
+        .visionneuse-photos-fermer {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .visionneuse-photos-fermer:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.85);
+            color: var(--color-text-main);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .visionneuse-photos-nav:hover { background: var(--color-primary); }
+        .visionneuse-photos-nav[hidden] { display: none; }
+        @media (max-width: 620px) {
+            .visionneuse-photos { padding: 3rem 0.6rem 1.2rem; gap: 0.45rem; }
+            .visionneuse-photos-figure img { max-height: 68vh; }
+            .visionneuse-photos-nav { width: 38px; height: 38px; }
+            .visionneuse-photos-fermer { width: 38px; height: 38px; font-size: 1.4rem; }
+        }
+
+        /* === LES COMMUNES === */
+        .commune {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 28px 30px;
+        }
+        .commune > h3 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+        .commune > h3 span { color: var(--color-text-muted); font-size: 1rem; }
+        .commune-sous-titre {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            margin-bottom: 18px;
+        }
+        .fiches { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+        .fiche {
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 10px 16px;
+            min-width: 132px;
+        }
+        .fiche b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+        .fiche span { font-size: 0.8rem; color: var(--color-text-muted); }
+        .commune p { color: #ccc; }
+        .commune p + p { margin-top: 12px; }
+        .encadre-groupe {
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: var(--color-bg-card);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--border-radius);
+        }
+        .encadre-groupe h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+        .sources {
+            max-width: 1100px;
+            margin: 0 auto;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .commune { padding: 22px 20px; }
+            .fiches { gap: 10px; }
+            .fiche { min-width: 0; flex: 1 1 45%; }
+        }
+    </style>
+    <link rel="canonical" href="https://foraione.github.io/en/environnement.html">
+    <link rel="alternate" hreflang="fr" href="https://foraione.github.io/environnement.html">
+    <link rel="alternate" hreflang="en" href="https://foraione.github.io/en/environnement.html">
+    <link rel="alternate" hreflang="x-default" href="https://foraione.github.io/environnement.html">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SAINT<span>ERBLON</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open the menu"
+                    aria-controls="navLinks" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="../environnement.html" style="color:var(--color-primary)">ENVIRONMENT</a>
+                <a href="histoire.html">STORY</a>
+                <a href="concerts.html">CONCERTS</a>
+                <a href="../soirees.html">EVENINGS</a>
+                <a href="interview.html">ANECDOTES</a>
+                <a href="../labo.html">LAB</a>
+                <a href="../aujourdhui.html">LINKS</a>
+            </nav>
+            <div class="recherche" id="recherche">
+                <input type="search" id="recherche-champ" placeholder="Search…" autocomplete="off" aria-label="Search the site">
+                <div class="recherche-resultats" id="recherche-resultats" hidden></div>
+            </div>
+            <!-- langue:en -->
+            <div class="langue">
+                <a href="../environnement.html" hreflang="fr" lang="fr" title="Lire cette page en français" aria-label="Lire cette page en français"><svg viewBox="0 0 60 30" role="img" aria-hidden="true" focusable="false"><rect width="20" height="30" fill="#0055A4"/><rect x="20" width="20" height="30" fill="#FFFFFF"/><rect x="40" width="20" height="30" fill="#EF4135"/></svg></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <section id="home" style="background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.85)), url('images/background.png'); min-height: 60vh;">
+            <div class="hero-content">
+                <h1>THE PLACES</h1>
+                <p>Saint-Erblon, Renazé, Longuefuye: three communes of South Mayenne.</p>
+            </div>
+        </section>
+
+        <!-- LA CARTE -->
+        <section>
+            <div class="section-header">
+                <h2>THE MAP OF THE THREE VILLAGES</h2>
+                <p>The setting fits on a road map: two villages to the west, one to the east of Château-Gontier.</p>
+            </div>
+
+            <figure class="carte-figure">
+                <img src="../images/Carte_route.jpg" alt="Road map of South Mayenne locating Saint-Erblon, Renazé and Longuefuye" width="1820" height="592">
+                <figcaption>Saint-Erblon and Renazé, to the west; Longuefuye, to the east, on the Château-Gontier side. <span class="glisser">&larr; slide the map &rarr;</span></figcaption>
+            </figure>
+
+            <div class="labo-intro">
+                <p>“Implanté à saint erblon en Mayenne, non loin de Rennes et Angers.” It is the sentence of the archives, and it is enough to set the scene: everything happens in the south of the Mayenne département, in this part of Anjou attached to Mayenne in 1790, a few kilometres from Ille-et-Vilaine and Maine-et-Loire.</p>
+                <p>The rehearsal places, the villages where the musicians lived and the association that carried the concerts are spread over three communes: Saint-Erblon, Renazé and Longuefuye.</p>
+            </div>
+
+            <div class="distances">
+                <div class="distance"><b>8 km</b><span>Saint-Erblon &ndash; Renazé</span></div>
+                <div class="distance"><b>5 km</b><span>Saint-Erblon &ndash; Pouancé</span></div>
+                <div class="distance"><b>34 km</b><span>Renazé &ndash; Longuefuye</span></div>
+                <div class="distance"><b>8 km</b><span>Longuefuye &ndash; Château-Gontier</span></div>
+            </div>
+        </section>
+
+        <!-- LA FRISE DES LOCAUX -->
+        <section>
+            <div class="section-header">
+                <h2>THE PLACES, IN ORDER</h2>
+                <p>Six addresses, about fifteen years: the walls changed more often than the musicians.</p>
+            </div>
+
+            <div class="frise">
+                <div class="etape-lieu">
+                    <span class="quand">1988 &middot; Saint-Erblon</span>
+                    <h4>At Tanguy and Loran's grandmother's house</h4>
+                    <p>This is where it all begins. In this house in Saint-Erblon, the original quartet &ndash; the Rotoplo Fires, who will become Desastrax &ndash; records its first cassette: four tracks on a tape recorder of the time.</p>
+                    <figure class="photo-lieu">
+                        <img src="../images/maisongm-vignette.jpg" alt="The house of Tanguy and Loran's grandmother, in Saint-Erblon: a house with a slate roof, at the edge of the road" width="1600" height="1200" loading="lazy">
+                    </figure>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">Early 1990s &middot; Saint-Erblon</span>
+                    <h4>The basement of Régis and Tony's parents</h4>
+                    <p>The rehearsals go down to the cellar &ndash; “the basement, obviously”. It is the Explicit period, then No Mug: Gilles arrives on bass in 1991, Régis moves to drums, Loran to guitar, Tony to vocals.</p>
+                    <div class="photos-lieu">
+                        <figure>
+                            <img src="../images/garage.jpg" alt="The basement: acoustic panels on the walls, red carpet and Tama drum kit" width="864" height="1216" loading="lazy" data-zoom>
+                        </figure>
+                        <figure>
+                            <img src="../images/garage1.jpg" alt="The basement seen from the entrance: the red carpet in the foreground, the drums at the back" width="3040" height="1472" loading="lazy" data-zoom>
+                        </figure>
+                        <figure>
+                            <img src="../images/garage3.jpg" alt="The basement: the Tama drum kit, a guitar leaning against it, the keyboard and the cables" width="704" height="1472" loading="lazy" data-zoom>
+                        </figure>
+                    </div>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">1998 &middot; Longuefuye, at les Courans</span>
+                    <h4>The egg-box studio</h4>
+                    <p>Régis takes a rental with a friend, Mickaël Lairy, in an outbuilding of the Courans manor. Enough room to set up a small rehearsal studio, sealed with egg boxes and pallets, and to prepare the Jar CD. (By the way, it is here that we were photographed by Loran to illustrate the cover of the Jar record.)</p>
+                    <figure class="photo-lieu">
+                        <img src="../images/courans-vignette.jpg" alt="At les Courans, in Longuefuye: the rented house, an outbuilding of the manor — the studio, not photographed, was attached to it" width="1600" height="772" loading="lazy" data-zoom>
+                    </figure>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">1999 &middot; Renazé</span>
+                    <h4>Rue de l'Aubinière</h4>
+                    <p>A few months of rehearsals in a house on rue de l'Aubinière.</p>
+                    <figure class="photo-lieu">
+                        <img src="../images/aubiniere-vignette.jpg" alt="Rue de l'Aubinière: the stone building, its tower and its red door" width="1600" height="948" loading="lazy" data-zoom>
+                    </figure>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">2001 &middot; Craon</span>
+                    <h4>Near the espace Saint-Clément</h4>
+                    <p>A stop a little apart from the three communes of this page, about ten kilometres east of Renazé. <span class="hors-carte">(off the map)</span> Craon is the central commune of the Pays de Craon, the intercommunality Saint-Erblon depends on: an old stronghold of 27 towers and 1,600 metres of walls, built to guard the Angevin border against Brittany, and a market town whose 12th-century halls were reputed among the biggest in France.</p>
+                    <p>The name of the espace Saint-Clément is no accident: in the 9th century, the sister of Lambert, count of Nantes, ran a monastery in Craon dedicated to saint Clement.</p>
+                    <figure class="photo-lieu">
+                        <img src="../images/craon-vignette.jpg" alt="Craon: the house behind its stone wall and its gate, under the hydrangeas" width="1600" height="842" loading="lazy" data-zoom>
+                    </figure>
+                </div>
+                <div class="etape-lieu">
+                    <span class="quand">From 2002 &middot; Renazé</span>
+                    <h4>The TOUS AZIC'MUTS place</h4>
+                    <p>The rehearsals come back to Renazé, this time within the music association TOUS AZIC'MUTS, created with Hippy Groovy and the stylee mens &ndash; the two bands share the place. It is the time of the concerts in Renazé and of the Fête de la musique.</p>
+                    <figure class="photo-lieu">
+                        <img src="../images/asso-vignette.jpg" alt="Renazé: the Tous Azic'Muts place, a low building with a slate roof" width="1600" height="878" loading="lazy" data-zoom>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- LES COMMUNES -->
+        <section>
+            <article class="commune" id="saint-erblon">
+                <h3>SAINT-ERBLON <span>(53)</span></h3>
+                <p class="commune-sous-titre">The village of origin</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>153</b><span>inhabitants</span></div>
+                    <div class="fiche"><b>100 %</b><span>agricultural land</span></div>
+                    <div class="fiche"><b>8 km</b><span>from Renazé</span></div>
+                    <div class="fiche"><b>5 km</b><span>from Pouancé</span></div>
+                </div>
+
+                <p>Saint-Erblon is a village of South Mayenne, in what is called the Angevin Mayenne. The commune is classified “rural with very dispersed housing”: its land is today 100 % agricultural, between heterogeneous agricultural areas, arable land and a few meadows.</p>
+                <p>Its name comes from saint Herblon &ndash; saint Hermeland, monk-abbot of the diocese of Nantes who died in 720, invoked for the healing of paralytics. Under the Revolution, the commune was called Erblou-sur-Araize. Its inhabitants are the Saint-Erblonnais.</p>
+                <p>The village also has its legend. Saint Cénéré &ndash; the monk who came from Rome, evangelised Mayenne and settled in Saulges &ndash; was passing through Saint-Erblon in a time of great heat and drought. He asks the peasants for a little water; they, seeing their springs almost dry, refuse it to him. Carried away by anger, he strikes with his staff a stump that blocks the path: a limpid and fresh water springs from it. It is said that we still see the stump at the bottom of the fountain built above the spring &ndash; and it is this spring that is the origin of the pond.</p>
+                <p>The commune kept the fountain in its coat of arms, adopted on 2 December 1999: “vairé d'or et d'azur, à une fontaine de gueules”, where the fountain recalls precisely saint Cénéré.</p>
+                <p>In the Middle Ages the village was made only of a church and two houses, and the parish belonged to the barony of Pouancé. In the 17th century, rye was grown there on land cleared by the monks of a priory &ndash; a priory that would become the only café of the commune. The village then passed to the family of Ghaisne, counts of Bourmont.</p>
+                <p>In 1903, abbé Angot noted that the land registry plan of the commune, posted at the town hall, fitted on “a single sheet”.</p>
+
+                <div class="encadre-groupe">
+                    <h4>The band</h4>
+                    <p>It is here that the band was based, and here that the very first rehearsals took place: in the house of Tanguy and Loran's grandmother, where Desastrax recorded its first cassette, then in the basement of the house of Régis and Tony's parents.</p>
+                    <p>The 2004 archives locate Saint-Erblon “not far from Rennes and Angers”.</p>
+                </div>
+            </article>
+
+            <article class="commune" id="renaze">
+                <h3>RENAZÉ <span>(53)</span></h3>
+                <p class="commune-sous-titre">The slate town and the association</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>2 504</b><span>inhabitants</span></div>
+                    <div class="fiche"><b>XVe</b><span>century: slate</span></div>
+                    <div class="fiche"><b>3 564</b><span>inhabitants in 1901</span></div>
+                    <div class="fiche"><b>40 km</b><span>from Laval</span></div>
+                </div>
+
+                <p>Renazé is the biggest of the three communes: a rural small town about forty kilometres from Laval, on the Laval &ndash; Saint-Nazaire road axis, crossed by the departmental road 771. The commune touches Maine-et-Loire, and Brittany is not far: Eancé, in Ille-et-Vilaine, is about fifteen kilometres as the crow flies.</p>
+                <p>It is a slate town. From the 15th century, Renazé is a major place of the slate industry &ndash; the legend even makes saint Lézin, bishop of Angers in the 6th century, the first to have had the idea of covering roofs with slate stone, which earned him to be proclaimed patron of the slaters.</p>
+                <p>In 1850 the commune counted 300 workers. From 1880 to 1900 its population goes from 2,253 to 3,564 inhabitants, including 1,500 workers in 1900: a progression due to the improvement of the extraction methods and to the fact that the slate of Renazé was considered the best. The maximum of population is reached in 1901; the commune has 2,504 today.</p>
+                <p>Two passing dates: on 21 March 1793, Fouché, on a mission in Mayenne, indicates that Renazé is one of the communes “where people are imprisoned without any suspicion”. On 11 June 1856, Napoleon III comes to the town on foot, from the main road where the inhabitants, on their knees, had blocked his way.</p>
+
+                <div class="encadre-groupe">
+                    <h4>The band</h4>
+                    <p>Renazé counts double in the story. We first rehearsed there for a while on rue de l'Aubinière, in 1999, before a stop in Craon &ndash; then the rehearsals came back here, within the association TOUS AZIC'MUTS: it is the town “that allowed the creation of the association”, of which Codéine was one of the two first members, alongside Hippy Groovy and the stylee mens, the two bands sharing the place.</p>
+                    <p>We also find there the Fête de la musique, a concert in June 2002 and a date on 27 June 2003.</p>
+                </div>
+            </article>
+
+            <article class="commune" id="longuefuye">
+                <h3>LONGUEFUYE <span>(53)</span></h3>
+                <p class="commune-sous-titre">The village of the two castles</p>
+
+                <div class="fiches">
+                    <div class="fiche"><b>334</b><span>inhabitants</span></div>
+                    <div class="fiche"><b>1998</b><span>the place of the Jar CD</span></div>
+                    <div class="fiche"><b>2019</b><span>delegated commune</span></div>
+                    <div class="fiche"><b>8 km</b><span>of Château-Gontier</span></div>
+                    <div class="fiche"><b>1 354</b><span>inhabitants of Gennes-Longuefuye</span></div>
+                </div>
+
+                <p>Longuefuye is a village of South Mayenne, eight kilometres from Château-Gontier. Since 1 January 2019 it is no longer a commune in its own right: it merged with Gennes-sur-Glaize to form the new commune of Gennes-Longuefuye, of which it is a delegated commune, with a delegated mayor. The merger was recorded by a prefectural order of 14 November 2018.</p>
+                <p>Under the Ancien Régime the parish depended on the Angevin sénéchaussée of Château-Gontier, itself attached to Angers. In 1790 the creation of the départements made this part of Haut-Anjou the south of Mayenne &ndash; the Angevin Mayenne.</p>
+                <p>The village has its heritage: two castles, that of la Villette (15th and 17th centuries) and that of les Courans (18th century). It also has its character, Henri-Augustin Girard de Charnacé (1777-1847), chouan and mayor of Longuefuye.</p>
+
+                <div class="encadre-groupe">
+                    <h4>The band</h4>
+                    <p>It is the time of the Jar CD. Régis had taken a rental with a friend, Mickaël Lairy, in the middle of the countryside, in an outbuilding of the manor &ndash; at les Courans, the hamlet of Longuefuye, where the castle of the same name was precisely located.</p>
+                    <p>There was room: enough to build a small rehearsal studio, sealed with egg boxes and pallets. It is there that the band prepared for the recording of the Jar CD &ndash; five tracks cut at Nono's, at the Panoramix studio, in Saint-Sauveur-de-Flée.</p>
+                    <p>The record case carries besides the two addresses, like coordinates of youth, and its thanks mention Nono and Mickaël among the first.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- SOURCES -->
+        <section>
+            <div class="section-header">
+                <h2>SOURCES</h2>
+            </div>
+            <div class="sources">
+                <p>Population figures, historical landmarks and heritage: the articles “Renazé”, “Saint-Erblon (Mayenne)”, “Longuefuye”, “Gennes-Longuefuye” and “Craon (Mayenne)” of Wikipedia, consulted in September 2026 (INSEE for demography).</p>
+                <p>Legend of saint Cénéré and coat of arms of Saint-Erblon (“vairé d'or et d'azur, à une fontaine de gueules”, adopted on 2 December 1999): collection of the myths of France and armorial of the communes. The link between the spring and the pond of the village is a local story, reported by Tony in September 2026.</p>
+                <p>Band history, TOUS AZIC'MUTS association and concert dates: archives of the original site, last update on 7 September 2004.</p>
+                <p>The Longuefuye place (les Courans) and the Panoramix studio at Nono's: case of the Jar CD (thanks and addresses carried on the disc).</p>
+                <p>Location of the places &ndash; the house of Tanguy and Loran's grandmother, the basement of Régis and Tony's parents, rue de l'Aubinière, Craon near the espace Saint-Clément, the rental of Régis with Mickaël Lairy and the egg boxes: memories of Tony, September 2026. These addresses are in no archive.</p>
+                <p>Distances: as the crow flies, calculated from the coordinates of the communes.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">SAINT<span>ERBLON</span> ARCHIVES</div>
+        <p class="footer-text">© 2025-2026 Band Archives. All rights reserved.</p>
+        <p class="footer-text">Site “A youth under distortion.”</p>
+    </footer>
+
+    <link rel="prefetch" href="../recherche/index.json">
+    <script src="../recherche/recherche.js" defer></script>
+    <script src="../menu.js" defer></script>
+    <script src="../visionneuse-photos.js" defer></script>
+</body>
+</html>
