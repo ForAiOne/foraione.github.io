@@ -29,9 +29,12 @@
         zone.hidden = false;
     }
 
+    var repliNatif = false;
+
     function traiter(formulaire) {
         formulaire.addEventListener("submit", function (evenement) {
             if (!window.fetch || !window.FormData) { return; }   // repli natif
+            if (repliNatif) { return; }                          // deja reparti
 
             evenement.preventDefault();
 
@@ -76,8 +79,16 @@
                 }
             }).catch(function () {
                 clearTimeout(minuteur);
-                if (bouton) { bouton.disabled = false; bouton.textContent = libelle; }
-                afficher(formulaire, formulaire.getAttribute("data-msg-panne") || "L'envoi a echoue.", "erreur");
+                // Le navigateur a bloque la requete avant le reseau : c'est le
+                // cas d'un visiteur qui a Tailscale installe, le nom *.ts.net se
+                // resout alors vers une adresse privee et Chrome refuse l'appel
+                // depuis une page publique (Local Network Access). On laisse
+                // donc le formulaire partir normalement : une navigation n'est
+                // pas soumise a cette restriction, et le service repond par sa
+                // page de remerciement.
+                repliNatif = true;
+                if (bouton) { bouton.disabled = true; }
+                HTMLFormElement.prototype.submit.call(formulaire);
             });
         });
     }
