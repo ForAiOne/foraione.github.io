@@ -559,25 +559,32 @@
                     <h3>Contact the archive team</h3>
                     <p style="margin-bottom: 25px; color: #aaa; font-size: 0.9rem;">To offer archives, press or a story. Say it in the message, we will reply about how to receive it.</p>
   
-  <!-- Formulaire modifié pour envoyer à nomug2020 -->
- <form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="Nouveau message depuis le site Saint Erblon Archives">
-    
+  <!-- Envoi vers le service du VPS (voir abonnement.js) -->
+ <form class="formulaire-abonnement" data-abonnement="contact"
+       action="https://ubuntu.tail1ccb87.ts.net/api/contact" method="POST"
+       data-msg-envoi="Sending..."
+       data-msg-panne="Sending failed. Please try again shortly.">
+    <input type="hidden" name="langue" value="en">
+    <div class="piege" aria-hidden="true">
+        <label for="contact-site-web">Do not fill this field</label>
+        <input type="text" id="contact-site-web" name="site_web" tabindex="-1" autocomplete="off">
+    </div>
+
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" name="test_nom" class="form-control" required>
+        <input type="text" id="name" name="nom" class="form-control" required>
     </div>    
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="test_email" class="form-control" required>
+        <input type="email" id="email" name="email" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="message">Message</label>
-        <textarea id="message" name="test_message" rows="5" class="form-control" required></textarea>
+        <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
     </div>
 
     <button type="submit" class="btn">Send</button>
+    <p class="etat-abonnement" data-etat role="status" aria-live="polite" hidden></p>
 </form>
         </div>
 
@@ -585,14 +592,27 @@
                     <h3>Let's stay connected</h3>
                     <p style="margin-bottom: 25px;">Sign up to the newsletter to hear about new archives going online.</p>
                     
-<form action="https://formsubmit.co/nomug2020@gmail.com" method="POST" style="margin-bottom: 40px;">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="Nouvelle inscription Newsletter - Saint Erblon Archives">
-    
-                <div class="form-group">
-                <input type="email" name="newsletter_email" placeholder="Your email" class="form-control" required>
+<form class="formulaire-abonnement" data-abonnement="newsletter"
+      action="https://ubuntu.tail1ccb87.ts.net/api/newsletter" method="POST"
+      style="margin-bottom: 40px;"
+      data-msg-envoi="Sending..."
+      data-msg-panne="Sign-up failed. Please try again shortly.">
+                <input type="hidden" name="langue" value="en">
+                <input type="hidden" name="source" value="home">
+                <div class="piege" aria-hidden="true">
+                    <label for="newsletter-site-web">Do not fill this field</label>
+                    <input type="text" id="newsletter-site-web" name="site_web" tabindex="-1" autocomplete="off">
                 </div>
+
+                <div class="form-group">
+                <input type="email" name="email" placeholder="Your email" class="form-control" required>
+                </div>
+                <label class="consentement">
+                    <input type="checkbox" name="consentement" value="oui" required>
+                    <span>I agree to receive the archive newsletter. I can unsubscribe at any time.</span>
+                </label>
                 <button type="submit" class="btn btn-outline">Sign up</button>
+                <p class="etat-abonnement" data-etat role="status" aria-live="polite" hidden></p>
 </form>
 
                     <div class="social-links">
@@ -852,5 +872,6 @@
     <link rel="prefetch" href="../recherche/index.json">
     <script src="../recherche/recherche.js" defer></script>
     <script src="../menu.js" defer></script>
+    <script src="../abonnement.js" defer></script>
 </body>
 </html>

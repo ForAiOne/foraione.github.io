@@ -864,3 +864,38 @@ footer {
     .langue { margin-left: 8px; }
     .langue svg { width: 22px; height: 15px; }
 }
+
+/* --- Formulaire newsletter / contact (voir abonnement.js) --- */
+.formulaire-abonnement .consentement {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: #aaa;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin: 0 0 16px;
+    cursor: pointer;
+}
+.formulaire-abonnement .consentement input {
+    margin-top: 3px;
+    flex: 0 0 auto;
+    accent-color: var(--color-primary);
+}
+.formulaire-abonnement .piege {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.etat-abonnement {
+    margin: 12px 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.etat-abonnement.succes { color: #8fd18f; }
+.etat-abonnement.erreur { color: #e08b7b; }
+.etat-abonnement.attente { color: #aaa; }
+.formulaire-abonnement.envoye .form-group,
+.formulaire-abonnement.envoye .consentement,
+.formulaire-abonnement.envoye button[type=submit] { display: none; }
