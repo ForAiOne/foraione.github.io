@@ -4,6 +4,12 @@
   "nouveautes": [
     {
       "date": "2026-11-08",
+      "type": "labo",
+      "texte": "Nouveau morceau dans Le Labo : Endless story",
+      "url": "labo.html"
+    },
+    {
+      "date": "2026-11-08",
       "type": "photo",
       "texte": "1 photo(s) ajoutee(s) a la galerie des soirees",
       "url": "soirees.html"
