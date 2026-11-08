@@ -5,6 +5,12 @@
     {
       "date": "2026-11-08",
       "type": "labo",
+      "texte": "Nouveau morceau dans Le Labo : No Mug 3",
+      "url": "labo.html"
+    },
+    {
+      "date": "2026-11-08",
+      "type": "labo",
       "texte": "Nouveau morceau dans Le Labo : No Mug2",
       "url": "labo.html"
     },

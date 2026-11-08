@@ -2,6 +2,14 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
+      "titre": "No Mug 3",
+      "fichier": "labo/audio/no-mug-3.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-08",
+      "duree": "3:20",
+      "note": ""
+    },
+    {
       "titre": "No Mug2",
       "fichier": "labo/audio/no-mug2.mp3",
       "categorie": "remasterises",
