@@ -268,7 +268,7 @@
             <a class="actu-lien" href="soirees.html">
                 <span class="actu-pastille"><span class="actu-point" aria-hidden="true"></span>NEW</span>
                 <span class="actu-texte">1 photo(s) added to the hangouts gallery</span>
-                <span class="actu-age" data-date="2026-10-30">today</span>
+                <span class="actu-age" data-date="2026-11-08">today</span>
                 <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
         </div>
@@ -809,7 +809,7 @@
             }
         });
 
-        function showNotification(message = "Message envoyé avec succès !") {
+        function showNotification(message = "Message sent successfully!") {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.style.transform = "translateY(0)";
@@ -843,16 +843,19 @@
     // La date est ecrite par nouveautes_maj.py dans data-date ; le texte est
     // rafraichi ici pour qu'« il y a 3 jours » ne devienne pas faux.
     function ageNouveauteEnTexte(jours) {
-        if (jours <= 0) return "aujourd'hui";
-        if (jours === 1) return "hier";
-        if (jours < 7) return "il y a " + jours + " jours";
+        if (jours <= 0) return "today";
+        if (jours === 1) return "yesterday";
+        if (jours < 7) return jours + " days ago";
         if (jours < 30) {
             var semaines = Math.floor(jours / 7);
-            return "il y a " + semaines + (semaines > 1 ? " semaines" : " semaine");
+            return semaines + (semaines > 1 ? " weeks ago" : " week ago");
         }
-        if (jours < 365) return "il y a " + Math.floor(jours / 30) + " mois";
+        if (jours < 365) {
+            var mois = Math.floor(jours / 30);
+            return mois + (mois > 1 ? " months ago" : " month ago");
+        }
         var ans = Math.floor(jours / 365);
-        return "il y a " + ans + (ans > 1 ? " ans" : " an");
+        return ans + (ans > 1 ? " years ago" : " year ago");
     }
 
     function majAgeNouveautes() {
