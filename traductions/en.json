@@ -3681,6 +3681,42 @@
    "678d02095a05": {
     "fr": "Ex. Enregistré au téléphone, une nuit.",
     "en": "E.g. Recorded on a phone, one night."
+   },
+   "aef8a0c793c9": {
+    "fr": "LES OUTILS",
+    "en": "THE TOOLS"
+   },
+   "336e856b2a3c": {
+    "fr": "Ce qui sort du Labo et sert en dehors : des outils faits maison, qui tournent dans le navigateur.",
+    "en": "What comes out of the Labo and is used outside it: homemade tools that run in the browser."
+   },
+   "52413d451d07": {
+    "fr": "VoiceLayer",
+    "en": "VoiceLayer"
+   },
+   "cebcfababf1c": {
+    "fr": "Créé par",
+    "en": "Created by"
+   },
+   "c8fa8cb4f88f": {
+    "fr": "Tony",
+    "en": "Tony"
+   },
+   "bcdec57b463a": {
+    "fr": "Un mini studio vocal dans le navigateur : on empile les prises de voix, on écoute les pistes déjà enregistrées en chantant par-dessus, et on repart avec un WAV. Rien à installer, aucun compte à créer — les prises restent sur l'appareil. Ça marche au clavier comme au doigt, casque recommandé.",
+    "en": "A mini vocal studio in the browser: stack vocal takes, listen to the tracks you already recorded while you sing over them, and leave with a WAV. Nothing to install, no account to create — the takes stay on the device. Works with a mouse or a finger, headphones recommended."
+   },
+   "8db0764baac7": {
+    "fr": "Ouvrir l'outil",
+    "en": "Open the tool"
+   },
+   "2dfcb7fa5ca6": {
+    "fr": "Ouvrir VoiceLayer dans un nouvel onglet",
+    "en": "Open VoiceLayer in a new tab"
+   },
+   "52eeae677d0f": {
+    "fr": "Écran de VoiceLayer : quatre pistes vocales superposées, avec leur forme d'onde, leur volume et leurs boutons de calage.",
+    "en": "VoiceLayer screen: four stacked vocal tracks, each with its waveform, volume and nudge buttons."
    }
   },
   "soirees.html": {

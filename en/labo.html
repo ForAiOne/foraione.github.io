@@ -231,6 +231,45 @@
             transition: width 0.15s linear;
         }
         .depot-petit { color: var(--color-text-muted); font-size: 0.85rem; margin-top: 12px; }
+        /* === OUTILS === */
+        .outils-grille { max-width: 900px; margin: 0 auto; }
+        .outil {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border-top: 3px solid var(--color-primary);
+            overflow: hidden;
+        }
+        .outil-vue { flex: 1 1 400px; display: block; line-height: 0; border-right: 1px solid #333; }
+        .outil-vue img { display: block; width: 100%; height: auto; }
+        .outil-corps { flex: 1 1 300px; display: flex; flex-direction: column; padding: 22px 24px; }
+        .outil-nom {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.3rem;
+            color: #fff;
+            margin: 0 0 4px;
+        }
+        .outil-createur { color: var(--color-text-muted); font-size: 0.82rem; margin: 0 0 14px; }
+        .outil-createur strong { color: var(--color-primary); font-weight: 700; }
+        .outil-desc { color: #ccc; font-size: 0.95rem; margin: 0 0 20px; }
+        .outil .lien-externe { margin-top: auto; align-self: flex-start; }
+        .lien-externe {
+            display: inline-block;
+            padding: 9px 16px;
+            border: 1px solid var(--color-primary);
+            border-radius: 20px;
+            color: var(--color-text-main);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.78rem;
+            transition: 0.25s;
+        }
+        .lien-externe:hover { background: var(--color-primary); color: #fff; }
+        .lien-externe i { font-size: 0.7rem; opacity: 0.8; }
 </style>
     <link rel="canonical" href="https://foraione.github.io/en/labo.html">
     <link rel="alternate" hreflang="fr" href="https://foraione.github.io/labo.html">
@@ -323,6 +362,34 @@
             </div>
 
             <audio id="audio"></audio>
+        </section>
+
+        <!-- OUTILS -->
+        <section id="outils">
+            <div class="section-header">
+                <h2>THE TOOLS</h2>
+                <p>What comes out of the Labo and is used outside it: homemade tools that run in the browser.</p>
+            </div>
+
+            <div class="outils-grille">
+                <!-- Pour ajouter un outil : dupliquer cet <article class="outil">
+                     puis remplacer l'image (images/outils/<nom>.jpg), le nom,
+                     le createur, la description et le lien. -->
+                <article class="outil">
+                    <a class="outil-vue" href="https://foraione.github.io/voicelayer/" target="_blank" rel="noopener"
+                       aria-label="Open VoiceLayer in a new tab">
+                        <img src="../images/outils/voicelayer.jpg"
+                             alt="VoiceLayer screen: four stacked vocal tracks, each with its waveform, volume and nudge buttons."
+                             width="1280" height="980" loading="lazy">
+                    </a>
+                    <div class="outil-corps">
+                        <h3 class="outil-nom">VoiceLayer</h3>
+                        <p class="outil-createur">Created by <strong>Tony</strong></p>
+                        <p class="outil-desc">A mini vocal studio in the browser: stack vocal takes, listen to the tracks you already recorded while you sing over them, and leave with a WAV. Nothing to install, no account to create — the takes stay on the device. Works with a mouse or a finger, headphones recommended.</p>
+                        <a class="lien-externe" href="https://foraione.github.io/voicelayer/" target="_blank" rel="noopener">Open the tool <i class="fas fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <!-- DEPOT D'UN MORCEAU -->
