@@ -511,6 +511,18 @@
             return texte ? '<div class="morceau-periode">' + texte + '</div>' : '';
         }
 
+        // Ordre d'affichage : annee de creation, de la plus recente a la plus ancienne.
+        // Un morceau sans annee (depot pas encore date) passe en tete plutot que
+        // de se retrouver au bas de la liste, sous les plus anciens.
+        // Tri stable : a annee egale, l'ordre du fichier morceaux.json est garde.
+        function trier(liste) {
+            const rang = m => { const a = parseInt(m.annee, 10); return isNaN(a) ? Infinity : a; };
+            return liste
+                .map((m, i) => ({ m, i }))
+                .sort((a, b) => (rang(b.m) - rang(a.m)) || (a.i - b.i))
+                .map(x => x.m);
+        }
+
         function correspond(m) {
             if (filtre === 'tous') return true;
             if (m.categorie === filtre) return true;
@@ -588,7 +600,7 @@
 
         fetch(LISTE, { cache: 'no-store' })
             .then(r => r.ok ? r.json() : { morceaux: [] })
-            .then(d => { morceaux = (d && d.morceaux) || []; afficher(); })
+            .then(d => { morceaux = trier((d && d.morceaux) || []); afficher(); })
             .catch(() => { morceaux = []; afficher(); });
     </script>
 

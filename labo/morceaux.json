@@ -2,49 +2,14 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ, date de mise en ligne), duree (m:ss), note (une phrase), groupe (formation d'origine), annee (annee de creation du morceau, si connue). groupe et annee forment le sous-titre affiche sous le titre. Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
-      "titre": "I want to be whole",
-      "fichier": "labo/audio/i-want-to-be-whole.mp3",
-      "categorie": "remasterises",
-      "date": "2026-11-15",
-      "duree": "3:53",
-      "note": "Morceau emblématique de Codéine.",
-      "groupe": "Codéine"
-    },
-    {
-      "titre": "Endless story",
-      "fichier": "labo/audio/endless-story.mp3",
-      "categorie": "remasterises",
-      "date": "2026-11-08",
-      "duree": "3:57",
-      "note": "WoW , un de leur morceau phare",
-      "groupe": "Wöw"
-    },
-    {
-      "titre": "There were lawyers there",
-      "fichier": "labo/audio/no-mug-3.mp3",
-      "categorie": "remasterises",
-      "date": "2026-11-08",
-      "duree": "3:20",
-      "note": "2nd morceau de No Mug à la Fugazien",
-      "groupe": "No Mug"
-    },
-    {
-      "titre": "No was return",
-      "fichier": "labo/audio/no-mug2.mp3",
-      "categorie": "remasterises",
-      "date": "2026-11-08",
-      "duree": "3:10",
-      "note": "1er morceau crée par le groupe NoMug au complet",
-      "groupe": "No Mug"
-    },
-    {
-      "titre": "Road between us",
-      "fichier": "labo/audio/road-between-us.mp3",
-      "categorie": "remasterises",
-      "date": "2026-10-15",
-      "duree": "2:59",
-      "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina",
-      "groupe": "Sayyadina"
+      "titre": "No future",
+      "fichier": "labo/audio/no-future.mp3",
+      "categorie": "originaux",
+      "date": "2026-09-20",
+      "duree": "3:55",
+      "note": "morceau créé en 2022. ( Regis, Gilles, Tony )",
+      "groupe": "Crumble Head",
+      "annee": "2022"
     },
     {
       "titre": "Ever ever know",
@@ -57,16 +22,6 @@
       "annee": "2019"
     },
     {
-      "titre": "Rue Morgue",
-      "fichier": "labo/audio/rue-morgue.mp3",
-      "categorie": "remasterises",
-      "date": "2026-10-02",
-      "duree": "1:39",
-      "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony en 1988, revisité par Suno.",
-      "groupe": "Desastrax",
-      "annee": "1988"
-    },
-    {
       "titre": "Whispers in the Dark",
       "fichier": "labo/audio/whispers-in-the-dark.mp3",
       "categorie": "remasterises",
@@ -77,14 +32,64 @@
       "annee": "2017"
     },
     {
-      "titre": "No future",
-      "fichier": "labo/audio/no-future.mp3",
-      "categorie": "originaux",
-      "date": "2026-09-20",
-      "duree": "3:55",
-      "note": "morceau créé en 2022. ( Regis, Gilles, Tony )",
-      "groupe": "Crumble Head",
-      "annee": "2022"
+      "titre": "Endless story",
+      "fichier": "labo/audio/endless-story.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-08",
+      "duree": "3:57",
+      "note": "WoW , un de leur morceau phare",
+      "groupe": "Wöw",
+      "annee": "2004"
+    },
+    {
+      "titre": "I want to be whole",
+      "fichier": "labo/audio/i-want-to-be-whole.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-15",
+      "duree": "3:53",
+      "note": "Morceau emblématique de Codéine.",
+      "groupe": "Codéine",
+      "annee": "2003"
+    },
+    {
+      "titre": "Road between us",
+      "fichier": "labo/audio/road-between-us.mp3",
+      "categorie": "remasterises",
+      "date": "2026-10-15",
+      "duree": "2:59",
+      "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina",
+      "groupe": "Sayyadina",
+      "annee": "2001"
+    },
+    {
+      "titre": "There were lawyers there",
+      "fichier": "labo/audio/no-mug-3.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-08",
+      "duree": "3:20",
+      "note": "2nd morceau de No Mug à la Fugazien",
+      "groupe": "No Mug",
+      "annee": "1993"
+    },
+    {
+      "titre": "No was return",
+      "fichier": "labo/audio/no-mug2.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-08",
+      "duree": "3:10",
+      "note": "1er morceau crée par le groupe NoMug au complet",
+      "groupe": "No Mug",
+      "annee": "1993"
+    },
+    {
+      "titre": "Rue Morgue",
+      "fichier": "labo/audio/rue-morgue.mp3",
+      "categorie": "remasterises",
+      "date": "2026-10-02",
+      "duree": "1:39",
+      "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony en 1988, revisité par Suno.",
+      "groupe": "Desastrax",
+      "annee": "1988"
     }
   ]
 }
