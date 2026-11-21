@@ -121,6 +121,14 @@
         .morceau.en-lecture .morceau-icone { background: var(--color-primary); }
         .morceau-titre { color: var(--color-text-main); font-weight: 700; }
         .morceau-meta { color: var(--color-text-muted); font-size: 0.85rem; }
+        .morceau-periode {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.72rem;
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
         .morceau-note { color: #999; font-size: 0.85rem; margin-top: 3px; }
         .etiquette {
             margin-left: auto;
@@ -492,6 +500,16 @@
             return m + ':' + String(s).padStart(2, '0');
         }
 
+        // Sous-titre de la fiche : formation d'origine et annee de creation.
+        // Les deux champs viennent de morceaux.json ; s'ils manquent, pas de ligne.
+        function periodeTexte(m) {
+            return [m.groupe || '', m.annee || ''].filter(Boolean).join(' · ');
+        }
+        function periode(m) {
+            const texte = periodeTexte(m);
+            return texte ? '<div class="morceau-periode">' + texte + '</div>' : '';
+        }
+
         function correspond(m) {
             if (filtre === 'tous') return true;
             if (m.categorie === filtre) return true;
@@ -520,7 +538,8 @@
                 d.innerHTML =
                     '<div class="morceau-icone"><i class="fas ' + (i === indexCourant && !audio.paused ? 'fa-volume-up' : 'fa-play') + '"></i></div>' +
                     '<div><div class="morceau-titre">' + m.titre + '</div>' +
-                    '<div class="morceau-meta">' + (m.date || '') + (m.duree ? ' • ' + m.duree : '') + '</div>' +
+                    periode(m) +
+                    (m.duree ? '<div class="morceau-meta">' + m.duree + '</div>' : '') +
                     (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
                     '<div class="etiquette">' + (LIBELLES[m.categorie] || m.categorie || 'morceau') + '</div>';
                 d.addEventListener('click', () => lancer(i));
@@ -539,7 +558,7 @@
             audio.play().catch(() => {});
             lecteur.style.display = 'block';
             titreEl.textContent = m.titre;
-            noteEl.textContent = m.note || '';
+            noteEl.textContent = [periodeTexte(m), m.note || ''].filter(Boolean).join(' — ');
             afficher();
         }
 

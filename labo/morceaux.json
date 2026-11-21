@@ -1,5 +1,5 @@
 {
-  "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ), duree (m:ss), note (une phrase). Pour retirer un morceau, supprimer son entree et le fichier.",
+  "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ, date de mise en ligne), duree (m:ss), note (une phrase), groupe (formation d'origine), annee (annee de creation du morceau, si connue). groupe et annee forment le sous-titre affiche sous le titre. Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
       "titre": "I want to be whole",
@@ -7,7 +7,8 @@
       "categorie": "remasterises",
       "date": "2026-11-15",
       "duree": "3:53",
-      "note": "Morceau emblématique de Codéine."
+      "note": "Morceau emblématique de Codéine.",
+      "groupe": "Codéine"
     },
     {
       "titre": "Endless story",
@@ -15,7 +16,8 @@
       "categorie": "remasterises",
       "date": "2026-11-08",
       "duree": "3:57",
-      "note": "WoW , un de leur morceau phare"
+      "note": "WoW , un de leur morceau phare",
+      "groupe": "Wöw"
     },
     {
       "titre": "There were lawyers there",
@@ -23,7 +25,8 @@
       "categorie": "remasterises",
       "date": "2026-11-08",
       "duree": "3:20",
-      "note": "2nd morceau de No Mug à la Fugazien"
+      "note": "2nd morceau de No Mug à la Fugazien",
+      "groupe": "No Mug"
     },
     {
       "titre": "No was return",
@@ -31,7 +34,8 @@
       "categorie": "remasterises",
       "date": "2026-11-08",
       "duree": "3:10",
-      "note": "1er morceau crée par le groupe NoMug au complet"
+      "note": "1er morceau crée par le groupe NoMug au complet",
+      "groupe": "No Mug"
     },
     {
       "titre": "Road between us",
@@ -39,7 +43,8 @@
       "categorie": "remasterises",
       "date": "2026-10-15",
       "duree": "2:59",
-      "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina"
+      "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina",
+      "groupe": "Sayyadina"
     },
     {
       "titre": "Ever ever know",
@@ -47,7 +52,9 @@
       "categorie": "remasterises",
       "date": "2026-10-15",
       "duree": "2:16",
-      "note": "Morceau à l'ambiance Weezer créé par Tony en 2019 et revisité par Suno."
+      "note": "Morceau à l'ambiance Weezer créé par Tony en 2019 et revisité par Suno.",
+      "groupe": "Tony",
+      "annee": "2019"
     },
     {
       "titre": "Rue Morgue",
@@ -55,7 +62,9 @@
       "categorie": "remasterises",
       "date": "2026-10-02",
       "duree": "1:39",
-      "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony en 1988, revisité par Suno."
+      "note": "1er morceau de Desastrax créé par Tanguy, Régis, Loran et Tony en 1988, revisité par Suno.",
+      "groupe": "Desastrax",
+      "annee": "1988"
     },
     {
       "titre": "Whispers in the Dark",
@@ -63,7 +72,9 @@
       "categorie": "remasterises",
       "date": "2026-09-27",
       "duree": "2:26",
-      "note": "Morceau créé par Florent en 2017 joué avec Regis, Sam et Tony, revisité par Suno"
+      "note": "Morceau créé par Florent en 2017 joué avec Regis, Sam et Tony, revisité par Suno",
+      "groupe": "Florent",
+      "annee": "2017"
     },
     {
       "titre": "No future",
@@ -71,7 +82,9 @@
       "categorie": "originaux",
       "date": "2026-09-20",
       "duree": "3:55",
-      "note": "morceau créé en 2022. ( Regis, Gilles, Tony )"
+      "note": "morceau créé en 2022. ( Regis, Gilles, Tony )",
+      "groupe": "Crumble Head",
+      "annee": "2022"
     }
   ]
 }
