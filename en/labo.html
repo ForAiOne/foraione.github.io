@@ -121,14 +121,30 @@
         .morceau.en-lecture .morceau-icone { background: var(--color-primary); }
         .morceau-titre { color: var(--color-text-main); font-weight: 700; }
         .morceau-meta { color: var(--color-text-muted); font-size: 0.85rem; }
-        .morceau-periode {
+        /* En-tete de periode : annee + formation, puis les morceaux du groupe.
+           Meme convention que la page Histoire (annee forte, nom en capitales). */
+        .groupe-titre {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin: 26px 0 10px;
+        }
+        .groupe-titre:first-child { margin-top: 0; }
+        .groupe-annee {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .groupe-nom {
             font-family: var(--font-head);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.72rem;
-            color: var(--color-primary);
-            margin-top: 2px;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            color: var(--color-text-main);
         }
+        .groupe-trait { flex: 1 1 auto; height: 1px; background: #333; }
         .morceau-note { color: #999; font-size: 0.85rem; margin-top: 3px; }
         .etiquette {
             margin-left: auto;
@@ -477,6 +493,9 @@
         const LIBELLES = (document.documentElement.lang === 'en')
             ? { originaux: 'original', remasterises: 'remastered', riffs: 'riff & idea' }
             : { originaux: 'original', remasterises: 'remasterisé', riffs: 'riff et idée' };
+        // Un morceau sans groupe ni annee connus garde sa place, sous cet en-tete.
+        const SANS_PERIODE = (document.documentElement.lang === 'en')
+            ? 'Unknown period' : 'Période non renseignée';
         // Anciennes cles encore presentes dans un cache de morceaux.json
         const ALIAS = { originaux: ['morceaux'], remasterises: ['remixes'] };
         let morceaux = [];
@@ -506,9 +525,18 @@
         function periodeTexte(m) {
             return [m.groupe || '', m.annee || ''].filter(Boolean).join(' · ');
         }
-        function periode(m) {
-            const texte = periodeTexte(m);
-            return texte ? '<div class="morceau-periode">' + texte + '</div>' : '';
+
+        // En-tete de periode : annee + formation, pose UNE fois, au-dessus des
+        // morceaux du meme groupe et de la meme annee.
+        function clePeriode(m) {
+            return (m.groupe || '') + '|' + (m.annee || '');
+        }
+        function entetePeriode(m) {
+            return '<div class="groupe-titre">' +
+                '<span class="groupe-annee">' + (m.annee || '—') + '</span>' +
+                '<span class="groupe-nom">' + (m.groupe || SANS_PERIODE) + '</span>' +
+                '<span class="groupe-trait"></span>' +
+                '</div>';
         }
 
         // Ordre d'affichage : annee de creation, de la plus recente a la plus ancienne.
@@ -544,14 +572,18 @@
                 zoneListe.innerHTML = '<div class="vide"><p>Aucun morceau dans cette rubrique pour l\'instant.</p></div>';
                 return;
             }
+            let periodeCourante = null;
             visibles.forEach(m => {
                 const i = morceaux.indexOf(m);
+                if (clePeriode(m) !== periodeCourante) {
+                    periodeCourante = clePeriode(m);
+                    zoneListe.insertAdjacentHTML('beforeend', entetePeriode(m));
+                }
                 const d = document.createElement('div');
                 d.className = 'morceau' + (i === indexCourant ? ' en-lecture' : '');
                 d.innerHTML =
                     '<div class="morceau-icone"><i class="fas ' + (i === indexCourant && !audio.paused ? 'fa-volume-up' : 'fa-play') + '"></i></div>' +
                     '<div><div class="morceau-titre">' + m.titre + '</div>' +
-                    periode(m) +
                     (m.duree ? '<div class="morceau-meta">' + m.duree + '</div>' : '') +
                     (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
                     '<div class="etiquette">' + (LIBELLES[m.categorie] || m.categorie || 'morceau') + '</div>';
