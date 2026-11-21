@@ -2,14 +2,6 @@
   "_mode_emploi": "Liste des morceaux du Labo. Chaque entree : titre, fichier (chemin depuis la racine du site, ex. labo/audio/mon-morceau.mp3), categorie (originaux | remasterises | riffs), date (AAAA-MM-JJ, date de mise en ligne), duree (m:ss), note (une phrase), groupe (formation d'origine), annee (annee de creation du morceau, si connue). groupe et annee forment le sous-titre affiche sous le titre. Pour retirer un morceau, supprimer son entree et le fichier.",
   "morceaux": [
     {
-      "titre": "Holding Your Empty Place",
-      "fichier": "labo/audio/holding-your-empty-place.mp3",
-      "categorie": "remasterises",
-      "date": "2026-11-21",
-      "duree": "4:00",
-      "note": "morceau phare de Hélium"
-    },
-    {
       "titre": "No future",
       "fichier": "labo/audio/no-future.mp3",
       "categorie": "originaux",
@@ -68,6 +60,16 @@
       "note": "Morceau crée par Loran et son groupe Fugazien : Sayyadina",
       "groupe": "Sayyadina",
       "annee": "2001"
+    },
+    {
+      "titre": "Holding Your Empty Place",
+      "fichier": "labo/audio/holding-your-empty-place.mp3",
+      "categorie": "remasterises",
+      "date": "2026-11-21",
+      "duree": "4:00",
+      "note": "morceau phare de Hélium",
+      "groupe": "Helium",
+      "annee": "1996"
     },
     {
       "titre": "There were lawyers there",
