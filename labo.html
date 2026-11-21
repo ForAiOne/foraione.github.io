@@ -120,6 +120,26 @@
         }
         .morceau.en-lecture .morceau-icone { background: var(--color-primary); }
         .morceau-titre { color: var(--color-text-main); font-weight: 700; }
+        /* Pastille du dernier morceau mis en ligne, et halo quand on arrive du bandeau */
+        .morceau-nouveau {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 7px 3px;
+            font-family: var(--font-head);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            line-height: 1.2;
+            vertical-align: middle;
+            color: #fff;
+            background: var(--color-primary);
+            border-radius: 999px;
+        }
+        .morceau-mis-en-avant { animation: morceauHalo 1.2s ease-in-out 3; }
+        @keyframes morceauHalo {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+            50% { box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.55); }
+        }
         .morceau-meta { color: var(--color-text-muted); font-size: 0.85rem; }
         /* En-tete de periode : annee + formation, puis les morceaux du groupe.
            Meme convention que la page Histoire (annee forte, nom en capitales). */
@@ -542,6 +562,8 @@
         // Un morceau sans groupe ni annee connus garde sa place, sous cet en-tete.
         const SANS_PERIODE = (document.documentElement.lang === 'en')
             ? 'Unknown period' : 'Période non renseignée';
+        // Pastille du dernier morceau mis en ligne (le bandeau de l'accueil y renvoie).
+        const NOUVEAU = (document.documentElement.lang === 'en') ? 'NEW' : 'NOUVEAU';
         // Anciennes cles encore presentes dans un cache de morceaux.json
         const ALIAS = { originaux: ['morceaux'], remasterises: ['remixes'] };
         let morceaux = [];
@@ -597,6 +619,29 @@
                 .map(x => x.m);
         }
 
+        // Le morceau « nouveau » : la date de mise en ligne (m.date, AAAA-MM-JJ)
+        // la plus recente. Recalcule a chaque affichage : le badge passera tout
+        // seul au prochain morceau depose, sans rien changer ici.
+        function lePlusRecent() {
+            let recent = null;
+            morceaux.forEach(m => {
+                if (!m.date) return;
+                if (!recent || String(m.date) > String(recent.date)) recent = m;
+            });
+            return recent;
+        }
+
+        // Arrivee depuis le bandeau de l'accueil (labo.html#nouveau) : on met le
+        // dernier morceau en avant pour le reperer d'un coup d'oeil.
+        function signalerNouveau() {
+            if (location.hash !== '#nouveau') return;
+            const cible = document.getElementById('nouveau-morceau');
+            if (!cible) return;
+            cible.scrollIntoView({ block: 'center' });
+            cible.classList.add('morceau-mis-en-avant');
+            setTimeout(() => cible.classList.remove('morceau-mis-en-avant'), 4500);
+        }
+
         function correspond(m) {
             if (filtre === 'tous') return true;
             if (m.categorie === filtre) return true;
@@ -619,6 +664,7 @@
                 return;
             }
             let periodeCourante = null;
+            const recent = lePlusRecent();
             visibles.forEach(m => {
                 const i = morceaux.indexOf(m);
                 if (clePeriode(m) !== periodeCourante) {
@@ -627,9 +673,11 @@
                 }
                 const d = document.createElement('div');
                 d.className = 'morceau' + (i === indexCourant ? ' en-lecture' : '');
+                if (recent && m === recent) d.id = 'nouveau-morceau';
                 d.innerHTML =
                     '<div class="morceau-icone"><i class="fas ' + (i === indexCourant && !audio.paused ? 'fa-volume-up' : 'fa-play') + '"></i></div>' +
-                    '<div><div class="morceau-titre">' + m.titre + '</div>' +
+                    '<div><div class="morceau-titre">' + m.titre +
+                        (recent && m === recent ? ' <span class="morceau-nouveau">' + NOUVEAU + '</span>' : '') + '</div>' +
                     (m.duree ? '<div class="morceau-meta">' + m.duree + '</div>' : '') +
                     (m.note ? '<div class="morceau-note">' + m.note + '</div>' : '') + '</div>' +
                     '<div class="morceau-droite">' +
@@ -682,7 +730,7 @@
 
         fetch(LISTE, { cache: 'no-store' })
             .then(r => r.ok ? r.json() : { morceaux: [] })
-            .then(d => { morceaux = trier((d && d.morceaux) || []); afficher(); })
+            .then(d => { morceaux = trier((d && d.morceaux) || []); afficher(); signalerNouveau(); })
             .catch(() => { morceaux = []; afficher(); });
     </script>
 
