@@ -3717,6 +3717,26 @@
    "52eeae677d0f": {
     "fr": "Écran de VoiceLayer : quatre pistes vocales superposées, avec leur forme d'onde, leur volume et leurs boutons de calage.",
     "en": "VoiceLayer screen: four stacked vocal tracks, each with its waveform, volume and nudge buttons."
+   },
+   "d4403bc5e340": {
+    "fr": "Groupe d'origine",
+    "en": "Original band"
+   },
+   "e9746978b5dd": {
+    "fr": "Année de création",
+    "en": "Year of creation"
+   },
+   "0e92d689b6d3": {
+    "fr": "Le groupe et l'année font le sous-titre du morceau dans la liste : sans eux, il se range sous « Période non renseignée ».",
+    "en": "The band and the year become the subtitle of the track in the list: without them, it goes under “Unknown period”."
+   },
+   "6964bb2d9af9": {
+    "fr": "Ex. Desastrax",
+    "en": "e.g. Desastrax"
+   },
+   "f00438d62e99": {
+    "fr": "Ex. 1993",
+    "en": "e.g. 1993"
    }
   },
   "soirees.html": {

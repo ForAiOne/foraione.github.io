@@ -282,6 +282,9 @@
             transition: width 0.15s linear;
         }
         .depot-petit { color: var(--color-text-muted); font-size: 0.85rem; margin-top: 12px; }
+        .depot-duo { display: flex; flex-wrap: wrap; gap: 0 18px; }
+        .depot-duo > .depot-champ { flex: 1 1 200px; }
+        .depot-periode-aide { color: var(--color-text-muted); font-size: 0.82rem; margin: -8px 0 18px; }
         /* === OUTILS === */
         .outils-grille { max-width: 900px; margin: 0 auto; }
         .outil {
@@ -479,6 +482,22 @@
                         <option value="riffs">Riff / idea</option>
                     </select>
                 </div>
+
+                <!-- Periode : ce qui range le morceau dans la liste (en-tete annee + groupe) -->
+                <div class="depot-duo">
+                    <div class="depot-champ">
+                        <label for="depot-groupe">Original band</label>
+                        <input type="text" id="depot-groupe" maxlength="40" placeholder="e.g. Desastrax">
+                    </div>
+                    <div class="depot-champ">
+                        <label for="depot-annee">Year of creation</label>
+                        <input type="text" id="depot-annee" maxlength="4" inputmode="numeric"
+                               placeholder="e.g. 1993" autocomplete="off">
+                    </div>
+                </div>
+                <p class="depot-periode-aide">
+                    The band and the year become the subtitle of the track in the list: without them, it goes under “Unknown period”.
+                </p>
 
                 <div class="depot-champ">
                     <label for="depot-note">One sentence to present it</label>
@@ -687,6 +706,8 @@
     var zoneFormulaire = document.getElementById('depot-formulaire');
     var champTitre = document.getElementById('depot-titre');
     var champCategorie = document.getElementById('depot-categorie');
+    var champGroupe = document.getElementById('depot-groupe');
+    var champAnnee = document.getElementById('depot-annee');
     var champNote = document.getElementById('depot-note');
     var champFichier = document.getElementById('depot-fichier');
     var boutonEnvoyer = document.getElementById('depot-envoyer');
@@ -886,6 +907,12 @@ function sha256(texte) {
         zoneProgression.hidden = true;
 
         if (!titre) { message(statutEnvoi, 'Donne un titre au morceau.', false); champTitre.focus(); return; }
+        // La periode est facultative, mais une annee saisie doit etre une annee.
+        if (champAnnee && champAnnee.value.trim() && !/^\d{4}$/.test(champAnnee.value.trim())) {
+            message(statutEnvoi, "L'année doit tenir en 4 chiffres (ex. 1993).", false);
+            champAnnee.focus();
+            return;
+        }
         if (!fichier) { message(statutEnvoi, 'Choisis un fichier MP3.', false); return; }
         if (!/\.mp3$/i.test(fichier.name)) {
             message(statutEnvoi, 'Seuls les fichiers MP3 sont acceptés (' + fichier.name + ').', false);
@@ -911,6 +938,8 @@ function sha256(texte) {
             'titre=' + encodeURIComponent(titre),
             'categorie=' + encodeURIComponent(champCategorie.value),
             'note=' + encodeURIComponent((champNote.value || '').trim()),
+            'groupe=' + encodeURIComponent((champGroupe ? champGroupe.value : '').trim()),
+            'annee=' + encodeURIComponent((champAnnee ? champAnnee.value : '').trim()),
             'fichier=' + encodeURIComponent(fichier.name),
         ].join('&');
 
@@ -944,6 +973,8 @@ function sha256(texte) {
                 message(statutEnvoi, reponse.message || 'Morceau reçu : il part en validation.', true);
                 champTitre.value = '';
                 champNote.value = '';
+                if (champGroupe) champGroupe.value = '';
+                if (champAnnee) champAnnee.value = '';
                 champFichier.value = '';
                 setTimeout(function () { zoneProgression.hidden = true; }, 2500);
             } else {
