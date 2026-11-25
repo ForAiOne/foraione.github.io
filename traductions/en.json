@@ -3508,10 +3508,6 @@
     "fr": "La chaîne musicale par câble et satellite : les clips en boucle, jour et nuit.",
     "en": "The music channel on cable and satellite: clips on a loop, day and night."
    },
-   "404930ff4bb0": {
-    "fr": "La chaîne — Wikipédia",
-    "en": "The channel — Wikipedia"
-   },
    "363ee378d24a": {
     "fr": "Les chaînes",
     "en": "The channels"
@@ -3519,34 +3515,6 @@
    "02f950b70bf8": {
     "fr": "Chaîne — à l'époque",
     "en": "Channel — back then"
-   },
-   "632d66352eac": {
-    "fr": "Canal+",
-    "en": "Canal+"
-   },
-   "a286fe807a8a": {
-    "fr": "La chaîne cryptée, et ses émissions en clair : Nulle part ailleurs, les Guignols.",
-    "en": "The encrypted channel, and its unencrypted shows: Nulle part ailleurs, the Guignols."
-   },
-   "51520964fa14": {
-    "fr": "M6",
-    "en": "M6"
-   },
-   "8a5ac5a926fa": {
-    "fr": "La chaîne musicale de 1987, devenue généraliste — TV6 avant elle.",
-    "en": "The music channel of 1987, later a general channel — TV6 before it."
-   },
-   "c6c377f57bac": {
-    "fr": "Arte",
-    "en": "Arte"
-   },
-   "70c06f85e10d": {
-    "fr": "La chaîne culturelle franco-allemande, lancée en 1992.",
-    "en": "The Franco-German culture channel, launched in 1992."
-   },
-   "a3581c5e3009": {
-    "fr": "arte.tv — site officiel",
-    "en": "arte.tv — official site"
    },
    "581a8a517828": {
     "fr": "Les publicités",
@@ -3683,6 +3651,18 @@
    "b1f547824209": {
     "fr": "Les archives — Dailymotion",
     "en": "The archives — Dailymotion"
+   },
+   "6df84eda059e": {
+    "fr": "TV6",
+    "en": "TV6"
+   },
+   "c8551de1f517": {
+    "fr": "La chaîne TV6 (1986-1987) était la première chaîne de télévision musicale et jeune en France, diffusée pendant exactement un an avant d'être remplacée par M6.",
+    "en": "TV6 (1986-1987) was the first music and youth television channel in France, broadcast for exactly one year before being replaced by M6."
+   },
+   "c3d82ead9392": {
+    "fr": "Les archives — YouTube",
+    "en": "The archives — YouTube"
    }
   },
   "labo.html": {
