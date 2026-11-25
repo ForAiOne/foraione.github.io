@@ -3504,10 +3504,6 @@
     "fr": "Clips — à l'époque",
     "en": "Clips — back then"
    },
-   "b764d0ddcd0b": {
-    "fr": "MTV Europe",
-    "en": "MTV Europe"
-   },
    "4910d6635e5f": {
     "fr": "La chaîne musicale par câble et satellite : les clips en boucle, jour et nuit.",
     "en": "The music channel on cable and satellite: clips on a loop, day and night."
@@ -3675,6 +3671,14 @@
    "21b0afc7e2c9": {
     "fr": "Le générique — YouTube",
     "en": "The opening titles — YouTube"
+   },
+   "55eb9fcee496": {
+    "fr": "MTV",
+    "en": "MTV"
+   },
+   "8adc63b942ea": {
+    "fr": "Le site — wantmymtv.org",
+    "en": "The site — wantmymtv.org"
    }
   },
   "labo.html": {
