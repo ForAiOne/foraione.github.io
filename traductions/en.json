@@ -3448,10 +3448,6 @@
     "fr": "C'ÉTAIT SUR NOS ÉCRANS",
     "en": "IT WAS ON OUR SCREENS"
    },
-   "8888ea39c7b5": {
-    "fr": "Une médiathèque de l'époque : les émissions, les clips, les chaînes de télévision, les publicités, les films, les archives vidéo et les contenus qui faisaient partie de votre quotidien.",
-    "en": "A media library of the era: the shows, the clips, the TV channels, the adverts, the films, the video archives and the content that was part of your everyday life."
-   },
    "6cfa8360a2d3": {
     "fr": "Les émissions",
     "en": "The shows"
@@ -3544,21 +3540,9 @@
     "fr": "Film — à l'époque",
     "en": "Film — back then"
    },
-   "f83ba44ec757": {
-    "fr": "Les archives vidéo",
-    "en": "The video archives"
-   },
    "5ba250defe24": {
     "fr": "Archives — aujourd'hui",
     "en": "Archives — today"
-   },
-   "17dda8e55271": {
-    "fr": "INA Officiel",
-    "en": "INA Officiel"
-   },
-   "665e7d8a8607": {
-    "fr": "Les archives de la télévision publique, en accès libre sur YouTube.",
-    "en": "The public television archives, free to watch on YouTube."
    },
    "3dd41efb2227": {
     "fr": "La chaîne — YouTube",
@@ -3679,6 +3663,30 @@
    "e02a08efbb9d": {
     "fr": "Le groupe de black metal Dead MaKabés est appelé pour remplacer un autre groupe de musique lors du célèbre festival Hellfest...",
     "en": "The black metal band Dead MaKabés is called in to replace another band at the famous Hellfest festival..."
+   },
+   "8583bcb16205": {
+    "fr": "Dessins animés et séries d'animation",
+    "en": "Cartoons and animated series"
+   },
+   "4fa4c6cc711c": {
+    "fr": "Série — à l'époque",
+    "en": "Series — back then"
+   },
+   "717a3e072f72": {
+    "fr": "Beavis et Butt-Head (1993-1997)",
+    "en": "Beavis and Butt-Head (1993-1997)"
+   },
+   "b282fb4f9199": {
+    "fr": "Deux adolescents fans de heavy metal et de hard rock passent leur temps devant la télé à commenter de vrais clips musicaux (Metallica, Nirvana, Pantera, Slayer...)",
+    "en": "Two teenagers, fans of heavy metal and hard rock, spend their time in front of the TV commenting on real music videos (Metallica, Nirvana, Pantera, Slayer...)"
+   },
+   "037278d28b99": {
+    "fr": "Où la regarder — JustWatch",
+    "en": "Where to watch — JustWatch"
+   },
+   "bade574100e1": {
+    "fr": "Une médiathèque de l'époque : les émissions, les clips, les chaînes de télévision, les publicités, les films, les dessins animés et les séries d'animation, et les contenus qui faisaient partie de votre quotidien.",
+    "en": "A media library of the era: the shows, the clips, the TV channels, the adverts, the films, the cartoons and the animated series, and the content that was part of your everyday life."
    }
   },
   "labo.html": {
