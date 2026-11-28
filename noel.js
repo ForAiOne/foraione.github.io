@@ -170,8 +170,13 @@
     /* --- 7. L'encart "Joyeux Noel", sous le hero -------------------------- */
     if (!home) { return; }
 
+    /* La fermeture n'est retenue QUE hors mode apercu : avec ?noel=1 l'encart
+       revient toujours, sinon un clic sur la croix rend l'apercu invisible
+       jusqu'a la fermeture de l'onglet et fait croire que rien n'a change. */
     var ferme = false;
-    try { ferme = window.sessionStorage.getItem('noel-ferme') === '1'; } catch (e) { ferme = false; }
+    if (!force) {
+        try { ferme = window.sessionStorage.getItem('noel-ferme') === '1'; } catch (e) { ferme = false; }
+    }
     if (ferme) { return; }
 
     var bande = document.createElement('div');
