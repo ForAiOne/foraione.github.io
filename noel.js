@@ -58,16 +58,16 @@
     var T = en ? {
         titre:    'Merry Christmas',
         accroche: 'This year, our gift comes as an address.',
-        corps:    'The band\u2019s official website is live. The whole story of Saint Erblon \u2014 the garage, the rehearsals, the stages, the tracks, the photos and the memories \u2014 is now one click away. It is our Christmas gift to you.',
-        lien:     'Share it: foraione.github.io',
+        corps:    'The band\u2019s official website is live. The whole story of Saint Erblon \u2014 the garage, the rehearsals, the stages, the tracks, the photos and the memories \u2014 is now one click away.',
         signature:'Saint Erblon \u00b7 Entre Cordes et Cendres',
+        photoAlt: 'Santa Claus playing guitar on stage, in front of a screen reading \u201cMerry Christmas and happy new year 2027\u201d',
         fermer:   'Close the Christmas message'
     } : {
         titre:    'Joyeux No\u00ebl',
         accroche: 'Cette ann\u00e9e, notre cadeau tient dans une adresse.',
-        corps:    'Le site officiel du groupe est en ligne. Toute l\u2019histoire de Saint Erblon \u2014 le garage, les r\u00e9p\u00e8tes, les sc\u00e8nes, les morceaux, les photos et les souvenirs \u2014 est d\u00e9sormais \u00e0 port\u00e9e de clic. C\u2019est notre cadeau de No\u00ebl, pour vous.',
-        lien:     '\u00c0 partager : foraione.github.io',
+        corps:    'Le site officiel du groupe est en ligne. Toute l\u2019histoire de Saint Erblon \u2014 le garage, les r\u00e9p\u00e8tes, les sc\u00e8nes, les morceaux, les photos et les souvenirs \u2014 est d\u00e9sormais \u00e0 port\u00e9e de clic.',
         signature:'Saint Erblon \u00b7 Entre Cordes et Cendres',
+        photoAlt: 'Le p\u00e8re No\u00ebl \u00e0 la guitare sur sc\u00e8ne, devant un \u00e9cran \u00ab\u00a0Joyeux No\u00ebl et bonne ann\u00e9e 2027\u00a0\u00bb',
         fermer:   'Fermer le message de No\u00ebl'
     };
 
@@ -98,10 +98,8 @@
         '.noel-accroche{font-family:var(--font-head,"Oswald",sans-serif);text-transform:uppercase;',
         'letter-spacing:1.5px;font-size:.9rem;color:#cfc7b8;margin:0 0 18px}',
         '.noel-corps{color:#d8d3c8;font-size:1.02rem;max-width:620px;margin:0 auto 20px;line-height:1.65}',
-        '.noel-adresse{display:inline-block;font-family:var(--font-head,"Oswald",sans-serif);',
-        'text-transform:uppercase;letter-spacing:1.4px;font-size:.82rem;color:#f2c14e;',
-        'border-bottom:1px dotted rgba(242,193,78,.55);padding-bottom:2px}',
-        '.noel-adresse:hover{color:#fff3cf;border-bottom-color:#f2c14e}',
+        '.noel-photo{display:block;margin:0 auto 22px;max-height:300px;width:auto;max-width:100%;',
+        'border-radius:6px;border:1px solid rgba(242,193,78,.2);box-shadow:0 8px 26px rgba(0,0,0,.55)}',
         '.noel-signature{display:block;margin-top:22px;font-size:.78rem;letter-spacing:1.6px;',
         'text-transform:uppercase;color:#857f74}',
         '.noel-fermer{position:absolute;top:8px;right:10px;background:none;border:0;color:#7d776c;',
@@ -109,6 +107,7 @@
         '.noel-fermer:hover{color:#f2c14e}',
         '@media (max-width:640px){.noel-titre{font-size:1.45rem;letter-spacing:2px}',
         '.noel-encart{padding:30px 20px 24px}.noel-bande{padding:44px 16px 26px}',
+        '.noel-photo{max-height:230px}',
         '.noel-guirlande .noel-ampoule:nth-child(odd){display:none}}',
         '@media (prefers-reduced-motion:reduce){.noel-ampoule{animation:none;opacity:.85}',
         '.noel-flocon{display:none}}'
@@ -177,18 +176,32 @@
 
     var bande = document.createElement('div');
     bande.className = 'noel-bande';
+
+    /* L'image vit a la racine du depot, a cote de noel.js : le chemin se deduit
+       du <script>, pour fonctionner aussi bien depuis / que depuis /en/. */
+    var scriptTag = document.querySelector('script[src$="noel.js"]');
+    var racine = scriptTag ? scriptTag.src.replace(/noel\.js(\?.*)?$/, '') : '';
+
     bande.innerHTML =
         '<aside class="noel-encart" role="note" aria-label="' + T.titre + '">' +
             '<button type="button" class="noel-fermer" aria-label="' + T.fermer + '">&times;</button>' +
+            '<img class="noel-photo" src="' + racine + 'images/perenoel.jpg" alt="' + T.photoAlt + '">' +
             '<div class="noel-etoiles" aria-hidden="true">\u2726 \u2726 \u2726</div>' +
             '<h2 class="noel-titre">' + T.titre + '</h2>' +
             '<p class="noel-accroche">' + T.accroche + '</p>' +
             '<p class="noel-corps">' + T.corps + '</p>' +
-            '<a class="noel-adresse" href="https://foraione.github.io/">' + T.lien + '</a>' +
             '<span class="noel-signature">' + T.signature + '</span>' +
         '</aside>';
 
     home.parentNode.insertBefore(bande, home.nextSibling);
+
+    /* Si l'image manque (404), l'encart reste lisible sans elle. */
+    var visuel = bande.querySelector('.noel-photo');
+    if (visuel) {
+        visuel.addEventListener('error', function () {
+            if (visuel.parentNode) { visuel.parentNode.removeChild(visuel); }
+        });
+    }
 
     bande.querySelector('.noel-fermer').addEventListener('click', function () {
         bande.parentNode.removeChild(bande);
